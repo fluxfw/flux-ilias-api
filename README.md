@@ -20,4 +20,4 @@ IliasApi::new();
 
 ## Example
 
-Look at [flux-ilias-rest-api](https://github.com/fluxapps/flux-ilias-rest-api)
+Look at [flux-ilias-rest-api](https://github.com/flux-eco/flux-ilias-rest-api)
