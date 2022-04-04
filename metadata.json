@@ -1,0 +1,10 @@
+{
+    "description": "ILIAS Api",
+    "topics": [
+        "api",
+        "ilias",
+        "library",
+        "php"
+    ],
+    "homepage": "https://github.com/fluxapps/flux-ilias-api"
+}
