@@ -59,9 +59,7 @@ ORDER BY time ASC";
     {
         return ChangeDto::new(
             $change["id"],
-            LegacyChangeType::from(
-                $change["type"]
-            ),
+            LegacyChangeType::from($change["type"]),
             $change["time"],
             $change["user_id"],
             $change["user_import_id"] ?: null,

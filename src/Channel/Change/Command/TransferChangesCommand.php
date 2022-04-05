@@ -5,9 +5,9 @@ namespace FluxIliasApi\Channel\Change\Command;
 use Exception;
 use FluxIliasApi\Channel\Change\ChangeQuery;
 use FluxIliasApi\Channel\Change\Port\ChangeService;
-use FluxIliasApi\Libs\FluxRestApi\Libs\FluxRestBaseApi\Body\LegacyDefaultBodyType;
-use FluxIliasApi\Libs\FluxRestApi\Libs\FluxRestBaseApi\Header\LegacyDefaultHeader;
-use FluxIliasApi\Libs\FluxRestApi\Libs\FluxRestBaseApi\Method\LegacyDefaultMethod;
+use FluxIliasApi\Libs\FluxRestApi\Body\LegacyDefaultBodyType;
+use FluxIliasApi\Libs\FluxRestApi\Header\LegacyDefaultHeader;
+use FluxIliasApi\Libs\FluxRestApi\Method\LegacyDefaultMethod;
 use ilDBInterface;
 
 class TransferChangesCommand
