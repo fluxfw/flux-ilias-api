@@ -58,6 +58,7 @@ use FluxIliasApi\Channel\User\Port\UserService;
 use FluxIliasApi\Channel\UserFavourite\Port\UserFavouriteService;
 use FluxIliasApi\Channel\UserMail\Port\UserMailService;
 use FluxIliasApi\Channel\UserRole\Port\UserRoleService;
+use FluxIliasApi\Libs\FluxRestApi\Adapter\Api\RestApi;
 use ilCronJob;
 use ilDBInterface;
 use ilFavouritesDBRepository;
@@ -2497,7 +2498,8 @@ class IliasApi
             $this->getRoleService(),
             $this->getScormLearningModuleService(),
             $this->getUserService(),
-            $this->getUserRoleService()
+            $this->getUserRoleService(),
+            $this->getRestApi()
         );
     }
 
@@ -2660,6 +2662,12 @@ class IliasApi
             $this->getUserService(),
             $this->getOrganisationalUnitPositionService()
         );
+    }
+
+
+    private function getRestApi() : RestApi
+    {
+        return RestApi::new();
     }
 
 
