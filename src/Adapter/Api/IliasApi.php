@@ -28,6 +28,7 @@ use FluxIliasApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionDi
 use FluxIliasApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionDto;
 use FluxIliasApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionIdDto;
 use FluxIliasApi\Adapter\OrganisationalUnitStaff\OrganisationalUnitStaffDto;
+use FluxIliasApi\Adapter\Proxy\ProxyConfigDto;
 use FluxIliasApi\Adapter\Role\RoleDiffDto;
 use FluxIliasApi\Adapter\Role\RoleDto;
 use FluxIliasApi\Adapter\ScormLearningModule\ScormLearningModuleDiffDto;
@@ -51,6 +52,7 @@ use FluxIliasApi\Channel\ObjectLearningProgress\Port\ObjectLearningProgressServi
 use FluxIliasApi\Channel\OrganisationalUnit\Port\OrganisationalUnitService;
 use FluxIliasApi\Channel\OrganisationalUnitPosition\Port\OrganisationalUnitPositionService;
 use FluxIliasApi\Channel\OrganisationalUnitStaff\Port\OrganisationalUnitStaffService;
+use FluxIliasApi\Channel\Proxy\Port\ProxyService;
 use FluxIliasApi\Channel\Role\Port\RoleService;
 use FluxIliasApi\Channel\ScormLearningModule\Port\ScormLearningModuleService;
 use FluxIliasApi\Channel\Setup\Port\SetupService;
@@ -62,6 +64,7 @@ use FluxIliasApi\Libs\FluxRestApi\Adapter\Api\RestApi;
 use ilCronJob;
 use ilDBInterface;
 use ilFavouritesDBRepository;
+use ilGlobalTemplateInterface;
 use ILIAS\DI\Container;
 use ILIAS\DI\RBACServices;
 use ILIAS\FileUpload\FileUpload;
@@ -966,8 +969,13 @@ class IliasApi
 
     public function getCurrentApiUser() : ?UserDto
     {
+        $id = $this->getIliasUser()->getId();
+        if (intval($id) === intval(ANONYMOUS_USER_ID)) {
+            return null;
+        }
+
         return $this->getUserById(
-            $this->getIliasUser()->getId()
+            $id
         );
     }
 
@@ -1433,6 +1441,25 @@ class IliasApi
             $event,
             $parameters
         );
+    }
+
+
+    public function handleIliasGoto() : void
+    {
+        $this->getProxyService()
+            ->handleIliasGoto(
+                $this->getIliasGlobalTemplate(),
+                $this->getCurrentApiUser()
+            );
+    }
+
+
+    public function handleIliasRedirect(string $url) : ?string
+    {
+        return $this->getProxyService()
+            ->handleIliasRedirect(
+                $url
+            );
     }
 
 
@@ -2587,6 +2614,12 @@ class IliasApi
     }
 
 
+    private function getIliasGlobalTemplate() : ilGlobalTemplateInterface
+    {
+        return $this->getIliasDic()->ui()->mainTemplate();
+    }
+
+
     private function getIliasObjectDefinition() : ilObjectDefinition
     {
         return $this->getIliasDic()["objDefinition"];
@@ -2661,6 +2694,15 @@ class IliasApi
             $this->getOrganisationalUnitService(),
             $this->getUserService(),
             $this->getOrganisationalUnitPositionService()
+        );
+    }
+
+
+    private function getProxyService() : ProxyService
+    {
+        return ProxyService::new(
+            ProxyConfigDto::newFromEnv(),
+            $this->getRestApi()
         );
     }
 
