@@ -28,6 +28,7 @@ use FluxIliasApi\Channel\Role\Port\RoleService;
 use FluxIliasApi\Channel\ScormLearningModule\Port\ScormLearningModuleService;
 use FluxIliasApi\Channel\User\Port\UserService;
 use FluxIliasApi\Channel\UserRole\Port\UserRoleService;
+use FluxIliasApi\Libs\FluxRestApi\Adapter\Api\RestApi;
 use ilDBInterface;
 
 class ChangeService
@@ -45,6 +46,7 @@ class ChangeService
     private ObjectService $object_service;
     private OrganisationalUnitService $organisational_unit_service;
     private OrganisationalUnitStaffService $organisational_unit_staff_service;
+    private RestApi $rest_api;
     private RoleService $role_service;
     private ScormLearningModuleService $scorm_learning_module_service;
     private UserRoleService $user_role_service;
@@ -67,7 +69,8 @@ class ChangeService
         /*private readonly*/ RoleService $role_service,
         /*private readonly*/ ScormLearningModuleService $scorm_learning_module_service,
         /*private readonly*/ UserService $user_service,
-        /*private readonly*/ UserRoleService $user_role_service
+        /*private readonly*/ UserRoleService $user_role_service,
+        /*private readonly*/ RestApi $rest_api
     ) {
         $this->ilias_database = $ilias_database;
         $this->config_service = $config_service;
@@ -85,6 +88,7 @@ class ChangeService
         $this->scorm_learning_module_service = $scorm_learning_module_service;
         $this->user_service = $user_service;
         $this->user_role_service = $user_role_service;
+        $this->rest_api = $rest_api;
     }
 
 
@@ -104,7 +108,8 @@ class ChangeService
         RoleService $role_service,
         ScormLearningModuleService $scorm_learning_module_service,
         UserService $user_service,
-        UserRoleService $user_role_service
+        UserRoleService $user_role_service,
+        RestApi $rest_api
     ) : /*static*/ self
     {
         return new static(
@@ -123,7 +128,8 @@ class ChangeService
             $role_service,
             $scorm_learning_module_service,
             $user_service,
-            $user_role_service
+            $user_role_service,
+            $rest_api
         );
     }
 
@@ -271,7 +277,8 @@ class ChangeService
     {
         return TransferChangesCommand::new(
             $this->ilias_database,
-            $this
+            $this,
+            $this->rest_api
         )
             ->transferChanges();
     }

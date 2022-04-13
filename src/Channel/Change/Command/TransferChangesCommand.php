@@ -2,12 +2,13 @@
 
 namespace FluxIliasApi\Channel\Change\Command;
 
-use Exception;
 use FluxIliasApi\Channel\Change\ChangeQuery;
 use FluxIliasApi\Channel\Change\Port\ChangeService;
-use FluxIliasApi\Libs\FluxRestApi\Body\LegacyDefaultBodyType;
-use FluxIliasApi\Libs\FluxRestApi\Header\LegacyDefaultHeader;
-use FluxIliasApi\Libs\FluxRestApi\Method\LegacyDefaultMethod;
+use FluxIliasApi\Libs\FluxRestApi\Adapter\Api\RestApi;
+use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\Type\LegacyDefaultBodyType;
+use FluxIliasApi\Libs\FluxRestApi\Adapter\Client\ClientRequestDto;
+use FluxIliasApi\Libs\FluxRestApi\Adapter\Header\LegacyDefaultHeader;
+use FluxIliasApi\Libs\FluxRestApi\Adapter\Method\LegacyDefaultMethod;
 use ilDBInterface;
 
 class TransferChangesCommand
@@ -17,25 +18,30 @@ class TransferChangesCommand
 
     private ChangeService $change_service;
     private ilDBInterface $ilias_database;
+    private RestApi $rest_api;
 
 
     private function __construct(
         /*private readonly*/ ilDBInterface $ilias_database,
-        /*private readonly*/ ChangeService $change_service
+        /*private readonly*/ ChangeService $change_service,
+        /*private readonly*/ RestApi $rest_api
     ) {
         $this->ilias_database = $ilias_database;
         $this->change_service = $change_service;
+        $this->rest_api = $rest_api;
     }
 
 
     public static function new(
         ilDBInterface $ilias_database,
-        ChangeService $change_service
+        ChangeService $change_service,
+        RestApi $rest_api
     ) : /*static*/ self
     {
         return new static(
             $ilias_database,
-            $change_service
+            $change_service,
+            $rest_api
         );
     }
 
@@ -52,32 +58,22 @@ class TransferChangesCommand
             $this->change_service->getLastTransferredChangeTime()
         );
 
-        $curl = null;
-        try {
-            $curl = curl_init($this->change_service->getTransferChangesPostUrl());
-
-            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, LegacyDefaultMethod::POST()->value);
-
-            $headers = [
-                LegacyDefaultHeader::CONTENT_TYPE()->value => LegacyDefaultBodyType::JSON()->value,
-                LegacyDefaultHeader::USER_AGENT()->value   => "flux-ilias-api"
-            ];
-            curl_setopt($curl, CURLOPT_HTTPHEADER, array_map(fn(string $key, string $value) : string => $key . ": " . $value, array_keys($headers), $headers));
-
-            curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($changes, JSON_UNESCAPED_SLASHES));
-
-            curl_setopt($curl, CURLOPT_FAILONERROR, true);
-
-            curl_exec($curl);
-
-            if (curl_errno($curl) !== 0) {
-                throw new Exception(curl_error($curl));
-            }
-        } finally {
-            if ($curl !== null) {
-                curl_close($curl);
-            }
-        }
+        $this->rest_api->makeRequest(
+            ClientRequestDto::new(
+                $this->change_service->getTransferChangesPostUrl(),
+                LegacyDefaultMethod::POST(),
+                null,
+                json_encode($changes, JSON_UNESCAPED_SLASHES),
+                [
+                    LegacyDefaultHeader::CONTENT_TYPE()->value => LegacyDefaultBodyType::JSON()->value,
+                    LegacyDefaultHeader::USER_AGENT()->value   => "flux-ilias-api"
+                ],
+                false,
+                true,
+                false,
+                false
+            )
+        );
 
         $count = count($changes);
         if ($count > 0) {
