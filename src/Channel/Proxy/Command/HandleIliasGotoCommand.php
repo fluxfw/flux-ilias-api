@@ -12,6 +12,7 @@ use FluxIliasApi\Libs\FluxRestApi\Adapter\Client\ClientRequestDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Header\LegacyDefaultHeader;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Server\ServerRawRequestDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Server\ServerRawResponseDto;
+use FluxIliasApi\Libs\FluxRestApi\Adapter\Server\ServerResponseDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Status\LegacyDefaultStatus;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Status\Status;
 use ilGlobalTemplateInterface;
@@ -153,6 +154,20 @@ class HandleIliasGotoCommand
 
             exit;
         }
+
+        $response = $this->rest_api->handleMethodOverride(
+            $request
+        );
+        if ($response instanceof ServerResponseDto) {
+            $this->bodyResponse(
+                $response->getBody(),
+                $request,
+                $response->getStatus()
+            );
+
+            exit;
+        }
+        $request = $response ?? $request;
 
         $response = $this->rest_api->makeRequest(
             ClientRequestDto::new(
