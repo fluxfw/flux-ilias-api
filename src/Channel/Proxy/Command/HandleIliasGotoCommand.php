@@ -171,7 +171,7 @@ class HandleIliasGotoCommand
 
         $response = $this->rest_api->makeRequest(
             ClientRequestDto::new(
-                $url . (!empty($path = trim($request->getQueryParam(
+                rtrim($url, "/") . (!empty($path = trim($request->getQueryParam(
                     "route"
                 ), "/")) ? "/" . $path : ""),
                 $request->getMethod(),
@@ -214,7 +214,7 @@ class HandleIliasGotoCommand
             return;
         }
 
-        $url = $url . (!empty($path = trim($request->getQueryParam(
+        $url = rtrim($url, "/") . (!empty($path = trim($request->getQueryParam(
                 "route"
             ), "/")) ? "/" . $path : "");
         if (!empty($query_params = $this->getQueryParams(
