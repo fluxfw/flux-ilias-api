@@ -3,10 +3,11 @@
 namespace FluxIliasApi\Channel\Change\Cron;
 
 use FluxIliasApi\Channel\Change\Port\ChangeService;
+use ilCheckboxInputGUI;
 use ilCronJob;
 use ilCronJobResult;
 use ilPropertyFormGUI;
-use ilUriInputGUI;
+use ilTextInputGUI;
 
 class TransferChangesCronJob extends ilCronJob
 {
@@ -33,8 +34,11 @@ class TransferChangesCronJob extends ilCronJob
 
     public function addCustomSettingsToForm(ilPropertyFormGUI $a_form) : void
     {
-        $post_url = new ilUriInputGUI("Post url", "post_url");
-        $post_url->setRequired(true);
+        $enable_log_changes = new ilCheckboxInputGUI("Enable log changes", "enable_log_changes");
+        $enable_log_changes->setChecked($this->change_service->isEnabledLogChanges());
+        $a_form->addItem($enable_log_changes);
+
+        $post_url = new ilTextInputGUI("Post url", "post_url");
         $post_url->setValue($this->change_service->getTransferChangesPostUrl());
         $a_form->addItem($post_url);
     }
@@ -107,6 +111,10 @@ class TransferChangesCronJob extends ilCronJob
 
     public function saveCustomSettings(ilPropertyFormGUI $a_form) : bool
     {
+        $this->change_service->setEnabledLogChanges(
+            boolval($a_form->getInput("enable_log_changes"))
+        );
+
         $this->change_service->setTransferChangesPostUrl(
             strval($a_form->getInput("post_url"))
         );

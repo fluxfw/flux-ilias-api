@@ -11,6 +11,7 @@ use FluxIliasApi\Adapter\User\UserDto;
 use FluxIliasApi\Adapter\UserRole\UserRoleDto;
 use FluxIliasApi\Channel\Category\Port\CategoryService;
 use FluxIliasApi\Channel\Change\ChangeQuery;
+use FluxIliasApi\Channel\Change\Port\ChangeService;
 use FluxIliasApi\Channel\Course\Port\CourseService;
 use FluxIliasApi\Channel\CourseMember\Port\CourseMemberService;
 use FluxIliasApi\Channel\File\Port\FileService;
@@ -43,6 +44,7 @@ class HandleIliasEventCommand
     use ChangeQuery;
 
     private CategoryService $category_service;
+    private ChangeService $change_service;
     private CourseMemberService $course_member_service;
     private CourseService $course_service;
     private FileService $file_service;
@@ -61,6 +63,7 @@ class HandleIliasEventCommand
 
     private function __construct(
         /*private readonly*/ ilDBInterface $ilias_database,
+        /*private readonly*/ ChangeService $change_service,
         /*private readonly*/ CategoryService $category_service,
         /*private readonly*/ CourseService $course_service,
         /*private readonly*/ CourseMemberService $course_member_service,
@@ -77,6 +80,7 @@ class HandleIliasEventCommand
         /*private readonly*/ UserRoleService $user_role_service
     ) {
         $this->ilias_database = $ilias_database;
+        $this->change_service = $change_service;
         $this->category_service = $category_service;
         $this->course_service = $course_service;
         $this->course_member_service = $course_member_service;
@@ -96,6 +100,7 @@ class HandleIliasEventCommand
 
     public static function new(
         ilDBInterface $ilias_database,
+        ChangeService $change_service,
         CategoryService $category_service,
         CourseService $course_service,
         CourseMemberService $course_member_service,
@@ -114,6 +119,7 @@ class HandleIliasEventCommand
     {
         return new static(
             $ilias_database,
+            $change_service,
             $category_service,
             $course_service,
             $course_member_service,
@@ -134,6 +140,10 @@ class HandleIliasEventCommand
 
     public function handleIliasEvent(UserDto $user, string $component, string $event, array $parameters) : void
     {
+        if (!$this->change_service->isEnabledLogChanges()) {
+            return;
+        }
+
         switch ($component) {
             case "Modules/Course":
                 $this->handleCourse(
