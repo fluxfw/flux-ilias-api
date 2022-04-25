@@ -48,7 +48,7 @@ class TransferChangesCommand
 
     public function transferChanges() : ?int
     {
-        if (!$this->changeDatabaseExists()) {
+        if (!$this->changeDatabaseExists() || empty($this->change_service->getTransferChangesPostUrl())) {
             return null;
         }
 

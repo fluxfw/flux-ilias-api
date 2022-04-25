@@ -6,6 +6,7 @@ use FluxIliasApi\Adapter\User\UserDto;
 use FluxIliasApi\Channel\Category\Port\CategoryService;
 use FluxIliasApi\Channel\Change\Command\CreateChangeDatabaseCommand;
 use FluxIliasApi\Channel\Change\Command\DropChangeDatabaseCommand;
+use FluxIliasApi\Channel\Change\Command\EnableLogChangesConfigCommand;
 use FluxIliasApi\Channel\Change\Command\GetChangeCronJobsCommand;
 use FluxIliasApi\Channel\Change\Command\GetChangesCommand;
 use FluxIliasApi\Channel\Change\Command\HandleIliasEventCommand;
@@ -206,6 +207,7 @@ class ChangeService
     {
         HandleIliasEventCommand::new(
             $this->ilias_database,
+            $this,
             $this->category_service,
             $this->course_service,
             $this->course_member_service,
@@ -230,6 +232,15 @@ class ChangeService
     }
 
 
+    public function isEnabledLogChanges() : bool
+    {
+        return EnableLogChangesConfigCommand::new(
+            $this->config_service
+        )
+            ->isEnabledLogChanges();
+    }
+
+
     public function purgeChanges() : ?int
     {
         return PurgeChangesCommand::new(
@@ -237,6 +248,17 @@ class ChangeService
             $this
         )
             ->purgeChanges();
+    }
+
+
+    public function setEnabledLogChanges(bool $enable_log_changes) : void
+    {
+        EnableLogChangesConfigCommand::new(
+            $this->config_service
+        )
+            ->setEnabledLogChanges(
+                $enable_log_changes
+            );
     }
 
 
