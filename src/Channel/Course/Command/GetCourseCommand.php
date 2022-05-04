@@ -4,6 +4,7 @@ namespace FluxIliasApi\Channel\Course\Command;
 
 use FluxIliasApi\Adapter\Course\CourseDto;
 use FluxIliasApi\Channel\Course\CourseQuery;
+use FluxIliasApi\Channel\CustomMetadata\CustomMetadataQuery;
 use FluxIliasApi\Channel\Object\ObjectQuery;
 use ilDBInterface;
 use LogicException;
@@ -12,6 +13,7 @@ class GetCourseCommand
 {
 
     use CourseQuery;
+    use CustomMetadataQuery;
     use ObjectQuery;
 
     private ilDBInterface $ilias_database;
@@ -48,7 +50,8 @@ class GetCourseCommand
             }
             $course = $this->mapCourseDto(
                 $course_,
-                $this->ilias_database->fetchAll($this->ilias_database->query($this->getCourseContainerSettingQuery([$course_["obj_id"]])))
+                $this->ilias_database->fetchAll($this->ilias_database->query($this->getCourseContainerSettingQuery([$course_["obj_id"]]))),
+                true
             );
         }
 
@@ -70,7 +73,8 @@ class GetCourseCommand
             }
             $course = $this->mapCourseDto(
                 $course_,
-                $this->ilias_database->fetchAll($this->ilias_database->query($this->getCourseContainerSettingQuery([$course_["obj_id"]])))
+                $this->ilias_database->fetchAll($this->ilias_database->query($this->getCourseContainerSettingQuery([$course_["obj_id"]]))),
+                true
             );
         }
 
@@ -92,7 +96,8 @@ class GetCourseCommand
             }
             $course = $this->mapCourseDto(
                 $course_,
-                $this->ilias_database->fetchAll($this->ilias_database->query($this->getCourseContainerSettingQuery([$course_["obj_id"]])))
+                $this->ilias_database->fetchAll($this->ilias_database->query($this->getCourseContainerSettingQuery([$course_["obj_id"]]))),
+                true
             );
         }
 

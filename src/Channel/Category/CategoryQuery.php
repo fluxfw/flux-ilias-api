@@ -74,10 +74,17 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
         if ($diff->getDidacticTemplateId() !== null) {
             $ilias_category->applyDidacticTemplate($diff->getDidacticTemplateId());
         }
+
+        if ($diff->getCustomMetadata() !== null) {
+            $this->updateCustomMetadata(
+                $ilias_category->getId(),
+                $diff->getCustomMetadata()
+            );
+        }
     }
 
 
-    private function mapCategoryDto(array $category) : CategoryDto
+    private function mapCategoryDto(array $category, bool $custom_metadata = false) : CategoryDto
     {
         $type = ($type = $category["type"] ?: null) !== null ? CustomInternalObjectType::factory($type) : null;
 
@@ -95,7 +102,10 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
             $category["title"] ?? "",
             $category["description"] ?? "",
             $category["tpl_id"] ?: null,
-            ($category["deleted"] ?? null) !== null
+            ($category["deleted"] ?? null) !== null,
+            $custom_metadata ? $this->getCustomMetadata(
+                $category["obj_id"] ?: null
+            ) : null
         );
     }
 

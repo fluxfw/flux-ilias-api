@@ -42,12 +42,7 @@ class OrganisationalUnitPositionDiffDto
         return static::new(
             $data->title ?? null,
             $data->description ?? null,
-            ($authorities = $data->authorities ?? null) !== null ? array_map(fn(object $authority
-            ) : OrganisationalUnitPositionAuthorityDto => OrganisationalUnitPositionAuthorityDto::new(
-                $authority->id ?? null,
-                $authority->over_position_id ?? null,
-                ($scope_in = $authority->scope_in ?? null) !== null ? LegacyOrganisationalUnitPositionAuthorityScopeIn::from($scope_in) : null
-            ), $authorities) : null
+            ($authorities = $data->authorities ?? null) !== null ? array_map([OrganisationalUnitPositionAuthorityDto::class, "newFromData"], $authorities) : null
         );
     }
 

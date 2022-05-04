@@ -43,7 +43,8 @@ class CategoryService
     public function createCategoryToId(int $parent_id, CategoryDiffDto $diff) : ?ObjectIdDto
     {
         return CreateCategoryCommand::new(
-            $this->object_service
+            $this->object_service,
+            $this->ilias_database
         )
             ->createCategoryToId(
                 $parent_id,
@@ -55,7 +56,8 @@ class CategoryService
     public function createCategoryToImportId(string $parent_import_id, CategoryDiffDto $diff) : ?ObjectIdDto
     {
         return CreateCategoryCommand::new(
-            $this->object_service
+            $this->object_service,
+            $this->ilias_database
         )
             ->createCategoryToImportId(
                 $parent_import_id,
@@ -67,7 +69,8 @@ class CategoryService
     public function createCategoryToRefId(int $parent_ref_id, CategoryDiffDto $diff) : ?ObjectIdDto
     {
         return CreateCategoryCommand::new(
-            $this->object_service
+            $this->object_service,
+            $this->ilias_database
         )
             ->createCategoryToRefId(
                 $parent_ref_id,
@@ -126,7 +129,8 @@ class CategoryService
     public function updateCategoryById(int $id, CategoryDiffDto $diff) : ?ObjectIdDto
     {
         return UpdateCategoryCommand::new(
-            $this
+            $this,
+            $this->ilias_database
         )
             ->updateCategoryById(
                 $id,
@@ -138,7 +142,8 @@ class CategoryService
     public function updateCategoryByImportId(string $import_id, CategoryDiffDto $diff) : ?ObjectIdDto
     {
         return UpdateCategoryCommand::new(
-            $this
+            $this,
+            $this->ilias_database
         )
             ->updateCategoryByImportId(
                 $import_id,
@@ -150,7 +155,8 @@ class CategoryService
     public function updateCategoryByRefId(int $ref_id, CategoryDiffDto $diff) : ?ObjectIdDto
     {
         return UpdateCategoryCommand::new(
-            $this
+            $this,
+            $this->ilias_database
         )
             ->updateCategoryByRefId(
                 $ref_id,

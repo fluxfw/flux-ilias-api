@@ -43,7 +43,8 @@ class CourseService
     public function createCourseToId(int $parent_id, CourseDiffDto $diff) : ?ObjectIdDto
     {
         return CreateCourseCommand::new(
-            $this->object_service
+            $this->object_service,
+            $this->ilias_database
         )
             ->createCourseToId(
                 $parent_id,
@@ -55,7 +56,8 @@ class CourseService
     public function createCourseToImportId(string $parent_import_id, CourseDiffDto $diff) : ?ObjectIdDto
     {
         return CreateCourseCommand::new(
-            $this->object_service
+            $this->object_service,
+            $this->ilias_database
         )
             ->createCourseToImportId(
                 $parent_import_id,
@@ -67,7 +69,8 @@ class CourseService
     public function createCourseToRefId(int $parent_ref_id, CourseDiffDto $diff) : ?ObjectIdDto
     {
         return CreateCourseCommand::new(
-            $this->object_service
+            $this->object_service,
+            $this->ilias_database
         )
             ->createCourseToRefId(
                 $parent_ref_id,
@@ -127,7 +130,8 @@ class CourseService
     public function updateCourseById(int $id, CourseDiffDto $diff) : ?ObjectIdDto
     {
         return UpdateCourseCommand::new(
-            $this
+            $this,
+            $this->ilias_database
         )
             ->updateCourseById(
                 $id,
@@ -139,7 +143,8 @@ class CourseService
     public function updateCourseByImportId(string $import_id, CourseDiffDto $diff) : ?ObjectIdDto
     {
         return UpdateCourseCommand::new(
-            $this
+            $this,
+            $this->ilias_database
         )
             ->updateCourseByImportId(
                 $import_id,
@@ -151,7 +156,8 @@ class CourseService
     public function updateCourseByRefId(int $ref_id, CourseDiffDto $diff) : ?ObjectIdDto
     {
         return UpdateCourseCommand::new(
-            $this
+            $this,
+            $this->ilias_database
         )
             ->updateCourseByRefId(
                 $ref_id,

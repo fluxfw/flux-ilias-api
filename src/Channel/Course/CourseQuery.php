@@ -133,8 +133,8 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
             $ilias_course::_writeContainerSetting($ilias_course->getId(), ilObjectServiceSettingsGUI::USE_NEWS, $diff->isNews());
         }
 
-        if ($diff->isCustomMetadata() !== null) {
-            $ilias_course::_writeContainerSetting($ilias_course->getId(), ilObjectServiceSettingsGUI::CUSTOM_METADATA, $diff->isCustomMetadata());
+        if ($diff->isManageCustomMetadata() !== null) {
+            $ilias_course::_writeContainerSetting($ilias_course->getId(), ilObjectServiceSettingsGUI::CUSTOM_METADATA, $diff->isManageCustomMetadata());
         }
 
         if ($diff->isTagCloud() !== null) {
@@ -212,10 +212,17 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
         if ($diff->getDidacticTemplateId() !== null) {
             $ilias_course->applyDidacticTemplate($diff->getDidacticTemplateId());
         }
+
+        if ($diff->getCustomMetadata() !== null) {
+            $this->updateCustomMetadata(
+                $ilias_course->getId(),
+                $diff->getCustomMetadata()
+            );
+        }
     }
 
 
-    private function mapCourseDto(array $course, ?array $container_settings = null) : CourseDto
+    private function mapCourseDto(array $course, ?array $container_settings = null, bool $custom_metadata = false) : CourseDto
     {
         $getCourseContainerSetting = fn(string $field, /*mixed*/ $null_default_value = null)/* : mixed*/ => $container_settings !== null ? current(array_map(fn(array $container_setting
         )/* : mixed*/ => $container_setting["value"] ?? $null_default_value,
@@ -294,7 +301,10 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
             $course["contact_email"] ?? "",
             $course["contact_consultation"] ?? "",
             $course["tpl_id"] ?: null,
-            ($course["deleted"] ?? null) !== null
+            ($course["deleted"] ?? null) !== null,
+            $custom_metadata ? $this->getCustomMetadata(
+                $course["obj_id"] ?: null
+            ) : null
         );
     }
 

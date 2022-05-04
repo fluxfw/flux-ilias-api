@@ -37,6 +37,18 @@ class UserDefinedFieldDto implements JsonSerializable
     }
 
 
+    public static function newFromData(
+        object $data
+    ) : /*static*/ self
+    {
+        return static::new(
+            $data->id ?? null,
+            $data->name ?? null,
+            $data->value ?? null
+        );
+    }
+
+
     public function getId() : ?int
     {
         return $this->id;

@@ -3,6 +3,7 @@
 namespace FluxIliasApi\Channel\Object\Command;
 
 use FluxIliasApi\Adapter\Object\ObjectDto;
+use FluxIliasApi\Channel\CustomMetadata\CustomMetadataQuery;
 use FluxIliasApi\Channel\Object\ObjectQuery;
 use ilDBInterface;
 use LogicException;
@@ -10,6 +11,7 @@ use LogicException;
 class GetObjectCommand
 {
 
+    use CustomMetadataQuery;
     use ObjectQuery;
 
     private ilDBInterface $ilias_database;
@@ -48,7 +50,8 @@ class GetObjectCommand
             }
             $object = $this->mapObjectDto(
                 $object_,
-                $this->ilias_database->fetchAll($this->ilias_database->query($this->getObjectRefIdsQuery([$object_["obj_id"]])))
+                $this->ilias_database->fetchAll($this->ilias_database->query($this->getObjectRefIdsQuery([$object_["obj_id"]]))),
+                true
             );
         }
 
@@ -72,7 +75,8 @@ class GetObjectCommand
             }
             $object = $this->mapObjectDto(
                 $object_,
-                $this->ilias_database->fetchAll($this->ilias_database->query($this->getObjectRefIdsQuery([$object_["obj_id"]])))
+                $this->ilias_database->fetchAll($this->ilias_database->query($this->getObjectRefIdsQuery([$object_["obj_id"]]))),
+                true
             );
         }
 
@@ -96,7 +100,8 @@ class GetObjectCommand
             }
             $object = $this->mapObjectDto(
                 $object_,
-                $this->ilias_database->fetchAll($this->ilias_database->query($this->getObjectRefIdsQuery([$object_["obj_id"]])))
+                $this->ilias_database->fetchAll($this->ilias_database->query($this->getObjectRefIdsQuery([$object_["obj_id"]]))),
+                true
             );
         }
 

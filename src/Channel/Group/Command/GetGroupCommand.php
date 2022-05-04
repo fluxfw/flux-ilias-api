@@ -3,6 +3,7 @@
 namespace FluxIliasApi\Channel\Group\Command;
 
 use FluxIliasApi\Adapter\Group\GroupDto;
+use FluxIliasApi\Channel\CustomMetadata\CustomMetadataQuery;
 use FluxIliasApi\Channel\Group\GroupQuery;
 use FluxIliasApi\Channel\Object\ObjectQuery;
 use ilDBInterface;
@@ -11,6 +12,7 @@ use LogicException;
 class GetGroupCommand
 {
 
+    use CustomMetadataQuery;
     use GroupQuery;
     use ObjectQuery;
 
@@ -47,7 +49,8 @@ class GetGroupCommand
                 throw new LogicException("Multiple groups found with the id " . $id);
             }
             $group = $this->mapGroupDto(
-                $group_
+                $group_,
+                true
             );
         }
 
@@ -68,7 +71,8 @@ class GetGroupCommand
                 throw new LogicException("Multiple groups found with the import id " . $import_id);
             }
             $group = $this->mapGroupDto(
-                $group_
+                $group_,
+                true
             );
         }
 
@@ -89,7 +93,8 @@ class GetGroupCommand
                 throw new LogicException("Multiple groups found with the ref id " . $ref_id);
             }
             $group = $this->mapGroupDto(
-                $group_
+                $group_,
+                true
             );
         }
 

@@ -5,30 +5,38 @@ namespace FluxIliasApi\Channel\Group\Command;
 use FluxIliasApi\Adapter\Group\GroupDiffDto;
 use FluxIliasApi\Adapter\Group\GroupDto;
 use FluxIliasApi\Adapter\Object\ObjectIdDto;
+use FluxIliasApi\Channel\CustomMetadata\CustomMetadataQuery;
 use FluxIliasApi\Channel\Group\GroupQuery;
 use FluxIliasApi\Channel\Group\Port\GroupService;
+use ilDBInterface;
 
 class UpdateGroupCommand
 {
 
+    use CustomMetadataQuery;
     use GroupQuery;
 
     private GroupService $group_service;
+    private ilDBInterface $ilias_database;
 
 
     private function __construct(
-        /*private readonly*/ GroupService $group_service
+        /*private readonly*/ GroupService $group_service,
+        /*private readonly*/ ilDBInterface $ilias_database
     ) {
         $this->group_service = $group_service;
+        $this->ilias_database = $ilias_database;
     }
 
 
     public static function new(
-        GroupService $group_service
+        GroupService $group_service,
+        ilDBInterface $ilias_database
     ) : /*static*/ self
     {
         return new static(
-            $group_service
+            $group_service,
+            $ilias_database
         );
     }
 

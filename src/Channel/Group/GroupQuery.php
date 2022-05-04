@@ -74,10 +74,17 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
         if ($diff->getDidacticTemplateId() !== null) {
             $ilias_group->applyDidacticTemplate($diff->getDidacticTemplateId());
         }
+
+        if ($diff->getCustomMetadata() !== null) {
+            $this->updateCustomMetadata(
+                $ilias_group->getId(),
+                $diff->getCustomMetadata()
+            );
+        }
     }
 
 
-    private function mapGroupDto(array $group) : GroupDto
+    private function mapGroupDto(array $group, bool $custom_metadata = false) : GroupDto
     {
         $type = ($type = $group["type"] ?: null) !== null ? CustomInternalObjectType::factory($type) : null;
 
@@ -95,7 +102,10 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
             $group["title"] ?? "",
             $group["description"] ?? "",
             $group["tpl_id"] ?: null,
-            ($group["deleted"] ?? null) !== null
+            ($group["deleted"] ?? null) !== null,
+            $custom_metadata ? $this->getCustomMetadata(
+                $group["obj_id"] ?: null
+            ) : null
         );
     }
 

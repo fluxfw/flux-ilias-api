@@ -2,6 +2,8 @@
 
 namespace FluxIliasApi\Adapter\Course;
 
+use FluxIliasApi\Adapter\CustomMetadata\CustomMetadataDto;
+
 class CourseDiffDto
 {
 
@@ -17,7 +19,10 @@ class CourseDiffDto
     private ?string $contact_name;
     private ?string $contact_phone;
     private ?string $contact_responsibility;
-    private ?bool $custom_metadata;
+    /**
+     * @var CustomMetadataDto[]|null
+     */
+    private ?array $custom_metadata;
     private ?bool $default_object_rating;
     private ?string $description;
     private ?int $didactic_template_id;
@@ -25,6 +30,7 @@ class CourseDiffDto
     private ?string $important_information;
     private ?string $mail_subject_prefix;
     private ?LegacyCourseMailToMembersType $mail_to_members_type;
+    private ?bool $manage_custom_metadata;
     private ?bool $news;
     private ?bool $online;
     private ?int $period_end;
@@ -41,6 +47,9 @@ class CourseDiffDto
     private ?string $title;
 
 
+    /**
+     * @param CustomMetadataDto[]|null $custom_metadata
+     */
     private function __construct(
         /*public readonly*/ ?string $import_id,
         /*public readonly*/ ?string $title,
@@ -56,7 +65,7 @@ class CourseDiffDto
         /*public readonly*/ ?bool $calendar,
         /*public readonly*/ ?bool $calendar_block,
         /*public readonly*/ ?bool $news,
-        /*public readonly*/ ?bool $custom_metadata,
+        /*public readonly*/ ?bool $manage_custom_metadata,
         /*public readonly*/ ?bool $tag_cloud,
         /*public readonly*/ ?bool $default_object_rating,
         /*public readonly*/ ?bool $badges,
@@ -75,7 +84,8 @@ class CourseDiffDto
         /*public readonly*/ ?string $contact_phone,
         /*public readonly*/ ?string $contact_email,
         /*public readonly*/ ?string $contact_consultation,
-        /*public readonly*/ ?int $didactic_template_id
+        /*public readonly*/ ?int $didactic_template_id,
+        /*public readonly*/ ?array $custom_metadata
     ) {
         $this->import_id = $import_id;
         $this->title = $title;
@@ -91,7 +101,7 @@ class CourseDiffDto
         $this->calendar = $calendar;
         $this->calendar_block = $calendar_block;
         $this->news = $news;
-        $this->custom_metadata = $custom_metadata;
+        $this->manage_custom_metadata = $manage_custom_metadata;
         $this->tag_cloud = $tag_cloud;
         $this->default_object_rating = $default_object_rating;
         $this->badges = $badges;
@@ -111,9 +121,13 @@ class CourseDiffDto
         $this->contact_email = $contact_email;
         $this->contact_consultation = $contact_consultation;
         $this->didactic_template_id = $didactic_template_id;
+        $this->custom_metadata = $custom_metadata;
     }
 
 
+    /**
+     * @param CustomMetadataDto[]|null $custom_metadata
+     */
     public static function new(
         ?string $import_id = null,
         ?string $title = null,
@@ -129,7 +143,7 @@ class CourseDiffDto
         ?bool $calendar = null,
         ?bool $calendar_block = null,
         ?bool $news = null,
-        ?bool $custom_metadata = null,
+        ?bool $manage_custom_metadata = null,
         ?bool $tag_cloud = null,
         ?bool $default_object_rating = null,
         ?bool $badges = null,
@@ -148,7 +162,8 @@ class CourseDiffDto
         ?string $contact_phone = null,
         ?string $contact_email = null,
         ?string $contact_consultation = null,
-        ?int $didactic_template_id = null
+        ?int $didactic_template_id = null,
+        ?array $custom_metadata = null
     ) : /*static*/ self
     {
         return new static(
@@ -166,7 +181,7 @@ class CourseDiffDto
             $calendar,
             $calendar_block,
             $news,
-            $custom_metadata,
+            $manage_custom_metadata,
             $tag_cloud,
             $default_object_rating,
             $badges,
@@ -185,7 +200,8 @@ class CourseDiffDto
             $contact_phone,
             $contact_email,
             $contact_consultation,
-            $didactic_template_id
+            $didactic_template_id,
+            $custom_metadata
         );
     }
 
@@ -209,7 +225,7 @@ class CourseDiffDto
             $data->calendar ?? null,
             $data->calendar_block ?? null,
             $data->news ?? null,
-            $data->custom_metadata ?? null,
+            $data->manage_custom_metadata ?? null,
             $data->tag_cloud ?? null,
             $data->default_object_rating ?? null,
             $data->badges ?? null,
@@ -228,7 +244,8 @@ class CourseDiffDto
             $data->contact_phone ?? null,
             $data->contact_email ?? null,
             $data->contact_consultation ?? null,
-            $data->didactic_template_id ?? null
+            $data->didactic_template_id ?? null,
+            ($custom_metadata = $data->custom_metadata ?? null) !== null ? array_map([CustomMetadataDto::class, "newFromData"], $custom_metadata) : null
         );
     }
 
@@ -272,6 +289,15 @@ class CourseDiffDto
     public function getContactResponsibility() : ?string
     {
         return $this->contact_responsibility;
+    }
+
+
+    /**
+     * @return CustomMetadataDto[]|null
+     */
+    public function getCustomMetadata() : ?array
+    {
+        return $this->custom_metadata;
     }
 
 
@@ -371,15 +397,15 @@ class CourseDiffDto
     }
 
 
-    public function isCustomMetadata() : ?bool
-    {
-        return $this->custom_metadata;
-    }
-
-
     public function isDefaultObjectRating() : ?bool
     {
         return $this->default_object_rating;
+    }
+
+
+    public function isManageCustomMetadata() : ?bool
+    {
+        return $this->manage_custom_metadata;
     }
 
 
