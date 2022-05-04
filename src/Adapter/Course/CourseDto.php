@@ -2,6 +2,7 @@
 
 namespace FluxIliasApi\Adapter\Course;
 
+use FluxIliasApi\Adapter\CustomMetadata\CustomMetadataDto;
 use JsonSerializable;
 
 class CourseDto implements JsonSerializable
@@ -20,7 +21,10 @@ class CourseDto implements JsonSerializable
     private ?string $contact_phone;
     private ?string $contact_responsibility;
     private ?int $created;
-    private ?bool $custom_metadata;
+    /**
+     * @var CustomMetadataDto[]|null
+     */
+    private ?array $custom_metadata;
     private ?bool $default_object_rating;
     private ?string $description;
     private ?int $didactic_template_id;
@@ -31,6 +35,7 @@ class CourseDto implements JsonSerializable
     private ?bool $in_trash;
     private ?string $mail_subject_prefix;
     private ?LegacyCourseMailToMembersType $mail_to_members_type;
+    private ?bool $manage_custom_metadata;
     private ?bool $news;
     private ?bool $online;
     private ?int $parent_id;
@@ -52,6 +57,9 @@ class CourseDto implements JsonSerializable
     private ?string $url;
 
 
+    /**
+     * @param CustomMetadataDto[]|null $custom_metadata
+     */
     private function __construct(
         /*public readonly*/ ?int $id,
         /*public readonly*/ ?string $import_id,
@@ -75,7 +83,7 @@ class CourseDto implements JsonSerializable
         /*public readonly*/ ?bool $calendar,
         /*public readonly*/ ?bool $calendar_block,
         /*public readonly*/ ?bool $news,
-        /*public readonly*/ ?bool $custom_metadata,
+        /*public readonly*/ ?bool $manage_custom_metadata,
         /*public readonly*/ ?bool $tag_cloud,
         /*public readonly*/ ?bool $default_object_rating,
         /*public readonly*/ ?bool $badges,
@@ -95,7 +103,8 @@ class CourseDto implements JsonSerializable
         /*public readonly*/ ?string $contact_email,
         /*public readonly*/ ?string $contact_consultation,
         /*public readonly*/ ?int $didactic_template_id,
-        /*public readonly*/ ?bool $in_trash
+        /*public readonly*/ ?bool $in_trash,
+        /*public readonly*/ ?array $custom_metadata
     ) {
         $this->id = $id;
         $this->import_id = $import_id;
@@ -119,7 +128,7 @@ class CourseDto implements JsonSerializable
         $this->calendar = $calendar;
         $this->calendar_block = $calendar_block;
         $this->news = $news;
-        $this->custom_metadata = $custom_metadata;
+        $this->manage_custom_metadata = $manage_custom_metadata;
         $this->tag_cloud = $tag_cloud;
         $this->default_object_rating = $default_object_rating;
         $this->badges = $badges;
@@ -140,9 +149,13 @@ class CourseDto implements JsonSerializable
         $this->contact_consultation = $contact_consultation;
         $this->didactic_template_id = $didactic_template_id;
         $this->in_trash = $in_trash;
+        $this->custom_metadata = $custom_metadata;
     }
 
 
+    /**
+     * @param CustomMetadataDto[]|null $custom_metadata
+     */
     public static function new(
         ?int $id = null,
         ?string $import_id = null,
@@ -166,7 +179,7 @@ class CourseDto implements JsonSerializable
         ?bool $calendar = null,
         ?bool $calendar_block = null,
         ?bool $news = null,
-        ?bool $custom_metadata = null,
+        ?bool $manage_custom_metadata = null,
         ?bool $tag_cloud = null,
         ?bool $default_object_rating = null,
         ?bool $badges = null,
@@ -186,7 +199,8 @@ class CourseDto implements JsonSerializable
         ?string $contact_email = null,
         ?string $contact_consultation = null,
         ?int $didactic_template_id = null,
-        ?bool $in_trash = null
+        ?bool $in_trash = null,
+        ?array $custom_metadata = null
     ) : /*static*/ self
     {
         return new static(
@@ -212,7 +226,7 @@ class CourseDto implements JsonSerializable
             $calendar,
             $calendar_block,
             $news,
-            $custom_metadata,
+            $manage_custom_metadata,
             $tag_cloud,
             $default_object_rating,
             $badges,
@@ -232,7 +246,8 @@ class CourseDto implements JsonSerializable
             $contact_email,
             $contact_consultation,
             $didactic_template_id,
-            $in_trash
+            $in_trash,
+            $custom_metadata
         );
     }
 
@@ -282,6 +297,15 @@ class CourseDto implements JsonSerializable
     public function getCreated() : ?int
     {
         return $this->created;
+    }
+
+
+    /**
+     * @return CustomMetadataDto[]|null
+     */
+    public function getCustomMetadata() : ?array
+    {
+        return $this->custom_metadata;
     }
 
 
@@ -429,12 +453,6 @@ class CourseDto implements JsonSerializable
     }
 
 
-    public function isCustomMetadata() : ?bool
-    {
-        return $this->custom_metadata;
-    }
-
-
     public function isDefaultObjectRating() : ?bool
     {
         return $this->default_object_rating;
@@ -444,6 +462,12 @@ class CourseDto implements JsonSerializable
     public function isInTrash() : ?bool
     {
         return $this->in_trash;
+    }
+
+
+    public function isManageCustomMetadata() : ?bool
+    {
+        return $this->manage_custom_metadata;
     }
 
 

@@ -43,7 +43,8 @@ class GroupService
     public function createGroupToId(int $parent_id, GroupDiffDto $diff) : ?ObjectIdDto
     {
         return CreateGroupCommand::new(
-            $this->object_service
+            $this->object_service,
+            $this->ilias_database
         )
             ->createGroupToId(
                 $parent_id,
@@ -55,7 +56,8 @@ class GroupService
     public function createGroupToImportId(string $parent_import_id, GroupDiffDto $diff) : ?ObjectIdDto
     {
         return CreateGroupCommand::new(
-            $this->object_service
+            $this->object_service,
+            $this->ilias_database
         )
             ->createGroupToImportId(
                 $parent_import_id,
@@ -67,7 +69,8 @@ class GroupService
     public function createGroupToRefId(int $parent_ref_id, GroupDiffDto $diff) : ?ObjectIdDto
     {
         return CreateGroupCommand::new(
-            $this->object_service
+            $this->object_service,
+            $this->ilias_database
         )
             ->createGroupToRefId(
                 $parent_ref_id,
@@ -126,7 +129,8 @@ class GroupService
     public function updateGroupById(int $id, GroupDiffDto $diff) : ?ObjectIdDto
     {
         return UpdateGroupCommand::new(
-            $this
+            $this,
+            $this->ilias_database
         )
             ->updateGroupById(
                 $id,
@@ -138,7 +142,8 @@ class GroupService
     public function updateGroupByImportId(string $import_id, GroupDiffDto $diff) : ?ObjectIdDto
     {
         return UpdateGroupCommand::new(
-            $this
+            $this,
+            $this->ilias_database
         )
             ->updateGroupByImportId(
                 $import_id,
@@ -150,7 +155,8 @@ class GroupService
     public function updateGroupByRefId(int $ref_id, GroupDiffDto $diff) : ?ObjectIdDto
     {
         return UpdateGroupCommand::new(
-            $this
+            $this,
+            $this->ilias_database
         )
             ->updateGroupByRefId(
                 $ref_id,

@@ -311,13 +311,13 @@ WHERE session_id=" . $this->ilias_database->quote($session_id,
 
                 if ($user_defined_field->getName() !== null) {
                     if ($user_defined_field->getId() !== null) {
-                        throw new LogicException("Can't set both user defined field name and id");
+                        throw new LogicException("Can't set both user defined field name and field id");
                     }
 
                     $user_defined_field_name_id ??= array_reduce(ilUserDefinedFields::_getInstance()->getDefinitions(),
                         function (array $user_defined_field_name_id, array $user_defined_field) : array {
                             if (array_key_exists($user_defined_field["field_name"], $user_defined_field_name_id)) {
-                                throw new LogicException("Multiple users defined fields " . $user_defined_field["field_name"] . " found");
+                                throw new LogicException("Multiple users defined field names " . $user_defined_field["field_name"] . " found");
                             }
 
                             $user_defined_field_name_id[$user_defined_field["field_name"]] = $user_defined_field["field_id"];
@@ -325,7 +325,7 @@ WHERE session_id=" . $this->ilias_database->quote($session_id,
                             return $user_defined_field_name_id;
                         }, []);
                     if (!array_key_exists($user_defined_field->getName(), $user_defined_field_name_id)) {
-                        throw new Exception("User defined field " . $user_defined_field->getName() . " does not exists");
+                        throw new Exception("User defined field name " . $user_defined_field->getName() . " does not exists");
                     }
 
                     $user_defined_data[$user_defined_field_name_id[$user_defined_field->getName()]] = $user_defined_field->getValue() ?? "";

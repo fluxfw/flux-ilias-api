@@ -37,6 +37,18 @@ class OrganisationalUnitPositionAuthorityDto implements JsonSerializable
     }
 
 
+    public static function newFromData(
+        object $data
+    ) : /*static*/ self
+    {
+        return static::new(
+            $authority->id ?? null,
+            $authority->over_position_id ?? null,
+            ($scope_in = $authority->scope_in ?? null) !== null ? LegacyOrganisationalUnitPositionAuthorityScopeIn::from($scope_in) : null
+        );
+    }
+
+
     public function getId() : ?int
     {
         return $this->id;

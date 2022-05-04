@@ -7,28 +7,36 @@ use FluxIliasApi\Adapter\Category\CategoryDto;
 use FluxIliasApi\Adapter\Object\ObjectIdDto;
 use FluxIliasApi\Channel\Category\CategoryQuery;
 use FluxIliasApi\Channel\Category\Port\CategoryService;
+use FluxIliasApi\Channel\CustomMetadata\CustomMetadataQuery;
+use ilDBInterface;
 
 class UpdateCategoryCommand
 {
 
     use CategoryQuery;
+    use CustomMetadataQuery;
 
     private CategoryService $category_service;
+    private ilDBInterface $ilias_database;
 
 
     private function __construct(
-        /*private readonly*/ CategoryService $category_service
+        /*private readonly*/ CategoryService $category_service,
+        /*private readonly*/ ilDBInterface $ilias_database
     ) {
         $this->category_service = $category_service;
+        $this->ilias_database = $ilias_database;
     }
 
 
     public static function new(
-        CategoryService $category_service
+        CategoryService $category_service,
+        ilDBInterface $ilias_database
     ) : /*static*/ self
     {
         return new static(
-            $category_service
+            $category_service,
+            $ilias_database
         );
     }
 

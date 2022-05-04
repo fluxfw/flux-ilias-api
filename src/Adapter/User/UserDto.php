@@ -54,10 +54,16 @@ class UserDto implements JsonSerializable
     private ?string $street;
     private ?string $title;
     private ?int $updated_on;
+    /**
+     * @var UserDefinedFieldDto[]|null
+     */
     private ?array $user_defined_fields;
     private ?string $zip_code;
 
 
+    /**
+     * @param UserDefinedFieldDto[]|null $user_defined_fields
+     */
     private function __construct(
         /*public readonly*/ ?int $id,
         /*public readonly*/ ?string $import_id,
@@ -161,6 +167,9 @@ class UserDto implements JsonSerializable
     }
 
 
+    /**
+     * @param UserDefinedFieldDto[]|null $user_defined_fields
+     */
     public static function new(
         ?int $id = null,
         ?string $import_id = null,
@@ -531,6 +540,9 @@ class UserDto implements JsonSerializable
     }
 
 
+    /**
+     * @return UserDefinedFieldDto[]|null
+     */
     public function getUserDefinedFields() : ?array
     {
         return $this->user_defined_fields;

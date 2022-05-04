@@ -46,10 +46,16 @@ class UserDiffDto
     private ?LegacyUserSelectedCountry $selected_country;
     private ?string $street;
     private ?string $title;
+    /**
+     * @var UserDefinedFieldDto[]|null
+     */
     private ?array $user_defined_fields;
     private ?string $zip_code;
 
 
+    /**
+     * @param UserDefinedFieldDto[]|null $user_defined_fields
+     */
     private function __construct(
         /*public readonly*/ ?string $import_id,
         /*public readonly*/ ?string $external_account,
@@ -141,6 +147,9 @@ class UserDiffDto
     }
 
 
+    /**
+     * @param UserDefinedFieldDto[]|null $user_defined_fields
+     */
     public static function new(
         ?string $import_id = null,
         ?string $external_account = null,
@@ -281,12 +290,7 @@ class UserDiffDto
             $data->location_latitude ?? null,
             $data->location_longitude ?? null,
             $data->location_zoom ?? null,
-            ($user_defined_fields = $data->user_defined_fields ?? null) !== null ? array_map(fn(object $user_defined_field
-            ) : UserDefinedFieldDto => UserDefinedFieldDto::new(
-                $user_defined_field->id ?? null,
-                $user_defined_field->name ?? null,
-                $user_defined_field->value ?? null
-            ), $user_defined_fields) : null,
+            ($user_defined_fields = $data->user_defined_fields ?? null) !== null ? array_map([UserDefinedFieldDto::class, "newFromData"], $user_defined_fields) : null,
             ($language = $data->language ?? null) !== null ? LegacyUserLanguage::from($language) : null
         );
     }
@@ -520,6 +524,9 @@ class UserDiffDto
     }
 
 
+    /**
+     * @return UserDefinedFieldDto[]|null
+     */
     public function getUserDefinedFields() : ?array
     {
         return $this->user_defined_fields;

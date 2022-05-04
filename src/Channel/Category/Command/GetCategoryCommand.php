@@ -4,6 +4,7 @@ namespace FluxIliasApi\Channel\Category\Command;
 
 use FluxIliasApi\Adapter\Category\CategoryDto;
 use FluxIliasApi\Channel\Category\CategoryQuery;
+use FluxIliasApi\Channel\CustomMetadata\CustomMetadataQuery;
 use FluxIliasApi\Channel\Object\ObjectQuery;
 use ilDBInterface;
 use LogicException;
@@ -12,6 +13,7 @@ class GetCategoryCommand
 {
 
     use CategoryQuery;
+    use CustomMetadataQuery;
     use ObjectQuery;
 
     private ilDBInterface $ilias_database;
@@ -47,7 +49,8 @@ class GetCategoryCommand
                 throw new LogicException("Multiple categories found with the id " . $id);
             }
             $category = $this->mapCategoryDto(
-                $category_
+                $category_,
+                true
             );
         }
 
@@ -68,7 +71,8 @@ class GetCategoryCommand
                 throw new LogicException("Multiple categories found with the import id " . $import_id);
             }
             $category = $this->mapCategoryDto(
-                $category_
+                $category_,
+                true
             );
         }
 
@@ -89,7 +93,8 @@ class GetCategoryCommand
                 throw new LogicException("Multiple categories found with the ref id " . $ref_id);
             }
             $category = $this->mapCategoryDto(
-                $category_
+                $category_,
+                true
             );
         }
 

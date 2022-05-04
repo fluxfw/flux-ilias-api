@@ -216,7 +216,8 @@ class ObjectService
     public function createObjectToId(ObjectType $type, int $parent_id, ObjectDiffDto $diff) : ?ObjectIdDto
     {
         return CreateObjectCommand::new(
-            $this
+            $this,
+            $this->ilias_database
         )
             ->createObjectToId(
                 $type,
@@ -229,7 +230,8 @@ class ObjectService
     public function createObjectToImportId(ObjectType $type, string $parent_import_id, ObjectDiffDto $diff) : ?ObjectIdDto
     {
         return CreateObjectCommand::new(
-            $this
+            $this,
+            $this->ilias_database
         )
             ->createObjectToImportId(
                 $type,
@@ -242,7 +244,8 @@ class ObjectService
     public function createObjectToRefId(ObjectType $type, int $parent_ref_id, ObjectDiffDto $diff) : ?ObjectIdDto
     {
         return CreateObjectCommand::new(
-            $this
+            $this,
+            $this->ilias_database
         )
             ->createObjectToRefId(
                 $type,
@@ -670,7 +673,8 @@ class ObjectService
     public function updateObjectById(int $id, ObjectDiffDto $diff) : ?ObjectIdDto
     {
         return UpdateObjectCommand::new(
-            $this
+            $this,
+            $this->ilias_database
         )
             ->updateObjectById(
                 $id,
@@ -682,7 +686,8 @@ class ObjectService
     public function updateObjectByImportId(string $import_id, ObjectDiffDto $diff) : ?ObjectIdDto
     {
         return UpdateObjectCommand::new(
-            $this
+            $this,
+            $this->ilias_database
         )
             ->updateObjectByImportId(
                 $import_id,
@@ -694,7 +699,8 @@ class ObjectService
     public function updateObjectByRefId(int $ref_id, ObjectDiffDto $diff) : ?ObjectIdDto
     {
         return UpdateObjectCommand::new(
-            $this
+            $this,
+            $this->ilias_database
         )
             ->updateObjectByRefId(
                 $ref_id,

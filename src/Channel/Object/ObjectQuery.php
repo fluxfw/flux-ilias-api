@@ -207,10 +207,17 @@ ORDER BY object_reference.ref_id ASC";
         if ($diff->getDidacticTemplateId() !== null) {
             $ilias_object->applyDidacticTemplate($diff->getDidacticTemplateId());
         }
+
+        if ($diff->getCustomMetadata() !== null) {
+            $this->updateCustomMetadata(
+                $ilias_object->getId(),
+                $diff->getCustomMetadata()
+            );
+        }
     }
 
 
-    private function mapObjectDto(array $object, ?array $ref_ids = null) : ObjectDto
+    private function mapObjectDto(array $object, ?array $ref_ids = null, bool $custom_metadata = false) : ObjectDto
     {
         $type = ($type = $object["type"] ?: null) !== null ? CustomInternalObjectType::factory($type) : null;
 
@@ -232,7 +239,10 @@ ORDER BY object_reference.ref_id ASC";
             $object["title"] ?? "",
             $object["description"] ?? "",
             $object["tpl_id"] ?: null,
-            ($object["deleted"] ?? null) !== null
+            ($object["deleted"] ?? null) !== null,
+            $custom_metadata ? $this->getCustomMetadata(
+                $object["obj_id"] ?: null
+            ) : null
         );
     }
 

@@ -2,12 +2,17 @@
 
 namespace FluxIliasApi\Adapter\Group;
 
+use FluxIliasApi\Adapter\CustomMetadata\CustomMetadataDto;
 use JsonSerializable;
 
 class GroupDto implements JsonSerializable
 {
 
     private ?int $created;
+    /**
+     * @var CustomMetadataDto[]|null
+     */
+    private ?array $custom_metadata;
     private ?string $description;
     private ?int $didactic_template_id;
     private ?string $icon_url;
@@ -23,6 +28,9 @@ class GroupDto implements JsonSerializable
     private ?string $url;
 
 
+    /**
+     * @param CustomMetadataDto[]|null $custom_metadata
+     */
     private function __construct(
         /*public readonly*/ ?int $id,
         /*public readonly*/ ?string $import_id,
@@ -37,7 +45,8 @@ class GroupDto implements JsonSerializable
         /*public readonly*/ ?string $title,
         /*public readonly*/ ?string $description,
         /*public readonly*/ ?int $didactic_template_id,
-        /*public readonly*/ ?bool $in_trash
+        /*public readonly*/ ?bool $in_trash,
+        /*public readonly*/ ?array $custom_metadata
     ) {
         $this->id = $id;
         $this->import_id = $import_id;
@@ -53,9 +62,13 @@ class GroupDto implements JsonSerializable
         $this->description = $description;
         $this->didactic_template_id = $didactic_template_id;
         $this->in_trash = $in_trash;
+        $this->custom_metadata = $custom_metadata;
     }
 
 
+    /**
+     * @param CustomMetadataDto[]|null $custom_metadata
+     */
     public static function new(
         ?int $id = null,
         ?string $import_id = null,
@@ -70,7 +83,8 @@ class GroupDto implements JsonSerializable
         ?string $title = null,
         ?string $description = null,
         ?int $didactic_template_id = null,
-        ?bool $in_trash = null
+        ?bool $in_trash = null,
+        ?array $custom_metadata = null
     ) : /*static*/ self
     {
         return new static(
@@ -87,7 +101,8 @@ class GroupDto implements JsonSerializable
             $title,
             $description,
             $didactic_template_id,
-            $in_trash
+            $in_trash,
+            $custom_metadata
         );
     }
 
@@ -95,6 +110,15 @@ class GroupDto implements JsonSerializable
     public function getCreated() : ?int
     {
         return $this->created;
+    }
+
+
+    /**
+     * @return CustomMetadataDto[]|null
+     */
+    public function getCustomMetadata() : ?array
+    {
+        return $this->custom_metadata;
     }
 
 
