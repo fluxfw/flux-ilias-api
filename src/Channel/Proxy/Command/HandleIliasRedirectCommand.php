@@ -49,6 +49,7 @@ class HandleIliasRedirectCommand
                         "error.php",
                         "goto.php",
                         "ilias.php",
+                        "index.php",
                         "login.php",
                         "logout.php"
                     ] as $ilias_entrypoint
