@@ -53,7 +53,7 @@ class CreateUserCommand
         $ilias_user->create();
         $ilias_user->saveAsNew();
 
-        $this->ilias_rbac->admin()->assignUser(SYSTEM_USER_ID, $ilias_user->getId());
+        $this->ilias_rbac->admin()->assignUser(4, $ilias_user->getId());
 
         return UserIdDto::new(
             $ilias_user->getId() ?: null,
