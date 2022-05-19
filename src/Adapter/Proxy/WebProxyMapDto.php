@@ -19,8 +19,8 @@ class WebProxyMapDto implements JsonSerializable
     private function __construct(
         /*public readonly*/ string $target_key,
         /*public readonly*/ string $iframe_url,
-        /*public readonly*/ string $title,
-        /*public readonly*/ string $rewrite_url,
+        /*public readonly*/ ?string $title,
+        /*public readonly*/ ?string $rewrite_url,
         /*public readonly*/ bool $menu_item,
         /*public readonly*/ bool $visible_public_menu_item
     ) {
