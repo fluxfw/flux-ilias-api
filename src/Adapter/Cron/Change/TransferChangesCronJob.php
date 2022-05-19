@@ -1,17 +1,15 @@
 <?php
 
-namespace FluxIliasApi\Channel\Change\Cron;
+namespace FluxIliasApi\Adapter\Cron\Change;
 
 use FluxIliasApi\Channel\Change\Port\ChangeService;
-use ilCheckboxInputGUI;
 use ilCronJob;
 use ilCronJobResult;
-use ilPropertyFormGUI;
-use ilTextInputGUI;
 
 class TransferChangesCronJob extends ilCronJob
 {
 
+    public const ID = "flilre_transfer_changes";
     private ChangeService $change_service;
 
 
@@ -29,18 +27,6 @@ class TransferChangesCronJob extends ilCronJob
         return new static(
             $change_service
         );
-    }
-
-
-    public function addCustomSettingsToForm(ilPropertyFormGUI $a_form) : void
-    {
-        $enable_log_changes = new ilCheckboxInputGUI("Enable log changes", "enable_log_changes");
-        $enable_log_changes->setChecked($this->change_service->isEnabledLogChanges());
-        $a_form->addItem($enable_log_changes);
-
-        $post_url = new ilTextInputGUI("Post url", "post_url");
-        $post_url->setValue($this->change_service->getTransferChangesPostUrl());
-        $a_form->addItem($post_url);
     }
 
 
@@ -64,7 +50,7 @@ class TransferChangesCronJob extends ilCronJob
 
     public function getId() : string
     {
-        return "flilre_transfer_changes";
+        return static::ID;
     }
 
 
@@ -77,12 +63,6 @@ class TransferChangesCronJob extends ilCronJob
     public function hasAutoActivation() : bool
     {
         return false;
-    }
-
-
-    public function hasCustomSettings() : bool
-    {
-        return true;
     }
 
 
@@ -106,19 +86,5 @@ class TransferChangesCronJob extends ilCronJob
         }
 
         return $result;
-    }
-
-
-    public function saveCustomSettings(ilPropertyFormGUI $a_form) : bool
-    {
-        $this->change_service->setEnabledLogChanges(
-            boolval($a_form->getInput("enable_log_changes"))
-        );
-
-        $this->change_service->setTransferChangesPostUrl(
-            strval($a_form->getInput("post_url"))
-        );
-
-        return true;
     }
 }

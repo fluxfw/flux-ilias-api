@@ -2,8 +2,6 @@
 
 namespace FluxIliasApi\Channel\Change\Command;
 
-use FluxIliasApi\Channel\Change\Cron\PurgeChangesCronJob;
-use FluxIliasApi\Channel\Change\Cron\TransferChangesCronJob;
 use FluxIliasApi\Channel\Change\Port\ChangeService;
 
 class GetChangeCronJobsCommand
@@ -32,12 +30,8 @@ class GetChangeCronJobsCommand
     public function getChangeCronJobs() : array
     {
         return [
-            TransferChangesCronJob::new(
-                $this->change_service
-            ),
-            PurgeChangesCronJob::new(
-                $this->change_service
-            )
+            $this->change_service->getTransferChangesCronJob(),
+            $this->change_service->getPurgeChangesCronJob()
         ];
     }
 }

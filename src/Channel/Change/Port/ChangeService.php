@@ -2,22 +2,40 @@
 
 namespace FluxIliasApi\Channel\Change\Port;
 
+use FluxIliasApi\Adapter\Cron\Change\PurgeChangesCronJob;
+use FluxIliasApi\Adapter\Cron\Change\TransferChangesCronJob;
+use FluxIliasApi\Adapter\CronConfig\ScheduleTypeCronConfig;
 use FluxIliasApi\Adapter\User\UserDto;
 use FluxIliasApi\Channel\Category\Port\CategoryService;
 use FluxIliasApi\Channel\Change\Command\CreateChangeDatabaseCommand;
 use FluxIliasApi\Channel\Change\Command\DropChangeDatabaseCommand;
-use FluxIliasApi\Channel\Change\Command\EnableLogChangesConfigCommand;
 use FluxIliasApi\Channel\Change\Command\GetChangeCronJobsCommand;
 use FluxIliasApi\Channel\Change\Command\GetChangesCommand;
+use FluxIliasApi\Channel\Change\Command\GetKeepChangesInsideDaysCommand;
+use FluxIliasApi\Channel\Change\Command\GetLastTransferredChangeTimeCommand;
+use FluxIliasApi\Channel\Change\Command\GetPurgeChangesCronJobCommand;
+use FluxIliasApi\Channel\Change\Command\GetPurgeChangesScheduleCommand;
+use FluxIliasApi\Channel\Change\Command\GetTransferChangesCronJobCommand;
+use FluxIliasApi\Channel\Change\Command\GetTransferChangesPostUrlCommand;
+use FluxIliasApi\Channel\Change\Command\GetTransferChangesScheduleCommand;
 use FluxIliasApi\Channel\Change\Command\HandleIliasEventCommand;
-use FluxIliasApi\Channel\Change\Command\KeepChangesInsideDaysConfigCommand;
-use FluxIliasApi\Channel\Change\Command\LastTransferredChangeTimeCommand;
+use FluxIliasApi\Channel\Change\Command\IsEnableLogChangesCommand;
+use FluxIliasApi\Channel\Change\Command\IsEnablePurgeChangesCommand;
+use FluxIliasApi\Channel\Change\Command\IsEnableTransferChangesCommand;
 use FluxIliasApi\Channel\Change\Command\PurgeChangesCommand;
+use FluxIliasApi\Channel\Change\Command\SetEnableLogChangesCommand;
+use FluxIliasApi\Channel\Change\Command\SetEnablePurgeChangesCommand;
+use FluxIliasApi\Channel\Change\Command\SetEnableTransferChangesCommand;
+use FluxIliasApi\Channel\Change\Command\SetKeepChangesInsideDaysCommand;
+use FluxIliasApi\Channel\Change\Command\SetLastTransferredChangeTimeCommand;
+use FluxIliasApi\Channel\Change\Command\SetPurgeChangesScheduleCommand;
+use FluxIliasApi\Channel\Change\Command\SetTransferChangesPostUrlCommand;
+use FluxIliasApi\Channel\Change\Command\SetTransferChangesScheduleCommand;
 use FluxIliasApi\Channel\Change\Command\TransferChangesCommand;
-use FluxIliasApi\Channel\Change\Command\TransferChangesPostUrlConfigCommand;
 use FluxIliasApi\Channel\Config\Port\ConfigService;
 use FluxIliasApi\Channel\Course\Port\CourseService;
 use FluxIliasApi\Channel\CourseMember\Port\CourseMemberService;
+use FluxIliasApi\Channel\CronConfig\Port\CronConfigService;
 use FluxIliasApi\Channel\File\Port\FileService;
 use FluxIliasApi\Channel\Group\Port\GroupService;
 use FluxIliasApi\Channel\GroupMember\Port\GroupMemberService;
@@ -39,6 +57,7 @@ class ChangeService
     private ConfigService $config_service;
     private CourseMemberService $course_member_service;
     private CourseService $course_service;
+    private CronConfigService $cron_config_service;
     private FileService $file_service;
     private GroupMemberService $group_member_service;
     private GroupService $group_service;
@@ -71,7 +90,8 @@ class ChangeService
         /*private readonly*/ ScormLearningModuleService $scorm_learning_module_service,
         /*private readonly*/ UserService $user_service,
         /*private readonly*/ UserRoleService $user_role_service,
-        /*private readonly*/ RestApi $rest_api
+        /*private readonly*/ RestApi $rest_api,
+        /*private readonly*/ CronConfigService $cron_config_service
     ) {
         $this->ilias_database = $ilias_database;
         $this->config_service = $config_service;
@@ -90,6 +110,7 @@ class ChangeService
         $this->user_service = $user_service;
         $this->user_role_service = $user_role_service;
         $this->rest_api = $rest_api;
+        $this->cron_config_service = $cron_config_service;
     }
 
 
@@ -110,7 +131,8 @@ class ChangeService
         ScormLearningModuleService $scorm_learning_module_service,
         UserService $user_service,
         UserRoleService $user_role_service,
-        RestApi $rest_api
+        RestApi $rest_api,
+        CronConfigService $cron_config_service
     ) : /*static*/ self
     {
         return new static(
@@ -130,7 +152,8 @@ class ChangeService
             $scorm_learning_module_service,
             $user_service,
             $user_role_service,
-            $rest_api
+            $rest_api,
+            $cron_config_service
         );
     }
 
@@ -178,7 +201,7 @@ class ChangeService
 
     public function getKeepChangesInsideDays() : int
     {
-        return KeepChangesInsideDaysConfigCommand::new(
+        return GetKeepChangesInsideDaysCommand::new(
             $this->config_service
         )
             ->getKeepChangesInsideDays();
@@ -187,19 +210,57 @@ class ChangeService
 
     public function getLastTransferredChangeTime() : ?float
     {
-        return LastTransferredChangeTimeCommand::new(
+        return GetLastTransferredChangeTimeCommand::new(
             $this->config_service
         )
             ->getLastTransferredChangeTime();
     }
 
 
+    public function getPurgeChangesCronJob() : PurgeChangesCronJob
+    {
+        return GetPurgeChangesCronJobCommand::new(
+            $this
+        )
+            ->getPurgeChangesCronJob();
+    }
+
+
+    public function getPurgeChangesSchedule() : object
+    {
+        return GetPurgeChangesScheduleCommand::new(
+            $this,
+            $this->cron_config_service
+        )
+            ->getPurgeChangesSchedule();
+    }
+
+
+    public function getTransferChangesCronJob() : TransferChangesCronJob
+    {
+        return GetTransferChangesCronJobCommand::new(
+            $this
+        )
+            ->getTransferChangesCronJob();
+    }
+
+
     public function getTransferChangesPostUrl() : string
     {
-        return TransferChangesPostUrlConfigCommand::new(
+        return GetTransferChangesPostUrlCommand::new(
             $this->config_service
         )
             ->getTransferChangesPostUrl();
+    }
+
+
+    public function getTransferChangesSchedule() : object
+    {
+        return GetTransferChangesScheduleCommand::new(
+            $this,
+            $this->cron_config_service
+        )
+            ->getTransferChangesSchedule();
     }
 
 
@@ -232,12 +293,32 @@ class ChangeService
     }
 
 
-    public function isEnabledLogChanges() : bool
+    public function isEnableLogChanges() : bool
     {
-        return EnableLogChangesConfigCommand::new(
+        return IsEnableLogChangesCommand::new(
             $this->config_service
         )
-            ->isEnabledLogChanges();
+            ->isEnableLogChanges();
+    }
+
+
+    public function isEnablePurgeChanges() : bool
+    {
+        return IsEnablePurgeChangesCommand::new(
+            $this,
+            $this->cron_config_service
+        )
+            ->isEnablePurgeChanges();
+    }
+
+
+    public function isEnableTransferChanges() : bool
+    {
+        return IsEnableTransferChangesCommand::new(
+            $this,
+            $this->cron_config_service
+        )
+            ->isEnableTransferChanges();
     }
 
 
@@ -251,20 +332,44 @@ class ChangeService
     }
 
 
-    public function setEnabledLogChanges(bool $enable_log_changes) : void
+    public function setEnableLogChanges(bool $enable_log_changes) : void
     {
-        EnableLogChangesConfigCommand::new(
+        SetEnableLogChangesCommand::new(
             $this->config_service
         )
-            ->setEnabledLogChanges(
+            ->setEnableLogChanges(
                 $enable_log_changes
+            );
+    }
+
+
+    public function setEnablePurgeChanges(bool $enable_purge_changes) : void
+    {
+        SetEnablePurgeChangesCommand::new(
+            $this,
+            $this->cron_config_service
+        )
+            ->setEnablePurgeChanges(
+                $enable_purge_changes
+            );
+    }
+
+
+    public function setEnableTransferChanges(bool $enable_transfer_changes) : void
+    {
+        SetEnableTransferChangesCommand::new(
+            $this,
+            $this->cron_config_service
+        )
+            ->setEnableTransferChanges(
+                $enable_transfer_changes
             );
     }
 
 
     public function setKeepChangesInsideDays(int $keep_changes_inside_days) : void
     {
-        KeepChangesInsideDaysConfigCommand::new(
+        SetKeepChangesInsideDaysCommand::new(
             $this->config_service
         )
             ->setKeepChangesInsideDays(
@@ -275,7 +380,7 @@ class ChangeService
 
     public function setLastTransferredChangeTime(float $last_transferred_change_time) : void
     {
-        LastTransferredChangeTimeCommand::new(
+        SetLastTransferredChangeTimeCommand::new(
             $this->config_service
         )
             ->setLastTransferredChangeTime(
@@ -284,13 +389,39 @@ class ChangeService
     }
 
 
+    public function setPurgeChangesSchedule(ScheduleTypeCronConfig $type, ?int $interval = null) : void
+    {
+        SetPurgeChangesScheduleCommand::new(
+            $this,
+            $this->cron_config_service
+        )
+            ->setPurgeChangesSchedule(
+                $type,
+                $interval
+            );
+    }
+
+
     public function setTransferChangesPostUrl(string $transfer_changes_url) : void
     {
-        TransferChangesPostUrlConfigCommand::new(
+        SetTransferChangesPostUrlCommand::new(
             $this->config_service
         )
             ->setTransferChangesPostUrl(
                 $transfer_changes_url
+            );
+    }
+
+
+    public function setTransferChangesSchedule(ScheduleTypeCronConfig $type, ?int $interval = null) : void
+    {
+        SetTransferChangesScheduleCommand::new(
+            $this,
+            $this->cron_config_service
+        )
+            ->setTransferChangesSchedule(
+                $type,
+                $interval
             );
     }
 

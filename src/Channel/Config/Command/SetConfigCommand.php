@@ -3,6 +3,7 @@
 namespace FluxIliasApi\Channel\Config\Command;
 
 use FluxIliasApi\Channel\Config\ConfigQuery;
+use FluxIliasApi\Channel\Config\LegacyConfigKey;
 use ilSetting;
 
 class SetConfigCommand
@@ -22,8 +23,8 @@ class SetConfigCommand
     }
 
 
-    public function setConfig(string $key, /*mixed*/ $value) : void
+    public function setConfig(LegacyConfigKey $key, /*mixed*/ $value) : void
     {
-        (new ilSetting($this->getConfigSettingsModule()))->set($key, json_encode($value, JSON_UNESCAPED_SLASHES));
+        (new ilSetting($this->getConfigSettingsModule()))->set($key->value, json_encode($value, JSON_UNESCAPED_SLASHES));
     }
 }

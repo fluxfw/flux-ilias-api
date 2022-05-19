@@ -1,13 +1,13 @@
 <?php
 
-namespace FluxIliasApi\Channel\Change\Command;
+namespace FluxIliasApi\Channel\RestConfig\Command;
 
+use FluxIliasApi\Channel\Config\LegacyConfigKey;
 use FluxIliasApi\Channel\Config\Port\ConfigService;
 
-class TransferChangesPostUrlConfigCommand
+class SetEnableRestApiCommand
 {
 
-    private const CONFIG_KEY = "transfer_changes_post_url";
     private ConfigService $config_service;
 
 
@@ -28,19 +28,11 @@ class TransferChangesPostUrlConfigCommand
     }
 
 
-    public function getTransferChangesPostUrl() : string
-    {
-        return strval($this->config_service->getConfig(
-            static::CONFIG_KEY
-        ));
-    }
-
-
-    public function setTransferChangesPostUrl(string $transfer_changes_post_url) : void
+    public function setEnableRestApi(bool $enable_rest_api) : void
     {
         $this->config_service->setConfig(
-            static::CONFIG_KEY,
-            $transfer_changes_post_url
+            LegacyConfigKey::ENABLE_REST_API(),
+            $enable_rest_api
         );
     }
 }

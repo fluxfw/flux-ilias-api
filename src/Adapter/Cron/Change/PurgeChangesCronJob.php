@@ -1,16 +1,15 @@
 <?php
 
-namespace FluxIliasApi\Channel\Change\Cron;
+namespace FluxIliasApi\Adapter\Cron\Change;
 
 use FluxIliasApi\Channel\Change\Port\ChangeService;
 use ilCronJob;
 use ilCronJobResult;
-use ilNumberInputGUI;
-use ilPropertyFormGUI;
 
 class PurgeChangesCronJob extends ilCronJob
 {
 
+    public const ID = "flilre_purge_changes";
     private ChangeService $change_service;
 
 
@@ -28,17 +27,6 @@ class PurgeChangesCronJob extends ilCronJob
         return new static(
             $change_service
         );
-    }
-
-
-    public function addCustomSettingsToForm(ilPropertyFormGUI $a_form) : void
-    {
-        $keep_changes_inside_days = new ilNumberInputGUI("Keep changes inside", "keep_changes_inside_days");
-        $keep_changes_inside_days->setSuffix("days");
-        $keep_changes_inside_days->setRequired(true);
-        $keep_changes_inside_days->setMinValue(0);
-        $keep_changes_inside_days->setValue($this->change_service->getKeepChangesInsideDays());
-        $a_form->addItem($keep_changes_inside_days);
     }
 
 
@@ -62,7 +50,7 @@ class PurgeChangesCronJob extends ilCronJob
 
     public function getId() : string
     {
-        return "flilre_purge_changes";
+        return static::ID;
     }
 
 
@@ -75,12 +63,6 @@ class PurgeChangesCronJob extends ilCronJob
     public function hasAutoActivation() : bool
     {
         return false;
-    }
-
-
-    public function hasCustomSettings() : bool
-    {
-        return true;
     }
 
 
@@ -104,15 +86,5 @@ class PurgeChangesCronJob extends ilCronJob
         }
 
         return $result;
-    }
-
-
-    public function saveCustomSettings(ilPropertyFormGUI $a_form) : bool
-    {
-        $this->change_service->setKeepChangesInsideDays(
-            max(0, intval($a_form->getInput("keep_changes_inside_days")))
-        );
-
-        return true;
     }
 }

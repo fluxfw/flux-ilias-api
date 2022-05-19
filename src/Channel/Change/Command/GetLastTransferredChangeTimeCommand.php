@@ -2,12 +2,12 @@
 
 namespace FluxIliasApi\Channel\Change\Command;
 
+use FluxIliasApi\Channel\Config\LegacyConfigKey;
 use FluxIliasApi\Channel\Config\Port\ConfigService;
 
-class LastTransferredChangeTimeCommand
+class GetLastTransferredChangeTimeCommand
 {
 
-    private const CONFIG_KEY = "last_transferred_change_time";
     private ConfigService $config_service;
 
 
@@ -31,16 +31,7 @@ class LastTransferredChangeTimeCommand
     public function getLastTransferredChangeTime() : ?float
     {
         return $this->config_service->getConfig(
-            static::CONFIG_KEY
-        );
-    }
-
-
-    public function setLastTransferredChangeTime(float $last_transferred_change_time) : void
-    {
-        $this->config_service->setConfig(
-            static::CONFIG_KEY,
-            $last_transferred_change_time
+            LegacyConfigKey::LAST_TRANSFERRED_CHANGE_TIME()
         );
     }
 }

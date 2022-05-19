@@ -1,0 +1,78 @@
+.form_field {
+	align-items:    start;
+	display:        flex;
+	flex-direction: row;
+	flex-wrap:      wrap;
+	margin-bottom:  10px;
+}
+
+.form_field_label {
+	flex-grow:    0;
+	flex-shrink:  0;
+	max-width:    20%;
+	margin-right: 10px;
+	width:        140px;
+}
+
+.form_field_button {
+	display:        flex;
+	flex-direction: row;
+	flex-wrap:      wrap;
+	flex-grow:      0;
+	flex-shrink:    0;
+	width:          70px;
+}
+
+.form_field_button > button {
+	flex-grow:   0;
+	flex-shrink: 0;
+	height:      20px;
+	margin:      0 2px 0 0;
+	padding:     0;
+	width:       20px;
+}
+
+.form_field_field {
+	flex-grow:   1;
+	flex-shrink: 0;
+	width:       0;
+}
+
+.form_field_field > input[type=text],
+.form_field_field > input[type=url],
+select {
+	max-width: 100%;
+	width:     400px;
+}
+
+input:invalid, select:invalid {
+	border-color: red;
+}
+
+em {
+	white-space: pre-line;
+	word-wrap:   break-word;
+}
+
+.loading {
+	animation:     loading 1s infinite;
+	border-top:    1px solid currentColor;
+	border-radius: 20px;
+	height:        20px;
+	margin:        5px;
+	padding:       0;
+	width:         20px;
+}
+
+@keyframes loading {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.error {
+	color: red;
+}

@@ -2,13 +2,12 @@
 
 namespace FluxIliasApi\Channel\Change\Command;
 
+use FluxIliasApi\Channel\Config\LegacyConfigKey;
 use FluxIliasApi\Channel\Config\Port\ConfigService;
 
-class KeepChangesInsideDaysConfigCommand
+class SetEnableLogChangesCommand
 {
 
-    private const CONFIG_KEY = "keep_changes_inside_days";
-    private const DEFAULT_VALUE = 7;
     private ConfigService $config_service;
 
 
@@ -29,19 +28,11 @@ class KeepChangesInsideDaysConfigCommand
     }
 
 
-    public function getKeepChangesInsideDays() : int
-    {
-        return intval($this->config_service->getConfig(
-                static::CONFIG_KEY
-            ) ?? static::DEFAULT_VALUE);
-    }
-
-
-    public function setKeepChangesInsideDays(int $keep_changes_inside_days) : void
+    public function setEnableLogChanges(bool $enable_log_changes) : void
     {
         $this->config_service->setConfig(
-            static::CONFIG_KEY,
-            $keep_changes_inside_days
+            LegacyConfigKey::ENABLE_LOG_CHANGES(),
+            $enable_log_changes
         );
     }
 }

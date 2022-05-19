@@ -5,6 +5,7 @@ namespace FluxIliasApi\Channel\Config\Port;
 use FluxIliasApi\Channel\Config\Command\DeleteConfigCommand;
 use FluxIliasApi\Channel\Config\Command\GetConfigCommand;
 use FluxIliasApi\Channel\Config\Command\SetConfigCommand;
+use FluxIliasApi\Channel\Config\LegacyConfigKey;
 
 class ConfigService
 {
@@ -28,7 +29,7 @@ class ConfigService
     }
 
 
-    public function getConfig(string $key)/* : mixed*/
+    public function getConfig(LegacyConfigKey $key)/* : mixed*/
     {
         return GetConfigCommand::new()
             ->getConfig(
@@ -37,7 +38,7 @@ class ConfigService
     }
 
 
-    public function setConfig(string $key, /*mixed*/ $value) : void
+    public function setConfig(LegacyConfigKey $key, /*mixed*/ $value) : void
     {
         SetConfigCommand::new()
             ->setConfig(

@@ -2,6 +2,7 @@
 
 namespace FluxIliasApi\Channel\Proxy\Command;
 
+use FluxIliasApi\Channel\Proxy\LegacyProxyTarget;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Api\RestApi;
 
 class HandleIliasRedirectCommand
@@ -41,8 +42,9 @@ class HandleIliasRedirectCommand
             "target"
         );
         switch (true) {
-            case str_starts_with($target, "flilre_api_proxy_"):
-            case str_starts_with($target, "flilre_web_proxy_"):
+            case $target === LegacyProxyTarget::CONFIG()->value:
+            case str_starts_with($target, LegacyProxyTarget::API_PROXY()->value):
+            case str_starts_with($target, LegacyProxyTarget::WEB_PROXY()->value):
                 $is_ilias_entrypoint = false;
                 foreach (
                     [

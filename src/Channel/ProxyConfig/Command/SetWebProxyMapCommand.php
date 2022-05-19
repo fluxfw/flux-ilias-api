@@ -1,13 +1,14 @@
 <?php
 
-namespace FluxIliasApi\Channel\Change\Command;
+namespace FluxIliasApi\Channel\ProxyConfig\Command;
 
+use FluxIliasApi\Adapter\Proxy\WebProxyMapDto;
+use FluxIliasApi\Channel\Config\LegacyConfigKey;
 use FluxIliasApi\Channel\Config\Port\ConfigService;
 
-class EnableLogChangesConfigCommand
+class SetWebProxyMapCommand
 {
 
-    private const CONFIG_KEY = "enable_log_changes";
     private ConfigService $config_service;
 
 
@@ -28,19 +29,14 @@ class EnableLogChangesConfigCommand
     }
 
 
-    public function isEnabledLogChanges() : bool
-    {
-        return boolval($this->config_service->getConfig(
-            static::CONFIG_KEY
-        ));
-    }
-
-
-    public function setEnabledLogChanges(bool $enable_log_changes) : void
+    /**
+     * @param WebProxyMapDto[] $web_proxy_map
+     */
+    public function setWebProxyMap(array $web_proxy_map) : void
     {
         $this->config_service->setConfig(
-            static::CONFIG_KEY,
-            $enable_log_changes
+            LegacyConfigKey::WEB_PROXY_MAP(),
+            $web_proxy_map
         );
     }
 }

@@ -2,14 +2,21 @@
 
 namespace FluxIliasApi\Channel\Proxy\Command;
 
-use FluxIliasApi\Adapter\Proxy\ProxyConfigDto;
+use FluxIliasApi\Adapter\Authorization\ConfigForm\ConfigFormAuthorization;
+use FluxIliasApi\Adapter\Route\ConfigForm\ConfigFormRouteCollector;
 use FluxIliasApi\Adapter\User\UserDto;
+use FluxIliasApi\Channel\ConfigForm\Port\ConfigFormService;
+use FluxIliasApi\Channel\Proxy\LegacyProxyTarget;
+use FluxIliasApi\Channel\Proxy\Port\ProxyService;
+use FluxIliasApi\Channel\ProxyConfig\Port\ProxyConfigService;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Api\RestApi;
+use FluxIliasApi\Libs\FluxRestApi\Adapter\Authorization\Authorization;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\BodyDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\HtmlBodyDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\TextBodyDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Client\ClientRequestDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Header\LegacyDefaultHeader;
+use FluxIliasApi\Libs\FluxRestApi\Adapter\Route\Collector\RouteCollector;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Server\ServerRawRequestDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Server\ServerRawResponseDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Server\ServerResponseDto;
@@ -21,31 +28,41 @@ use Throwable;
 class HandleIliasGotoCommand
 {
 
+    private ConfigFormService $config_form_service;
     private ilGlobalTemplateInterface $ilias_global_template;
-    private ProxyConfigDto $proxy_config;
+    private ProxyConfigService $proxy_config_service;
+    private ProxyService $proxy_service;
     private RestApi $rest_api;
 
 
     private function __construct(
-        /*private readonly*/ ProxyConfigDto $proxy_config,
+        /*private readonly*/ ProxyService $proxy_service,
+        /*private readonly*/ ProxyConfigService $proxy_config_service,
         /*private readonly*/ RestApi $rest_api,
+        /*private readonly*/ ConfigFormService $config_form_service,
         /*private readonly*/ ilGlobalTemplateInterface $ilias_global_template
     ) {
-        $this->proxy_config = $proxy_config;
+        $this->proxy_service = $proxy_service;
+        $this->proxy_config_service = $proxy_config_service;
         $this->rest_api = $rest_api;
+        $this->config_form_service = $config_form_service;
         $this->ilias_global_template = $ilias_global_template;
     }
 
 
     public static function new(
-        ProxyConfigDto $proxy_config,
+        ProxyService $proxy_service,
+        ProxyConfigService $proxy_config_service,
         RestApi $rest_api,
+        ConfigFormService $config_form_service,
         ilGlobalTemplateInterface $ilias_global_template
     ) : /*static*/ self
     {
         return new static(
-            $proxy_config,
+            $proxy_service,
+            $proxy_config_service,
             $rest_api,
+            $config_form_service,
             $ilias_global_template
         );
     }
@@ -62,7 +79,14 @@ class HandleIliasGotoCommand
                 "target"
             );
             switch (true) {
-                case str_starts_with($target, "flilre_api_proxy_"):
+                case $target === LegacyProxyTarget::CONFIG()->value:
+                    $this->handleConfig(
+                        $user,
+                        $request
+                    );
+                    break;
+
+                case str_starts_with($target, LegacyProxyTarget::API_PROXY()->value):
                     $this->handleApiProxy(
                         $user,
                         $request,
@@ -70,8 +94,9 @@ class HandleIliasGotoCommand
                     );
                     break;
 
-                case str_starts_with($target, "flilre_web_proxy_"):
+                case str_starts_with($target, LegacyProxyTarget::WEB_PROXY()->value):
                     $this->handleWebProxy(
+                        $user,
                         $request,
                         substr($target, 17)
                     );
@@ -134,7 +159,7 @@ class HandleIliasGotoCommand
         if ($user === null) {
             $this->bodyResponse(
                 TextBodyDto::new(
-                    "Authorization needed"
+                    "Authorization in ILIAS needed"
                 ),
                 $request,
                 LegacyDefaultStatus::_401()
@@ -143,13 +168,17 @@ class HandleIliasGotoCommand
             exit;
         }
 
-        if (empty($url = $this->proxy_config->getApiMap()[$key] ?? null)) {
+        if (!$this->proxy_config_service->isEnableApiProxy()
+            || ($api_proxy_map = $this->proxy_config_service->getApiProxyMapByKey(
+                $key
+            )) === null
+        ) {
             $this->bodyResponse(
                 TextBodyDto::new(
-                    "Not found"
+                    "No access"
                 ),
                 $request,
-                LegacyDefaultStatus::_404()
+                LegacyDefaultStatus::_403()
             );
 
             exit;
@@ -171,9 +200,9 @@ class HandleIliasGotoCommand
 
         $response = $this->rest_api->makeRequest(
             ClientRequestDto::new(
-                rtrim($url, "/") . (!empty($path = trim($request->getQueryParam(
+                rtrim($api_proxy_map->getUrl(), "/") . (!empty($route = trim($request->getQueryParam(
                     "route"
-                ), "/")) ? "/" . $path : ""),
+                ), "/")) ? "/" . $route : ""),
                 $request->getMethod(),
                 $this->getQueryParams(
                     $request
@@ -208,35 +237,81 @@ class HandleIliasGotoCommand
     }
 
 
-    private function handleWebProxy(ServerRawRequestDto $request, string $key) : void
+    private function handleConfig(?UserDto $user, ServerRawRequestDto $request) : void
     {
-        if (empty($url = $this->proxy_config->getWebMap()[$key] ?? null)) {
+        $this->handleRequest(
+            $request,
+            ConfigFormRouteCollector::new(
+                $this->config_form_service,
+                $this->proxy_service,
+                $this->ilias_global_template,
+                $request->getRoute()
+            ),
+            ConfigFormAuthorization::new(
+                $this->config_form_service,
+                $user
+            )
+        );
+    }
+
+
+    private function handleRequest(ServerRawRequestDto $request, RouteCollector $route_collector, Authorization $authorization) : void
+    {
+        $this->rest_api->handleDefaultResponse(
+            $this->rest_api->handleRequest(
+                ServerRawRequestDto::new(
+                    "/" . trim($request->getQueryParam(
+                        "route"
+                    ), "/"),
+                    $request->getMethod(),
+                    $request->getServerType(),
+                    $this->getQueryParams(
+                        $request
+                    ),
+                    $request->getBody(),
+                    $request->getPost(),
+                    $request->getFiles(),
+                    $request->getHeaders(),
+                    $request->getCookies()
+                ),
+                $route_collector,
+                $authorization
+            ),
+            $request->getServerType()
+        );
+
+        exit;
+    }
+
+
+    private function handleWebProxy(?UserDto $user, ServerRawRequestDto $request, string $key) : void
+    {
+        if (!$this->proxy_config_service->isEnableWebProxy()
+            || ($web_proxy_map = $this->proxy_config_service->getWebProxyMapByKey(
+                $key
+            )) === null
+        ) {
             return;
         }
 
-        $url = rtrim($url, "/") . (!empty($path = trim($request->getQueryParam(
-                "route"
-            ), "/")) ? "/" . $path : "");
-        if (!empty($query_params = $this->getQueryParams(
-            $request
-        ))
-        ) {
-            $url .= (str_contains($url, "?") ? "&" : "?") . implode("&",
-                    array_map(fn(string $key, string $value) : string => rawurlencode($key) . "=" . rawurlencode($value), array_keys($query_params), $query_params));
-        }
-
-        $this->ilias_global_template->loadStandardTemplate();
-
-        $this->ilias_global_template->setContent('<iframe style="border:none;height:calc(100vh - 220px);width:100%;" src="' . htmlspecialchars($url) . '"></iframe>');
-
-        $ilias_html = str_replace("<head>", '<head><base href="/">', $this->ilias_global_template->printToString());
-        if (!str_ends_with($request->getRoute(), "/goto.php")) {
-            $ilias_html = str_replace("/" . trim($request->getRoute(), "/") . "/", "/", $ilias_html);
+        if (!$web_proxy_map->isVisiblePublicMenuItem() && $user === null) {
+            return;
         }
 
         $this->bodyResponse(
             HtmlBodyDto::new(
-                $ilias_html
+                $this->proxy_service->getWebProxy(
+                    $this->ilias_global_template,
+                    "",
+                    $web_proxy_map->getIframeUrl(),
+                    $request->getQueryParam(
+                        "route"
+                    ),
+                    $this->getQueryParams(
+                        $request
+                    ),
+                    $request->getRoute()
+                )
             ),
             $request
         );
