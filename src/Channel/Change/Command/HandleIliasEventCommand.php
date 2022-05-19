@@ -140,7 +140,7 @@ class HandleIliasEventCommand
 
     public function handleIliasEvent(UserDto $user, string $component, string $event, array $parameters) : void
     {
-        if (!$this->change_service->isEnabledLogChanges()) {
+        if (!$this->change_service->isEnableLogChanges()) {
             return;
         }
 

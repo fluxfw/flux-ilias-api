@@ -3,6 +3,7 @@
 namespace FluxIliasApi\Channel\Config\Command;
 
 use FluxIliasApi\Channel\Config\ConfigQuery;
+use FluxIliasApi\Channel\Config\LegacyConfigKey;
 use ilSetting;
 
 class GetConfigCommand
@@ -22,9 +23,9 @@ class GetConfigCommand
     }
 
 
-    public function getConfig(string $key)/* : mixed*/
+    public function getConfig(LegacyConfigKey $key)/* : mixed*/
     {
-        $value = (new ilSetting($this->getConfigSettingsModule()))->get($key, null);
+        $value = (new ilSetting($this->getConfigSettingsModule()))->get($key->value, null);
         if ($value === null) {
             return null;
         }

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>flux-ilias-rest-config</title>
+	<link href="css/flilre_config.css" rel="stylesheet">
+</head>
+<body>
+<div id="flilre_config">
+	<template data-form-template>
+		<form>
+			<h2>Rest api</h2>
+			<div class="form_field">
+				<div class="form_field_label">Enable</div>
+				<div class="form_field_field">
+					<input name="enable_rest_api" type="checkbox">
+				</div>
+			</div>
+			<h2>Proxy</h2>
+			<h3>Web</h3>
+			<div class="form_field">
+				<div class="form_field_label">Enable</div>
+				<div class="form_field_field">
+					<input name="enable_web_proxy" type="checkbox">
+				</div>
+			</div>
+			<div class="form_field">
+				<div class="form_field_label">Map</div>
+				<div class="form_field_field">
+					<div data-web_proxy_map>
+						<template>
+							<div>
+								<div class="form_field">
+									<div class="form_field_button">
+										<button data-move-entry-up type="button">/\</button>
+										<button data-move-entry-down type="button">\/</button>
+										<button data-remove-entry type="button">X</button>
+									</div>
+									<div class="form_field_label">Target key</div>
+									<div class="form_field_field">
+										<input data-entry-target_key required type="text">
+										<div>
+											<em data-entry-target-url></em>
+										</div>
+									</div>
+								</div>
+								<div class="form_field">
+									<div class="form_field_button"></div>
+									<div class="form_field_label">iframe url</div>
+									<div class="form_field_field">
+										<input data-entry-iframe_url required type="url">
+									</div>
+								</div>
+								<div class="form_field">
+									<div class="form_field_button"></div>
+									<div class="form_field_label">Menu item</div>
+									<div class="form_field_field">
+										<input data-entry-menu_item type="checkbox">
+									</div>
+								</div>
+								<div class="form_field">
+									<div class="form_field_button"></div>
+									<div class="form_field_label">Visible menu item on public area</div>
+									<div class="form_field_field">
+										<input data-entry-visible_public_menu_item type="checkbox">
+										<div>
+											<em data-entry-visible-public-menu-item-info></em>
+										</div>
+									</div>
+								</div>
+								<div class="form_field">
+									<div class="form_field_button"></div>
+									<div class="form_field_label">Rewrite url</div>
+									<div class="form_field_field">
+										<input data-entry-rewrite_url type="url">
+									</div>
+								</div>
+								<div class="form_field"></div>
+							</div>
+						</template>
+					</div>
+					<div class="form_field"></div>
+					<div>
+						<em>You can change menu title, icon or position in Administration > Layout and Navigation > Main Menu</em>
+					</div>
+				</div>
+			</div>
+			<h3>Api</h3>
+			<div class="form_field">
+				<div class="form_field_label">Enable</div>
+				<div class="form_field_field">
+					<input name="enable_api_proxy" type="checkbox">
+				</div>
+			</div>
+			<div class="form_field">
+				<div class="form_field_label">Map</div>
+				<div class="form_field_field">
+					<div data-api_proxy_map>
+						<template>
+							<div>
+								<div class="form_field">
+									<div class="form_field_button">
+										<button data-move-entry-up type="button">/\</button>
+										<button data-move-entry-down type="button">\/</button>
+										<button data-remove-entry type="button">X</button>
+									</div>
+									<div class="form_field_label">Target key</div>
+									<div class="form_field_field">
+										<input data-entry-target_key required type="text">
+										<div>
+											<em data-entry-target-url></em>
+										</div>
+									</div>
+								</div>
+								<div class="form_field">
+									<div class="form_field_button"></div>
+									<div class="form_field_label">Url</div>
+									<div class="form_field_field">
+										<input data-entry-url required type="url">
+									</div>
+								</div>
+								<div class="form_field"></div>
+							</div>
+						</template>
+					</div>
+				</div>
+			</div>
+			<h2>Changes</h2>
+			<div class="form_field">
+				<div class="form_field_label">Log changes</div>
+				<div class="form_field_field">
+					<input name="enable_log_changes" type="checkbox">
+				</div>
+			</div>
+			<h3>Transfer changes</h3>
+			<div class="form_field">
+				<div class="form_field_label">Enable</div>
+				<div class="form_field_field">
+					<input name="enable_transfer_changes" type="checkbox">
+				</div>
+			</div>
+			<div class="form_field">
+				<div class="form_field_label">Post changes to url</div>
+				<div class="form_field_field">
+					<input name="transfer_changes_post_url" type="url">
+				</div>
+			</div>
+			<div data-transfer_changes_schedule></div>
+			<h3>Purge changes</h3>
+			<div class="form_field">
+				<div class="form_field_label">Enable</div>
+				<div class="form_field_field">
+					<input name="enable_purge_changes" type="checkbox">
+				</div>
+			</div>
+			<div data-purge_changes_schedule></div>
+			<div class="form_field">
+				<div class="form_field_label">Keep changes inside</div>
+				<div class="form_field_field">
+					<input min="0" name="keep_changes_inside_days" required type="number"> days
+				</div>
+			</div>
+			<div class="form_field">
+				<button data-store type="button">Store</button>
+			</div>
+			<template data-entries-template>
+				<div>
+					<div data-entries></div>
+					<div class="form_field_button">
+						<button data-add-entry type="button">+</button>
+					</div>
+				</div>
+			</template>
+			<template data-schedule-template>
+				<div>
+					<div class="form_field">
+						<div class="form_field_label">Schedule</div>
+						<div class="form_field_field">
+							<select data-type name="type" required></select>
+						</div>
+					</div>
+					<div class="form_field">
+						<div class="form_field_label">Schedule Interval</div>
+						<div class="form_field_field">
+							<input data-interval min="0" name="interval" type="number">
+						</div>
+					</div>
+				</div>
+			</template>
+		</form>
+	</template>
+</div>
+<script src="js/flilre_config.mjs" type="module"></script>
+</body>
+</html>

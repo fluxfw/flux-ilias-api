@@ -14,6 +14,7 @@ use FluxIliasApi\Adapter\Group\GroupDiffDto;
 use FluxIliasApi\Adapter\Group\GroupDto;
 use FluxIliasApi\Adapter\GroupMember\GroupMemberDiffDto;
 use FluxIliasApi\Adapter\GroupMember\GroupMemberIdDto;
+use FluxIliasApi\Adapter\Menu\MenuProvider;
 use FluxIliasApi\Adapter\Object\ObjectDiffDto;
 use FluxIliasApi\Adapter\Object\ObjectDto;
 use FluxIliasApi\Adapter\Object\ObjectIdDto;
@@ -28,7 +29,6 @@ use FluxIliasApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionDi
 use FluxIliasApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionDto;
 use FluxIliasApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionIdDto;
 use FluxIliasApi\Adapter\OrganisationalUnitStaff\OrganisationalUnitStaffDto;
-use FluxIliasApi\Adapter\Proxy\ProxyConfigDto;
 use FluxIliasApi\Adapter\Role\RoleDiffDto;
 use FluxIliasApi\Adapter\Role\RoleDto;
 use FluxIliasApi\Adapter\ScormLearningModule\ScormLearningModuleDiffDto;
@@ -41,18 +41,23 @@ use FluxIliasApi\Adapter\UserRole\UserRoleDto;
 use FluxIliasApi\Channel\Category\Port\CategoryService;
 use FluxIliasApi\Channel\Change\Port\ChangeService;
 use FluxIliasApi\Channel\Config\Port\ConfigService;
+use FluxIliasApi\Channel\ConfigForm\Port\ConfigFormService;
 use FluxIliasApi\Channel\Course\Port\CourseService;
 use FluxIliasApi\Channel\CourseMember\Port\CourseMemberService;
 use FluxIliasApi\Channel\Cron\Port\CronService;
+use FluxIliasApi\Channel\CronConfig\Port\CronConfigService;
 use FluxIliasApi\Channel\File\Port\FileService;
 use FluxIliasApi\Channel\Group\Port\GroupService;
 use FluxIliasApi\Channel\GroupMember\Port\GroupMemberService;
+use FluxIliasApi\Channel\Menu\Port\MenuService;
 use FluxIliasApi\Channel\Object\Port\ObjectService;
 use FluxIliasApi\Channel\ObjectLearningProgress\Port\ObjectLearningProgressService;
 use FluxIliasApi\Channel\OrganisationalUnit\Port\OrganisationalUnitService;
 use FluxIliasApi\Channel\OrganisationalUnitPosition\Port\OrganisationalUnitPositionService;
 use FluxIliasApi\Channel\OrganisationalUnitStaff\Port\OrganisationalUnitStaffService;
 use FluxIliasApi\Channel\Proxy\Port\ProxyService;
+use FluxIliasApi\Channel\ProxyConfig\Port\ProxyConfigService;
+use FluxIliasApi\Channel\RestConfig\Port\RestConfigService;
 use FluxIliasApi\Channel\Role\Port\RoleService;
 use FluxIliasApi\Channel\ScormLearningModule\Port\ScormLearningModuleService;
 use FluxIliasApi\Channel\Setup\Port\SetupService;
@@ -70,6 +75,7 @@ use ILIAS\DI\RBACServices;
 use ILIAS\FileUpload\FileUpload;
 use ilObjectDefinition;
 use ilObjUser;
+use ilPlugin;
 use ilTree;
 
 class IliasApi
@@ -1102,6 +1108,16 @@ class IliasApi
     }
 
 
+    public function getMenuProvider(ilPlugin $ilias_plugin) : MenuProvider
+    {
+        return $this->getMenuService()
+            ->getMenuProvider(
+                $ilias_plugin,
+                $this->getCurrentApiUser()
+            );
+    }
+
+
     public function getObjectById(int $id, ?bool $in_trash = null) : ?ObjectDto
     {
         return $this->getObjectService()
@@ -1467,6 +1483,13 @@ class IliasApi
     {
         $this->getSetupService()
             ->installHelperPlugin();
+    }
+
+
+    public function isEnableRestApi() : bool
+    {
+        return $this->getRestConfigService()
+            ->isEnableRestApi();
     }
 
 
@@ -2526,7 +2549,19 @@ class IliasApi
             $this->getScormLearningModuleService(),
             $this->getUserService(),
             $this->getUserRoleService(),
-            $this->getRestApi()
+            $this->getRestApi(),
+            $this->getCronConfigService()
+        );
+    }
+
+
+    private function getConfigFormService() : ConfigFormService
+    {
+        return ConfigFormService::new(
+            $this->getChangeService(),
+            $this->getProxyConfigService(),
+            $this->getRestConfigService(),
+            $this->getIliasDic()
         );
     }
 
@@ -2553,6 +2588,12 @@ class IliasApi
             $this->getIliasDatabase(),
             $this->getObjectService()
         );
+    }
+
+
+    private function getCronConfigService() : CronConfigService
+    {
+        return CronConfigService::new();
     }
 
 
@@ -2650,6 +2691,16 @@ class IliasApi
     }
 
 
+    private function getMenuService() : MenuService
+    {
+        return MenuService::new(
+            $this->getIliasDic(),
+            $this->getConfigFormService(),
+            $this->getProxyService()
+        );
+    }
+
+
     private function getObjectLearningProgressService() : ObjectLearningProgressService
     {
         return ObjectLearningProgressService::new(
@@ -2698,11 +2749,21 @@ class IliasApi
     }
 
 
+    private function getProxyConfigService() : ProxyConfigService
+    {
+        return ProxyConfigService::new(
+            $this->getConfigService()
+        );
+    }
+
+
     private function getProxyService() : ProxyService
     {
         return ProxyService::new(
-            ProxyConfigDto::newFromEnv(),
-            $this->getRestApi()
+            $this->getRestApi(),
+            $this->getConfigFormService(),
+            $this->getProxyConfigService(),
+            $this->getIliasDic()
         );
     }
 
@@ -2710,6 +2771,14 @@ class IliasApi
     private function getRestApi() : RestApi
     {
         return RestApi::new();
+    }
+
+
+    private function getRestConfigService() : RestConfigService
+    {
+        return RestConfigService::new(
+            $this->getConfigService()
+        );
     }
 
 
