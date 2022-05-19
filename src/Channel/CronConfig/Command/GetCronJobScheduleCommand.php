@@ -26,6 +26,12 @@ class GetCronJobScheduleCommand
     public function getCronJobSchedule(ilCronJob $cron_job) : object
     {
         $data = current(ilCronManager::getCronJobData($cron_job->getId()));
+        if ($data === false) {
+            $data = [
+                "schedule_type"  => $cron_job->getDefaultScheduleType(),
+                "schedule_value" => $cron_job->getDefaultScheduleValue()
+            ];
+        }
 
         $internal_type = CustomInternalScheduleTypeCronConfig::factory($data["schedule_type"]);
 
