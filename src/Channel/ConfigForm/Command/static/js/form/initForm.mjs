@@ -18,7 +18,7 @@ export function initForm(form_template_el, action, values) {
 
     const entries_template_el = form_el.querySelector("[data-entries-template]");
     entries_template_el.remove();
-    initEntriesForm("web_proxy_map", entries_template_el, ["iframe_url", "menu_item", "rewrite_url", "target_key", "visible_public_menu_item"], values, form_el, (entry_el) => {
+    initEntriesForm("web_proxy_map", entries_template_el, ["iframe_url", "menu_item", "rewrite_url", "target_key", "title", "visible_public_menu_item"], values, form_el, (entry_el) => {
         const target_key_el = entry_el.querySelector("[data-entry-target_key]");
         const target_url_el = entry_el.querySelector("[data-entry-target-url]");
         const menu_item_el = entry_el.querySelector("[data-entry-menu_item]");
