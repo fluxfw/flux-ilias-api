@@ -10,7 +10,11 @@ export async function storeForm(form_el) {
         return;
     }
 
+    const restore_disabled = [];
     for (const input_el of form_el.elements) {
+        if (input_el.disabled) {
+            restore_disabled.push(input_el);
+        }
         input_el.disabled = true;
     }
 
@@ -40,6 +44,6 @@ export async function storeForm(form_el) {
     }
 
     for (const input_el of form_el.elements) {
-        input_el.disabled = false;
+        input_el.disabled = restore_disabled.includes(input_el);
     }
 }
