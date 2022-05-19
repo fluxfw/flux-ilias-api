@@ -10,9 +10,9 @@ class WebProxyMapDto implements JsonSerializable
 
     private string $iframe_url;
     private bool $menu_item;
-    private string $rewrite_url;
+    private ?string $rewrite_url;
     private string $target_key;
-    private string $title;
+    private ?string $title;
     private bool $visible_public_menu_item;
 
 
@@ -45,8 +45,8 @@ class WebProxyMapDto implements JsonSerializable
         return new static(
             $target_key,
             $iframe_url,
-            $title ?? $target_key,
-            $rewrite_url ?? "/goto.php?target=" . LegacyProxyTarget::WEB_PROXY()->value . $target_key,
+            $title,
+            $rewrite_url,
             $menu_item ?? false,
             $visible_public_menu_item ?? false
         );
@@ -74,9 +74,15 @@ class WebProxyMapDto implements JsonSerializable
     }
 
 
-    public function getRewriteUrl() : string
+    public function getRewriteUrl() : ?string
     {
         return $this->rewrite_url;
+    }
+
+
+    public function getRewriteUrl2() : string
+    {
+        return $this->rewrite_url ?? "/goto.php?target=" . LegacyProxyTarget::WEB_PROXY()->value . $this->target_key;
     }
 
 
@@ -86,9 +92,15 @@ class WebProxyMapDto implements JsonSerializable
     }
 
 
-    public function getTitle() : string
+    public function getTitle() : ?string
     {
         return $this->title;
+    }
+
+
+    public function getTitle2() : string
+    {
+        return $this->title ?? $this->target_key;
     }
 
 
