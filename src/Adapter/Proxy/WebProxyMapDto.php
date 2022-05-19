@@ -2,6 +2,7 @@
 
 namespace FluxIliasApi\Adapter\Proxy;
 
+use FluxIliasApi\Channel\Proxy\LegacyProxyTarget;
 use JsonSerializable;
 
 class WebProxyMapDto implements JsonSerializable
@@ -9,20 +10,23 @@ class WebProxyMapDto implements JsonSerializable
 
     private string $iframe_url;
     private bool $menu_item;
-    private ?string $rewrite_url;
+    private string $rewrite_url;
     private string $target_key;
+    private string $title;
     private bool $visible_public_menu_item;
 
 
     private function __construct(
         /*public readonly*/ string $target_key,
         /*public readonly*/ string $iframe_url,
-        /*public readonly*/ ?string $rewrite_url,
+        /*public readonly*/ string $title,
+        /*public readonly*/ string $rewrite_url,
         /*public readonly*/ bool $menu_item,
         /*public readonly*/ bool $visible_public_menu_item
     ) {
         $this->target_key = $target_key;
         $this->iframe_url = $iframe_url;
+        $this->title = $title;
         $this->rewrite_url = $rewrite_url;
         $this->menu_item = $menu_item;
         $this->visible_public_menu_item = $visible_public_menu_item;
@@ -32,6 +36,7 @@ class WebProxyMapDto implements JsonSerializable
     public static function new(
         string $target_key,
         string $iframe_url,
+        ?string $title = null,
         ?string $rewrite_url = null,
         ?bool $menu_item = null,
         ?bool $visible_public_menu_item = null
@@ -40,7 +45,8 @@ class WebProxyMapDto implements JsonSerializable
         return new static(
             $target_key,
             $iframe_url,
-            $rewrite_url,
+            $title ?? $target_key,
+            $rewrite_url ?? "/goto.php?target=" . LegacyProxyTarget::WEB_PROXY()->value . $target_key,
             $menu_item ?? false,
             $visible_public_menu_item ?? false
         );
@@ -54,6 +60,7 @@ class WebProxyMapDto implements JsonSerializable
         return static::new(
             $data->target_key ?? "",
             $data->iframe_url ?? "",
+            $data->title ?: null,
             $data->rewrite_url ?: null,
             $data->menu_item ?? null,
             $data->visible_public_menu_item ?? null
@@ -67,7 +74,7 @@ class WebProxyMapDto implements JsonSerializable
     }
 
 
-    public function getRewriteUrl() : ?string
+    public function getRewriteUrl() : string
     {
         return $this->rewrite_url;
     }
@@ -76,6 +83,12 @@ class WebProxyMapDto implements JsonSerializable
     public function getTargetKey() : string
     {
         return $this->target_key;
+    }
+
+
+    public function getTitle() : string
+    {
+        return $this->title;
     }
 
 
