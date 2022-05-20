@@ -5,7 +5,6 @@ namespace FluxIliasApi\Channel\CustomMetadata;
 use Exception;
 use FluxIliasApi\Adapter\CustomMetadata\CustomMetadataDto;
 use ilADT;
-use ilADTDefinition;
 use ilADTEnum;
 use ilADTFloat;
 use ilADTInteger;
@@ -15,7 +14,6 @@ use ilADTText;
 use ilAdvancedMDFieldDefinition;
 use ilAdvancedMDRecord;
 use ilAdvancedMDValues;
-use ilObject;
 use LogicException;
 
 trait CustomMetadataQuery

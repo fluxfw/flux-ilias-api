@@ -45,8 +45,8 @@ class GetConfigFormMenuItemsCommand
             ->withParent(StandardTopItemsProvider::getInstance()->getAdministrationIdentification())
             ->withPosition(42001)
             ->withTitle("flux-ilias-rest-config")
-            ->withAction("/flux-ilias-rest-config")
-            ->withSymbol($this->ilias_dic->ui()->factory()->symbol()->icon()->standard(Standard::ADM, "")->withIsOutlined(true))
+            ->withAction("flux-ilias-rest-config")
+            ->withSymbol($this->ilias_dic->ui()->factory()->symbol()->icon()->standard(Standard::ADM, "flux-ilias-rest-config")->withIsOutlined(true))
             ->withVisibilityCallable(fn() : bool => $this->config_form_service->hasAccessToConfigForm(
                 $user
             ));
