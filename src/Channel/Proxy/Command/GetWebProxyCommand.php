@@ -2,6 +2,7 @@
 
 namespace FluxIliasApi\Channel\Proxy\Command;
 
+use FluxIliasApi\Channel\ProxyConfig\Port\ProxyConfigService;
 use ilGlobalTemplateInterface;
 use ILIAS\UICore\PageContentProvider;
 
@@ -9,20 +10,25 @@ class GetWebProxyCommand
 {
 
     private ilGlobalTemplateInterface $ilias_global_template;
+    private ProxyConfigService $proxy_config_service;
 
 
     private function __construct(
+        /*private readonly*/ ProxyConfigService $proxy_config_service,
         /*private readonly*/ ilGlobalTemplateInterface $ilias_global_template
     ) {
+        $this->proxy_config_service = $proxy_config_service;
         $this->ilias_global_template = $ilias_global_template;
     }
 
 
     public static function new(
+        ProxyConfigService $proxy_config_service,
         ilGlobalTemplateInterface $ilias_global_template
     ) : /*static*/ self
     {
         return new static(
+            $proxy_config_service,
             $ilias_global_template
         );
     }
@@ -52,6 +58,8 @@ class GetWebProxyCommand
             $html = str_replace("/" . trim($original_route, "/") . "/", "/", $html);
         }
 
-        return str_replace("%CONTENT%", '<iframe style="border:none;height:calc(100vh - 220px);width:100%;" src="' . htmlspecialchars($url) . '"></iframe>', $html);
+        return str_replace("%CONTENT%",
+            '<iframe style="border:none;height:calc(100vh - ' . $this->proxy_config_service->getWebProxyIframeHeightOffset() . 'px);width:100%;" src="' . htmlspecialchars($url) . '"></iframe>',
+            $html);
     }
 }

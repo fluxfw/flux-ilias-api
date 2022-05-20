@@ -7,6 +7,7 @@ use FluxIliasApi\Adapter\Proxy\WebProxyMapDto;
 use FluxIliasApi\Channel\Config\Port\ConfigService;
 use FluxIliasApi\Channel\ProxyConfig\Command\GetApiProxyMapByKeyCommand;
 use FluxIliasApi\Channel\ProxyConfig\Command\GetApiProxyMapCommand;
+use FluxIliasApi\Channel\ProxyConfig\Command\GetWebProxyIframeHeightOffsetCommand;
 use FluxIliasApi\Channel\ProxyConfig\Command\GetWebProxyMapByKeyCommand;
 use FluxIliasApi\Channel\ProxyConfig\Command\GetWebProxyMapCommand;
 use FluxIliasApi\Channel\ProxyConfig\Command\IsEnableApiProxyCommand;
@@ -14,6 +15,7 @@ use FluxIliasApi\Channel\ProxyConfig\Command\IsEnableWebProxyCommand;
 use FluxIliasApi\Channel\ProxyConfig\Command\SetApiProxyMapCommand;
 use FluxIliasApi\Channel\ProxyConfig\Command\SetEnableApiProxyCommand;
 use FluxIliasApi\Channel\ProxyConfig\Command\SetEnableWebProxyCommand;
+use FluxIliasApi\Channel\ProxyConfig\Command\SetWebProxyIframeHeightOffsetCommand;
 use FluxIliasApi\Channel\ProxyConfig\Command\SetWebProxyMapCommand;
 
 class ProxyConfigService
@@ -59,6 +61,15 @@ class ProxyConfigService
             ->getApiProxyMapByKey(
                 $key
             );
+    }
+
+
+    public function getWebProxyIframeHeightOffset() : int
+    {
+        return GetWebProxyIframeHeightOffsetCommand::new(
+            $this->config_service
+        )
+            ->getWebProxyIframeHeightOffset();
     }
 
 
@@ -135,6 +146,17 @@ class ProxyConfigService
         )
             ->setEnableWebProxy(
                 $enable_web_proxy
+            );
+    }
+
+
+    public function setWebProxyIframeHeightOffset(?int $web_proxy_iframe_height_offset) : void
+    {
+        SetWebProxyIframeHeightOffsetCommand::new(
+            $this->config_service
+        )
+            ->setWebProxyIframeHeightOffset(
+                $web_proxy_iframe_height_offset
             );
     }
 

@@ -367,7 +367,7 @@ class ChangeService
     }
 
 
-    public function setKeepChangesInsideDays(int $keep_changes_inside_days) : void
+    public function setKeepChangesInsideDays(?int $keep_changes_inside_days) : void
     {
         SetKeepChangesInsideDaysCommand::new(
             $this->config_service

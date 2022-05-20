@@ -61,6 +61,7 @@ class ProxyService
         ?string $original_route = null
     ) : string {
         return GetWebProxyCommand::new(
+            $this->proxy_config_service,
             $ilias_global_template
         )
             ->getWebProxy(

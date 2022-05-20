@@ -28,11 +28,11 @@ class SetKeepChangesInsideDaysCommand
     }
 
 
-    public function setKeepChangesInsideDays(int $keep_changes_inside_days) : void
+    public function setKeepChangesInsideDays(?int $keep_changes_inside_days) : void
     {
         $this->config_service->setConfig(
             LegacyConfigKey::KEEP_CHANGES_INSIDE_DAYS(),
-            max(0, $keep_changes_inside_days)
+            max(0, $keep_changes_inside_days ?? GetKeepChangesInsideDaysCommand::DEFAULT_VALUE)
         );
     }
 }

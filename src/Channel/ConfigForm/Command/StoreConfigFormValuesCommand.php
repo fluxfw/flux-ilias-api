@@ -74,7 +74,7 @@ class StoreConfigFormValuesCommand
         );
 
         $this->change_service->setKeepChangesInsideDays(
-            intval($values->{LegacyConfigKey::KEEP_CHANGES_INSIDE_DAYS()->value} ?? null)
+            ($keep_changes_inside_days = $values->{LegacyConfigKey::KEEP_CHANGES_INSIDE_DAYS()->value} ?? null) !== null ? intval($keep_changes_inside_days) : null
         );
 
         $this->change_service->setPurgeChangesSchedule(
@@ -89,6 +89,10 @@ class StoreConfigFormValuesCommand
         $this->change_service->setTransferChangesSchedule(
             CustomScheduleTypeCronConfig::factory($values->{LegacyConfigKey::TRANSFER_CHANGES_SCHEDULE()->value}->type ?? null),
             ($interval = $values->{LegacyConfigKey::TRANSFER_CHANGES_SCHEDULE()->value}->interval ?? null) !== null ? intval($interval) : null
+        );
+
+        $this->proxy_config_service->setWebProxyIframeHeightOffset(
+            ($web_proxy_iframe_height_offset = $values->{LegacyConfigKey::WEB_PROXY_IFRAME_HEIGHT_OFFSET()->value} ?? null) !== null ? intval($web_proxy_iframe_height_offset) : null
         );
 
         $this->proxy_config_service->setWebProxyMap(

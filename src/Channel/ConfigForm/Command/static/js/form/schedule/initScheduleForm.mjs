@@ -31,7 +31,7 @@ export function initScheduleForm(name, schedule_template_el, values, form_el) {
     }
     const interval_field_el = interval_el.closest(".form_field");
 
-    type_el.addEventListener("change", changedType);
+    type_el.addEventListener("input", changedType);
     changedType();
 
     form_el.querySelector(`[data-${name}]`).replaceWith(div_el);

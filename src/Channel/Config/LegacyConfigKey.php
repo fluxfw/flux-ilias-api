@@ -17,6 +17,7 @@ use FluxIliasApi\Libs\FluxLegacyEnum\Adapter\Backed\LegacyStringBackedEnum;
  * @method static static PURGE_CHANGES_SCHEDULE() purge_changes_schedule
  * @method static static TRANSFER_CHANGES_POST_URL() transfer_changes_post_url
  * @method static static TRANSFER_CHANGES_SCHEDULE() transfer_changes_schedule
+ * @method static static WEB_PROXY_IFRAME_HEIGHT_OFFSET() web_proxy_iframe_height_offset
  * @method static static WEB_PROXY_MAP() web_proxy_map
  */
 class LegacyConfigKey extends LegacyStringBackedEnum

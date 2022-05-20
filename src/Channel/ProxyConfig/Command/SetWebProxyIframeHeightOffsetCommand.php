@@ -1,14 +1,13 @@
 <?php
 
-namespace FluxIliasApi\Channel\Change\Command;
+namespace FluxIliasApi\Channel\ProxyConfig\Command;
 
 use FluxIliasApi\Channel\Config\LegacyConfigKey;
 use FluxIliasApi\Channel\Config\Port\ConfigService;
 
-class GetKeepChangesInsideDaysCommand
+class SetWebProxyIframeHeightOffsetCommand
 {
 
-    public const DEFAULT_VALUE = 7;
     private ConfigService $config_service;
 
 
@@ -29,10 +28,11 @@ class GetKeepChangesInsideDaysCommand
     }
 
 
-    public function getKeepChangesInsideDays() : int
+    public function setWebProxyIframeHeightOffset(?int $web_proxy_iframe_height_offset) : void
     {
-        return intval($this->config_service->getConfig(
-                LegacyConfigKey::KEEP_CHANGES_INSIDE_DAYS()
-            ) ?? static::DEFAULT_VALUE);
+        $this->config_service->setConfig(
+            LegacyConfigKey::WEB_PROXY_IFRAME_HEIGHT_OFFSET(),
+            max(0, $web_proxy_iframe_height_offset ?? GetWebProxyIframeHeightOffsetCommand::DEFAULT_VALUE)
+        );
     }
 }

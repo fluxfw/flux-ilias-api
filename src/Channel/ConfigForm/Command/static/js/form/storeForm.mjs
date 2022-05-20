@@ -30,6 +30,7 @@ export async function storeForm(form_el) {
         purge_changes_schedule: getScheduleFormValue("purge_changes_schedule", form_el),
         transfer_changes_post_url: form_el.elements.transfer_changes_post_url.value,
         transfer_changes_schedule: getScheduleFormValue("transfer_changes_schedule", form_el),
+        web_proxy_iframe_height_offset: form_el.elements.web_proxy_iframe_height_offset.valueAsNumber,
         web_proxy_map: getEntriesFormValue("web_proxy_map", ["iframe_url", "menu_item", "rewrite_url", "target_key", "title", "visible_public_menu_item"], form_el)
     };
 
