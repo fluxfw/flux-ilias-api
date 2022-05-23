@@ -58,8 +58,14 @@ class GetWebProxyCommand
             $html = str_replace("/" . trim($original_route, "/") . "/", "/", $html);
         }
 
+        $iframe_offset_height = htmlspecialchars($this->proxy_config_service->getWebProxyIframeHeightOffset() . "px");
+        $src = htmlspecialchars($url);
+
         return str_replace("%CONTENT%",
-            '<iframe style="border:none;height:calc(100vh - ' . $this->proxy_config_service->getWebProxyIframeHeightOffset() . 'px);width:100%;" src="' . htmlspecialchars($url) . '"></iframe>',
+            <<<EOL
+            <link href="flux-ilias-rest-web-proxy/static/css/flilre_web_proxy.css" rel="stylesheet">
+            <iframe id="flilre_web_proxy" style="--FLUX_ILIAS_REST_WEB_PROXY_IFRAME_HEIGHT_OFFSET:$iframe_offset_height" src="$src"></iframe>
+            EOL,
             $html);
     }
 }
