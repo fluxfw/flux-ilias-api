@@ -80,7 +80,7 @@ class WebProxyMapDto implements JsonSerializable
     }
 
 
-    public function getRewriteUrl2() : string
+    public function getRewriteUrlWithDefault() : string
     {
         return $this->rewrite_url ?? "/goto.php?target=" . LegacyProxyTarget::WEB_PROXY()->value . $this->target_key;
     }
@@ -98,7 +98,7 @@ class WebProxyMapDto implements JsonSerializable
     }
 
 
-    public function getTitle2() : string
+    public function getTitleWithDefault() : string
     {
         return $this->title ?? $this->target_key;
     }
