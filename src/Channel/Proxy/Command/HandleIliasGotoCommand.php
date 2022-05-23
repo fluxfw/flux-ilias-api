@@ -302,7 +302,7 @@ class HandleIliasGotoCommand
             HtmlBodyDto::new(
                 $this->proxy_service->getWebProxy(
                     $this->ilias_global_template,
-                    $web_proxy_map->getTitle2(),
+                    $web_proxy_map->getTitleWithDefault(),
                     $web_proxy_map->getIframeUrl(),
                     $request->getQueryParam(
                         "route"
