@@ -8,6 +8,9 @@ use FluxIliasApi\Adapter\Course\CourseDiffDto;
 use FluxIliasApi\Adapter\Course\CourseDto;
 use FluxIliasApi\Adapter\CourseMember\CourseMemberDiffDto;
 use FluxIliasApi\Adapter\CourseMember\CourseMemberIdDto;
+use FluxIliasApi\Adapter\CronConfig\Wrapper\IliasCronWrapper;
+use FluxIliasApi\Adapter\CronConfig\Wrapper\LegacyIliasCronWrapper;
+use FluxIliasApi\Adapter\CronConfig\Wrapper\NewIliasCronWrapper;
 use FluxIliasApi\Adapter\File\FileDiffDto;
 use FluxIliasApi\Adapter\File\FileDto;
 use FluxIliasApi\Adapter\Group\GroupDiffDto;
@@ -67,6 +70,7 @@ use FluxIliasApi\Channel\UserMail\Port\UserMailService;
 use FluxIliasApi\Channel\UserRole\Port\UserRoleService;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Api\RestApi;
 use ilCronJob;
+use ilCronServices;
 use ilDBInterface;
 use ilFavouritesDBRepository;
 use ilGlobalTemplateInterface;
@@ -2593,7 +2597,10 @@ class IliasApi
 
     private function getCronConfigService() : CronConfigService
     {
-        return CronConfigService::new();
+        return CronConfigService::new(
+            $this->getIliasCronWrapper(),
+            $this->getIliasUser()
+        );
     }
 
 
@@ -2632,6 +2639,24 @@ class IliasApi
             $this->getIliasDatabase(),
             $this->getObjectService()
         );
+    }
+
+
+    private function getIliasCron() : ilCronServices
+    {
+        return $this->getIliasDic()->cron();
+    }
+
+
+    private function getIliasCronWrapper() : IliasCronWrapper
+    {
+        if (method_exists($this->getIliasDic(), "cron")) {
+            return NewIliasCronWrapper::new(
+                $this->getIliasCron()
+            );
+        } else {
+            return LegacyIliasCronWrapper::new();
+        }
     }
 
 
