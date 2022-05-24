@@ -36,7 +36,9 @@ class GetCronJobScheduleCommand
             ];
         }
 
-        $internal_type = CustomInternalScheduleTypeCronConfig::factory($data["schedule_type"]);
+        $internal_type = CustomInternalScheduleTypeCronConfig::factory(
+            $data["schedule_type"]
+        );
 
         if (in_array($internal_type->value, $cron_job->getScheduleTypesWithValues())) {
             $interval = intval($data["schedule_value"]);
@@ -47,9 +49,13 @@ class GetCronJobScheduleCommand
         return (object) [
             "type"           => ScheduleTypeCronConfigMapping::mapInternalToExternal($internal_type),
             "interval"       => $interval,
-            "types"          => array_map(fn(int $type) : ScheduleTypeCronConfig => ScheduleTypeCronConfigMapping::mapInternalToExternal(CustomInternalScheduleTypeCronConfig::factory($type)),
+            "types"          => array_map(fn(int $type) : ScheduleTypeCronConfig => ScheduleTypeCronConfigMapping::mapInternalToExternal(CustomInternalScheduleTypeCronConfig::factory(
+                $type
+            )),
                 $cron_job->getValidScheduleTypes()),
-            "interval_types" => array_map(fn(int $type) : ScheduleTypeCronConfig => ScheduleTypeCronConfigMapping::mapInternalToExternal(CustomInternalScheduleTypeCronConfig::factory($type)),
+            "interval_types" => array_map(fn(int $type) : ScheduleTypeCronConfig => ScheduleTypeCronConfigMapping::mapInternalToExternal(CustomInternalScheduleTypeCronConfig::factory(
+                $type
+            )),
                 $cron_job->getScheduleTypesWithValues())
 
         ];

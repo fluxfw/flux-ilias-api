@@ -106,7 +106,9 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
 
     private function mapScormLearningModuleDto(array $scorm_learning_module) : ScormLearningModuleDto
     {
-        $object_type = ($object_type = $scorm_learning_module["type"] ?: null) !== null ? CustomInternalObjectType::factory($object_type) : null;
+        $object_type = ($object_type = $scorm_learning_module["type"] ?: null) !== null ? CustomInternalObjectType::factory(
+            $object_type
+        ) : null;
 
         return ScormLearningModuleDto::new(
             $scorm_learning_module["obj_id"] ?: null,

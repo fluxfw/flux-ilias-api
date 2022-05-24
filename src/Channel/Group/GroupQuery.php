@@ -86,7 +86,9 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
 
     private function mapGroupDto(array $group, bool $custom_metadata = false) : GroupDto
     {
-        $type = ($type = $group["type"] ?: null) !== null ? CustomInternalObjectType::factory($type) : null;
+        $type = ($type = $group["type"] ?: null) !== null ? CustomInternalObjectType::factory(
+            $type
+        ) : null;
 
         return GroupDto::new(
             $group["obj_id"] ?: null,

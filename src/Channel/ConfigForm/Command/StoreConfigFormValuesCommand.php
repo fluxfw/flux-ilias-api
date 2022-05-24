@@ -78,7 +78,9 @@ class StoreConfigFormValuesCommand
         );
 
         $this->change_service->setPurgeChangesSchedule(
-            CustomScheduleTypeCronConfig::factory($values->{LegacyConfigKey::PURGE_CHANGES_SCHEDULE()->value}->type ?? null),
+            CustomScheduleTypeCronConfig::factory(
+                $values->{LegacyConfigKey::PURGE_CHANGES_SCHEDULE()->value}->type ?? null
+            ),
             ($interval = $values->{LegacyConfigKey::PURGE_CHANGES_SCHEDULE()->value}->interval ?? null) !== null ? intval($interval) : null
         );
 
@@ -87,7 +89,9 @@ class StoreConfigFormValuesCommand
         );
 
         $this->change_service->setTransferChangesSchedule(
-            CustomScheduleTypeCronConfig::factory($values->{LegacyConfigKey::TRANSFER_CHANGES_SCHEDULE()->value}->type ?? null),
+            CustomScheduleTypeCronConfig::factory(
+                $values->{LegacyConfigKey::TRANSFER_CHANGES_SCHEDULE()->value}->type ?? null
+            ),
             ($interval = $values->{LegacyConfigKey::TRANSFER_CHANGES_SCHEDULE()->value}->interval ?? null) !== null ? intval($interval) : null
         );
 

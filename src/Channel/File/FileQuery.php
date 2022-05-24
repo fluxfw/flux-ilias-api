@@ -87,7 +87,9 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
 
     private function mapFileDto(array $file) : FileDto
     {
-        $type = ($type = $file["type"] ?: null) !== null ? CustomInternalObjectType::factory($type) : null;
+        $type = ($type = $file["type"] ?: null) !== null ? CustomInternalObjectType::factory(
+            $type
+        ) : null;
 
         return FileDto::new(
             $file["obj_id"] ?: null,

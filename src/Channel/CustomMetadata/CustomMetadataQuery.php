@@ -41,7 +41,9 @@ trait CustomMetadataQuery
                         $md_element,
                         $md_definition
                     ),
-                    CustomMetadataFieldTypeMapping::mapInternalToExternal(CustomInternalCustomMetadataFieldType::factory($md_definition->getType()))
+                    CustomMetadataFieldTypeMapping::mapInternalToExternal(CustomInternalCustomMetadataFieldType::factory(
+                        $md_definition->getType()
+                    ))
                 );
             }
         }

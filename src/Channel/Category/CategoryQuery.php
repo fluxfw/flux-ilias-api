@@ -86,7 +86,9 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
 
     private function mapCategoryDto(array $category, bool $custom_metadata = false) : CategoryDto
     {
-        $type = ($type = $category["type"] ?: null) !== null ? CustomInternalObjectType::factory($type) : null;
+        $type = ($type = $category["type"] ?: null) !== null ? CustomInternalObjectType::factory(
+            $type
+        ) : null;
 
         return CategoryDto::new(
             $category["obj_id"] ?: null,

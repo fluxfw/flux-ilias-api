@@ -80,7 +80,9 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
 
     private function mapOrganisationalUnitDto(array $organisational_unit) : OrganisationalUnitDto
     {
-        $type = ($type = $organisational_unit["type"] ?: null) !== null ? CustomInternalObjectType::factory($type) : null;
+        $type = ($type = $organisational_unit["type"] ?: null) !== null ? CustomInternalObjectType::factory(
+            $type
+        ) : null;
 
         return OrganisationalUnitDto::new(
             $organisational_unit["obj_id"] ?: null,
