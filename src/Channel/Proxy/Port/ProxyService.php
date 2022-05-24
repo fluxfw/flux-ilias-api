@@ -54,8 +54,10 @@ class ProxyService
 
     public function getWebProxy(
         ilGlobalTemplateInterface $ilias_global_template,
-        string $title,
         string $url,
+        ?string $page_title = null,
+        ?string $short_title = null,
+        ?string $view_title = null,
         ?string $route = null,
         ?array $query_params = null,
         ?string $original_route = null
@@ -65,8 +67,10 @@ class ProxyService
             $ilias_global_template
         )
             ->getWebProxy(
-                $title,
                 $url,
+                $page_title,
+                $short_title,
+                $view_title,
                 $route,
                 $query_params,
                 $original_route

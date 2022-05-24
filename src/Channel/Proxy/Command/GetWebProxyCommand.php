@@ -34,8 +34,15 @@ class GetWebProxyCommand
     }
 
 
-    public function getWebProxy(string $title, string $url, ?string $route = null, ?array $query_params = null, ?string $original_route = null) : string
-    {
+    public function getWebProxy(
+        string $url,
+        ?string $page_title = null,
+        ?string $short_title = null,
+        ?string $view_title = null,
+        ?string $route = null,
+        ?array $query_params = null,
+        ?string $original_route = null
+    ) : string {
         $url = rtrim($url, "/") . (!empty($route = trim($route, "/")) ? "/" . $route : "");
 
         if (!empty($query_params)) {
@@ -45,9 +52,9 @@ class GetWebProxyCommand
 
         $this->ilias_global_template->loadStandardTemplate();
 
-        PageContentProvider::setShortTitle($title);
-        PageContentProvider::setViewTitle($title);
-        PageContentProvider::setTitle($title);
+        PageContentProvider::setTitle($page_title ?? "");
+        PageContentProvider::setShortTitle($short_title ?? "");
+        PageContentProvider::setViewTitle($view_title ?? "");
 
         $this->ilias_global_template->setContent("%CONTENT%");
 

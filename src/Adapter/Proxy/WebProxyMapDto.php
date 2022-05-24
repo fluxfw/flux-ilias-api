@@ -10,25 +10,34 @@ class WebProxyMapDto implements JsonSerializable
 
     private string $iframe_url;
     private bool $menu_item;
+    private ?string $menu_title;
+    private string $page_title;
     private ?string $rewrite_url;
+    private string $short_title;
     private string $target_key;
-    private ?string $title;
+    private string $view_title;
     private bool $visible_public_menu_item;
 
 
     private function __construct(
         /*public readonly*/ string $target_key,
         /*public readonly*/ string $iframe_url,
-        /*public readonly*/ ?string $title,
+        /*public readonly*/ string $page_title,
+        /*public readonly*/ string $short_title,
+        /*public readonly*/ string $view_title,
         /*public readonly*/ ?string $rewrite_url,
         /*public readonly*/ bool $menu_item,
+        /*public readonly*/ ?string $menu_title,
         /*public readonly*/ bool $visible_public_menu_item
     ) {
         $this->target_key = $target_key;
         $this->iframe_url = $iframe_url;
-        $this->title = $title;
+        $this->page_title = $page_title;
+        $this->short_title = $short_title;
+        $this->view_title = $view_title;
         $this->rewrite_url = $rewrite_url;
         $this->menu_item = $menu_item;
+        $this->menu_title = $menu_title;
         $this->visible_public_menu_item = $visible_public_menu_item;
     }
 
@@ -36,18 +45,24 @@ class WebProxyMapDto implements JsonSerializable
     public static function new(
         string $target_key,
         string $iframe_url,
-        ?string $title = null,
-        ?string $rewrite_url = null,
-        ?bool $menu_item = null,
-        ?bool $visible_public_menu_item = null
+        string $page_title,
+        string $short_title,
+        string $view_title,
+        ?string $rewrite_url,
+        ?bool $menu_item,
+        ?string $menu_title,
+        ?bool $visible_public_menu_item
     ) : /*static*/ self
     {
         return new static(
             $target_key,
             $iframe_url,
-            $title,
+            $page_title,
+            $short_title,
+            $view_title,
             $rewrite_url,
             $menu_item ?? false,
+            $menu_title,
             $visible_public_menu_item ?? false
         );
     }
@@ -60,9 +75,12 @@ class WebProxyMapDto implements JsonSerializable
         return static::new(
             $data->target_key ?? "",
             $data->iframe_url ?? "",
-            $data->title ?: null,
+            $data->page_title ?? "",
+            $data->short_title ?? "",
+            $data->view_title ?? "",
             $data->rewrite_url ?: null,
             $data->menu_item ?? null,
+            $data->menu_title ?: null,
             $data->visible_public_menu_item ?? null
         );
     }
@@ -74,9 +92,27 @@ class WebProxyMapDto implements JsonSerializable
     }
 
 
-    public function getRewriteUrl() : ?string
+    public function getMenuTitle() : string
     {
-        return $this->rewrite_url;
+        return $this->menu_title ?? "";
+    }
+
+
+    public function getMenuTitleWithDefault() : string
+    {
+        return $this->menu_title ?? $this->target_key;
+    }
+
+
+    public function getPageTitle() : string
+    {
+        return $this->page_title;
+    }
+
+
+    public function getRewriteUrl() : string
+    {
+        return $this->rewrite_url ?? "";
     }
 
 
@@ -86,21 +122,21 @@ class WebProxyMapDto implements JsonSerializable
     }
 
 
+    public function getShortTitle() : string
+    {
+        return $this->short_title;
+    }
+
+
     public function getTargetKey() : string
     {
         return $this->target_key;
     }
 
 
-    public function getTitle() : ?string
+    public function getViewTitle() : string
     {
-        return $this->title;
-    }
-
-
-    public function getTitleWithDefault() : string
-    {
-        return $this->title ?? $this->target_key;
+        return $this->view_title;
     }
 
 
