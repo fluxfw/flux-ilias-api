@@ -78,9 +78,9 @@ class WebProxyMapDto implements JsonSerializable
             $data->page_title ?? "",
             $data->short_title ?? "",
             $data->view_title ?? "",
-            $data->rewrite_url ?: null,
+            ($data->rewrite_url ?? null) ?: null,
             $data->menu_item ?? null,
-            $data->menu_title ?: null,
+            ($data->menu_title ?? null) ?: null,
             $data->visible_public_menu_item ?? null
         );
     }
