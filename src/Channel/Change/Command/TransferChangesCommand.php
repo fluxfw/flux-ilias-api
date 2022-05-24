@@ -7,7 +7,7 @@ use FluxIliasApi\Channel\Change\Port\ChangeService;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Api\RestApi;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\Type\LegacyDefaultBodyType;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Client\ClientRequestDto;
-use FluxIliasApi\Libs\FluxRestApi\Adapter\Header\LegacyDefaultHeader;
+use FluxIliasApi\Libs\FluxRestApi\Adapter\Header\LegacyDefaultHeaderKey;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Method\LegacyDefaultMethod;
 use ilDBInterface;
 
@@ -65,8 +65,8 @@ class TransferChangesCommand
                 null,
                 json_encode($changes, JSON_UNESCAPED_SLASHES),
                 [
-                    LegacyDefaultHeader::CONTENT_TYPE()->value => LegacyDefaultBodyType::JSON()->value,
-                    LegacyDefaultHeader::USER_AGENT()->value   => "flux-ilias-api"
+                    LegacyDefaultHeaderKey::CONTENT_TYPE()->value => LegacyDefaultBodyType::JSON()->value,
+                    LegacyDefaultHeaderKey::USER_AGENT()->value   => "flux-ilias-api"
                 ],
                 false,
                 true,

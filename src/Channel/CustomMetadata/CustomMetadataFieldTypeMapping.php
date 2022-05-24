@@ -11,13 +11,17 @@ class CustomMetadataFieldTypeMapping
 
     public static function mapExternalToInternal(CustomMetadataFieldType $type) : InternalCustomMetadataFieldType
     {
-        return CustomInternalCustomMetadataFieldType::factory(array_flip(static::INTERNAL_EXTERNAL())[$type->value] ?? substr($type->value, 1));
+        return CustomInternalCustomMetadataFieldType::factory(
+            array_flip(static::INTERNAL_EXTERNAL())[$type->value] ?? substr($type->value, 1)
+        );
     }
 
 
     public static function mapInternalToExternal(InternalCustomMetadataFieldType $type) : CustomMetadataFieldType
     {
-        return CustomCustomMetadataFieldType::factory(static::INTERNAL_EXTERNAL()[$type->value] ?? "_" . $type->value);
+        return CustomCustomMetadataFieldType::factory(
+            static::INTERNAL_EXTERNAL()[$type->value] ?? "_" . $type->value
+        );
     }
 
 

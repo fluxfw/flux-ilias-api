@@ -11,13 +11,17 @@ class ScheduleTypeCronConfigMapping
 
     public static function mapExternalToInternal(ScheduleTypeCronConfig $type) : InternalScheduleTypeCronConfig
     {
-        return CustomInternalScheduleTypeCronConfig::factory(array_flip(static::INTERNAL_EXTERNAL())[$type->value] ?? substr($type->value, 1));
+        return CustomInternalScheduleTypeCronConfig::factory(
+            array_flip(static::INTERNAL_EXTERNAL())[$type->value] ?? substr($type->value, 1)
+        );
     }
 
 
     public static function mapInternalToExternal(InternalScheduleTypeCronConfig $type) : ScheduleTypeCronConfig
     {
-        return CustomScheduleTypeCronConfig::factory(static::INTERNAL_EXTERNAL()[$type->value] ?? "_" . $type->value);
+        return CustomScheduleTypeCronConfig::factory(
+            static::INTERNAL_EXTERNAL()[$type->value] ?? "_" . $type->value
+        );
     }
 
 

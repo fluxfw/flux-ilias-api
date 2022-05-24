@@ -219,7 +219,9 @@ ORDER BY object_reference.ref_id ASC";
 
     private function mapObjectDto(array $object, ?array $ref_ids = null, bool $custom_metadata = false) : ObjectDto
     {
-        $type = ($type = $object["type"] ?: null) !== null ? CustomInternalObjectType::factory($type) : null;
+        $type = ($type = $object["type"] ?: null) !== null ? CustomInternalObjectType::factory(
+            $type
+        ) : null;
 
         return ObjectDto::new(
             $object["obj_id"] ?: null,

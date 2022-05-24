@@ -63,7 +63,9 @@ class CustomMetadataDto implements JsonSerializable
             $data->record_id ?? null,
             $data->record_title ?? null,
             $data->value ?? null,
-            ($field_type = $data->field_type ?? null) !== null ? CustomCustomMetadataFieldType::factory($field_type) : null
+            ($field_type = $data->field_type ?? null) !== null ? CustomCustomMetadataFieldType::factory(
+                $field_type
+            ) : null
         );
     }
 

@@ -11,13 +11,17 @@ class ObjectTypeMapping
 
     public static function mapExternalToInternal(ObjectType $type) : InternalObjectType
     {
-        return CustomInternalObjectType::factory(array_flip(static::INTERNAL_EXTERNAL())[$type->value] ?? substr($type->value, 1));
+        return CustomInternalObjectType::factory(
+            array_flip(static::INTERNAL_EXTERNAL())[$type->value] ?? substr($type->value, 1)
+        );
     }
 
 
     public static function mapInternalToExternal(InternalObjectType $type) : ObjectType
     {
-        return CustomObjectType::factory(static::INTERNAL_EXTERNAL()[$type->value] ?? "_" . $type->value);
+        return CustomObjectType::factory(
+            static::INTERNAL_EXTERNAL()[$type->value] ?? "_" . $type->value
+        );
     }
 
 

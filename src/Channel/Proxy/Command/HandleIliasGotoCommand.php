@@ -15,7 +15,7 @@ use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\BodyDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\HtmlBodyDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\TextBodyDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Client\ClientRequestDto;
-use FluxIliasApi\Libs\FluxRestApi\Adapter\Header\LegacyDefaultHeader;
+use FluxIliasApi\Libs\FluxRestApi\Adapter\Header\LegacyDefaultHeaderKey;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Route\Collector\RouteCollector;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Server\ServerRawRequestDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Server\ServerRawResponseDto;
@@ -132,7 +132,7 @@ class HandleIliasGotoCommand
                 $raw_body->getBody(),
                 $status,
                 [
-                    LegacyDefaultHeader::CONTENT_TYPE()->value => $raw_body->getType()
+                    LegacyDefaultHeaderKey::CONTENT_TYPE()->value => $raw_body->getType()
                 ]
             ),
             $request->getServerType()
@@ -209,11 +209,11 @@ class HandleIliasGotoCommand
                 ),
                 $request->getBody(),
                 [
-                    LegacyDefaultHeader::USER_AGENT()->value => "flux-ilias-api",
-                    "X-Flux-Ilias-Api-User-Id"               => $user->getId(),
-                    "X-Flux-Ilias-Api-User-Import-Id"        => $user->getImportId() ?? ""
-                ] + array_filter($request->getHeaders(), fn(string $header) : bool => in_array($header, [
-                    LegacyDefaultHeader::ACCEPT()->value
+                    LegacyDefaultHeaderKey::USER_AGENT()->value => "flux-ilias-api",
+                    "X-Flux-Ilias-Api-User-Id"                  => $user->getId(),
+                    "X-Flux-Ilias-Api-User-Import-Id"           => $user->getImportId() ?? ""
+                ] + array_filter($request->getHeaders(), fn(string $key) : bool => in_array($key, [
+                    LegacyDefaultHeaderKey::ACCEPT()->value
                 ]), ARRAY_FILTER_USE_KEY),
                 true,
                 false,
@@ -226,8 +226,8 @@ class HandleIliasGotoCommand
             ServerRawResponseDto::new(
                 $response->getBody(),
                 $response->getStatus(),
-                array_filter($response->getHeaders(), fn(string $header) : bool => in_array($header, [
-                    LegacyDefaultHeader::CONTENT_TYPE()->value
+                array_filter($response->getHeaders(), fn(string $key) : bool => in_array($key, [
+                    LegacyDefaultHeaderKey::CONTENT_TYPE()->value
                 ]), ARRAY_FILTER_USE_KEY)
             ),
             $request->getServerType()

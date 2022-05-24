@@ -228,7 +228,9 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
         )/* : mixed*/ => $container_setting["value"] ?? $null_default_value,
             array_filter($container_settings, fn(array $container_setting) : bool => $container_setting["id"] === $course["obj_id"] && $container_setting["keyword"] === $field))) : null;
 
-        $type = ($type = $course["type"] ?: null) !== null ? CustomInternalObjectType::factory($type) : null;
+        $type = ($type = $course["type"] ?: null) !== null ? CustomInternalObjectType::factory(
+            $type
+        ) : null;
 
         return CourseDto::new(
             $course["obj_id"] ?: null,
