@@ -3,30 +3,47 @@
 namespace FluxIliasApi\Channel\CronConfig\Port;
 
 use FluxIliasApi\Adapter\CronConfig\ScheduleTypeCronConfig;
+use FluxIliasApi\Adapter\CronConfig\Wrapper\IliasCronWrapper;
 use FluxIliasApi\Channel\CronConfig\Command\GetCronJobScheduleCommand;
 use FluxIliasApi\Channel\CronConfig\Command\IsCronJobEnabledCommand;
 use FluxIliasApi\Channel\CronConfig\Command\SetCronJobEnabledCommand;
 use FluxIliasApi\Channel\CronConfig\Command\SetCronJobScheduleCommand;
 use ilCronJob;
+use ilObjUser;
 
 class CronConfigService
 {
 
-    private function __construct()
-    {
+    private IliasCronWrapper $ilias_cron_wrapper;
+    private ilObjUser $ilias_user;
 
+
+    private function __construct(
+        /*private readonly*/ IliasCronWrapper $ilias_cron_wrapper,
+        /*private readonly*/ ilObjUser $ilias_user
+    ) {
+        $this->ilias_cron_wrapper = $ilias_cron_wrapper;
+        $this->ilias_user = $ilias_user;
     }
 
 
-    public static function new() : /*static*/ self
+    public static function new(
+        IliasCronWrapper $ilias_cron_wrapper,
+        ilObjUser $ilias_user
+    ) : /*static*/ self
     {
-        return new static();
+        return new static(
+            $ilias_cron_wrapper,
+            $ilias_user
+        );
     }
 
 
     public function getCronJobSchedule(ilCronJob $cron_job) : object
     {
-        return GetCronJobScheduleCommand::new()
+        return GetCronJobScheduleCommand::new(
+            $this->ilias_cron_wrapper
+        )
             ->getCronJobSchedule(
                 $cron_job
             );
@@ -35,7 +52,9 @@ class CronConfigService
 
     public function isCronJobEnabled(ilCronJob $cron_job) : bool
     {
-        return IsCronJobEnabledCommand::new()
+        return IsCronJobEnabledCommand::new(
+            $this->ilias_cron_wrapper
+        )
             ->isCronJobEnabled(
                 $cron_job
             );
@@ -44,7 +63,10 @@ class CronConfigService
 
     public function setCronJobEnabled(ilCronJob $cron_job, bool $enabled) : void
     {
-        SetCronJobEnabledCommand::new()
+        SetCronJobEnabledCommand::new(
+            $this->ilias_cron_wrapper,
+            $this->ilias_user
+        )
             ->setCronJobEnabled(
                 $cron_job,
                 $enabled
@@ -54,7 +76,9 @@ class CronConfigService
 
     public function setCronJobSchedule(ilCronJob $cron_job, ScheduleTypeCronConfig $type, ?int $interval = null) : void
     {
-        SetCronJobScheduleCommand::new()
+        SetCronJobScheduleCommand::new(
+            $this->ilias_cron_wrapper
+        )
             ->setCronJobSchedule(
                 $cron_job,
                 $type,

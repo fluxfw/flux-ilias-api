@@ -3,22 +3,30 @@
 namespace FluxIliasApi\Channel\CronConfig\Command;
 
 use FluxIliasApi\Adapter\CronConfig\ScheduleTypeCronConfig;
+use FluxIliasApi\Adapter\CronConfig\Wrapper\IliasCronWrapper;
 use FluxIliasApi\Channel\CronConfig\ScheduleTypeCronConfigMapping;
 use ilCronJob;
-use ilCronManager;
 
 class SetCronJobScheduleCommand
 {
 
-    private function __construct()
-    {
+    private IliasCronWrapper $ilias_cron_wrapper;
 
+
+    private function __construct(
+        /*private readonly*/ IliasCronWrapper $ilias_cron_wrapper
+    ) {
+        $this->ilias_cron_wrapper = $ilias_cron_wrapper;
     }
 
 
-    public static function new() : /*static*/ self
+    public static function new(
+        IliasCronWrapper $ilias_cron_wrapper
+    ) : /*static*/ self
     {
-        return new static();
+        return new static(
+            $ilias_cron_wrapper
+        );
     }
 
 
@@ -33,7 +41,7 @@ class SetCronJobScheduleCommand
                 $interval = null;
             }
 
-            ilCronManager::updateJobSchedule($cron_job, $internal_type->value, $interval);
+            $this->ilias_cron_wrapper->updateJobSchedule($cron_job, $internal_type->value, $interval);
         }
     }
 }

@@ -2,30 +2,44 @@
 
 namespace FluxIliasApi\Channel\CronConfig\Command;
 
+use FluxIliasApi\Adapter\CronConfig\Wrapper\IliasCronWrapper;
 use ilCronJob;
-use ilCronManager;
+use ilObjUser;
 
 class SetCronJobEnabledCommand
 {
 
-    private function __construct()
-    {
+    private IliasCronWrapper $ilias_cron_wrapper;
+    private ilObjUser $ilias_user;
 
+
+    private function __construct(
+        /*private readonly*/ IliasCronWrapper $ilias_cron_wrapper,
+        /*private readonly*/ ilObjUser $ilias_user
+    ) {
+        $this->ilias_cron_wrapper = $ilias_cron_wrapper;
+        $this->ilias_user = $ilias_user;
     }
 
 
-    public static function new() : /*static*/ self
+    public static function new(
+        IliasCronWrapper $ilias_cron_wrapper,
+        ilObjUser $ilias_user
+    ) : /*static*/ self
     {
-        return new static();
+        return new static(
+            $ilias_cron_wrapper,
+            $ilias_user
+        );
     }
 
 
     public function setCronJobEnabled(ilCronJob $cron_job, bool $enabled) : void
     {
         if ($enabled) {
-            ilCronManager::activateJob($cron_job, true);
+            $this->ilias_cron_wrapper->activateJob($cron_job, $this->ilias_user, true);
         } else {
-            ilCronManager::deactivateJob($cron_job, true);
+            $this->ilias_cron_wrapper->deactivateJob($cron_job, $this->ilias_user, true);
         }
     }
 }
