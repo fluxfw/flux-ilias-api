@@ -34,10 +34,11 @@ export function initForm(form_template_el, action, values) {
             target_url_el.innerText = `${location.origin}/goto.php?target=flilre_api_proxy_${target_key_el.value}`;
         }
     });
-    initEntriesForm("web_proxy_map", entries_template_el, ["iframe_url", "menu_item", "rewrite_url", "target_key", "title", "visible_public_menu_item"], values, form_el, (entry_el) => {
+    initEntriesForm("web_proxy_map", entries_template_el, ["iframe_url", "menu_item", "menu_title", "page_title", "rewrite_url", "short_title", "target_key", "view_title", "visible_public_menu_item"], values, form_el, (entry_el) => {
         const target_key_el = entry_el.querySelector("[data-entry-target_key]");
         const target_url_el = entry_el.querySelector("[data-entry-target-url]");
         const menu_item_el = entry_el.querySelector("[data-entry-menu_item]");
+        const menu_title_el = entry_el.querySelector("[data-entry-menu_title]");
         const visible_public_menu_item_el = entry_el.querySelector("[data-entry-visible_public_menu_item]");
         const visible_public_menu_item_info_el = entry_el.querySelector("[data-entry-visible-public-menu-item-info]");
 
@@ -55,11 +56,12 @@ export function initForm(form_template_el, action, values) {
         }
 
         function changedMenuItem() {
-            const old_disabled = visible_public_menu_item_el.disabled;
+            const old_disabled = menu_title_el.disabled;
 
-            visible_public_menu_item_el.disabled = !menu_item_el.checked;
+            menu_title_el.disabled = visible_public_menu_item_el.disabled = !menu_item_el.checked;
 
-            if (old_disabled !== visible_public_menu_item_el.disabled) {
+            if (old_disabled !== menu_title_el.disabled) {
+                menu_title_el.value = "";
                 visible_public_menu_item_el.checked = false;
             }
 

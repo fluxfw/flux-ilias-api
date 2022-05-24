@@ -76,6 +76,8 @@ class ConfigFormRoute implements Route
                     $this->ilias_global_template,
                     "flux-ilias-rest-config",
                     "flux-ilias-rest-config",
+                    "flux-ilias-rest",
+                    "config",
                     "/static/flilre_config.html",
                     null,
                     $this->original_route
