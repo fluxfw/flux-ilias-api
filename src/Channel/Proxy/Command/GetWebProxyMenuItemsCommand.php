@@ -48,7 +48,7 @@ class GetWebProxyMenuItemsCommand
                 ->withTitle($web_proxy_map->getMenuTitleWithDefault())
                 ->withAction($web_proxy_map->getRewriteUrlWithDefault())
                 ->withSymbol($this->ilias_dic->ui()->factory()->symbol()->icon()->standard(Standard::WEBR, $web_proxy_map->getMenuTitleWithDefault())->withIsOutlined(true))
-                ->withAvailableCallable(fn() : bool => $web_proxy_map->isMenuItem())
+                ->withAvailableCallable(fn() : bool => $this->proxy_config_service->isEnableWebProxy() && $web_proxy_map->isMenuItem())
                 ->withVisibilityCallable(fn() : bool => $web_proxy_map->isVisiblePublicMenuItem() || $user !== null);
         }
 
