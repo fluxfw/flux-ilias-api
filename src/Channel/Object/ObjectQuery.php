@@ -29,7 +29,7 @@ trait ObjectQuery
         $wizard_options->saveRoot($ilias_object->getRefId());
 
         $wizard_options->initContainer($ilias_object->getRefId(), $parent_object->getRefId());
-        foreach ($this->ilias_tree->getSubTree($this->tree->getNodeData($ilias_object->getRefId())) as $child) {
+        foreach ($this->ilias_tree->getSubTree($this->ilias_tree->getNodeData($ilias_object->getRefId())) as $child) {
             if (intval($child["ref_id"]) === intval($ilias_object->getRefId())) {
                 continue;
             }
