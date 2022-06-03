@@ -7,6 +7,9 @@ use JsonSerializable;
 class OrganisationalUnitPositionDto implements JsonSerializable
 {
 
+    /**
+     * @var OrganisationalUnitPositionAuthorityDto[]|null
+     */
     private ?array $authorities;
     private ?LegacyOrganisationalUnitPositionCoreIdentifier $core_identifier;
     private ?bool $core_position;
@@ -15,6 +18,9 @@ class OrganisationalUnitPositionDto implements JsonSerializable
     private ?string $title;
 
 
+    /**
+     * @param OrganisationalUnitPositionAuthorityDto[]|null $authorities
+     */
     private function __construct(
         /*public readonly*/ ?int $id,
         /*public readonly*/ ?bool $core_position,
@@ -32,6 +38,9 @@ class OrganisationalUnitPositionDto implements JsonSerializable
     }
 
 
+    /**
+     * @param OrganisationalUnitPositionAuthorityDto[]|null $authorities
+     */
     public static function new(
         ?int $id = null,
         ?bool $core_position = null,
@@ -52,6 +61,9 @@ class OrganisationalUnitPositionDto implements JsonSerializable
     }
 
 
+    /**
+     * @return OrganisationalUnitPositionAuthorityDto[]|null
+     */
     public function getAuthorities() : ?array
     {
         return $this->authorities;

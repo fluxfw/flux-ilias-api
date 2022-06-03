@@ -3,6 +3,7 @@
 namespace FluxIliasApi\Channel\ObjectLearningProgress\Port;
 
 use FluxIliasApi\Adapter\ObjectLearningProgress\LegacyObjectLearningProgress;
+use FluxIliasApi\Adapter\ObjectLearningProgress\ObjectLearningProgressDto;
 use FluxIliasApi\Adapter\ObjectLearningProgress\ObjectLearningProgressIdDto;
 use FluxIliasApi\Channel\Object\Port\ObjectService;
 use FluxIliasApi\Channel\ObjectLearningProgress\Command\GetObjectLearningProgressCommand;
@@ -43,6 +44,9 @@ class ObjectLearningProgressService
     }
 
 
+    /**
+     * @return ObjectLearningProgressDto[]
+     */
     public function getObjectLearningProgress(
         ?int $object_id = null,
         ?string $object_import_id = null,

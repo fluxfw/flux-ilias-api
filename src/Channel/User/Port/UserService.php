@@ -94,6 +94,9 @@ class UserService
     }
 
 
+    /**
+     * @return UserDto[]
+     */
     public function getUsers(bool $access_limited_object_ids = false, bool $multi_fields = false, bool $preferences = false, bool $user_defined_fields = false) : array
     {
         return GetUsersCommand::new(

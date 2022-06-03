@@ -2,6 +2,7 @@
 
 namespace FluxIliasApi\Channel\Change\Command;
 
+use FluxIliasApi\Adapter\Change\ChangeDto;
 use FluxIliasApi\Channel\Change\ChangeQuery;
 use ilDBInterface;
 
@@ -30,12 +31,11 @@ class GetChangesCommand
     }
 
 
-    public function getChanges(?float $from = null, ?float $to = null, ?float $after = null, ?float $before = null) : ?array
+    /**
+     * @return ChangeDto[]
+     */
+    public function getChanges(?float $from = null, ?float $to = null, ?float $after = null, ?float $before = null) : array
     {
-        if (!$this->changeDatabaseExists()) {
-            return null;
-        }
-
         return array_map([$this, "mapChangeDto"], $this->ilias_database->fetchAll($this->ilias_database->query($this->getChangeQuery(
             $from,
             $to,

@@ -33,6 +33,9 @@ class GetCoursesCommand
     }
 
 
+    /**
+     * @return CourseDto[]
+     */
     public function getCourses(bool $container_settings = false, ?bool $in_trash = null) : array
     {
         $courses = $this->ilias_database->fetchAll($this->ilias_database->query($this->getCourseQuery(

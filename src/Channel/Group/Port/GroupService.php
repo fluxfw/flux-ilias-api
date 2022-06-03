@@ -115,6 +115,9 @@ class GroupService
     }
 
 
+    /**
+     * @return GroupDto[]
+     */
     public function getGroups(?bool $in_trash = null) : array
     {
         return GetGroupsCommand::new(

@@ -31,6 +31,9 @@ class GetOrganisationalUnitPositionsCommand
     }
 
 
+    /**
+     * @return OrganisationalUnitPositionDto[]
+     */
     public function getOrganisationalUnitPositions(bool $authorities = false) : array
     {
         $organisational_unit_positions = $this->ilias_database->fetchAll($this->ilias_database->query($this->getOrganisationalUnitPositionQuery()));

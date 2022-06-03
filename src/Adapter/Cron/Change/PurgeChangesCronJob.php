@@ -78,12 +78,8 @@ class PurgeChangesCronJob extends ilCronJob
 
         $count = $this->change_service->purgeChanges();
 
-        if ($count !== null) {
-            $result->setStatus(ilCronJobResult::STATUS_OK);
-            $result->setMessage("Purged " . $count . " change(s)");
-        } else {
-            $result->setStatus(ilCronJobResult::STATUS_NO_ACTION);
-        }
+        $result->setStatus(ilCronJobResult::STATUS_OK);
+        $result->setMessage("Purged " . $count . " change(s)");
 
         return $result;
     }

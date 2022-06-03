@@ -2,6 +2,7 @@
 
 namespace FluxIliasApi\Channel\Category\Command;
 
+use FluxIliasApi\Adapter\Category\CategoryDto;
 use FluxIliasApi\Channel\Category\CategoryQuery;
 use FluxIliasApi\Channel\Object\ObjectQuery;
 use ilDBInterface;
@@ -32,6 +33,9 @@ class GetCategoriesCommand
     }
 
 
+    /**
+     * @return CategoryDto[]
+     */
     public function getCategories(?bool $in_trash = null) : array
     {
         return array_map([$this, "mapCategoryDto"], $this->ilias_database->fetchAll($this->ilias_database->query($this->getCategoryQuery(

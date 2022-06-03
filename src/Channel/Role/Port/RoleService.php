@@ -118,6 +118,9 @@ class RoleService
     }
 
 
+    /**
+     * @return RoleDto[]
+     */
     public function getRoles() : array
     {
         return GetRolesCommand::new(

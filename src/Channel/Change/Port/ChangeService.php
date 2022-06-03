@@ -2,6 +2,7 @@
 
 namespace FluxIliasApi\Channel\Change\Port;
 
+use FluxIliasApi\Adapter\Change\ChangeDto;
 use FluxIliasApi\Adapter\Cron\Change\PurgeChangesCronJob;
 use FluxIliasApi\Adapter\Cron\Change\TransferChangesCronJob;
 use FluxIliasApi\Adapter\CronConfig\ScheduleTypeCronConfig;
@@ -48,6 +49,7 @@ use FluxIliasApi\Channel\ScormLearningModule\Port\ScormLearningModuleService;
 use FluxIliasApi\Channel\User\Port\UserService;
 use FluxIliasApi\Channel\UserRole\Port\UserRoleService;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Api\RestApi;
+use ilCronJob;
 use ilDBInterface;
 
 class ChangeService
@@ -176,6 +178,9 @@ class ChangeService
     }
 
 
+    /**
+     * @return ilCronJob[]
+     */
     public function getChangeCronJobs() : array
     {
         return GetChangeCronJobsCommand::new(
@@ -185,7 +190,10 @@ class ChangeService
     }
 
 
-    public function getChanges(?float $from = null, ?float $to = null, ?float $after = null, ?float $before = null) : ?array
+    /**
+     * @return ChangeDto[]
+     */
+    public function getChanges(?float $from = null, ?float $to = null, ?float $after = null, ?float $before = null) : array
     {
         return GetChangesCommand::new(
             $this->ilias_database
@@ -322,7 +330,7 @@ class ChangeService
     }
 
 
-    public function purgeChanges() : ?int
+    public function purgeChanges() : int
     {
         return PurgeChangesCommand::new(
             $this->ilias_database,

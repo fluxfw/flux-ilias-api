@@ -2,6 +2,7 @@
 
 namespace FluxIliasApi\Channel\UserRole\Command;
 
+use FluxIliasApi\Adapter\UserRole\UserRoleDto;
 use FluxIliasApi\Channel\UserRole\UserRoleQuery;
 use ilDBInterface;
 
@@ -30,6 +31,9 @@ class GetUserRolesCommand
     }
 
 
+    /**
+     * @return UserRoleDto[]
+     */
     public function getUserRoles(?int $user_id = null, ?string $user_import_id = null, ?int $role_id = null, ?string $role_import_id = null) : array
     {
         return array_map([$this, "mapUserRoleDto"], $this->ilias_database->fetchAll($this->ilias_database->query($this->getUserRoleQuery(

@@ -2,6 +2,7 @@
 
 namespace FluxIliasApi\Channel\OrganisationalUnitStaff\Command;
 
+use FluxIliasApi\Adapter\OrganisationalUnitStaff\OrganisationalUnitStaffDto;
 use FluxIliasApi\Channel\OrganisationalUnitStaff\OrganisationalUnitStaffQuery;
 use ilDBInterface;
 
@@ -30,6 +31,9 @@ class GetOrganisationalUnitStaffCommand
     }
 
 
+    /**
+     * @return OrganisationalUnitStaffDto[]
+     */
     public function getOrganisationalUnitStaff(
         ?int $organisational_unit_id = null,
         ?string $organisational_unit_external_id = null,

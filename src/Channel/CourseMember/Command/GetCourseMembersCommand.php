@@ -2,6 +2,7 @@
 
 namespace FluxIliasApi\Channel\CourseMember\Command;
 
+use FluxIliasApi\Adapter\CourseMember\CourseMemberDto;
 use FluxIliasApi\Adapter\ObjectLearningProgress\LegacyObjectLearningProgress;
 use FluxIliasApi\Channel\CourseMember\CourseMemberQuery;
 use ilDBInterface;
@@ -31,6 +32,9 @@ class GetCourseMembersCommand
     }
 
 
+    /**
+     * @return CourseMemberDto[]
+     */
     public function getCourseMembers(
         ?int $course_id = null,
         ?string $course_import_id = null,

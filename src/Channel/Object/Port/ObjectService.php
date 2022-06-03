@@ -291,6 +291,9 @@ class ObjectService
     }
 
 
+    /**
+     * @return ObjectDto[]|null
+     */
     public function getChildrenById(int $id, bool $ref_ids = false, ?bool $in_trash = null) : ?array
     {
         return GetChildrenCommand::new(
@@ -305,6 +308,9 @@ class ObjectService
     }
 
 
+    /**
+     * @return ObjectDto[]|null
+     */
     public function getChildrenByImportId(string $import_id, bool $ref_ids = false, ?bool $in_trash = null) : ?array
     {
         return GetChildrenCommand::new(
@@ -319,6 +325,9 @@ class ObjectService
     }
 
 
+    /**
+     * @return ObjectDto[]|null
+     */
     public function getChildrenByRefId(int $ref_id, bool $ref_ids = false, ?bool $in_trash = null) : ?array
     {
         return GetChildrenCommand::new(
@@ -369,6 +378,9 @@ class ObjectService
     }
 
 
+    /**
+     * @return ObjectDto[]
+     */
     public function getObjects(ObjectType $type, bool $ref_ids = false, ?bool $in_trash = null) : array
     {
         return GetObjectsCommand::new(
@@ -382,6 +394,9 @@ class ObjectService
     }
 
 
+    /**
+     * @return ObjectDto[]|null
+     */
     public function getPathById(int $id, bool $ref_ids = false, ?bool $in_trash = null) : ?array
     {
         return GetPathCommand::new(
@@ -397,6 +412,9 @@ class ObjectService
     }
 
 
+    /**
+     * @return ObjectDto[]|null
+     */
     public function getPathByImportId(string $import_id, bool $ref_ids = false, ?bool $in_trash = null) : ?array
     {
         return GetPathCommand::new(
@@ -412,6 +430,9 @@ class ObjectService
     }
 
 
+    /**
+     * @return ObjectDto[]|null
+     */
     public function getPathByRefId(int $ref_id, bool $ref_ids = false, ?bool $in_trash = null) : ?array
     {
         return GetPathCommand::new(

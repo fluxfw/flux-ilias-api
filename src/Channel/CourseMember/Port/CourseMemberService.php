@@ -3,6 +3,7 @@
 namespace FluxIliasApi\Channel\CourseMember\Port;
 
 use FluxIliasApi\Adapter\CourseMember\CourseMemberDiffDto;
+use FluxIliasApi\Adapter\CourseMember\CourseMemberDto;
 use FluxIliasApi\Adapter\CourseMember\CourseMemberIdDto;
 use FluxIliasApi\Adapter\ObjectLearningProgress\LegacyObjectLearningProgress;
 use FluxIliasApi\Channel\Course\Port\CourseService;
@@ -130,6 +131,9 @@ class CourseMemberService
     }
 
 
+    /**
+     * @return CourseMemberDto[]
+     */
     public function getCourseMembers(
         ?int $course_id = null,
         ?string $course_import_id = null,

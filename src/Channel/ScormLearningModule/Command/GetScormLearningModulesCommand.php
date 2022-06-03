@@ -2,6 +2,7 @@
 
 namespace FluxIliasApi\Channel\ScormLearningModule\Command;
 
+use FluxIliasApi\Adapter\ScormLearningModule\ScormLearningModuleDto;
 use FluxIliasApi\Channel\Object\ObjectQuery;
 use FluxIliasApi\Channel\ScormLearningModule\ScormLearningModuleQuery;
 use ilDBInterface;
@@ -32,6 +33,9 @@ class GetScormLearningModulesCommand
     }
 
 
+    /**
+     * @return ScormLearningModuleDto[]
+     */
     public function getScormLearningModules(?bool $in_trash = null) : array
     {
         return array_map([$this, "mapScormLearningModuleDto"], $this->ilias_database->fetchAll($this->ilias_database->query($this->getScormLearningModuleQuery(

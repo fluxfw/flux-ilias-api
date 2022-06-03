@@ -113,6 +113,9 @@ class OrganisationalUnitService
     }
 
 
+    /**
+     * @return OrganisationalUnitDto[]
+     */
     public function getOrganisationalUnits() : array
     {
         return GetOrganisationalUnitsCommand::new(

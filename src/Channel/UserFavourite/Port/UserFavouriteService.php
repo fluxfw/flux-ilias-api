@@ -133,6 +133,9 @@ class UserFavouriteService
     }
 
 
+    /**
+     * @return UserFavouriteDto[]
+     */
     public function getUserFavourites(?int $user_id = null, ?string $user_import_id = null, ?int $object_id = null, ?string $object_import_id = null, ?int $object_ref_id = null) : array
     {
         return GetUserFavouritesCommand::new(

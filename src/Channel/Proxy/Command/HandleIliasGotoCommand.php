@@ -70,9 +70,7 @@ class HandleIliasGotoCommand
 
     public function handleIliasGoto(?UserDto $user) : void
     {
-        $request = $this->rest_api->getDefaultRequest(
-            false
-        );
+        $request = $this->rest_api->getDefaultRequest();
 
         try {
             $target = $request->getQueryParam(
@@ -244,8 +242,7 @@ class HandleIliasGotoCommand
             ConfigFormRouteCollector::new(
                 $this->config_form_service,
                 $this->proxy_service,
-                $this->ilias_global_template,
-                $request->getRoute()
+                $this->ilias_global_template
             ),
             ConfigFormAuthorization::new(
                 $this->config_form_service,
@@ -263,6 +260,7 @@ class HandleIliasGotoCommand
                     "/" . trim($request->getQueryParam(
                         "route"
                     ), "/"),
+                    $request->getOriginalRoute(),
                     $request->getMethod(),
                     $request->getServerType(),
                     $this->getQueryParams(
@@ -312,7 +310,7 @@ class HandleIliasGotoCommand
                     $this->getQueryParams(
                         $request
                     ),
-                    $request->getRoute()
+                    $request->getOriginalRoute()
                 )
             ),
             $request

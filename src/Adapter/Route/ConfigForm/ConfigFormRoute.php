@@ -6,6 +6,7 @@ use FluxIliasApi\Channel\Proxy\Port\ProxyService;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\HtmlBodyDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Method\LegacyDefaultMethod;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Method\Method;
+use FluxIliasApi\Libs\FluxRestApi\Adapter\Route\Documentation\RouteDocumentationDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Route\Route;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Server\ServerRequestDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Server\ServerResponseDto;
@@ -21,36 +22,26 @@ class ConfigFormRoute implements Route
 
     private function __construct(
         /*private readonly*/ ProxyService $proxy_service,
-        /*private readonly*/ ilGlobalTemplateInterface $ilias_global_template,
-        /*private readonly*/ string $original_route
+        /*private readonly*/ ilGlobalTemplateInterface $ilias_global_template
     ) {
         $this->proxy_service = $proxy_service;
         $this->ilias_global_template = $ilias_global_template;
-        $this->original_route = $original_route;
     }
 
 
     public static function new(
         ProxyService $proxy_service,
-        ilGlobalTemplateInterface $ilias_global_template,
-        string $original_route
+        ilGlobalTemplateInterface $ilias_global_template
     ) : /*static*/ self
     {
         return new static(
             $proxy_service,
-            $ilias_global_template,
-            $original_route
+            $ilias_global_template
         );
     }
 
 
-    public function getDocuRequestBodyTypes() : ?array
-    {
-        return null;
-    }
-
-
-    public function getDocuRequestQueryParams() : ?array
+    public function getDocumentation() : ?RouteDocumentationDto
     {
         return null;
     }
@@ -80,7 +71,7 @@ class ConfigFormRoute implements Route
                     "config",
                     "/static/flilre_config.html",
                     null,
-                    $this->original_route
+                    $request->getOriginalRoute()
                 )
             )
         );

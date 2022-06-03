@@ -6,6 +6,7 @@ use FluxIliasApi\Channel\ConfigForm\Port\ConfigFormService;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\JsonBodyDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Method\LegacyDefaultMethod;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Method\Method;
+use FluxIliasApi\Libs\FluxRestApi\Adapter\Route\Documentation\RouteDocumentationDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Route\Route;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Server\ServerRequestDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Server\ServerResponseDto;
@@ -33,13 +34,7 @@ class GetConfigFormValuesRoute implements Route
     }
 
 
-    public function getDocuRequestBodyTypes() : ?array
-    {
-        return null;
-    }
-
-
-    public function getDocuRequestQueryParams() : ?array
+    public function getDocumentation() : ?RouteDocumentationDto
     {
         return null;
     }

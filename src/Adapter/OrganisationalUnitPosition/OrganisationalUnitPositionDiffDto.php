@@ -5,11 +5,17 @@ namespace FluxIliasApi\Adapter\OrganisationalUnitPosition;
 class OrganisationalUnitPositionDiffDto
 {
 
+    /**
+     * @var OrganisationalUnitPositionAuthorityDto[]|null
+     */
     private ?array $authorities;
     private ?string $description;
     private ?string $title;
 
 
+    /**
+     * @param OrganisationalUnitPositionAuthorityDto[]|null $authorities
+     */
     private function __construct(
         /*public readonly*/ ?string $title,
         /*public readonly*/ ?string $description,
@@ -21,6 +27,9 @@ class OrganisationalUnitPositionDiffDto
     }
 
 
+    /**
+     * @param OrganisationalUnitPositionAuthorityDto[]|null $authorities
+     */
     public static function new(
         ?string $title = null,
         ?string $description = null,
@@ -47,6 +56,9 @@ class OrganisationalUnitPositionDiffDto
     }
 
 
+    /**
+     * @return OrganisationalUnitPositionAuthorityDto[]|null
+     */
     public function getAuthorities() : ?array
     {
         return $this->authorities;
