@@ -31,6 +31,9 @@ class GetUsersCommand
     }
 
 
+    /**
+     * @return UserDto[]
+     */
     public function getUsers(bool $access_limited_object_ids = false, bool $multi_fields = false, bool $preferences = false, bool $user_defined_fields = false) : array
     {
         $users = $this->ilias_database->fetchAll($this->ilias_database->query($this->getUserQuery()));

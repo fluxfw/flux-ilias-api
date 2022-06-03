@@ -34,9 +34,7 @@ class HandleIliasRedirectCommand
             return null;
         }
 
-        $request = $this->rest_api->getDefaultRequest(
-            false
-        );
+        $request = $this->rest_api->getDefaultRequest();
 
         $target = $request->getQueryParam(
             "target"

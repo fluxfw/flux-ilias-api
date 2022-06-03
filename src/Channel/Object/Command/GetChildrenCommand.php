@@ -37,6 +37,9 @@ class GetChildrenCommand
     }
 
 
+    /**
+     * @return ObjectDto[]|null
+     */
     public function getChildrenById(int $id, bool $ref_ids = false, ?bool $in_trash = null) : ?array
     {
         $object = $this->object_service->getObjectById(
@@ -57,6 +60,9 @@ class GetChildrenCommand
     }
 
 
+    /**
+     * @return ObjectDto[]|null
+     */
     public function getChildrenByImportId(string $import_id, bool $ref_ids = false, ?bool $in_trash = null) : ?array
     {
         $object = $this->object_service->getObjectByImportId(
@@ -77,6 +83,9 @@ class GetChildrenCommand
     }
 
 
+    /**
+     * @return ObjectDto[]|null
+     */
     public function getChildrenByRefId(int $ref_id, bool $ref_ids = false, ?bool $in_trash = null) : ?array
     {
         $object = $this->object_service->getObjectByRefId(
@@ -97,6 +106,9 @@ class GetChildrenCommand
     }
 
 
+    /**
+     * @return ObjectDto[]
+     */
     private function getChildren(?int $id = null, ?string $import_id = null, ?int $ref_id = null, bool $ref_ids = false, ?bool $in_trash = null) : array
     {
         $objects = $this->ilias_database->fetchAll($this->ilias_database->query($this->getObjectChildrenQuery(

@@ -2,6 +2,7 @@
 
 namespace FluxIliasApi\Channel\Role\Command;
 
+use FluxIliasApi\Adapter\Role\RoleDto;
 use FluxIliasApi\Channel\Role\RoleQuery;
 use ilDBInterface;
 
@@ -30,6 +31,9 @@ class GetRolesCommand
     }
 
 
+    /**
+     * @return RoleDto[]
+     */
     public function getRoles() : array
     {
         return array_map([$this, "mapRoleDto"], $this->ilias_database->fetchAll($this->ilias_database->query($this->getRoleQuery())));

@@ -7,9 +7,15 @@ use ilCronJob;
 class GetCronJobCommand
 {
 
+    /**
+     * @var ilCronJob[]
+     */
     private array $cron_jobs;
 
 
+    /**
+     * @param ilCronJob[] $cron_jobs
+     */
     private function __construct(
         /*private readonly*/ array $cron_jobs
     ) {
@@ -17,6 +23,9 @@ class GetCronJobCommand
     }
 
 
+    /**
+     * @param ilCronJob[] $cron_jobs
+     */
     public static function new(
         array $cron_jobs
     ) : /*static*/ self

@@ -12,35 +12,30 @@ class ConfigFormRouteCollector implements RouteCollector
 
     private ConfigFormService $config_form_service;
     private ilGlobalTemplateInterface $ilias_global_template;
-    private string $original_route;
     private ProxyService $proxy_service;
 
 
     private function __construct(
         /*private readonly*/ ConfigFormService $config_form_service,
         /*private readonly*/ ProxyService $proxy_service,
-        /*private readonly*/ ilGlobalTemplateInterface $ilias_global_template,
-        /*private readonly*/ string $original_route
+        /*private readonly*/ ilGlobalTemplateInterface $ilias_global_template
     ) {
         $this->config_form_service = $config_form_service;
         $this->proxy_service = $proxy_service;
         $this->ilias_global_template = $ilias_global_template;
-        $this->original_route = $original_route;
     }
 
 
     public static function new(
         ConfigFormService $config_form_service,
         ProxyService $proxy_service,
-        ilGlobalTemplateInterface $ilias_global_template,
-        string $original_route
+        ilGlobalTemplateInterface $ilias_global_template
     ) : /*static*/ self
     {
         return new static(
             $config_form_service,
             $proxy_service,
-            $ilias_global_template,
-            $original_route
+            $ilias_global_template
         );
     }
 
@@ -50,8 +45,7 @@ class ConfigFormRouteCollector implements RouteCollector
         return [
             ConfigFormRoute::new(
                 $this->proxy_service,
-                $this->ilias_global_template,
-                $this->original_route
+                $this->ilias_global_template
             ),
             GetConfigFormValuesRoute::new(
                 $this->config_form_service

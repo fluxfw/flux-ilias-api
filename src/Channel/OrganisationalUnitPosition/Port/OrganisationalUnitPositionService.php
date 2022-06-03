@@ -78,6 +78,9 @@ class OrganisationalUnitPositionService
     }
 
 
+    /**
+     * @return OrganisationalUnitPositionDto[]
+     */
     public function getOrganisationalUnitPositions(bool $authorities = false) : array
     {
         return GetOrganisationalUnitPositionsCommand::new(

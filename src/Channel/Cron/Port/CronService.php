@@ -57,6 +57,9 @@ class CronService
     }
 
 
+    /**
+     * @return ilCronJob[]
+     */
     public function getCronJobs() : array
     {
         return GetCronJobsCommand::new(

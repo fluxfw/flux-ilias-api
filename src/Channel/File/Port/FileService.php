@@ -119,6 +119,9 @@ class FileService
     }
 
 
+    /**
+     * @return FileDto[]
+     */
     public function getFiles(?bool $in_trash = null) : array
     {
         return GetFilesCommand::new(

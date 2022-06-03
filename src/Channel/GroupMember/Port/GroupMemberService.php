@@ -3,6 +3,7 @@
 namespace FluxIliasApi\Channel\GroupMember\Port;
 
 use FluxIliasApi\Adapter\GroupMember\GroupMemberDiffDto;
+use FluxIliasApi\Adapter\GroupMember\GroupMemberDto;
 use FluxIliasApi\Adapter\GroupMember\GroupMemberIdDto;
 use FluxIliasApi\Adapter\ObjectLearningProgress\LegacyObjectLearningProgress;
 use FluxIliasApi\Channel\Group\Port\GroupService;
@@ -130,6 +131,9 @@ class GroupMemberService
     }
 
 
+    /**
+     * @return GroupMemberDto[]
+     */
     public function getGroupMembers(
         ?int $group_id = null,
         ?string $group_import_id = null,

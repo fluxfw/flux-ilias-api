@@ -105,6 +105,9 @@ class UserRoleService
     }
 
 
+    /**
+     * @return UserRoleDto[]
+     */
     public function getUserRoles(?int $user_id = null, ?string $user_import_id = null, ?int $role_id = null, ?string $role_import_id = null) : array
     {
         return GetUserRolesCommand::new(

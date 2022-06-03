@@ -4,9 +4,11 @@ namespace FluxIliasApi\Adapter\Api;
 
 use FluxIliasApi\Adapter\Category\CategoryDiffDto;
 use FluxIliasApi\Adapter\Category\CategoryDto;
+use FluxIliasApi\Adapter\Change\ChangeDto;
 use FluxIliasApi\Adapter\Course\CourseDiffDto;
 use FluxIliasApi\Adapter\Course\CourseDto;
 use FluxIliasApi\Adapter\CourseMember\CourseMemberDiffDto;
+use FluxIliasApi\Adapter\CourseMember\CourseMemberDto;
 use FluxIliasApi\Adapter\CourseMember\CourseMemberIdDto;
 use FluxIliasApi\Adapter\CronConfig\Wrapper\IliasCronWrapper;
 use FluxIliasApi\Adapter\CronConfig\Wrapper\LegacyIliasCronWrapper;
@@ -16,6 +18,7 @@ use FluxIliasApi\Adapter\File\FileDto;
 use FluxIliasApi\Adapter\Group\GroupDiffDto;
 use FluxIliasApi\Adapter\Group\GroupDto;
 use FluxIliasApi\Adapter\GroupMember\GroupMemberDiffDto;
+use FluxIliasApi\Adapter\GroupMember\GroupMemberDto;
 use FluxIliasApi\Adapter\GroupMember\GroupMemberIdDto;
 use FluxIliasApi\Adapter\Menu\MenuProvider;
 use FluxIliasApi\Adapter\Object\ObjectDiffDto;
@@ -23,6 +26,7 @@ use FluxIliasApi\Adapter\Object\ObjectDto;
 use FluxIliasApi\Adapter\Object\ObjectIdDto;
 use FluxIliasApi\Adapter\Object\ObjectType;
 use FluxIliasApi\Adapter\ObjectLearningProgress\LegacyObjectLearningProgress;
+use FluxIliasApi\Adapter\ObjectLearningProgress\ObjectLearningProgressDto;
 use FluxIliasApi\Adapter\ObjectLearningProgress\ObjectLearningProgressIdDto;
 use FluxIliasApi\Adapter\OrganisationalUnit\OrganisationalUnitDiffDto;
 use FluxIliasApi\Adapter\OrganisationalUnit\OrganisationalUnitDto;
@@ -803,6 +807,9 @@ class IliasApi
     }
 
 
+    /**
+     * @return CategoryDto[]
+     */
     public function getCategories(?bool $in_trash = null) : array
     {
         return $this->getCategoryService()
@@ -842,7 +849,10 @@ class IliasApi
     }
 
 
-    public function getChanges(?float $from = null, ?float $to = null, ?float $after = null, ?float $before = null) : ?array
+    /**
+     * @return ChangeDto[]
+     */
+    public function getChanges(?float $from = null, ?float $to = null, ?float $after = null, ?float $before = null) : array
     {
         return $this->getChangeService()
             ->getChanges(
@@ -854,6 +864,9 @@ class IliasApi
     }
 
 
+    /**
+     * @return ObjectDto[]|null
+     */
     public function getChildrenById(int $id, bool $ref_ids = false, ?bool $in_trash = null) : ?array
     {
         return $this->getObjectService()
@@ -865,6 +878,9 @@ class IliasApi
     }
 
 
+    /**
+     * @return ObjectDto[]|null
+     */
     public function getChildrenByImportId(string $import_id, bool $ref_ids = false, ?bool $in_trash = null) : ?array
     {
         return $this->getObjectService()
@@ -876,6 +892,9 @@ class IliasApi
     }
 
 
+    /**
+     * @return ObjectDto[]|null
+     */
     public function getChildrenByRefId(int $ref_id, bool $ref_ids = false, ?bool $in_trash = null) : ?array
     {
         return $this->getObjectService()
@@ -917,6 +936,9 @@ class IliasApi
     }
 
 
+    /**
+     * @return CourseMemberDto[]
+     */
     public function getCourseMembers(
         ?int $course_id = null,
         ?string $course_import_id = null,
@@ -951,6 +973,9 @@ class IliasApi
     }
 
 
+    /**
+     * @return CourseDto[]
+     */
     public function getCourses(bool $container_settings = false, ?bool $in_trash = null) : array
     {
         return $this->getCourseService()
@@ -970,6 +995,9 @@ class IliasApi
     }
 
 
+    /**
+     * @return ilCronJob[]
+     */
     public function getCronJobs() : array
     {
         return $this->getCronService()
@@ -1029,6 +1057,9 @@ class IliasApi
     }
 
 
+    /**
+     * @return FileDto[]
+     */
     public function getFiles(?bool $in_trash = null) : array
     {
         return $this->getFileService()
@@ -1075,6 +1106,9 @@ class IliasApi
     }
 
 
+    /**
+     * @return GroupMemberDto[]
+     */
     public function getGroupMembers(
         ?int $group_id = null,
         ?string $group_import_id = null,
@@ -1103,6 +1137,9 @@ class IliasApi
     }
 
 
+    /**
+     * @return GroupDto[]
+     */
     public function getGroups(?bool $in_trash = null) : array
     {
         return $this->getGroupService()
@@ -1152,6 +1189,9 @@ class IliasApi
     }
 
 
+    /**
+     * @return ObjectLearningProgressDto[]
+     */
     public function getObjectLearningProgress(
         ?int $object_id = null,
         ?string $object_import_id = null,
@@ -1172,6 +1212,9 @@ class IliasApi
     }
 
 
+    /**
+     * @return ObjectDto[]
+     */
     public function getObjects(ObjectType $type, bool $ref_ids = false, ?bool $in_trash = null) : array
     {
         return $this->getObjectService()
@@ -1228,6 +1271,9 @@ class IliasApi
     }
 
 
+    /**
+     * @return OrganisationalUnitPositionDto[]
+     */
     public function getOrganisationalUnitPositions(bool $authorities = false) : array
     {
         return $this->getOrganisationalUnitPositionService()
@@ -1244,6 +1290,9 @@ class IliasApi
     }
 
 
+    /**
+     * @return OrganisationalUnitStaffDto[]
+     */
     public function getOrganisationalUnitStaff(
         ?int $organisational_unit_id = null,
         ?string $organisational_unit_external_id = null,
@@ -1264,6 +1313,9 @@ class IliasApi
     }
 
 
+    /**
+     * @return OrganisationalUnitDto[]
+     */
     public function getOrganisationalUnits() : array
     {
         return $this->getOrganisationalUnitService()
@@ -1271,6 +1323,9 @@ class IliasApi
     }
 
 
+    /**
+     * @return ObjectDto[]|null
+     */
     public function getPathById(int $id, bool $ref_ids = false, ?bool $in_trash = null) : ?array
     {
         return $this->getObjectService()
@@ -1282,6 +1337,9 @@ class IliasApi
     }
 
 
+    /**
+     * @return ObjectDto[]|null
+     */
     public function getPathByImportId(string $import_id, bool $ref_ids = false, ?bool $in_trash = null) : ?array
     {
         return $this->getObjectService()
@@ -1293,6 +1351,9 @@ class IliasApi
     }
 
 
+    /**
+     * @return ObjectDto[]|null
+     */
     public function getPathByRefId(int $ref_id, bool $ref_ids = false, ?bool $in_trash = null) : ?array
     {
         return $this->getObjectService()
@@ -1322,6 +1383,9 @@ class IliasApi
     }
 
 
+    /**
+     * @return RoleDto[]
+     */
     public function getRoles() : array
     {
         return $this->getRoleService()
@@ -1366,6 +1430,9 @@ class IliasApi
     }
 
 
+    /**
+     * @return ScormLearningModuleDto[]
+     */
     public function getScormLearningModules(?bool $in_trash = null) : array
     {
         return $this->getScormLearningModuleService()
@@ -1411,6 +1478,9 @@ class IliasApi
     }
 
 
+    /**
+     * @return UserFavouriteDto[]
+     */
     public function getUserFavourites(?int $user_id = null, ?string $user_import_id = null, ?int $object_id = null, ?string $object_import_id = null, ?int $object_ref_id = null) : array
     {
         return $this->getUserFavouriteService()
@@ -1424,6 +1494,9 @@ class IliasApi
     }
 
 
+    /**
+     * @return UserRoleDto[]
+     */
     public function getUserRoles(?int $user_id = null, ?string $user_import_id = null, ?int $role_id = null, ?string $role_import_id = null) : array
     {
         return $this->getUserRoleService()
@@ -1436,6 +1509,9 @@ class IliasApi
     }
 
 
+    /**
+     * @return UserDto[]
+     */
     public function getUsers(bool $access_limited_object_ids = false, bool $multi_fields = false, bool $preferences = false, bool $user_defined_fields = false) : array
     {
         return $this->getUserService()

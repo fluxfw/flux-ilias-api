@@ -115,6 +115,9 @@ class CourseService
     }
 
 
+    /**
+     * @return CourseDto[]
+     */
     public function getCourses(bool $container_settings = false, ?bool $in_trash = null) : array
     {
         return GetCoursesCommand::new(

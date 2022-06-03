@@ -2,6 +2,7 @@
 
 namespace FluxIliasApi\Channel\OrganisationalUnit\Command;
 
+use FluxIliasApi\Adapter\OrganisationalUnit\OrganisationalUnitDto;
 use FluxIliasApi\Channel\Object\ObjectQuery;
 use FluxIliasApi\Channel\OrganisationalUnit\OrganisationalUnitQuery;
 use ilDBInterface;
@@ -32,6 +33,9 @@ class GetOrganisationalUnitsCommand
     }
 
 
+    /**
+     * @return OrganisationalUnitDto[]
+     */
     public function getOrganisationalUnits() : array
     {
         return array_map([$this, "mapOrganisationalUnitDto"], $this->ilias_database->fetchAll($this->ilias_database->query($this->getOrganisationalUnitQuery())));

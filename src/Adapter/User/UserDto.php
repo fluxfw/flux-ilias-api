@@ -30,6 +30,9 @@ class UserDto implements JsonSerializable
     private ?string $fax;
     private ?string $first_name;
     private ?LegacyUserGender $gender;
+    /**
+     * @var string[]|null
+     */
     private ?array $general_interests;
     private ?string $heard_about_ilias;
     private ?string $hobbies;
@@ -43,8 +46,14 @@ class UserDto implements JsonSerializable
     private ?string $location_longitude;
     private ?int $location_zoom;
     private ?string $login;
+    /**
+     * @var string[]|null
+     */
     private ?array $looking_for_helps;
     private ?string $matriculation_number;
+    /**
+     * @var string[]|null
+     */
     private ?array $offering_helps;
     private ?string $phone_home;
     private ?string $phone_mobile;
@@ -62,6 +71,9 @@ class UserDto implements JsonSerializable
 
 
     /**
+     * @param string[]|null              $general_interests
+     * @param string[]|null              $offering_helps
+     * @param string[]|null              $looking_for_helps
      * @param UserDefinedFieldDto[]|null $user_defined_fields
      */
     private function __construct(
@@ -168,6 +180,9 @@ class UserDto implements JsonSerializable
 
 
     /**
+     * @param string[]|null              $general_interests
+     * @param string[]|null              $offering_helps
+     * @param string[]|null              $looking_for_helps
      * @param UserDefinedFieldDto[]|null $user_defined_fields
      */
     public static function new(
@@ -396,6 +411,9 @@ class UserDto implements JsonSerializable
     }
 
 
+    /**
+     * @return string[]|null
+     */
     public function getGeneralInterests() : ?array
     {
         return $this->general_interests;
@@ -474,6 +492,9 @@ class UserDto implements JsonSerializable
     }
 
 
+    /**
+     * @return string[]|null
+     */
     public function getLookingForHelps() : ?array
     {
         return $this->looking_for_helps;
@@ -486,6 +507,9 @@ class UserDto implements JsonSerializable
     }
 
 
+    /**
+     * @return string[]|null
+     */
     public function getOfferingHelps() : ?array
     {
         return $this->offering_helps;

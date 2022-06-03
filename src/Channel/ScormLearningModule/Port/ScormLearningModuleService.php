@@ -113,6 +113,9 @@ class ScormLearningModuleService
     }
 
 
+    /**
+     * @return ScormLearningModuleDto[]
+     */
     public function getScormLearningModules(?bool $in_trash = null) : array
     {
         return GetScormLearningModulesCommand::new(

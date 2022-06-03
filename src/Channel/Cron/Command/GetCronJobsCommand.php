@@ -3,6 +3,7 @@
 namespace FluxIliasApi\Channel\Cron\Command;
 
 use FluxIliasApi\Channel\Change\Port\ChangeService;
+use ilCronJob;
 
 class GetCronJobsCommand
 {
@@ -27,6 +28,9 @@ class GetCronJobsCommand
     }
 
 
+    /**
+     * @return ilCronJob[]
+     */
     public function getCronJobs() : array
     {
         return $this->change_service->getChangeCronJobs();

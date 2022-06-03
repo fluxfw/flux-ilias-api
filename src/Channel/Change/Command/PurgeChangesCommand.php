@@ -36,12 +36,8 @@ class PurgeChangesCommand
     }
 
 
-    public function purgeChanges() : ?int
+    public function purgeChanges() : int
     {
-        if (!$this->changeDatabaseExists()) {
-            return null;
-        }
-
         return $this->ilias_database->manipulate($this->getChangePurgeQuery(
             $this->change_service->getKeepChangesInsideDays()
         ));

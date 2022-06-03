@@ -43,6 +43,9 @@ class GetPathCommand
     }
 
 
+    /**
+     * @return ObjectDto[]|null
+     */
     public function getPathById(int $id, bool $ref_ids = false, ?bool $in_trash = null) : ?array
     {
         return $this->getPath(
@@ -56,6 +59,9 @@ class GetPathCommand
     }
 
 
+    /**
+     * @return ObjectDto[]|null
+     */
     public function getPathByImportId(string $import_id, bool $ref_ids = false, ?bool $in_trash = null) : ?array
     {
         return $this->getPath(
@@ -69,6 +75,9 @@ class GetPathCommand
     }
 
 
+    /**
+     * @return ObjectDto[]|null
+     */
     public function getPathByRefId(int $ref_id, bool $ref_ids = false, ?bool $in_trash = null) : ?array
     {
         return $this->getPath(
@@ -82,6 +91,9 @@ class GetPathCommand
     }
 
 
+    /**
+     * @return ObjectDto[]|null
+     */
     private function getPath(?ObjectDto $object, bool $ref_ids = false, ?bool $in_trash = null) : ?array
     {
         if ($object === null || $object->getRefId() === null) {

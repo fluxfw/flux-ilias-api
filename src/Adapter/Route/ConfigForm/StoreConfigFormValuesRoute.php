@@ -5,9 +5,9 @@ namespace FluxIliasApi\Adapter\Route\ConfigForm;
 use FluxIliasApi\Channel\ConfigForm\Port\ConfigFormService;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\JsonBodyDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\TextBodyDto;
-use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\Type\LegacyDefaultBodyType;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Method\LegacyDefaultMethod;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Method\Method;
+use FluxIliasApi\Libs\FluxRestApi\Adapter\Route\Documentation\RouteDocumentationDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Route\Route;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Server\ServerRequestDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Server\ServerResponseDto;
@@ -36,15 +36,7 @@ class StoreConfigFormValuesRoute implements Route
     }
 
 
-    public function getDocuRequestBodyTypes() : ?array
-    {
-        return [
-            LegacyDefaultBodyType::JSON()
-        ];
-    }
-
-
-    public function getDocuRequestQueryParams() : ?array
+    public function getDocumentation() : ?RouteDocumentationDto
     {
         return null;
     }

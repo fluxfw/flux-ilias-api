@@ -24,6 +24,9 @@ class ObjectDto implements JsonSerializable
     private ?string $parent_import_id;
     private ?int $parent_ref_id;
     private ?int $ref_id;
+    /**
+     * @var int[]|null
+     */
     private ?array $ref_ids;
     private ?string $title;
     private ?ObjectType $type;
@@ -32,6 +35,7 @@ class ObjectDto implements JsonSerializable
 
 
     /**
+     * @param int[]|null               $ref_ids
      * @param CustomMetadataDto[]|null $custom_metadata
      */
     private function __construct(
@@ -76,6 +80,7 @@ class ObjectDto implements JsonSerializable
 
 
     /**
+     * @param int[]|null               $ref_ids
      * @param CustomMetadataDto[]|null $custom_metadata
      */
     public static function new(
@@ -191,6 +196,9 @@ class ObjectDto implements JsonSerializable
     }
 
 
+    /**
+     * @return int[]|null
+     */
     public function getRefIds() : ?array
     {
         return $this->ref_ids;

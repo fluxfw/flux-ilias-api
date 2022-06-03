@@ -2,6 +2,7 @@
 
 namespace FluxIliasApi\Channel\Group\Command;
 
+use FluxIliasApi\Adapter\Group\GroupDto;
 use FluxIliasApi\Channel\Group\GroupQuery;
 use FluxIliasApi\Channel\Object\ObjectQuery;
 use ilDBInterface;
@@ -32,6 +33,9 @@ class GetGroupsCommand
     }
 
 
+    /**
+     * @return GroupDto[]
+     */
     public function getGroups(?bool $in_trash = null) : array
     {
         return array_map([$this, "mapGroupDto"], $this->ilias_database->fetchAll($this->ilias_database->query($this->getGroupQuery(

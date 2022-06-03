@@ -2,6 +2,7 @@
 
 namespace FluxIliasApi\Channel\GroupMember\Command;
 
+use FluxIliasApi\Adapter\GroupMember\GroupMemberDto;
 use FluxIliasApi\Adapter\ObjectLearningProgress\LegacyObjectLearningProgress;
 use FluxIliasApi\Channel\GroupMember\GroupMemberQuery;
 use ilDBInterface;
@@ -31,6 +32,9 @@ class GetGroupMembersCommand
     }
 
 
+    /**
+     * @return GroupMemberDto[]
+     */
     public function getGroupMembers(
         ?int $group_id = null,
         ?string $group_import_id = null,

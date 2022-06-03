@@ -139,6 +139,9 @@ class OrganisationalUnitStaffService
     }
 
 
+    /**
+     * @return OrganisationalUnitStaffDto[]
+     */
     public function getOrganisationalUnitStaff(
         ?int $organisational_unit_id = null,
         ?string $organisational_unit_external_id = null,

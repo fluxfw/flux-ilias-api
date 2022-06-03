@@ -79,6 +79,9 @@ class CategoryService
     }
 
 
+    /**
+     * @return CategoryDto[]
+     */
     public function getCategories(?bool $in_trash = null) : array
     {
         return GetCategoriesCommand::new(
