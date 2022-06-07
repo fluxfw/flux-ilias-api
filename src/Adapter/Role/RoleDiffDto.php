@@ -35,14 +35,14 @@ class RoleDiffDto
     }
 
 
-    public static function newFromData(
-        object $data
+    public static function newFromObject(
+        object $diff
     ) : /*static*/ self
     {
         return static::new(
-            $data->import_id ?? null,
-            $data->title ?? null,
-            $data->description ?? null
+            $diff->import_id ?? null,
+            $diff->title ?? null,
+            $diff->description ?? null
         );
     }
 }

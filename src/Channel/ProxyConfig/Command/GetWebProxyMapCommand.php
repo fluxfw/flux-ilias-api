@@ -34,7 +34,7 @@ class GetWebProxyMapCommand
      */
     public function getWebProxyMap() : array
     {
-        return array_map([WebProxyMapDto::class, "newFromData"], (array) $this->config_service->getConfig(
+        return array_map([WebProxyMapDto::class, "newFromObject"], (array) $this->config_service->getConfig(
             LegacyConfigKey::WEB_PROXY_MAP()
         ));
     }

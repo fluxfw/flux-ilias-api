@@ -44,14 +44,14 @@ class OrganisationalUnitPositionDiffDto
     }
 
 
-    public static function newFromData(
-        object $data
+    public static function newFromObject(
+        object $diff
     ) : /*static*/ self
     {
         return static::new(
-            $data->title ?? null,
-            $data->description ?? null,
-            ($authorities = $data->authorities ?? null) !== null ? array_map([OrganisationalUnitPositionAuthorityDto::class, "newFromData"], $authorities) : null
+            $diff->title ?? null,
+            $diff->description ?? null,
+            ($authorities = $diff->authorities ?? null) !== null ? array_map([OrganisationalUnitPositionAuthorityDto::class, "newFromObject"], $authorities) : null
         );
     }
 }

@@ -45,16 +45,16 @@ class OrganisationalUnitDiffDto
     }
 
 
-    public static function newFromData(
-        object $data
+    public static function newFromObject(
+        object $diff
     ) : /*static*/ self
     {
         return static::new(
-            $data->title ?? null,
-            $data->description ?? null,
-            $data->type_id ?? null,
-            $data->external_id ?? null,
-            $data->didactic_template_id ?? null
+            $diff->title ?? null,
+            $diff->description ?? null,
+            $diff->type_id ?? null,
+            $diff->external_id ?? null,
+            $diff->didactic_template_id ?? null
         );
     }
 }

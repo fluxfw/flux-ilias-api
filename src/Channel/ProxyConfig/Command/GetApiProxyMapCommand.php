@@ -34,7 +34,7 @@ class GetApiProxyMapCommand
      */
     public function getApiProxyMap() : array
     {
-        return array_map([ApiProxyMapDto::class, "newFromData"], (array) $this->config_service->getConfig(
+        return array_map([ApiProxyMapDto::class, "newFromObject"], (array) $this->config_service->getConfig(
             LegacyConfigKey::API_PROXY_MAP()
         ));
     }

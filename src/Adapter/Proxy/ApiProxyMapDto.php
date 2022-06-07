@@ -30,13 +30,13 @@ class ApiProxyMapDto
     }
 
 
-    public static function newFromData(
-        object $data
+    public static function newFromObject(
+        object $api_proxy_map
     ) : /*static*/ self
     {
         return static::new(
-            $data->target_key ?? "",
-            $data->url ?? ""
+            $api_proxy_map->target_key ?? "",
+            $api_proxy_map->url ?? ""
         );
     }
 }

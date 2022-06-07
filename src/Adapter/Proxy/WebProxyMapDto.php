@@ -67,20 +67,20 @@ class WebProxyMapDto
     }
 
 
-    public static function newFromData(
-        object $data
+    public static function newFromObject(
+        object $web_proxy_map
     ) : /*static*/ self
     {
         return static::new(
-            $data->target_key ?? "",
-            $data->iframe_url ?? "",
-            $data->page_title ?? "",
-            $data->short_title ?? "",
-            $data->view_title ?? "",
-            ($data->rewrite_url ?? null) ?: null,
-            $data->menu_item ?? null,
-            ($data->menu_title ?? null) ?: null,
-            $data->visible_public_menu_item ?? null
+            $web_proxy_map->target_key ?? "",
+            $web_proxy_map->iframe_url ?? "",
+            $web_proxy_map->page_title ?? "",
+            $web_proxy_map->short_title ?? "",
+            $web_proxy_map->view_title ?? "",
+            ($web_proxy_map->rewrite_url ?? null) ?: null,
+            $web_proxy_map->menu_item ?? null,
+            ($web_proxy_map->menu_title ?? null) ?: null,
+            $web_proxy_map->visible_public_menu_item ?? null
         );
     }
 

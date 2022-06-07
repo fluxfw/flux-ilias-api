@@ -53,17 +53,17 @@ class CustomMetadataDto
     }
 
 
-    public static function newFromData(
-        object $data
+    public static function newFromObject(
+        object $custom_metadata
     ) : /*static*/ self
     {
         return static::new(
-            $data->field_id ?? null,
-            $data->field_title ?? null,
-            $data->record_id ?? null,
-            $data->record_title ?? null,
-            $data->value ?? null,
-            ($field_type = $data->field_type ?? null) !== null ? CustomCustomMetadataFieldType::factory(
+            $custom_metadata->field_id ?? null,
+            $custom_metadata->field_title ?? null,
+            $custom_metadata->record_id ?? null,
+            $custom_metadata->record_title ?? null,
+            $custom_metadata->value ?? null,
+            ($field_type = $custom_metadata->field_type ?? null) !== null ? CustomCustomMetadataFieldType::factory(
                 $field_type
             ) : null
         );

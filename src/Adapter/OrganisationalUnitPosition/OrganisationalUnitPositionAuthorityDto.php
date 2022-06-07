@@ -35,8 +35,8 @@ class OrganisationalUnitPositionAuthorityDto
     }
 
 
-    public static function newFromData(
-        object $data
+    public static function newFromObject(
+        object $authority
     ) : /*static*/ self
     {
         return static::new(
