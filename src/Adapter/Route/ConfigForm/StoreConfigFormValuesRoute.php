@@ -56,7 +56,7 @@ class StoreConfigFormValuesRoute implements Route
 
     public function handle(ServerRequestDto $request) : ?ServerResponseDto
     {
-        if (!($request->getParsedBody() instanceof JsonBodyDto)) {
+        if (!($request->parsed_body instanceof JsonBodyDto)) {
             return ServerResponseDto::new(
                 TextBodyDto::new(
                     "No json body"
@@ -68,7 +68,7 @@ class StoreConfigFormValuesRoute implements Route
         return ServerResponseDto::new(
             JsonBodyDto::new(
                 $this->config_form_service->storeConfigFormValues(
-                    $request->getParsedBody()->getData()
+                    $request->parsed_body->data
                 )
             )
         );
