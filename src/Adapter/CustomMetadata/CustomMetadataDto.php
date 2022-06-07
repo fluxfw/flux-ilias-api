@@ -2,18 +2,18 @@
 
 namespace FluxIliasApi\Adapter\CustomMetadata;
 
-use JsonSerializable;
-
-class CustomMetadataDto implements JsonSerializable
+class CustomMetadataDto
 {
 
-    private ?int $field_id;
-    private ?string $field_title;
-    private ?CustomMetadataFieldType $field_type;
-    private ?int $record_id;
-    private ?string $record_title;
-    private /*mixed*/
-        $value;
+    public ?int $field_id;
+    public ?string $field_title;
+    public ?CustomMetadataFieldType $field_type;
+    public ?int $record_id;
+    public ?string $record_title;
+    /**
+     * @var mixed
+     */
+    public $value;
 
 
     private function __construct(
@@ -67,47 +67,5 @@ class CustomMetadataDto implements JsonSerializable
                 $field_type
             ) : null
         );
-    }
-
-
-    public function getFieldId() : ?int
-    {
-        return $this->field_id;
-    }
-
-
-    public function getFieldTitle() : ?string
-    {
-        return $this->field_title;
-    }
-
-
-    public function getFieldType() : ?CustomMetadataFieldType
-    {
-        return $this->field_type;
-    }
-
-
-    public function getRecordId() : ?int
-    {
-        return $this->record_id;
-    }
-
-
-    public function getRecordTitle() : ?string
-    {
-        return $this->record_title;
-    }
-
-
-    public function getValue()/* : mixed*/
-    {
-        return $this->value;
-    }
-
-
-    public function jsonSerialize() : object
-    {
-        return (object) get_object_vars($this);
     }
 }

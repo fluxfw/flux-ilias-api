@@ -2,24 +2,22 @@
 
 namespace FluxIliasApi\Adapter\OrganisationalUnit;
 
-use JsonSerializable;
-
-class OrganisationalUnitDto implements JsonSerializable
+class OrganisationalUnitDto
 {
 
-    private ?int $created;
-    private ?string $description;
-    private ?int $didactic_template_id;
-    private ?string $external_id;
-    private ?int $id;
-    private ?string $parent_external_id;
-    private ?int $parent_id;
-    private ?int $parent_ref_id;
-    private ?int $ref_id;
-    private ?string $title;
-    private ?int $type_id;
-    private ?int $updated;
-    private ?string $url;
+    public ?int $created;
+    public ?string $description;
+    public ?int $didactic_template_id;
+    public ?string $external_id;
+    public ?int $id;
+    public ?string $parent_external_id;
+    public ?int $parent_id;
+    public ?int $parent_ref_id;
+    public ?int $ref_id;
+    public ?string $title;
+    public ?int $type_id;
+    public ?int $updated;
+    public ?string $url;
 
 
     private function __construct(
@@ -84,89 +82,5 @@ class OrganisationalUnitDto implements JsonSerializable
             $external_id,
             $didactic_template_id
         );
-    }
-
-
-    public function getCreated() : ?int
-    {
-        return $this->created;
-    }
-
-
-    public function getDescription() : ?string
-    {
-        return $this->description;
-    }
-
-
-    public function getDidacticTemplateId() : ?int
-    {
-        return $this->didactic_template_id;
-    }
-
-
-    public function getExternalId() : ?string
-    {
-        return $this->external_id;
-    }
-
-
-    public function getId() : ?int
-    {
-        return $this->id;
-    }
-
-
-    public function getParentExternalId() : ?string
-    {
-        return $this->parent_external_id;
-    }
-
-
-    public function getParentId() : ?int
-    {
-        return $this->parent_id;
-    }
-
-
-    public function getParentRefId() : ?int
-    {
-        return $this->parent_ref_id;
-    }
-
-
-    public function getRefId() : ?int
-    {
-        return $this->ref_id;
-    }
-
-
-    public function getTitle() : ?string
-    {
-        return $this->title;
-    }
-
-
-    public function getTypeId() : ?int
-    {
-        return $this->type_id;
-    }
-
-
-    public function getUpdated() : ?int
-    {
-        return $this->updated;
-    }
-
-
-    public function getUrl() : ?string
-    {
-        return $this->url;
-    }
-
-
-    public function jsonSerialize() : array
-    {
-        return get_object_vars($this);
     }
 }

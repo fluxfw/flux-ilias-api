@@ -79,18 +79,18 @@ class CreateGroupCommand
 
     private function createGroup(?ObjectDto $parent_object, GroupDiffDto $diff) : ?ObjectIdDto
     {
-        if ($parent_object === null || $parent_object->getRefId() === null) {
+        if ($parent_object === null || $parent_object->ref_id === null) {
             return null;
         }
 
         $ilias_group = $this->newIliasGroup();
 
-        $ilias_group->setTitle($diff->getTitle() ?? "");
+        $ilias_group->setTitle($diff->title ?? "");
 
         $ilias_group->create();
         $ilias_group->createReference();
-        $ilias_group->putInTree($parent_object->getRefId());
-        $ilias_group->setPermissions($parent_object->getRefId());
+        $ilias_group->putInTree($parent_object->ref_id);
+        $ilias_group->setPermissions($parent_object->ref_id);
 
         $this->mapGroupDiff(
             $diff,
@@ -101,7 +101,7 @@ class CreateGroupCommand
 
         return ObjectIdDto::new(
             $ilias_group->getId() ?: null,
-            $diff->getImportId(),
+            $diff->import_id,
             $ilias_group->getRefId() ?: null
         );
     }

@@ -84,8 +84,8 @@ class UpdateCourseCommand
         }
 
         $ilias_course = $this->getIliasCourse(
-            $course->getId(),
-            $course->getRefId()
+            $course->id,
+            $course->ref_id
         );
         if ($ilias_course === null) {
             return null;
@@ -99,9 +99,9 @@ class UpdateCourseCommand
         $ilias_course->update();
 
         return ObjectIdDto::new(
-            $course->getId(),
-            $diff->getImportId() ?? $course->getImportId(),
-            $course->getRefId()
+            $course->id,
+            $diff->import_id ?? $course->import_id,
+            $course->ref_id
         );
     }
 }

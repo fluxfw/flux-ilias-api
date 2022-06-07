@@ -96,11 +96,11 @@ class GetPathCommand
      */
     private function getPath(?ObjectDto $object, bool $ref_ids = false, ?bool $in_trash = null) : ?array
     {
-        if ($object === null || $object->getRefId() === null) {
+        if ($object === null || $object->ref_id === null) {
             return null;
         }
 
-        $path_ref_ids = $this->ilias_tree->getPathId($object->getRefId());
+        $path_ref_ids = $this->ilias_tree->getPathId($object->ref_id);
         $objects = $this->ilias_database->fetchAll($this->ilias_database->query($this->getObjectQuery(
             null,
             null,

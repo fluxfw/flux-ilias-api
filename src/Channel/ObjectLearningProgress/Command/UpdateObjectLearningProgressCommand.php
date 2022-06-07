@@ -138,14 +138,14 @@ class UpdateObjectLearningProgressCommand
             return null;
         }
 
-        ilLPStatus::writeStatus($object->getId(), $user->getId(), ObjectLearningProgressMapping::mapExternalToInternal($learning_progress)->value);
+        ilLPStatus::writeStatus($object->id, $user->id, ObjectLearningProgressMapping::mapExternalToInternal($learning_progress)->value);
 
         return ObjectLearningProgressIdDto::new(
-            $object->getId(),
-            $object->getImportId(),
-            $object->getRefId(),
-            $user->getId(),
-            $user->getImportId()
+            $object->id,
+            $object->import_id,
+            $object->ref_id,
+            $user->id,
+            $user->import_id
         );
     }
 }

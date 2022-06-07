@@ -65,7 +65,7 @@ class GetUnreadMailsCount
         }
 
         return $this->ilias_database->fetchAssoc($this->ilias_database->query($this->getUserMailQuery(
-            $user->getId(),
+            $user->id,
             LegacyInternalMailStatus::UNREAD()->value,
             true
         )))["count"];

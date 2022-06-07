@@ -2,14 +2,12 @@
 
 namespace FluxIliasApi\Adapter\OrganisationalUnit;
 
-use JsonSerializable;
-
-class OrganisationalUnitIdDto implements JsonSerializable
+class OrganisationalUnitIdDto
 {
 
-    private ?string $external_id;
-    private ?int $id;
-    private ?int $ref_id;
+    public ?string $external_id;
+    public ?int $id;
+    public ?int $ref_id;
 
 
     private function __construct(
@@ -34,29 +32,5 @@ class OrganisationalUnitIdDto implements JsonSerializable
             $external_id,
             $ref_id
         );
-    }
-
-
-    public function getExternalId() : ?string
-    {
-        return $this->external_id;
-    }
-
-
-    public function getId() : ?int
-    {
-        return $this->id;
-    }
-
-
-    public function getRefId() : ?int
-    {
-        return $this->ref_id;
-    }
-
-
-    public function jsonSerialize() : array
-    {
-        return get_object_vars($this);
     }
 }

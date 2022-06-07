@@ -3,21 +3,20 @@
 namespace FluxIliasApi\Adapter\GroupMember;
 
 use FluxIliasApi\Adapter\ObjectLearningProgress\LegacyObjectLearningProgress;
-use JsonSerializable;
 
-class GroupMemberDto implements JsonSerializable
+class GroupMemberDto
 {
 
-    private ?bool $administrator_role;
-    private ?int $group_id;
-    private ?string $group_import_id;
-    private ?int $group_ref_id;
-    private ?LegacyObjectLearningProgress $learning_progress;
-    private ?bool $member_role;
-    private ?bool $notification;
-    private ?bool $tutorial_support;
-    private ?int $user_id;
-    private ?string $user_import_id;
+    public ?bool $administrator_role;
+    public ?int $group_id;
+    public ?string $group_import_id;
+    public ?int $group_ref_id;
+    public ?LegacyObjectLearningProgress $learning_progress;
+    public ?bool $member_role;
+    public ?bool $notification;
+    public ?bool $tutorial_support;
+    public ?int $user_id;
+    public ?string $user_import_id;
 
 
     private function __construct(
@@ -70,71 +69,5 @@ class GroupMemberDto implements JsonSerializable
             $tutorial_support,
             $notification
         );
-    }
-
-
-    public function getGroupId() : ?int
-    {
-        return $this->group_id;
-    }
-
-
-    public function getGroupImportId() : ?string
-    {
-        return $this->group_import_id;
-    }
-
-
-    public function getGroupRefId() : ?int
-    {
-        return $this->group_ref_id;
-    }
-
-
-    public function getLearningProgress() : ?LegacyObjectLearningProgress
-    {
-        return $this->learning_progress;
-    }
-
-
-    public function getUserId() : ?int
-    {
-        return $this->user_id;
-    }
-
-
-    public function getUserImportId() : ?string
-    {
-        return $this->user_import_id;
-    }
-
-
-    public function isAdministratorRole() : ?bool
-    {
-        return $this->administrator_role;
-    }
-
-
-    public function isMemberRole() : ?bool
-    {
-        return $this->member_role;
-    }
-
-
-    public function isNotification() : ?bool
-    {
-        return $this->notification;
-    }
-
-
-    public function isTutorialSupport() : ?bool
-    {
-        return $this->tutorial_support;
-    }
-
-
-    public function jsonSerialize() : array
-    {
-        return get_object_vars($this);
     }
 }

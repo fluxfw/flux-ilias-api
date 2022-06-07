@@ -62,10 +62,10 @@ class UpdateAvatarCommand
         }
 
         if ($file !== null) {
-            ilObjUser::_uploadPersonalPicture($file, $user->getId());
+            ilObjUser::_uploadPersonalPicture($file, $user->id);
         } else {
             $ilias_user = $this->getIliasUser(
-                $user->getId()
+                $user->id
             );
             if ($ilias_user === null) {
                 return null;
@@ -75,8 +75,8 @@ class UpdateAvatarCommand
         }
 
         return UserIdDto::new(
-            $user->getId(),
-            $user->getImportId()
+            $user->id,
+            $user->import_id
         );
     }
 }

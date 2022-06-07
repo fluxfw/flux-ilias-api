@@ -83,7 +83,7 @@ class CreateObjectCommand
 
     private function createObject(ObjectType $type, ?ObjectDto $parent_object, ObjectDiffDto $diff) : ?ObjectIdDto
     {
-        if ($parent_object === null || $parent_object->getRefId() === null) {
+        if ($parent_object === null || $parent_object->ref_id === null) {
             return null;
         }
 
@@ -91,12 +91,12 @@ class CreateObjectCommand
             $type
         );
 
-        $ilias_object->setTitle($diff->getTitle() ?? "");
+        $ilias_object->setTitle($diff->title ?? "");
 
         $ilias_object->create();
         $ilias_object->createReference();
-        $ilias_object->putInTree($parent_object->getRefId());
-        $ilias_object->setPermissions($parent_object->getRefId());
+        $ilias_object->putInTree($parent_object->ref_id);
+        $ilias_object->setPermissions($parent_object->ref_id);
 
         $this->mapObjectDiff(
             $diff,
@@ -107,7 +107,7 @@ class CreateObjectCommand
 
         return ObjectIdDto::new(
             $ilias_object->getId() ?: null,
-            $diff->getImportId(),
+            $diff->import_id,
             $ilias_object->getRefId() ?: null
         );
     }

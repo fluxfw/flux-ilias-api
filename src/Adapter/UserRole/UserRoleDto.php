@@ -2,15 +2,13 @@
 
 namespace FluxIliasApi\Adapter\UserRole;
 
-use JsonSerializable;
-
-class UserRoleDto implements JsonSerializable
+class UserRoleDto
 {
 
-    private ?int $role_id;
-    private ?string $role_import_id;
-    private ?int $user_id;
-    private ?string $user_import_id;
+    public ?int $role_id;
+    public ?string $role_import_id;
+    public ?int $user_id;
+    public ?string $user_import_id;
 
 
     private function __construct(
@@ -39,35 +37,5 @@ class UserRoleDto implements JsonSerializable
             $role_id,
             $role_import_id
         );
-    }
-
-
-    public function getRoleId() : ?int
-    {
-        return $this->role_id;
-    }
-
-
-    public function getRoleImportId() : ?string
-    {
-        return $this->role_import_id;
-    }
-
-
-    public function getUserId() : ?int
-    {
-        return $this->user_id;
-    }
-
-
-    public function getUserImportId() : ?string
-    {
-        return $this->user_import_id;
-    }
-
-
-    public function jsonSerialize() : array
-    {
-        return get_object_vars($this);
     }
 }

@@ -79,18 +79,18 @@ class CreateCategoryCommand
 
     private function createCategory(?ObjectDto $parent_object, CategoryDiffDto $diff) : ?ObjectIdDto
     {
-        if ($parent_object === null || $parent_object->getRefId() === null) {
+        if ($parent_object === null || $parent_object->ref_id === null) {
             return null;
         }
 
         $ilias_category = $this->newIliasCategory();
 
-        $ilias_category->setTitle($diff->getTitle() ?? "");
+        $ilias_category->setTitle($diff->title ?? "");
 
         $ilias_category->create();
         $ilias_category->createReference();
-        $ilias_category->putInTree($parent_object->getRefId());
-        $ilias_category->setPermissions($parent_object->getRefId());
+        $ilias_category->putInTree($parent_object->ref_id);
+        $ilias_category->setPermissions($parent_object->ref_id);
 
         $this->mapCategoryDiff(
             $diff,
@@ -101,7 +101,7 @@ class CreateCategoryCommand
 
         return ObjectIdDto::new(
             $ilias_category->getId() ?: null,
-            $diff->getImportId(),
+            $diff->import_id,
             $ilias_category->getRefId() ?: null
         );
     }

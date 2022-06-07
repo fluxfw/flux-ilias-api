@@ -7,25 +7,25 @@ use JsonSerializable;
 class ScormLearningModuleDto implements JsonSerializable
 {
 
-    private ?bool $authoring_mode;
-    private ?int $created;
-    private ?string $description;
-    private ?int $didactic_template_id;
-    private ?string $icon_url;
-    private ?int $id;
-    private ?string $import_id;
-    private ?bool $in_trash;
-    private ?bool $online;
-    private ?int $parent_id;
-    private ?string $parent_import_id;
-    private ?int $parent_ref_id;
-    private ?int $ref_id;
-    private ?bool $sequencing_expert_mode;
-    private ?string $title;
-    private ?LegacyScormLearningModuleType $type;
-    private ?int $updated;
-    private ?string $url;
-    private ?int $version;
+    public ?bool $authoring_mode;
+    public ?int $created;
+    public ?string $description;
+    public ?int $didactic_template_id;
+    public ?string $icon_url;
+    public ?int $id;
+    public ?string $import_id;
+    public ?bool $in_trash;
+    public ?bool $online;
+    public ?int $parent_id;
+    public ?string $parent_import_id;
+    public ?int $parent_ref_id;
+    public ?int $ref_id;
+    public ?bool $sequencing_expert_mode;
+    public ?string $title;
+    public ?LegacyScormLearningModuleType $type;
+    public ?int $updated;
+    public ?string $url;
+    public ?int $version;
 
 
     private function __construct(
@@ -117,126 +117,12 @@ class ScormLearningModuleDto implements JsonSerializable
     }
 
 
-    public function getCreated() : ?int
-    {
-        return $this->created;
-    }
-
-
-    public function getDescription() : ?string
-    {
-        return $this->description;
-    }
-
-
-    public function getDidacticTemplateId() : ?int
-    {
-        return $this->didactic_template_id;
-    }
-
-
-    public function getIconUrl() : ?string
-    {
-        return $this->icon_url;
-    }
-
-
-    public function getId() : ?int
-    {
-        return $this->id;
-    }
-
-
-    public function getImportId() : ?string
-    {
-        return $this->import_id;
-    }
-
-
-    public function getParentId() : ?int
-    {
-        return $this->parent_id;
-    }
-
-
-    public function getParentImportId() : ?string
-    {
-        return $this->parent_import_id;
-    }
-
-
-    public function getParentRefId() : ?int
-    {
-        return $this->parent_ref_id;
-    }
-
-
-    public function getRefId() : ?int
-    {
-        return $this->ref_id;
-    }
-
-
-    public function getTitle() : ?string
-    {
-        return $this->title;
-    }
-
-
-    public function getType() : ?LegacyScormLearningModuleType
-    {
-        return $this->type;
-    }
-
-
-    public function getUpdated() : ?int
-    {
-        return $this->updated;
-    }
-
-
-    public function getUrl() : ?string
-    {
-        return $this->url;
-    }
-
-
-    public function getVersion() : ?int
-    {
-        return $this->version;
-    }
-
-
-    public function isAuthoringMode() : ?bool
-    {
-        return $this->authoring_mode;
-    }
-
-
-    public function isInTrash() : ?bool
-    {
-        return $this->in_trash;
-    }
-
-
-    public function isOnline() : ?bool
-    {
-        return $this->online;
-    }
-
-
-    public function isSequencingExpertMode() : ?bool
-    {
-        return $this->sequencing_expert_mode;
-    }
-
-
-    public function jsonSerialize() : array
+    public function jsonSerialize() : object
     {
         $data = get_object_vars($this);
 
         unset($data["in_trash"]);
 
-        return $data;
+        return (object) $data;
     }
 }

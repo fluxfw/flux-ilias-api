@@ -68,7 +68,7 @@ class UpdateUserCommand
         }
 
         $ilias_user = $this->getIliasUser(
-            $user->getId()
+            $user->id
         );
         if ($ilias_user === null) {
             return null;
@@ -82,8 +82,8 @@ class UpdateUserCommand
         $ilias_user->update();
 
         return UserIdDto::new(
-            $user->getId(),
-            $diff->getImportId() ?? $user->getImportId()
+            $user->id,
+            $diff->import_id ?? $user->import_id
         );
     }
 }

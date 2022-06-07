@@ -44,16 +44,16 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_data_parent.ob
 
     private function mapRoleDiff(RoleDiffDto $diff, ilObjRole $ilias_role) : void
     {
-        if ($diff->getImportId() !== null) {
-            $ilias_role->setImportId($diff->getImportId());
+        if ($diff->import_id !== null) {
+            $ilias_role->setImportId($diff->import_id);
         }
 
-        if ($diff->getTitle() !== null) {
-            $ilias_role->setTitle($diff->getTitle());
+        if ($diff->title !== null) {
+            $ilias_role->setTitle($diff->title);
         }
 
-        if ($diff->getDescription() !== null) {
-            $ilias_role->setDescription($diff->getDescription());
+        if ($diff->description !== null) {
+            $ilias_role->setDescription($diff->description);
         }
     }
 

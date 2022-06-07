@@ -73,8 +73,8 @@ class UpdateOrganisationalUnitCommand
         }
 
         $ilias_organisational_unit = $this->getIliasOrganisationalUnit(
-            $organisational_unit->getId(),
-            $organisational_unit->getRefId()
+            $organisational_unit->id,
+            $organisational_unit->ref_id
         );
         if ($ilias_organisational_unit === null) {
             return null;
@@ -88,9 +88,9 @@ class UpdateOrganisationalUnitCommand
         $ilias_organisational_unit->update();
 
         return OrganisationalUnitIdDto::new(
-            $organisational_unit->getId(),
-            $diff->getExternalId() ?? $organisational_unit->getExternalId(),
-            $organisational_unit->getRefId()
+            $organisational_unit->id,
+            $diff->external_id ?? $organisational_unit->external_id,
+            $organisational_unit->ref_id
         );
     }
 }

@@ -1294,8 +1294,8 @@ class HandleIliasEventCommand
         $this->ilias_database->insert($this->getChangeDatabaseTable(), [
             "type"           => [ilDBConstants::T_TEXT, $type->value],
             "time"           => [ilDBConstants::T_FLOAT, microtime(true)],
-            "user_id"        => [ilDBConstants::T_INTEGER, $user->getId()],
-            "user_import_id" => [ilDBConstants::T_TEXT, $user->getImportId()],
+            "user_id"        => [ilDBConstants::T_INTEGER, $user->id],
+            "user_import_id" => [ilDBConstants::T_TEXT, $user->import_id],
             "data"           => [ilDBConstants::T_BLOB, json_encode($data ?? (object) [], JSON_UNESCAPED_SLASHES)]
         ]);
     }

@@ -51,7 +51,7 @@ class UpdateOrganisationalUnitPositionCommand
         }
 
         $ilias_organisational_unit_position = $this->getIliasOrganisationalUnitPosition(
-            $organisational_unit_position->getId()
+            $organisational_unit_position->id
         );
         if ($ilias_organisational_unit_position === null) {
             return null;
@@ -65,7 +65,7 @@ class UpdateOrganisationalUnitPositionCommand
         $ilias_organisational_unit_position->store();
 
         return OrganisationalUnitPositionIdDto::new(
-            $organisational_unit_position->getId()
+            $organisational_unit_position->id
         );
     }
 }

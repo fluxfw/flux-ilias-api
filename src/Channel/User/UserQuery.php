@@ -101,216 +101,216 @@ WHERE session_id=" . $this->ilias_database->quote($session_id,
 
     private function mapUserDiff(UserDiffDto $diff, ilObjUser $ilias_user) : void
     {
-        if ($diff->getImportId() !== null) {
-            $ilias_user->setImportId($diff->getImportId());
+        if ($diff->import_id !== null) {
+            $ilias_user->setImportId($diff->import_id);
         }
 
-        if ($diff->getExternalAccount() !== null) {
-            $ilias_user->setExternalAccount($diff->getExternalAccount());
+        if ($diff->external_account !== null) {
+            $ilias_user->setExternalAccount($diff->external_account);
         }
 
-        if ($diff->getAuthenticationMode() !== null) {
-            $ilias_user->setAuthMode(UserAuthenticationModeMapping::mapExternalToInternal($diff->getAuthenticationMode())->value);
+        if ($diff->authentication_mode !== null) {
+            $ilias_user->setAuthMode(UserAuthenticationModeMapping::mapExternalToInternal($diff->authentication_mode)->value);
         }
 
-        if ($diff->getLogin() !== null) {
-            $ilias_user->setLogin($diff->getLogin());
+        if ($diff->login !== null) {
+            $ilias_user->setLogin($diff->login);
         }
 
-        if ($diff->getPassword() !== null) {
-            $ilias_user->setPasswd($diff->getPassword());
+        if ($diff->password !== null) {
+            $ilias_user->setPasswd($diff->password);
         }
 
-        if ($diff->isActive() !== null) {
-            $ilias_user->setActive($diff->isActive());
+        if ($diff->active !== null) {
+            $ilias_user->setActive($diff->active);
         }
 
-        if ($diff->isAccessUnlimited() !== null) {
-            $ilias_user->setTimeLimitUnlimited($diff->isAccessUnlimited());
+        if ($diff->access_unlimited !== null) {
+            $ilias_user->setTimeLimitUnlimited($diff->access_unlimited);
         }
 
-        if ($diff->getAccessLimitedFrom() !== null) {
-            $ilias_user->setTimeLimitFrom($diff->getAccessLimitedFrom());
+        if ($diff->access_limited_from !== null) {
+            $ilias_user->setTimeLimitFrom($diff->access_limited_from);
         }
 
-        if ($diff->getAccessLimitedUntil() !== null) {
-            $ilias_user->setTimeLimitUntil($diff->getAccessLimitedUntil());
+        if ($diff->access_limited_until !== null) {
+            $ilias_user->setTimeLimitUntil($diff->access_limited_until);
         }
 
-        if ($diff->getAccessLimitedObjectId() !== null) {
-            $object = $this->object->getObjectById(
-                $diff->getAccessLimitedObjectId(),
+        if ($diff->access_limited_object_id !== null) {
+            $object = $this->object_service->getObjectById(
+                $diff->access_limited_object_id,
                 false
             );
             if ($object === null) {
-                throw new Exception("Access limited object id " . $diff->getAccessLimitedObjectId() . " not found");
+                throw new Exception("Access limited object id " . $diff->access_limited_object_id . " not found");
             }
 
-            $ilias_user->setTimeLimitOwner($object->getRefId());
+            $ilias_user->setTimeLimitOwner($object->ref_id);
         }
 
-        if ($diff->getAccessLimitedObjectImportId() !== null) {
-            if ($diff->getAccessLimitedObjectId() !== null) {
+        if ($diff->access_limited_object_import_id !== null) {
+            if ($diff->access_limited_object_id !== null) {
                 throw new LogicException("Can't set both access limited import id and object id");
             }
 
-            $object = $this->object->getObjectByImportId(
-                $diff->getAccessLimitedObjectImportId(),
+            $object = $this->object_service->getObjectByImportId(
+                $diff->access_limited_object_import_id,
                 false
             );
             if ($object === null) {
-                throw new Exception("Access limited object import id " . $diff->getAccessLimitedObjectImportId() . " not found");
+                throw new Exception("Access limited object import id " . $diff->access_limited_object_import_id . " not found");
             }
 
-            $ilias_user->setTimeLimitOwner($object->getRefId());
+            $ilias_user->setTimeLimitOwner($object->ref_id);
         }
 
-        if ($diff->getAccessLimitedObjectRefId() !== null) {
-            if ($diff->getAccessLimitedObjectId() !== null) {
+        if ($diff->access_limited_object_ref_id !== null) {
+            if ($diff->access_limited_object_id !== null) {
                 throw new LogicException("Can't set both access limited ref id and object id");
             }
-            if ($diff->getAccessLimitedObjectImportId() !== null) {
+            if ($diff->access_limited_object_import_id !== null) {
                 throw new LogicException("Can't set both access limited ref id and import id");
             }
 
-            $object = $this->object->getObjectByRefId(
-                $diff->getAccessLimitedObjectRefId(),
+            $object = $this->object_service->getObjectByRefId(
+                $diff->access_limited_object_ref_id,
                 false
             );
             if ($object === null) {
-                throw new Exception("Access limited object ref id " . $diff->getAccessLimitedObjectRefId() . " not found");
+                throw new Exception("Access limited object ref id " . $diff->access_limited_object_ref_id . " not found");
             }
 
-            $ilias_user->setTimeLimitOwner($object->getRefId());
+            $ilias_user->setTimeLimitOwner($object->ref_id);
         }
 
-        if ($diff->isAccessLimitedMessage() !== null) {
-            $ilias_user->setTimeLimitMessage($diff->isAccessLimitedMessage());
+        if ($diff->access_limited_message !== null) {
+            $ilias_user->setTimeLimitMessage($diff->access_limited_message);
         }
 
-        if ($diff->getGender() !== null) {
-            $ilias_user->setGender(UserGenderMapping::mapExternalToInternal($diff->getGender())->value);
+        if ($diff->gender !== null) {
+            $ilias_user->setGender(UserGenderMapping::mapExternalToInternal($diff->gender)->value);
         }
 
-        if ($diff->getFirstName() !== null) {
-            $ilias_user->setFirstname($diff->getFirstName());
+        if ($diff->first_name !== null) {
+            $ilias_user->setFirstname($diff->first_name);
         }
 
-        if ($diff->getLastName() !== null) {
-            $ilias_user->setLastname($diff->getLastName());
+        if ($diff->last_name !== null) {
+            $ilias_user->setLastname($diff->last_name);
         }
 
-        if ($diff->getTitle() !== null) {
-            $ilias_user->setUTitle($diff->getTitle());
+        if ($diff->title !== null) {
+            $ilias_user->setUTitle($diff->title);
         }
 
-        if ($diff->getBirthday() !== null) {
-            $ilias_user->setBirthday($diff->getBirthday());
+        if ($diff->birthday !== null) {
+            $ilias_user->setBirthday($diff->birthday);
         }
 
-        if ($diff->getInstitution() !== null) {
-            $ilias_user->setInstitution($diff->getInstitution());
+        if ($diff->institution !== null) {
+            $ilias_user->setInstitution($diff->institution);
         }
 
-        if ($diff->getDepartment() !== null) {
-            $ilias_user->setDepartment($diff->getDepartment());
+        if ($diff->department !== null) {
+            $ilias_user->setDepartment($diff->department);
         }
 
-        if ($diff->getStreet() !== null) {
-            $ilias_user->setStreet($diff->getStreet());
+        if ($diff->street !== null) {
+            $ilias_user->setStreet($diff->street);
         }
 
-        if ($diff->getCity() !== null) {
-            $ilias_user->setCity($diff->getCity());
+        if ($diff->city !== null) {
+            $ilias_user->setCity($diff->city);
         }
 
-        if ($diff->getZipCode() !== null) {
-            $ilias_user->setZipcode($diff->getZipCode());
+        if ($diff->zip_code !== null) {
+            $ilias_user->setZipcode($diff->zip_code);
         }
 
-        if ($diff->getCountry() !== null) {
-            $ilias_user->setCountry($diff->getCountry());
+        if ($diff->country !== null) {
+            $ilias_user->setCountry($diff->country);
         }
 
-        if ($diff->getSelectedCountry() !== null) {
-            $ilias_user->setSelectedCountry(UserSelectedCountryMapping::mapExternalToInternal($diff->getSelectedCountry())->value);
+        if ($diff->selected_country !== null) {
+            $ilias_user->setSelectedCountry(UserSelectedCountryMapping::mapExternalToInternal($diff->selected_country)->value);
         }
 
-        if ($diff->getPhoneOffice() !== null) {
-            $ilias_user->setPhoneOffice($diff->getPhoneOffice());
+        if ($diff->phone_office !== null) {
+            $ilias_user->setPhoneOffice($diff->phone_office);
         }
 
-        if ($diff->getPhoneHome() !== null) {
-            $ilias_user->setPhoneHome($diff->getPhoneHome());
+        if ($diff->phone_home !== null) {
+            $ilias_user->setPhoneHome($diff->phone_home);
         }
 
-        if ($diff->getPhoneMobile() !== null) {
-            $ilias_user->setPhoneMobile($diff->getPhoneMobile());
+        if ($diff->phone_mobile !== null) {
+            $ilias_user->setPhoneMobile($diff->phone_mobile);
         }
 
-        if ($diff->getFax() !== null) {
-            $ilias_user->setFax($diff->getFax());
+        if ($diff->fax !== null) {
+            $ilias_user->setFax($diff->fax);
         }
 
-        if ($diff->getEmail() !== null) {
-            $ilias_user->setEmail($diff->getEmail());
+        if ($diff->email !== null) {
+            $ilias_user->setEmail($diff->email);
         }
 
-        if ($diff->getSecondEmail() !== null) {
-            $ilias_user->setSecondEmail($diff->getSecondEmail());
+        if ($diff->second_email !== null) {
+            $ilias_user->setSecondEmail($diff->second_email);
         }
 
-        if ($diff->getHobbies() !== null) {
-            $ilias_user->setHobby($diff->getHobbies());
+        if ($diff->hobbies !== null) {
+            $ilias_user->setHobby($diff->hobbies);
         }
 
-        if ($diff->getHeardAboutIlias() !== null) {
-            $ilias_user->setComment($diff->getHeardAboutIlias());
+        if ($diff->heard_about_ilias !== null) {
+            $ilias_user->setComment($diff->heard_about_ilias);
         }
 
-        if ($diff->getGeneralInterests() !== null) {
-            $ilias_user->setGeneralInterests($diff->getGeneralInterests());
+        if ($diff->general_interests !== null) {
+            $ilias_user->setGeneralInterests($diff->general_interests);
         }
 
-        if ($diff->getOfferingHelps() !== null) {
-            $ilias_user->setOfferingHelp($diff->getOfferingHelps());
+        if ($diff->offering_helps !== null) {
+            $ilias_user->setOfferingHelp($diff->offering_helps);
         }
 
-        if ($diff->getLookingForHelps() !== null) {
-            $ilias_user->setLookingForHelp($diff->getLookingForHelps());
+        if ($diff->looking_for_helps !== null) {
+            $ilias_user->setLookingForHelp($diff->looking_for_helps);
         }
 
-        if ($diff->getMatriculationNumber() !== null) {
-            $ilias_user->setMatriculation($diff->getMatriculationNumber());
+        if ($diff->matriculation_number !== null) {
+            $ilias_user->setMatriculation($diff->matriculation_number);
         }
 
-        if ($diff->getClientIp() !== null) {
-            $ilias_user->setClientIP($diff->getClientIp());
+        if ($diff->client_ip !== null) {
+            $ilias_user->setClientIP($diff->client_ip);
         }
 
-        if ($diff->getLocationLatitude() !== null) {
-            $ilias_user->setLatitude($diff->getLocationLatitude());
+        if ($diff->location_latitude !== null) {
+            $ilias_user->setLatitude($diff->location_latitude);
         }
 
-        if ($diff->getLocationLongitude() !== null) {
-            $ilias_user->setLongitude($diff->getLocationLongitude());
+        if ($diff->location_longitude !== null) {
+            $ilias_user->setLongitude($diff->location_longitude);
         }
 
-        if ($diff->getLocationZoom() !== null) {
-            $ilias_user->setLocationZoom($diff->getLocationZoom());
+        if ($diff->location_zoom !== null) {
+            $ilias_user->setLocationZoom($diff->location_zoom);
         }
 
-        if ($diff->getUserDefinedFields() !== null) {
+        if ($diff->user_defined_fields !== null) {
             $user_defined_data = [];
             $user_defined_field_name_id = null;
 
-            foreach ($diff->getUserDefinedFields() as $user_defined_field) {
-                if ($user_defined_field->getId() !== null) {
-                    $user_defined_data[$user_defined_field->getId()] = $user_defined_field->getValue() ?? "";
+            foreach ($diff->user_defined_fields as $user_defined_field) {
+                if ($user_defined_field->id !== null) {
+                    $user_defined_data[$user_defined_field->id] = $user_defined_field->value ?? "";
                 }
 
-                if ($user_defined_field->getName() !== null) {
-                    if ($user_defined_field->getId() !== null) {
+                if ($user_defined_field->name !== null) {
+                    if ($user_defined_field->id !== null) {
                         throw new LogicException("Can't set both user defined field name and field id");
                     }
 
@@ -324,19 +324,19 @@ WHERE session_id=" . $this->ilias_database->quote($session_id,
 
                             return $user_defined_field_name_id;
                         }, []);
-                    if (!array_key_exists($user_defined_field->getName(), $user_defined_field_name_id)) {
-                        throw new Exception("User defined field name " . $user_defined_field->getName() . " does not exists");
+                    if (!array_key_exists($user_defined_field->name, $user_defined_field_name_id)) {
+                        throw new Exception("User defined field name " . $user_defined_field->name . " does not exists");
                     }
 
-                    $user_defined_data[$user_defined_field_name_id[$user_defined_field->getName()]] = $user_defined_field->getValue() ?? "";
+                    $user_defined_data[$user_defined_field_name_id[$user_defined_field->name]] = $user_defined_field->value ?? "";
                 }
             }
 
             $ilias_user->setUserDefinedData($user_defined_data);
         }
 
-        if ($diff->getLanguage() !== null) {
-            $ilias_user->setLanguage(UserLanguageMapping::mapExternalToInternal($diff->getLanguage())->value);
+        if ($diff->language !== null) {
+            $ilias_user->setLanguage(UserLanguageMapping::mapExternalToInternal($diff->language)->value);
         }
 
         $ilias_user->setTitle($ilias_user->getFullname());

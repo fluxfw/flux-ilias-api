@@ -57,7 +57,7 @@ class CreateUserCommand
 
         return UserIdDto::new(
             $ilias_user->getId() ?: null,
-            $diff->getImportId()
+            $diff->import_id
         );
     }
 }

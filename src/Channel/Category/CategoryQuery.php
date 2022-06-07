@@ -59,26 +59,26 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
 
     private function mapCategoryDiff(CategoryDiffDto $diff, ilObjCategory $ilias_category) : void
     {
-        if ($diff->getImportId() !== null) {
-            $ilias_category->setImportId($diff->getImportId());
+        if ($diff->import_id !== null) {
+            $ilias_category->setImportId($diff->import_id);
         }
 
-        if ($diff->getTitle() !== null) {
-            $ilias_category->setTitle($diff->getTitle());
+        if ($diff->title !== null) {
+            $ilias_category->setTitle($diff->title);
         }
 
-        if ($diff->getDescription() !== null) {
-            $ilias_category->setDescription($diff->getDescription());
+        if ($diff->description !== null) {
+            $ilias_category->setDescription($diff->description);
         }
 
-        if ($diff->getDidacticTemplateId() !== null) {
-            $ilias_category->applyDidacticTemplate($diff->getDidacticTemplateId());
+        if ($diff->didactic_template_id !== null) {
+            $ilias_category->applyDidacticTemplate($diff->didactic_template_id);
         }
 
-        if ($diff->getCustomMetadata() !== null) {
+        if ($diff->custom_metadata !== null) {
             $this->updateCustomMetadata(
                 $ilias_category->getId(),
-                $diff->getCustomMetadata()
+                $diff->custom_metadata
             );
         }
     }

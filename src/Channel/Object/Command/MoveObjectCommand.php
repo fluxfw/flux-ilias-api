@@ -176,22 +176,22 @@ class MoveObjectCommand
 
     private function moveObject(?ObjectDto $object, ?ObjectDto $parent_object) : ?ObjectIdDto
     {
-        if ($object === null || $parent_object === null || $parent_object->getRefId() === null) {
+        if ($object === null || $parent_object === null || $parent_object->ref_id === null) {
             return null;
         }
 
-        if ($object->getId() === $parent_object->getId()) {
+        if ($object->id === $parent_object->id) {
             throw new LogicException("Can't move to its self");
         }
 
-        if ($object->getParentRefId() !== $parent_object->getRefId()) {
-            $this->ilias_tree->moveTree($object->getRefId(), $parent_object->getRefId());
+        if ($object->parent_ref_id !== $parent_object->ref_id) {
+            $this->ilias_tree->moveTree($object->ref_id, $parent_object->ref_id);
         }
 
         return ObjectIdDto::new(
-            $parent_object->getId(),
-            $parent_object->getImportId(),
-            $parent_object->getRefId()
+            $parent_object->id,
+            $parent_object->import_id,
+            $parent_object->ref_id
         );
     }
 }

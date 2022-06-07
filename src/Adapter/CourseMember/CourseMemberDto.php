@@ -3,24 +3,23 @@
 namespace FluxIliasApi\Adapter\CourseMember;
 
 use FluxIliasApi\Adapter\ObjectLearningProgress\LegacyObjectLearningProgress;
-use JsonSerializable;
 
-class CourseMemberDto implements JsonSerializable
+class CourseMemberDto
 {
 
-    private ?bool $access_refused;
-    private ?bool $administrator_role;
-    private ?int $course_id;
-    private ?string $course_import_id;
-    private ?int $course_ref_id;
-    private ?LegacyObjectLearningProgress $learning_progress;
-    private ?bool $member_role;
-    private ?bool $notification;
-    private ?bool $passed;
-    private ?bool $tutor_role;
-    private ?bool $tutorial_support;
-    private ?int $user_id;
-    private ?string $user_import_id;
+    public ?bool $access_refused;
+    public ?bool $administrator_role;
+    public ?int $course_id;
+    public ?string $course_import_id;
+    public ?int $course_ref_id;
+    public ?LegacyObjectLearningProgress $learning_progress;
+    public ?bool $member_role;
+    public ?bool $notification;
+    public ?bool $passed;
+    public ?bool $tutor_role;
+    public ?bool $tutorial_support;
+    public ?int $user_id;
+    public ?string $user_import_id;
 
 
     private function __construct(
@@ -85,89 +84,5 @@ class CourseMemberDto implements JsonSerializable
             $tutorial_support,
             $notification
         );
-    }
-
-
-    public function getCourseId() : ?int
-    {
-        return $this->course_id;
-    }
-
-
-    public function getCourseImportId() : ?string
-    {
-        return $this->course_import_id;
-    }
-
-
-    public function getCourseRefId() : ?int
-    {
-        return $this->course_ref_id;
-    }
-
-
-    public function getLearningProgress() : ?LegacyObjectLearningProgress
-    {
-        return $this->learning_progress;
-    }
-
-
-    public function getUserId() : ?int
-    {
-        return $this->user_id;
-    }
-
-
-    public function getUserImportId() : ?string
-    {
-        return $this->user_import_id;
-    }
-
-
-    public function isAccessRefused() : ?bool
-    {
-        return $this->access_refused;
-    }
-
-
-    public function isAdministratorRole() : ?bool
-    {
-        return $this->administrator_role;
-    }
-
-
-    public function isMemberRole() : ?bool
-    {
-        return $this->member_role;
-    }
-
-
-    public function isNotification() : ?bool
-    {
-        return $this->notification;
-    }
-
-
-    public function isPassed() : ?bool
-    {
-        return $this->passed;
-    }
-
-
-    public function isTutorRole() : ?bool
-    {
-        return $this->tutor_role;
-    }
-
-
-    public function isTutorialSupport() : ?bool
-    {
-        return $this->tutorial_support;
-    }
-
-
-    public function jsonSerialize() : array
-    {
-        return get_object_vars($this);
     }
 }

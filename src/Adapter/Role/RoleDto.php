@@ -2,20 +2,18 @@
 
 namespace FluxIliasApi\Adapter\Role;
 
-use JsonSerializable;
-
-class RoleDto implements JsonSerializable
+class RoleDto
 {
 
-    private ?int $created;
-    private ?string $description;
-    private ?int $id;
-    private ?string $import_id;
-    private ?int $object_id;
-    private ?string $object_import_id;
-    private ?int $object_ref_id;
-    private ?string $title;
-    private ?int $updated;
+    public ?int $created;
+    public ?string $description;
+    public ?int $id;
+    public ?string $import_id;
+    public ?int $object_id;
+    public ?string $object_import_id;
+    public ?int $object_ref_id;
+    public ?string $title;
+    public ?int $updated;
 
 
     private function __construct(
@@ -64,65 +62,5 @@ class RoleDto implements JsonSerializable
             $title,
             $description
         );
-    }
-
-
-    public function getCreated() : ?int
-    {
-        return $this->created;
-    }
-
-
-    public function getDescription() : ?string
-    {
-        return $this->description;
-    }
-
-
-    public function getId() : ?int
-    {
-        return $this->id;
-    }
-
-
-    public function getImportId() : ?string
-    {
-        return $this->import_id;
-    }
-
-
-    public function getObjectId() : ?int
-    {
-        return $this->object_id;
-    }
-
-
-    public function getObjectImportId() : ?string
-    {
-        return $this->object_import_id;
-    }
-
-
-    public function getObjectRefId() : ?int
-    {
-        return $this->object_ref_id;
-    }
-
-
-    public function getTitle() : ?string
-    {
-        return $this->title;
-    }
-
-
-    public function getUpdated() : ?int
-    {
-        return $this->updated;
-    }
-
-
-    public function jsonSerialize() : array
-    {
-        return get_object_vars($this);
     }
 }

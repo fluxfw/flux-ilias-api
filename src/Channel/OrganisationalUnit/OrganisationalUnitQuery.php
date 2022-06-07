@@ -56,24 +56,24 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
 
     private function mapOrganisationalUnitDiff(OrganisationalUnitDiffDto $diff, ilObjOrgUnit $ilias_organisational_unit) : void
     {
-        if ($diff->getExternalId() !== null) {
-            $ilias_organisational_unit->setImportId($diff->getExternalId());
+        if ($diff->external_id !== null) {
+            $ilias_organisational_unit->setImportId($diff->external_id);
         }
 
-        if ($diff->getTitle() !== null) {
-            $ilias_organisational_unit->setTitle($diff->getTitle());
+        if ($diff->title !== null) {
+            $ilias_organisational_unit->setTitle($diff->title);
         }
 
-        if ($diff->getDescription() !== null) {
-            $ilias_organisational_unit->setDescription($diff->getDescription());
+        if ($diff->description !== null) {
+            $ilias_organisational_unit->setDescription($diff->description);
         }
 
-        if ($diff->getTypeId() !== null) {
-            $ilias_organisational_unit->setOrgUnitTypeId($diff->getTypeId());
+        if ($diff->type_id !== null) {
+            $ilias_organisational_unit->setOrgUnitTypeId($diff->type_id);
         }
 
-        if ($diff->getDidacticTemplateId() !== null) {
-            $ilias_organisational_unit->applyDidacticTemplate($diff->getDidacticTemplateId());
+        if ($diff->didactic_template_id !== null) {
+            $ilias_organisational_unit->applyDidacticTemplate($diff->didactic_template_id);
         }
     }
 

@@ -198,7 +198,7 @@ class HandleIliasGotoCommand
 
         $response = $this->rest_api->makeRequest(
             ClientRequestDto::new(
-                rtrim($api_proxy_map->getUrl(), "/") . (!empty($route = trim($request->getQueryParam(
+                rtrim($api_proxy_map->url, "/") . (!empty($route = trim($request->getQueryParam(
                     "route"
                 ), "/")) ? "/" . $route : ""),
                 $request->method,
@@ -208,8 +208,8 @@ class HandleIliasGotoCommand
                 $request->body,
                 [
                     LegacyDefaultHeaderKey::USER_AGENT()->value => "flux-ilias-api",
-                    "X-Flux-Ilias-Api-User-Id"                  => $user->getId(),
-                    "X-Flux-Ilias-Api-User-Import-Id"           => $user->getImportId() ?? ""
+                    "X-Flux-Ilias-Api-User-Id"                  => $user->id,
+                    "X-Flux-Ilias-Api-User-Import-Id"           => $user->import_id ?? ""
                 ] + array_filter($request->headers, fn(string $key) : bool => in_array($key, [
                     LegacyDefaultHeaderKey::ACCEPT()->value
                 ]), ARRAY_FILTER_USE_KEY),
@@ -292,7 +292,7 @@ class HandleIliasGotoCommand
             return;
         }
 
-        if (!$web_proxy_map->isVisiblePublicMenuItem() && $user === null) {
+        if (!$web_proxy_map->visible_public_menu_item && $user === null) {
             return;
         }
 
@@ -300,10 +300,10 @@ class HandleIliasGotoCommand
             HtmlBodyDto::new(
                 $this->proxy_service->getWebProxy(
                     $this->ilias_global_template,
-                    $web_proxy_map->getIframeUrl(),
-                    $web_proxy_map->getPageTitle(),
-                    $web_proxy_map->getShortTitle(),
-                    $web_proxy_map->getViewTitle(),
+                    $web_proxy_map->iframe_url,
+                    $web_proxy_map->page_title,
+                    $web_proxy_map->short_title,
+                    $web_proxy_map->view_title,
                     $request->getQueryParam(
                         "route"
                     ),

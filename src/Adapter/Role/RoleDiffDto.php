@@ -5,9 +5,9 @@ namespace FluxIliasApi\Adapter\Role;
 class RoleDiffDto
 {
 
-    private ?string $description;
-    private ?string $import_id;
-    private ?string $title;
+    public ?string $description;
+    public ?string $import_id;
+    public ?string $title;
 
 
     private function __construct(
@@ -44,23 +44,5 @@ class RoleDiffDto
             $data->title ?? null,
             $data->description ?? null
         );
-    }
-
-
-    public function getDescription() : ?string
-    {
-        return $this->description;
-    }
-
-
-    public function getImportId() : ?string
-    {
-        return $this->import_id;
-    }
-
-
-    public function getTitle() : ?string
-    {
-        return $this->title;
     }
 }

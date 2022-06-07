@@ -5,10 +5,10 @@ namespace FluxIliasApi\Adapter\File;
 class FileDiffDto
 {
 
-    private ?string $description;
-    private ?int $didactic_template_id;
-    private ?string $import_id;
-    private ?string $title;
+    public ?string $description;
+    public ?int $didactic_template_id;
+    public ?string $import_id;
+    public ?string $title;
 
 
     private function __construct(
@@ -50,29 +50,5 @@ class FileDiffDto
             $data->description ?? null,
             $data->didactic_template_id ?? null
         );
-    }
-
-
-    public function getDescription() : ?string
-    {
-        return $this->description;
-    }
-
-
-    public function getDidacticTemplateId() : ?int
-    {
-        return $this->didactic_template_id;
-    }
-
-
-    public function getImportId() : ?string
-    {
-        return $this->import_id;
-    }
-
-
-    public function getTitle() : ?string
-    {
-        return $this->title;
     }
 }

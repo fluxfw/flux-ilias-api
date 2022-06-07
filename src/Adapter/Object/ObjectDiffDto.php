@@ -10,12 +10,12 @@ class ObjectDiffDto
     /**
      * @var CustomMetadataDto[]|null
      */
-    private ?array $custom_metadata;
-    private ?string $description;
-    private ?int $didactic_template_id;
-    private ?string $import_id;
-    private ?bool $online;
-    private ?string $title;
+    public ?array $custom_metadata;
+    public ?string $description;
+    public ?int $didactic_template_id;
+    public ?string $import_id;
+    public ?bool $online;
+    public ?string $title;
 
 
     /**
@@ -73,44 +73,5 @@ class ObjectDiffDto
             $data->didactic_template_id ?? null,
             ($custom_metadata = $data->custom_metadata ?? null) !== null ? array_map([CustomMetadataDto::class, "newFromData"], $custom_metadata) : null
         );
-    }
-
-
-    /**
-     * @return CustomMetadataDto[]|null
-     */
-    public function getCustomMetadata() : ?array
-    {
-        return $this->custom_metadata;
-    }
-
-
-    public function getDescription() : ?string
-    {
-        return $this->description;
-    }
-
-
-    public function getDidacticTemplateId() : ?int
-    {
-        return $this->didactic_template_id;
-    }
-
-
-    public function getImportId() : ?string
-    {
-        return $this->import_id;
-    }
-
-
-    public function getTitle() : ?string
-    {
-        return $this->title;
-    }
-
-
-    public function isOnline() : ?bool
-    {
-        return $this->online;
     }
 }

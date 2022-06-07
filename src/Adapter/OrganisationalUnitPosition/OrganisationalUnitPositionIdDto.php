@@ -2,12 +2,10 @@
 
 namespace FluxIliasApi\Adapter\OrganisationalUnitPosition;
 
-use JsonSerializable;
-
-class OrganisationalUnitPositionIdDto implements JsonSerializable
+class OrganisationalUnitPositionIdDto
 {
 
-    private ?int $id;
+    public ?int $id;
 
 
     private function __construct(
@@ -24,17 +22,5 @@ class OrganisationalUnitPositionIdDto implements JsonSerializable
         return new static(
             $id
         );
-    }
-
-
-    public function getId() : ?int
-    {
-        return $this->id;
-    }
-
-
-    public function jsonSerialize() : array
-    {
-        return get_object_vars($this);
     }
 }

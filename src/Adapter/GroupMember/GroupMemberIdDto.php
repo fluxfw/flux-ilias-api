@@ -2,16 +2,14 @@
 
 namespace FluxIliasApi\Adapter\GroupMember;
 
-use JsonSerializable;
-
-class GroupMemberIdDto implements JsonSerializable
+class GroupMemberIdDto
 {
 
-    private ?int $group_id;
-    private ?string $group_import_id;
-    private ?int $group_ref_id;
-    private ?int $user_id;
-    private ?string $user_import_id;
+    public ?int $group_id;
+    public ?string $group_import_id;
+    public ?int $group_ref_id;
+    public ?int $user_id;
+    public ?string $user_import_id;
 
 
     private function __construct(
@@ -44,41 +42,5 @@ class GroupMemberIdDto implements JsonSerializable
             $user_id,
             $user_import_id
         );
-    }
-
-
-    public function getGroupId() : ?int
-    {
-        return $this->group_id;
-    }
-
-
-    public function getGroupImportId() : ?string
-    {
-        return $this->group_import_id;
-    }
-
-
-    public function getGroupRefId() : ?int
-    {
-        return $this->group_ref_id;
-    }
-
-
-    public function getUserId() : ?int
-    {
-        return $this->user_id;
-    }
-
-
-    public function getUserImportId() : ?string
-    {
-        return $this->user_import_id;
-    }
-
-
-    public function jsonSerialize() : array
-    {
-        return get_object_vars($this);
     }
 }

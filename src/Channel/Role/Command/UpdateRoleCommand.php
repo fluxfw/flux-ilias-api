@@ -62,7 +62,7 @@ class UpdateRoleCommand
         }
 
         $ilias_role = $this->getIliasRole(
-            $role->getId()
+            $role->id
         );
         if ($ilias_role === null) {
             return null;
@@ -76,8 +76,8 @@ class UpdateRoleCommand
         $ilias_role->update();
 
         return ObjectIdDto::new(
-            $role->getId(),
-            $diff->getImportId() ?? $role->getImportId()
+            $role->id,
+            $diff->import_id ?? $role->import_id
         );
     }
 }

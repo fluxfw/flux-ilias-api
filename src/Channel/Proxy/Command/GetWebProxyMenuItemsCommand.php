@@ -43,13 +43,13 @@ class GetWebProxyMenuItemsCommand
 
         $i = 0;
         foreach ($this->proxy_config_service->getWebProxyMap() as $web_proxy_map) {
-            $menu_items[] = $this->ilias_dic->globalScreen()->mainBar()->link($if->identifier(LegacyProxyTarget::WEB_PROXY()->value . $web_proxy_map->getTargetKey()))
+            $menu_items[] = $this->ilias_dic->globalScreen()->mainBar()->link($if->identifier(LegacyProxyTarget::WEB_PROXY()->value . $web_proxy_map->target_key))
                 ->withPosition(42100 + $i)
                 ->withTitle($web_proxy_map->getMenuTitleWithDefault())
                 ->withAction($web_proxy_map->getRewriteUrlWithDefault())
                 ->withSymbol($this->ilias_dic->ui()->factory()->symbol()->icon()->standard(Standard::WEBR, $web_proxy_map->getMenuTitleWithDefault())->withIsOutlined(true))
-                ->withAvailableCallable(fn() : bool => $this->proxy_config_service->isEnableWebProxy() && $web_proxy_map->isMenuItem())
-                ->withVisibilityCallable(fn() : bool => $web_proxy_map->isVisiblePublicMenuItem() || $user !== null);
+                ->withAvailableCallable(fn() : bool => $this->proxy_config_service->isEnableWebProxy() && $web_proxy_map->menu_item)
+                ->withVisibilityCallable(fn() : bool => $web_proxy_map->visible_public_menu_item || $user !== null);
         }
 
         return $menu_items;

@@ -2,13 +2,11 @@
 
 namespace FluxIliasApi\Adapter\User;
 
-use JsonSerializable;
-
-class UserIdDto implements JsonSerializable
+class UserIdDto
 {
 
-    private ?int $id;
-    private ?string $import_id;
+    public ?int $id;
+    public ?string $import_id;
 
 
     private function __construct(
@@ -29,23 +27,5 @@ class UserIdDto implements JsonSerializable
             $id,
             $import_id
         );
-    }
-
-
-    public function getId() : ?int
-    {
-        return $this->id;
-    }
-
-
-    public function getImportId() : ?string
-    {
-        return $this->import_id;
-    }
-
-
-    public function jsonSerialize() : array
-    {
-        return get_object_vars($this);
     }
 }

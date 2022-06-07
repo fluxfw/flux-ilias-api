@@ -176,17 +176,17 @@ class LinkObjectCommand
 
     private function linkObject(?ObjectDto $object, ?ObjectDto $parent_object) : ?ObjectIdDto
     {
-        if ($object === null || $parent_object === null || $object->getRefId() === null || $parent_object->getRefId() === null) {
+        if ($object === null || $parent_object === null || $object->ref_id === null || $parent_object->ref_id === null) {
             return null;
         }
 
-        if ($object->getId() === $parent_object->getId()) {
+        if ($object->id === $parent_object->id) {
             throw new LogicException("Can't link to its self");
         }
 
         $ilias_object = $this->getIliasObject(
-            $object->getId(),
-            $object->getRefId()
+            $object->id,
+            $object->ref_id
         );
         if ($ilias_object === null) {
             return null;
@@ -197,12 +197,12 @@ class LinkObjectCommand
         }
 
         $ilias_object->createReference();
-        $ilias_object->putInTree($parent_object->getRefId());
-        $ilias_object->setPermissions($parent_object->getRefId());
+        $ilias_object->putInTree($parent_object->ref_id);
+        $ilias_object->setPermissions($parent_object->ref_id);
 
         return ObjectIdDto::new(
-            $object->getId(),
-            $object->getImportId(),
+            $object->id,
+            $object->import_id,
             $ilias_object->getRefId() ?: null
         );
     }

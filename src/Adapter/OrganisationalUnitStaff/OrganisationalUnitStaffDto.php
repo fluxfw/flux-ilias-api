@@ -2,17 +2,15 @@
 
 namespace FluxIliasApi\Adapter\OrganisationalUnitStaff;
 
-use JsonSerializable;
-
-class OrganisationalUnitStaffDto implements JsonSerializable
+class OrganisationalUnitStaffDto
 {
 
-    private ?string $organisational_unit_external_id;
-    private ?int $organisational_unit_id;
-    private ?int $organisational_unit_ref_id;
-    private ?int $position_id;
-    private ?int $user_id;
-    private ?string $user_import_id;
+    public ?string $organisational_unit_external_id;
+    public ?int $organisational_unit_id;
+    public ?int $organisational_unit_ref_id;
+    public ?int $position_id;
+    public ?int $user_id;
+    public ?string $user_import_id;
 
 
     private function __construct(
@@ -49,47 +47,5 @@ class OrganisationalUnitStaffDto implements JsonSerializable
             $user_import_id,
             $position_id
         );
-    }
-
-
-    public function getOrganisationalUnitExternalId() : ?string
-    {
-        return $this->organisational_unit_external_id;
-    }
-
-
-    public function getOrganisationalUnitId() : ?int
-    {
-        return $this->organisational_unit_id;
-    }
-
-
-    public function getOrganisationalUnitRefId() : ?int
-    {
-        return $this->organisational_unit_ref_id;
-    }
-
-
-    public function getPositionId() : ?int
-    {
-        return $this->position_id;
-    }
-
-
-    public function getUserId() : ?int
-    {
-        return $this->user_id;
-    }
-
-
-    public function getUserImportId() : ?string
-    {
-        return $this->user_import_id;
-    }
-
-
-    public function jsonSerialize() : array
-    {
-        return get_object_vars($this);
     }
 }

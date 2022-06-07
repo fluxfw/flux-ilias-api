@@ -139,29 +139,29 @@ class UpdateCourseMemberCommand
         }
 
         $ilias_course = $this->getIliasCourse(
-            $course->getId(),
-            $course->getRefId()
+            $course->id,
+            $course->ref_id
         );
         if ($ilias_course === null) {
             return null;
         }
 
-        if (!$ilias_course->getMembersObject()->isAssigned($user->getId())) {
+        if (!$ilias_course->getMembersObject()->isAssigned($user->id)) {
             return null;
         }
 
         $this->mapCourseMemberDiff(
             $diff,
-            $user->getId(),
+            $user->id,
             $ilias_course
         );
 
         return CourseMemberIdDto::new(
-            $course->getId(),
-            $course->getImportId(),
-            $course->getRefId(),
-            $user->getId(),
-            $user->getImportId()
+            $course->id,
+            $course->import_id,
+            $course->ref_id,
+            $user->id,
+            $user->import_id
         );
     }
 }

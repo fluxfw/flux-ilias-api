@@ -77,16 +77,16 @@ class CreateRoleCommand
 
     private function createRole(?ObjectDto $object, RoleDiffDto $diff) : ?ObjectIdDto
     {
-        if ($object === null || $object->getRefId() === null) {
+        if ($object === null || $object->ref_id === null) {
             return null;
         }
 
         $ilias_role = $this->newIliasRole();
 
-        $ilias_role->setTitle($diff->getTitle() ?? "");
+        $ilias_role->setTitle($diff->title ?? "");
 
         $ilias_role->create();
-        $this->ilias_rbac->admin()->assignRoleToFolder($ilias_role->getId(), $object->getRefId());
+        $this->ilias_rbac->admin()->assignRoleToFolder($ilias_role->getId(), $object->ref_id);
 
         $this->mapRoleDiff(
             $diff,
@@ -97,7 +97,7 @@ class CreateRoleCommand
 
         return ObjectIdDto::new(
             $ilias_role->getId() ?: null,
-            $diff->getImportId()
+            $diff->import_id
         );
     }
 }

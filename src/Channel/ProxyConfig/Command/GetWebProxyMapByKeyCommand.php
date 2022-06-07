@@ -39,7 +39,7 @@ class GetWebProxyMapByKeyCommand
     public function getWebProxyMapByKey(string $key) : ?WebProxyMapDto
     {
         foreach ($this->web_proxy_map as $web_proxy_map_dto) {
-            if ($web_proxy_map_dto->getTargetKey() === $key) {
+            if ($web_proxy_map_dto->target_key === $key) {
                 return $web_proxy_map_dto;
             }
         }

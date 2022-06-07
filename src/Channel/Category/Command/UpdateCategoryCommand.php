@@ -84,8 +84,8 @@ class UpdateCategoryCommand
         }
 
         $ilias_category = $this->getIliasCategory(
-            $category->getId(),
-            $category->getRefId()
+            $category->id,
+            $category->ref_id
         );
         if ($ilias_category === null) {
             return null;
@@ -99,9 +99,9 @@ class UpdateCategoryCommand
         $ilias_category->update();
 
         return ObjectIdDto::new(
-            $category->getId(),
-            $diff->getImportId() ?? $category->getImportId(),
-            $category->getRefId()
+            $category->id,
+            $diff->import_id ?? $category->import_id,
+            $category->ref_id
         );
     }
 }

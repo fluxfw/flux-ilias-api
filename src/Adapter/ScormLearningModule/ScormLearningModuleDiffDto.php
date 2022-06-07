@@ -5,14 +5,14 @@ namespace FluxIliasApi\Adapter\ScormLearningModule;
 class ScormLearningModuleDiffDto
 {
 
-    private ?bool $authoring_mode;
-    private ?string $description;
-    private ?int $didactic_template_id;
-    private ?string $import_id;
-    private ?bool $online;
-    private ?bool $sequencing_expert_mode;
-    private ?string $title;
-    private ?LegacyScormLearningModuleType $type;
+    public ?bool $authoring_mode;
+    public ?string $description;
+    public ?int $didactic_template_id;
+    public ?string $import_id;
+    public ?bool $online;
+    public ?bool $sequencing_expert_mode;
+    public ?string $title;
+    public ?LegacyScormLearningModuleType $type;
 
 
     private function __construct(
@@ -74,53 +74,5 @@ class ScormLearningModuleDiffDto
             $data->sequencing_expert_mode ?? null,
             $data->didactic_template_id ?? null
         );
-    }
-
-
-    public function getDescription() : ?string
-    {
-        return $this->description;
-    }
-
-
-    public function getDidacticTemplateId() : ?int
-    {
-        return $this->didactic_template_id;
-    }
-
-
-    public function getImportId() : ?string
-    {
-        return $this->import_id;
-    }
-
-
-    public function getTitle() : ?string
-    {
-        return $this->title;
-    }
-
-
-    public function getType() : ?LegacyScormLearningModuleType
-    {
-        return $this->type;
-    }
-
-
-    public function isAuthoringMode() : ?bool
-    {
-        return $this->authoring_mode;
-    }
-
-
-    public function isOnline() : ?bool
-    {
-        return $this->online;
-    }
-
-
-    public function isSequencingExpertMode() : ?bool
-    {
-        return $this->sequencing_expert_mode;
     }
 }

@@ -66,40 +66,40 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
 
     private function mapScormLearningModuleDiff(ScormLearningModuleDiffDto $diff, ilObjSCORMLearningModule $ilias_scorm_learning_module) : void
     {
-        if ($diff->getImportId() !== null) {
-            $ilias_scorm_learning_module->setImportId($diff->getImportId());
+        if ($diff->import_id !== null) {
+            $ilias_scorm_learning_module->setImportId($diff->import_id);
         }
 
-        if ($diff->getType() !== null) {
-            $ilias_scorm_learning_module->setSubType(ScormLearningModuleTypeMapping::mapExternalToInternal($diff->getType())->value);
+        if ($diff->type !== null) {
+            $ilias_scorm_learning_module->setSubType(ScormLearningModuleTypeMapping::mapExternalToInternal($diff->type)->value);
         }
 
-        if ($diff->isAuthoringMode() !== null) {
-            if ($diff->isAuthoringMode() && $ilias_scorm_learning_module->getSubType() !== LegacyInternalScormLearningModuleType::SCORM_2004()->value) {
+        if ($diff->authoring_mode !== null) {
+            if ($diff->authoring_mode && $ilias_scorm_learning_module->getSubType() !== LegacyInternalScormLearningModuleType::SCORM_2004()->value) {
                 throw new LogicException("Can only enable authoring mode for type " . LegacyScormLearningModuleType::SCORM_2004()->value);
             }
 
-            $ilias_scorm_learning_module->setEditable($diff->isAuthoringMode());
+            $ilias_scorm_learning_module->setEditable($diff->authoring_mode);
         }
 
-        if ($diff->isSequencingExpertMode() !== null) {
-            $ilias_scorm_learning_module->setSequencingExpertMode($diff->isSequencingExpertMode());
+        if ($diff->sequencing_expert_mode !== null) {
+            $ilias_scorm_learning_module->setSequencingExpertMode($diff->sequencing_expert_mode);
         }
 
-        if ($diff->isOnline() !== null) {
-            $ilias_scorm_learning_module->setOfflineStatus(!$diff->isOnline());
+        if ($diff->online !== null) {
+            $ilias_scorm_learning_module->setOfflineStatus(!$diff->online);
         }
 
-        if ($diff->getTitle() !== null) {
-            $ilias_scorm_learning_module->setTitle($diff->getTitle());
+        if ($diff->title !== null) {
+            $ilias_scorm_learning_module->setTitle($diff->title);
         }
 
-        if ($diff->getDescription() !== null) {
-            $ilias_scorm_learning_module->setDescription($diff->getDescription());
+        if ($diff->description !== null) {
+            $ilias_scorm_learning_module->setDescription($diff->description);
         }
 
-        if ($diff->getDidacticTemplateId() !== null) {
-            $ilias_scorm_learning_module->applyDidacticTemplate($diff->getDidacticTemplateId());
+        if ($diff->didactic_template_id !== null) {
+            $ilias_scorm_learning_module->applyDidacticTemplate($diff->didactic_template_id);
         }
     }
 

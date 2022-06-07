@@ -39,7 +39,7 @@ class GetApiProxyMapByKeyCommand
     public function getApiProxyMapByKey(string $key) : ?ApiProxyMapDto
     {
         foreach ($this->api_proxy_map as $api_proxy_map_dto) {
-            if ($api_proxy_map_dto->getTargetKey() === $key) {
+            if ($api_proxy_map_dto->target_key === $key) {
                 return $api_proxy_map_dto;
             }
         }

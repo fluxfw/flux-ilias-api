@@ -84,8 +84,8 @@ class UpdateGroupCommand
         }
 
         $ilias_group = $this->getIliasGroup(
-            $group->getId(),
-            $group->getRefId()
+            $group->id,
+            $group->ref_id
         );
         if ($ilias_group === null) {
             return null;
@@ -99,9 +99,9 @@ class UpdateGroupCommand
         $ilias_group->update();
 
         return ObjectIdDto::new(
-            $group->getId(),
-            $diff->getImportId() ?? $group->getImportId(),
-            $group->getRefId()
+            $group->id,
+            $diff->import_id ?? $group->import_id,
+            $group->ref_id
         );
     }
 }
