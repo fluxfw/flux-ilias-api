@@ -35,14 +35,14 @@ class UserDefinedFieldDto
     }
 
 
-    public static function newFromData(
-        object $data
+    public static function newFromObject(
+        object $user_definied_field
     ) : /*static*/ self
     {
         return static::new(
-            $data->id ?? null,
-            $data->name ?? null,
-            $data->value ?? null
+            $user_definied_field->id ?? null,
+            $user_definied_field->name ?? null,
+            $user_definied_field->value ?? null
         );
     }
 }

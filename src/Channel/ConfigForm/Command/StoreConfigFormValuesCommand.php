@@ -46,7 +46,7 @@ class StoreConfigFormValuesCommand
     public function storeConfigFormValues(object $values) : bool
     {
         $this->proxy_config_service->setApiProxyMap(
-            array_map([ApiProxyMapDto::class, "newFromData"], (array) ($values->{LegacyConfigKey::API_PROXY_MAP()->value} ?? null))
+            array_map([ApiProxyMapDto::class, "newFromObject"], (array) ($values->{LegacyConfigKey::API_PROXY_MAP()->value} ?? null))
         );
 
         $this->proxy_config_service->setEnableApiProxy(
@@ -100,7 +100,7 @@ class StoreConfigFormValuesCommand
         );
 
         $this->proxy_config_service->setWebProxyMap(
-            array_map([WebProxyMapDto::class, "newFromData"], (array) ($values->{LegacyConfigKey::WEB_PROXY_MAP()->value} ?? null))
+            array_map([WebProxyMapDto::class, "newFromObject"], (array) ($values->{LegacyConfigKey::WEB_PROXY_MAP()->value} ?? null))
         );
 
         return true;

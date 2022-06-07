@@ -61,17 +61,17 @@ class ObjectDiffDto
     }
 
 
-    public static function newFromData(
-        object $data
+    public static function newFromObject(
+        object $diff
     ) : /*static*/ self
     {
         return static::new(
-            $data->import_id ?? null,
-            $data->online ?? null,
-            $data->title ?? null,
-            $data->description ?? null,
-            $data->didactic_template_id ?? null,
-            ($custom_metadata = $data->custom_metadata ?? null) !== null ? array_map([CustomMetadataDto::class, "newFromData"], $custom_metadata) : null
+            $diff->import_id ?? null,
+            $diff->online ?? null,
+            $diff->title ?? null,
+            $diff->description ?? null,
+            $diff->didactic_template_id ?? null,
+            ($custom_metadata = $diff->custom_metadata ?? null) !== null ? array_map([CustomMetadataDto::class, "newFromObject"], $custom_metadata) : null
         );
     }
 }

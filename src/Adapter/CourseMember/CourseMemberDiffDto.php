@@ -62,19 +62,19 @@ class CourseMemberDiffDto
     }
 
 
-    public static function newFromData(
-        object $data
+    public static function newFromObject(
+        object $diff
     ) : /*static*/ self
     {
         return static::new(
-            $data->member_role ?? null,
-            $data->tutor_role ?? null,
-            $data->administrator_role ?? null,
-            ($learning_progress = $data->learning_progress ?? null) !== null ? LegacyObjectLearningProgress::from($learning_progress) : null,
-            $data->passed ?? null,
-            $data->access_refused ?? null,
-            $data->tutorial_support ?? null,
-            $data->notification ?? null
+            $diff->member_role ?? null,
+            $diff->tutor_role ?? null,
+            $diff->administrator_role ?? null,
+            ($learning_progress = $diff->learning_progress ?? null) !== null ? LegacyObjectLearningProgress::from($learning_progress) : null,
+            $diff->passed ?? null,
+            $diff->access_refused ?? null,
+            $diff->tutorial_support ?? null,
+            $diff->notification ?? null
         );
     }
 }

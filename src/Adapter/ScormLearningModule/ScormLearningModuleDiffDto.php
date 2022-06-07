@@ -60,19 +60,19 @@ class ScormLearningModuleDiffDto
     }
 
 
-    public static function newFromData(
-        object $data
+    public static function newFromObject(
+        object $diff
     ) : /*static*/ self
     {
         return static::new(
-            $data->import_id ?? null,
-            $data->title ?? null,
-            $data->description ?? null,
-            ($type = $data->type ?? null) !== null ? LegacyScormLearningModuleType::from($type) : null,
-            $data->online ?? null,
-            $data->authoring_mode ?? null,
-            $data->sequencing_expert_mode ?? null,
-            $data->didactic_template_id ?? null
+            $diff->import_id ?? null,
+            $diff->title ?? null,
+            $diff->description ?? null,
+            ($type = $diff->type ?? null) !== null ? LegacyScormLearningModuleType::from($type) : null,
+            $diff->online ?? null,
+            $diff->authoring_mode ?? null,
+            $diff->sequencing_expert_mode ?? null,
+            $diff->didactic_template_id ?? null
         );
     }
 }

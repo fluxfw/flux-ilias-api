@@ -47,16 +47,16 @@ class GroupMemberDiffDto
     }
 
 
-    public static function newFromData(
-        object $data
+    public static function newFromObject(
+        object $diff
     ) : /*static*/ self
     {
         return static::new(
-            $data->member_role ?? null,
-            $data->administrator_role ?? null,
-            ($learning_progress = $data->learning_progress ?? null) !== null ? LegacyObjectLearningProgress::from($learning_progress) : null,
-            $data->tutorial_support ?? null,
-            $data->notification ?? null
+            $diff->member_role ?? null,
+            $diff->administrator_role ?? null,
+            ($learning_progress = $diff->learning_progress ?? null) !== null ? LegacyObjectLearningProgress::from($learning_progress) : null,
+            $diff->tutorial_support ?? null,
+            $diff->notification ?? null
         );
     }
 }
