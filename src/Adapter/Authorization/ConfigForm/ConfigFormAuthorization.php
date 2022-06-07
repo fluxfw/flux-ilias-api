@@ -40,7 +40,7 @@ class ConfigFormAuthorization implements Authorization
 
     public function authorize(ServerRawRequestDto $request) : ?ServerResponseDto
     {
-        if ($request->getRoute() === "/") {
+        if ($request->route === "/") {
             return null;
         }
 

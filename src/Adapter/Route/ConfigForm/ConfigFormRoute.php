@@ -71,7 +71,7 @@ class ConfigFormRoute implements Route
                     "config",
                     "/static/flilre_config.html",
                     null,
-                    $request->getOriginalRoute()
+                    $request->original_route
                 )
             )
         );

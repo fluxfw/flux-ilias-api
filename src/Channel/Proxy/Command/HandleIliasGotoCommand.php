@@ -111,7 +111,7 @@ class HandleIliasGotoCommand
                     null,
                     LegacyDefaultStatus::_500()
                 ),
-                $request->getServerType()
+                $request->server_type
             );
 
             exit;
@@ -127,20 +127,20 @@ class HandleIliasGotoCommand
 
         $this->rest_api->handleDefaultResponse(
             ServerRawResponseDto::new(
-                $raw_body->getBody(),
+                $raw_body->body,
                 $status,
                 [
                     LegacyDefaultHeaderKey::CONTENT_TYPE()->value => $raw_body->getType()
                 ]
             ),
-            $request->getServerType()
+            $request->server_type
         );
     }
 
 
     private function getQueryParams(ServerRawRequestDto $request) : array
     {
-        $query_params = $request->getQueryParams();
+        $query_params = $request->query_params;
 
         unset($query_params["client_id"]);
         unset($query_params["lang"]);
@@ -187,9 +187,9 @@ class HandleIliasGotoCommand
         );
         if ($response instanceof ServerResponseDto) {
             $this->bodyResponse(
-                $response->getBody(),
+                $response->body,
                 $request,
-                $response->getStatus()
+                $response->status
             );
 
             exit;
@@ -201,16 +201,16 @@ class HandleIliasGotoCommand
                 rtrim($api_proxy_map->getUrl(), "/") . (!empty($route = trim($request->getQueryParam(
                     "route"
                 ), "/")) ? "/" . $route : ""),
-                $request->getMethod(),
+                $request->method,
                 $this->getQueryParams(
                     $request
                 ),
-                $request->getBody(),
+                $request->body,
                 [
                     LegacyDefaultHeaderKey::USER_AGENT()->value => "flux-ilias-api",
                     "X-Flux-Ilias-Api-User-Id"                  => $user->getId(),
                     "X-Flux-Ilias-Api-User-Import-Id"           => $user->getImportId() ?? ""
-                ] + array_filter($request->getHeaders(), fn(string $key) : bool => in_array($key, [
+                ] + array_filter($request->headers, fn(string $key) : bool => in_array($key, [
                     LegacyDefaultHeaderKey::ACCEPT()->value
                 ]), ARRAY_FILTER_USE_KEY),
                 true,
@@ -222,13 +222,13 @@ class HandleIliasGotoCommand
 
         $this->rest_api->handleDefaultResponse(
             ServerRawResponseDto::new(
-                $response->getBody(),
-                $response->getStatus(),
-                array_filter($response->getHeaders(), fn(string $key) : bool => in_array($key, [
+                $response->body,
+                $response->status,
+                array_filter($response->headers, fn(string $key) : bool => in_array($key, [
                     LegacyDefaultHeaderKey::CONTENT_TYPE()->value
                 ]), ARRAY_FILTER_USE_KEY)
             ),
-            $request->getServerType()
+            $request->server_type
         );
 
         exit;
@@ -260,22 +260,22 @@ class HandleIliasGotoCommand
                     "/" . trim($request->getQueryParam(
                         "route"
                     ), "/"),
-                    $request->getOriginalRoute(),
-                    $request->getMethod(),
-                    $request->getServerType(),
+                    $request->original_route,
+                    $request->method,
+                    $request->server_type,
                     $this->getQueryParams(
                         $request
                     ),
-                    $request->getBody(),
-                    $request->getPost(),
-                    $request->getFiles(),
-                    $request->getHeaders(),
-                    $request->getCookies()
+                    $request->body,
+                    $request->post,
+                    $request->files,
+                    $request->headers,
+                    $request->cookies
                 ),
                 $route_collector,
                 $authorization
             ),
-            $request->getServerType()
+            $request->server_type
         );
 
         exit;
@@ -310,7 +310,7 @@ class HandleIliasGotoCommand
                     $this->getQueryParams(
                         $request
                     ),
-                    $request->getOriginalRoute()
+                    $request->original_route
                 )
             ),
             $request
