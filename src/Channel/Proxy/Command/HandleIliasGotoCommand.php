@@ -130,7 +130,7 @@ class HandleIliasGotoCommand
                 $raw_body->body,
                 $status,
                 [
-                    LegacyDefaultHeaderKey::CONTENT_TYPE()->value => $raw_body->getType()
+                    LegacyDefaultHeaderKey::CONTENT_TYPE()->value => $raw_body->type
                 ]
             ),
             $request->server_type
