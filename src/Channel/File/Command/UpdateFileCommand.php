@@ -76,8 +76,8 @@ class UpdateFileCommand
         }
 
         $ilias_file = $this->getIliasFile(
-            $file->getId(),
-            $file->getRefId()
+            $file->id,
+            $file->ref_id
         );
         if ($ilias_file === null) {
             return null;
@@ -91,9 +91,9 @@ class UpdateFileCommand
         $ilias_file->update();
 
         return ObjectIdDto::new(
-            $file->getId(),
-            $diff->getImportId() ?? $file->getImportId(),
-            $file->getRefId()
+            $file->id,
+            $diff->import_id ?? $file->import_id,
+            $file->ref_id
         );
     }
 }

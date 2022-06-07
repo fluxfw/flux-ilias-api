@@ -3,20 +3,19 @@
 namespace FluxIliasApi\Adapter\Proxy;
 
 use FluxIliasApi\Channel\Proxy\LegacyProxyTarget;
-use JsonSerializable;
 
-class WebProxyMapDto implements JsonSerializable
+class WebProxyMapDto
 {
 
-    private string $iframe_url;
-    private bool $menu_item;
-    private ?string $menu_title;
-    private string $page_title;
-    private ?string $rewrite_url;
-    private string $short_title;
-    private string $target_key;
-    private string $view_title;
-    private bool $visible_public_menu_item;
+    public string $iframe_url;
+    public bool $menu_item;
+    public ?string $menu_title;
+    public string $page_title;
+    public ?string $rewrite_url;
+    public string $short_title;
+    public string $target_key;
+    public string $view_title;
+    public bool $visible_public_menu_item;
 
 
     private function __construct(
@@ -86,74 +85,14 @@ class WebProxyMapDto implements JsonSerializable
     }
 
 
-    public function getIframeUrl() : string
-    {
-        return $this->iframe_url;
-    }
-
-
-    public function getMenuTitle() : string
-    {
-        return $this->menu_title ?? "";
-    }
-
-
     public function getMenuTitleWithDefault() : string
     {
         return $this->menu_title ?? $this->target_key;
     }
 
 
-    public function getPageTitle() : string
-    {
-        return $this->page_title;
-    }
-
-
-    public function getRewriteUrl() : string
-    {
-        return $this->rewrite_url ?? "";
-    }
-
-
     public function getRewriteUrlWithDefault() : string
     {
         return $this->rewrite_url ?? "/goto.php?target=" . LegacyProxyTarget::WEB_PROXY()->value . $this->target_key;
-    }
-
-
-    public function getShortTitle() : string
-    {
-        return $this->short_title;
-    }
-
-
-    public function getTargetKey() : string
-    {
-        return $this->target_key;
-    }
-
-
-    public function getViewTitle() : string
-    {
-        return $this->view_title;
-    }
-
-
-    public function isMenuItem() : bool
-    {
-        return $this->menu_item;
-    }
-
-
-    public function isVisiblePublicMenuItem() : bool
-    {
-        return $this->visible_public_menu_item;
-    }
-
-
-    public function jsonSerialize() : object
-    {
-        return (object) get_object_vars($this);
     }
 }

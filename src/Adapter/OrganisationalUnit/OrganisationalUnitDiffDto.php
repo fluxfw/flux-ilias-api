@@ -5,11 +5,11 @@ namespace FluxIliasApi\Adapter\OrganisationalUnit;
 class OrganisationalUnitDiffDto
 {
 
-    private ?string $description;
-    private ?int $didactic_template_id;
-    private ?string $external_id;
-    private ?string $title;
-    private ?int $type_id;
+    public ?string $description;
+    public ?int $didactic_template_id;
+    public ?string $external_id;
+    public ?string $title;
+    public ?int $type_id;
 
 
     private function __construct(
@@ -56,35 +56,5 @@ class OrganisationalUnitDiffDto
             $data->external_id ?? null,
             $data->didactic_template_id ?? null
         );
-    }
-
-
-    public function getDescription() : ?string
-    {
-        return $this->description;
-    }
-
-
-    public function getDidacticTemplateId() : ?int
-    {
-        return $this->didactic_template_id;
-    }
-
-
-    public function getExternalId() : ?string
-    {
-        return $this->external_id;
-    }
-
-
-    public function getTitle() : ?string
-    {
-        return $this->title;
-    }
-
-
-    public function getTypeId() : ?int
-    {
-        return $this->type_id;
     }
 }

@@ -68,18 +68,18 @@ class CreateOrganisationalUnitCommand
 
     private function createOrganisationalUnit(?OrganisationalUnitDto $parent_organisational_unit, OrganisationalUnitDiffDto $diff) : ?OrganisationalUnitIdDto
     {
-        if ($parent_organisational_unit === null || $parent_organisational_unit->getRefId() === null) {
+        if ($parent_organisational_unit === null || $parent_organisational_unit->ref_id === null) {
             return null;
         }
 
         $ilias_organisational_unit = $this->newIliasOrganisationalUnit();
 
-        $ilias_organisational_unit->setTitle($diff->getTitle() ?? "");
+        $ilias_organisational_unit->setTitle($diff->title ?? "");
 
         $ilias_organisational_unit->create();
         $ilias_organisational_unit->createReference();
-        $ilias_organisational_unit->putInTree($parent_organisational_unit->getRefId());
-        $ilias_organisational_unit->setPermissions($parent_organisational_unit->getRefId());
+        $ilias_organisational_unit->putInTree($parent_organisational_unit->ref_id);
+        $ilias_organisational_unit->setPermissions($parent_organisational_unit->ref_id);
 
         $this->mapOrganisationalUnitDiff(
             $diff,
@@ -90,7 +90,7 @@ class CreateOrganisationalUnitCommand
 
         return OrganisationalUnitIdDto::new(
             $ilias_organisational_unit->getId() ?: null,
-            $diff->getExternalId(),
+            $diff->external_id,
             $ilias_organisational_unit->getRefId() ?: null
         );
     }

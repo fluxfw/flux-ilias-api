@@ -2,13 +2,11 @@
 
 namespace FluxIliasApi\Adapter\Proxy;
 
-use JsonSerializable;
-
-class ApiProxyMapDto implements JsonSerializable
+class ApiProxyMapDto
 {
 
-    private string $target_key;
-    private string $url;
+    public string $target_key;
+    public string $url;
 
 
     private function __construct(
@@ -40,23 +38,5 @@ class ApiProxyMapDto implements JsonSerializable
             $data->target_key ?? "",
             $data->url ?? ""
         );
-    }
-
-
-    public function getTargetKey() : string
-    {
-        return $this->target_key;
-    }
-
-
-    public function getUrl() : string
-    {
-        return $this->url;
-    }
-
-
-    public function jsonSerialize() : object
-    {
-        return (object) get_object_vars($this);
     }
 }

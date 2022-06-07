@@ -51,7 +51,7 @@ class GetChildrenCommand
         }
 
         return $this->getChildren(
-            $object->getId(),
+            $object->id,
             null,
             null,
             $ref_ids,
@@ -75,7 +75,7 @@ class GetChildrenCommand
 
         return $this->getChildren(
             null,
-            $object->getImportId(),
+            $object->import_id,
             null,
             $ref_ids,
             $in_trash
@@ -99,7 +99,7 @@ class GetChildrenCommand
         return $this->getChildren(
             null,
             null,
-            $object->getRefId(),
+            $object->ref_id,
             $ref_ids,
             $in_trash
         );

@@ -7,44 +7,44 @@ use FluxIliasApi\Adapter\CustomMetadata\CustomMetadataDto;
 class CourseDiffDto
 {
 
-    private ?bool $add_to_favourites;
-    private ?bool $availability_always_visible;
-    private ?int $availability_end;
-    private ?int $availability_start;
-    private ?bool $badges;
-    private ?bool $calendar;
-    private ?bool $calendar_block;
-    private ?string $contact_consultation;
-    private ?string $contact_email;
-    private ?string $contact_name;
-    private ?string $contact_phone;
-    private ?string $contact_responsibility;
+    public ?bool $add_to_favourites;
+    public ?bool $availability_always_visible;
+    public ?int $availability_end;
+    public ?int $availability_start;
+    public ?bool $badges;
+    public ?bool $calendar;
+    public ?bool $calendar_block;
+    public ?string $contact_consultation;
+    public ?string $contact_email;
+    public ?string $contact_name;
+    public ?string $contact_phone;
+    public ?string $contact_responsibility;
     /**
      * @var CustomMetadataDto[]|null
      */
-    private ?array $custom_metadata;
-    private ?bool $default_object_rating;
-    private ?string $description;
-    private ?int $didactic_template_id;
-    private ?string $import_id;
-    private ?string $important_information;
-    private ?string $mail_subject_prefix;
-    private ?LegacyCourseMailToMembersType $mail_to_members_type;
-    private ?bool $manage_custom_metadata;
-    private ?bool $news;
-    private ?bool $online;
-    private ?int $period_end;
-    private ?int $period_start;
-    private ?bool $period_time_indication;
-    private ?bool $period_unset;
-    private ?bool $resources;
-    private ?bool $send_welcome_email;
-    private ?bool $show_members;
-    private ?bool $show_members_participants_list;
-    private ?string $syllabus;
-    private ?bool $tag_cloud;
-    private ?string $target_group;
-    private ?string $title;
+    public ?array $custom_metadata;
+    public ?bool $default_object_rating;
+    public ?string $description;
+    public ?int $didactic_template_id;
+    public ?string $import_id;
+    public ?string $important_information;
+    public ?string $mail_subject_prefix;
+    public ?LegacyCourseMailToMembersType $mail_to_members_type;
+    public ?bool $manage_custom_metadata;
+    public ?bool $news;
+    public ?bool $online;
+    public ?int $period_end;
+    public ?int $period_start;
+    public ?bool $period_time_indication;
+    public ?bool $period_unset;
+    public ?bool $resources;
+    public ?bool $send_welcome_email;
+    public ?bool $show_members;
+    public ?bool $show_members_participants_list;
+    public ?string $syllabus;
+    public ?bool $tag_cloud;
+    public ?string $target_group;
+    public ?string $title;
 
 
     /**
@@ -247,218 +247,5 @@ class CourseDiffDto
             $data->didactic_template_id ?? null,
             ($custom_metadata = $data->custom_metadata ?? null) !== null ? array_map([CustomMetadataDto::class, "newFromData"], $custom_metadata) : null
         );
-    }
-
-
-    public function getAvailabilityEnd() : ?int
-    {
-        return $this->availability_end;
-    }
-
-
-    public function getAvailabilityStart() : ?int
-    {
-        return $this->availability_start;
-    }
-
-
-    public function getContactConsultation() : ?string
-    {
-        return $this->contact_consultation;
-    }
-
-
-    public function getContactEmail() : ?string
-    {
-        return $this->contact_email;
-    }
-
-
-    public function getContactName() : ?string
-    {
-        return $this->contact_name;
-    }
-
-
-    public function getContactPhone() : ?string
-    {
-        return $this->contact_phone;
-    }
-
-
-    public function getContactResponsibility() : ?string
-    {
-        return $this->contact_responsibility;
-    }
-
-
-    /**
-     * @return CustomMetadataDto[]|null
-     */
-    public function getCustomMetadata() : ?array
-    {
-        return $this->custom_metadata;
-    }
-
-
-    public function getDescription() : ?string
-    {
-        return $this->description;
-    }
-
-
-    public function getDidacticTemplateId() : ?int
-    {
-        return $this->didactic_template_id;
-    }
-
-
-    public function getImportId() : ?string
-    {
-        return $this->import_id;
-    }
-
-
-    public function getImportantInformation() : ?string
-    {
-        return $this->important_information;
-    }
-
-
-    public function getMailSubjectPrefix() : ?string
-    {
-        return $this->mail_subject_prefix;
-    }
-
-
-    public function getMailToMembersType() : ?LegacyCourseMailToMembersType
-    {
-        return $this->mail_to_members_type;
-    }
-
-
-    public function getPeriodEnd() : ?int
-    {
-        return $this->period_end;
-    }
-
-
-    public function getPeriodStart() : ?int
-    {
-        return $this->period_start;
-    }
-
-
-    public function getSyllabus() : ?string
-    {
-        return $this->syllabus;
-    }
-
-
-    public function getTargetGroup() : ?string
-    {
-        return $this->target_group;
-    }
-
-
-    public function getTitle() : ?string
-    {
-        return $this->title;
-    }
-
-
-    public function isAddToFavourites() : ?bool
-    {
-        return $this->add_to_favourites;
-    }
-
-
-    public function isAvailabilityAlwaysVisible() : ?bool
-    {
-        return $this->availability_always_visible;
-    }
-
-
-    public function isBadges() : ?bool
-    {
-        return $this->badges;
-    }
-
-
-    public function isCalendar() : ?bool
-    {
-        return $this->calendar;
-    }
-
-
-    public function isCalendarBlock() : ?bool
-    {
-        return $this->calendar_block;
-    }
-
-
-    public function isDefaultObjectRating() : ?bool
-    {
-        return $this->default_object_rating;
-    }
-
-
-    public function isManageCustomMetadata() : ?bool
-    {
-        return $this->manage_custom_metadata;
-    }
-
-
-    public function isNews() : ?bool
-    {
-        return $this->news;
-    }
-
-
-    public function isOnline() : ?bool
-    {
-        return $this->online;
-    }
-
-
-    public function isPeriodTimeIndication() : ?bool
-    {
-        return $this->period_time_indication;
-    }
-
-
-    public function isPeriodUnset() : ?bool
-    {
-        return $this->period_unset;
-    }
-
-
-    public function isResources() : ?bool
-    {
-        return $this->resources;
-    }
-
-
-    public function isSendWelcomeEmail() : ?bool
-    {
-        return $this->send_welcome_email;
-    }
-
-
-    public function isShowMembers() : ?bool
-    {
-        return $this->show_members;
-    }
-
-
-    public function isShowMembersParticipantsList() : ?bool
-    {
-        return $this->show_members_participants_list;
-    }
-
-
-    public function isTagCloud() : ?bool
-    {
-        return $this->tag_cloud;
     }
 }

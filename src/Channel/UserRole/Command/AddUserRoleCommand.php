@@ -100,15 +100,15 @@ class AddUserRoleCommand
             return null;
         }
 
-        if (!$this->ilias_rbac->review()->isAssigned($user->getId(), $role->getId())) {
-            $this->ilias_rbac->admin()->assignUser($role->getId(), $user->getId());
+        if (!$this->ilias_rbac->review()->isAssigned($user->id, $role->id)) {
+            $this->ilias_rbac->admin()->assignUser($role->id, $user->id);
         }
 
         return UserRoleDto::new(
-            $user->getId(),
-            $user->getImportId(),
-            $role->getId(),
-            $role->getImportId()
+            $user->id,
+            $user->import_id,
+            $role->id,
+            $role->import_id
         );
     }
 }

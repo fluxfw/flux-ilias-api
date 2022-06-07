@@ -130,23 +130,23 @@ class RemoveGroupMemberCommand
         }
 
         $ilias_group = $this->getIliasGroup(
-            $group->getId(),
-            $group->getRefId()
+            $group->id,
+            $group->ref_id
         );
         if ($ilias_group === null) {
             return null;
         }
 
-        if ($ilias_group->getMembersObject()->isAssigned($user->getId())) {
-            $ilias_group->getMembersObject()->delete($user->getId());
+        if ($ilias_group->getMembersObject()->isAssigned($user->id)) {
+            $ilias_group->getMembersObject()->delete($user->id);
         }
 
         return GroupMemberIdDto::new(
-            $group->getId(),
-            $group->getImportId(),
-            $group->getRefId(),
-            $user->getId(),
-            $user->getImportId()
+            $group->id,
+            $group->import_id,
+            $group->ref_id,
+            $user->id,
+            $user->import_id
         );
     }
 }

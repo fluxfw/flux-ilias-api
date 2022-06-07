@@ -71,18 +71,18 @@ class CreateFileCommand
 
     private function createFile(?ObjectDto $parent_object, FileDiffDto $diff) : ?ObjectIdDto
     {
-        if ($parent_object === null || $parent_object->getRefId() === null) {
+        if ($parent_object === null || $parent_object->ref_id === null) {
             return null;
         }
 
         $ilias_file = $this->newIliasFile();
 
-        $ilias_file->setTitle($diff->getTitle() ?? "");
+        $ilias_file->setTitle($diff->title ?? "");
 
         $ilias_file->create();
         $ilias_file->createReference();
-        $ilias_file->putInTree($parent_object->getRefId());
-        $ilias_file->setPermissions($parent_object->getRefId());
+        $ilias_file->putInTree($parent_object->ref_id);
+        $ilias_file->setPermissions($parent_object->ref_id);
 
         $this->mapFileDiff(
             $diff,
@@ -93,7 +93,7 @@ class CreateFileCommand
 
         return ObjectIdDto::new(
             $ilias_file->getId() ?: null,
-            $diff->getImportId(),
+            $diff->import_id,
             $ilias_file->getRefId() ?: null
         );
     }

@@ -2,17 +2,15 @@
 
 namespace FluxIliasApi\Adapter\Change;
 
-use JsonSerializable;
-
-class ChangeDto implements JsonSerializable
+class ChangeDto
 {
 
-    private object $data;
-    private int $id;
-    private float $time;
-    private LegacyChangeType $type;
-    private int $user_id;
-    private ?string $user_import_id;
+    public object $data;
+    public int $id;
+    public float $time;
+    public LegacyChangeType $type;
+    public int $user_id;
+    public ?string $user_import_id;
 
 
     private function __construct(
@@ -49,47 +47,5 @@ class ChangeDto implements JsonSerializable
             $user_import_id,
             $data
         );
-    }
-
-
-    public function getData() : object
-    {
-        return $this->data;
-    }
-
-
-    public function getId() : int
-    {
-        return $this->id;
-    }
-
-
-    public function getTime() : float
-    {
-        return $this->time;
-    }
-
-
-    public function getType() : LegacyChangeType
-    {
-        return $this->type;
-    }
-
-
-    public function getUserId() : int
-    {
-        return $this->user_id;
-    }
-
-
-    public function getUserImportId() : ?string
-    {
-        return $this->user_import_id;
-    }
-
-
-    public function jsonSerialize() : array
-    {
-        return get_object_vars($this);
     }
 }

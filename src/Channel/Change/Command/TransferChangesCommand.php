@@ -78,7 +78,7 @@ class TransferChangesCommand
         $count = count($changes);
         if ($count > 0) {
             $this->change_service->setLastTransferredChangeTime(
-                $changes[$count - 1]->getTime()
+                $changes[$count - 1]->time
             );
         }
 

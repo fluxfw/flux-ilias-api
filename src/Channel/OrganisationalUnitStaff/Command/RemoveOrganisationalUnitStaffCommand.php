@@ -152,21 +152,21 @@ class RemoveOrganisationalUnitStaffCommand
         }
 
         $ilias_organisational_unit_staff = $this->getIliasOrganisationalUnitStaff(
-            $organisational_unit->getRefId(),
-            $user->getId(),
-            $organisational_unit_position->getId()
+            $organisational_unit->ref_id,
+            $user->id,
+            $organisational_unit_position->id
         );
         if ($ilias_organisational_unit_staff !== null) {
             $ilias_organisational_unit_staff->delete();
         }
 
         return OrganisationalUnitStaffDto::new(
-            $organisational_unit->getId(),
-            $organisational_unit->getExternalId(),
-            $organisational_unit->getRefId(),
-            $user->getId(),
-            $user->getImportId(),
-            $organisational_unit_position->getId()
+            $organisational_unit->id,
+            $organisational_unit->external_id,
+            $organisational_unit->ref_id,
+            $user->id,
+            $user->import_id,
+            $organisational_unit_position->id
         );
     }
 }

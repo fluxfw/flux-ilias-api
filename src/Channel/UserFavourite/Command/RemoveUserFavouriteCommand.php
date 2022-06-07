@@ -132,16 +132,16 @@ class RemoveUserFavouriteCommand
             return null;
         }
 
-        if ($this->ilias_favourite->ifIsFavourite($user->getId(), $object->getRefId())) {
-            $this->ilias_favourite->remove($user->getId(), $object->getRefId());
+        if ($this->ilias_favourite->ifIsFavourite($user->id, $object->ref_id)) {
+            $this->ilias_favourite->remove($user->id, $object->ref_id);
         }
 
         return UserFavouriteDto::new(
-            $user->getId(),
-            $user->getImportId(),
-            $object->getId(),
-            $object->getImportId(),
-            $object->getRefId()
+            $user->id,
+            $user->import_id,
+            $object->id,
+            $object->import_id,
+            $object->ref_id
         );
     }
 }

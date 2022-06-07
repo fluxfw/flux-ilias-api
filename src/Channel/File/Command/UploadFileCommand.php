@@ -85,8 +85,8 @@ class UploadFileCommand
         }
 
         $ilias_file = $this->getIliasFile(
-            $file->getId(),
-            $file->getRefId()
+            $file->id,
+            $file->ref_id
         );
         if ($ilias_file === null) {
             return null;
@@ -108,7 +108,7 @@ class UploadFileCommand
             return null;
         }
 
-        $version_title = (($title ?: $result->getName()) ?: $file->getTitle()) ?? "";
+        $version_title = (($title ?: $result->getName()) ?: $file->title) ?? "";
 
         if ($replace) {
             if (method_exists($ilias_file, "replaceWithUpload")) {
@@ -127,9 +127,9 @@ class UploadFileCommand
         }
 
         return ObjectIdDto::new(
-            $file->getId(),
-            $file->getImportId(),
-            $file->getRefId()
+            $file->id,
+            $file->import_id,
+            $file->ref_id
         );
     }
 }

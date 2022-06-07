@@ -79,18 +79,18 @@ class CreateCourseCommand
 
     private function createCourse(?ObjectDto $parent_object, CourseDiffDto $diff) : ?ObjectIdDto
     {
-        if ($parent_object === null || $parent_object->getRefId() === null) {
+        if ($parent_object === null || $parent_object->ref_id === null) {
             return null;
         }
 
         $ilias_course = $this->newIliasCourse();
 
-        $ilias_course->setTitle($diff->getTitle() ?? "");
+        $ilias_course->setTitle($diff->title ?? "");
 
         $ilias_course->create();
         $ilias_course->createReference();
-        $ilias_course->putInTree($parent_object->getRefId());
-        $ilias_course->setPermissions($parent_object->getRefId());
+        $ilias_course->putInTree($parent_object->ref_id);
+        $ilias_course->setPermissions($parent_object->ref_id);
 
         $this->mapCourseDiff(
             $diff,
@@ -101,7 +101,7 @@ class CreateCourseCommand
 
         return ObjectIdDto::new(
             $ilias_course->getId() ?: null,
-            $diff->getImportId(),
+            $diff->import_id,
             $ilias_course->getRefId() ?: null
         );
     }

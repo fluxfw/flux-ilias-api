@@ -21,6 +21,6 @@ class HasAccessToConfigFormCommand
 
     public function hasAccessToConfigForm(?UserDto $user) : bool
     {
-        return $user !== null && $user->getId() === intval(SYSTEM_USER_ID);
+        return $user !== null && $user->id === intval(SYSTEM_USER_ID);
     }
 }

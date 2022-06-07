@@ -2,16 +2,14 @@
 
 namespace FluxIliasApi\Adapter\CourseMember;
 
-use JsonSerializable;
-
-class CourseMemberIdDto implements JsonSerializable
+class CourseMemberIdDto
 {
 
-    private ?int $course_id;
-    private ?string $course_import_id;
-    private ?int $course_ref_id;
-    private ?int $user_id;
-    private ?string $user_import_id;
+    public ?int $course_id;
+    public ?string $course_import_id;
+    public ?int $course_ref_id;
+    public ?int $user_id;
+    public ?string $user_import_id;
 
 
     private function __construct(
@@ -44,41 +42,5 @@ class CourseMemberIdDto implements JsonSerializable
             $user_id,
             $user_import_id
         );
-    }
-
-
-    public function getCourseId() : ?int
-    {
-        return $this->course_id;
-    }
-
-
-    public function getCourseImportId() : ?string
-    {
-        return $this->course_import_id;
-    }
-
-
-    public function getCourseRefId() : ?int
-    {
-        return $this->course_ref_id;
-    }
-
-
-    public function getUserId() : ?int
-    {
-        return $this->user_id;
-    }
-
-
-    public function getUserImportId() : ?string
-    {
-        return $this->user_import_id;
-    }
-
-
-    public function jsonSerialize() : array
-    {
-        return get_object_vars($this);
     }
 }

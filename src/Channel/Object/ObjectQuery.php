@@ -28,7 +28,7 @@ trait ObjectQuery
         $wizard_options->saveOwner($this->ilias_user->getId());
         $wizard_options->saveRoot($ilias_object->getRefId());
 
-        $wizard_options->initContainer($ilias_object->getRefId(), $parent_object->getRefId());
+        $wizard_options->initContainer($ilias_object->getRefId(), $parent_object->ref_id);
         foreach ($this->ilias_tree->getSubTree($this->ilias_tree->getNodeData($ilias_object->getRefId())) as $child) {
             if (intval($child["ref_id"]) === intval($ilias_object->getRefId())) {
                 continue;
@@ -188,30 +188,30 @@ ORDER BY object_reference.ref_id ASC";
 
     private function mapObjectDiff(ObjectDiffDto $diff, ilObject $ilias_object) : void
     {
-        if ($diff->getImportId() !== null) {
-            $ilias_object->setImportId($diff->getImportId());
+        if ($diff->import_id !== null) {
+            $ilias_object->setImportId($diff->import_id);
         }
 
-        if ($diff->isOnline() !== null) {
-            $ilias_object->setOfflineStatus(!$diff->isOnline());
+        if ($diff->online !== null) {
+            $ilias_object->setOfflineStatus(!$diff->online);
         }
 
-        if ($diff->getTitle() !== null) {
-            $ilias_object->setTitle($diff->getTitle());
+        if ($diff->title !== null) {
+            $ilias_object->setTitle($diff->title);
         }
 
-        if ($diff->getDescription() !== null) {
-            $ilias_object->setDescription($diff->getDescription());
+        if ($diff->description !== null) {
+            $ilias_object->setDescription($diff->description);
         }
 
-        if ($diff->getDidacticTemplateId() !== null) {
-            $ilias_object->applyDidacticTemplate($diff->getDidacticTemplateId());
+        if ($diff->didactic_template_id !== null) {
+            $ilias_object->applyDidacticTemplate($diff->didactic_template_id);
         }
 
-        if ($diff->getCustomMetadata() !== null) {
+        if ($diff->custom_metadata !== null) {
             $this->updateCustomMetadata(
                 $ilias_object->getId(),
-                $diff->getCustomMetadata()
+                $diff->custom_metadata
             );
         }
     }

@@ -139,29 +139,29 @@ class UpdateGroupMemberCommand
         }
 
         $ilias_group = $this->getIliasGroup(
-            $group->getId(),
-            $group->getRefId()
+            $group->id,
+            $group->ref_id
         );
         if ($ilias_group === null) {
             return null;
         }
 
-        if (!$ilias_group->getMembersObject()->isAssigned($user->getId())) {
+        if (!$ilias_group->getMembersObject()->isAssigned($user->id)) {
             return null;
         }
 
         $this->mapGroupMemberDiff(
             $diff,
-            $user->getId(),
+            $user->id,
             $ilias_group
         );
 
         return GroupMemberIdDto::new(
-            $group->getId(),
-            $group->getImportId(),
-            $group->getRefId(),
-            $user->getId(),
-            $user->getImportId()
+            $group->id,
+            $group->import_id,
+            $group->ref_id,
+            $user->id,
+            $user->import_id
         );
     }
 }

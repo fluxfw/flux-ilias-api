@@ -72,30 +72,30 @@ class CreateScormLearningModuleCommand
 
     private function createScormLearningModule(?ObjectDto $parent_object, ScormLearningModuleDiffDto $diff) : ?ObjectIdDto
     {
-        if ($parent_object === null || $parent_object->getRefId() === null) {
+        if ($parent_object === null || $parent_object->ref_id === null) {
             return null;
         }
 
         $ilias_scorm_learning_module = $this->newIliasScormLearningModule(
-            $diff->getType()
+            $diff->type
         );
 
-        $ilias_scorm_learning_module->setTitle($diff->getTitle() ?? "");
+        $ilias_scorm_learning_module->setTitle($diff->title ?? "");
 
         $ilias_scorm_learning_module->create();
         $ilias_scorm_learning_module->createReference();
-        $ilias_scorm_learning_module->putInTree($parent_object->getRefId());
-        $ilias_scorm_learning_module->setPermissions($parent_object->getRefId());
+        $ilias_scorm_learning_module->putInTree($parent_object->ref_id);
+        $ilias_scorm_learning_module->setPermissions($parent_object->ref_id);
 
         $this->mapScormLearningModuleDiff(
             $diff,
             $ilias_scorm_learning_module
         );
 
-        $ilias_scorm_learning_module->setModuleVersion($diff->isAuthoringMode() ? 1 : 0);
+        $ilias_scorm_learning_module->setModuleVersion($diff->authoring_mode ? 1 : 0);
 
         $ilias_scorm_learning_module->createDataDirectory();
-        if ($diff->isAuthoringMode() && $ilias_scorm_learning_module instanceof ilObjSCORM2004LearningModule) {
+        if ($diff->authoring_mode && $ilias_scorm_learning_module instanceof ilObjSCORM2004LearningModule) {
             $ilias_scorm_learning_module->createScorm2004Tree();
         }
 
@@ -103,7 +103,7 @@ class CreateScormLearningModuleCommand
 
         return ObjectIdDto::new(
             $ilias_scorm_learning_module->getId() ?: null,
-            $diff->getImportId(),
+            $diff->import_id,
             $ilias_scorm_learning_module->getRefId() ?: null
         );
     }

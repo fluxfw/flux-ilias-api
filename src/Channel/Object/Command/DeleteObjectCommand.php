@@ -79,27 +79,27 @@ class DeleteObjectCommand
         }
 
         $ilias_object = $this->getIliasObject(
-            $object->getId(),
-            $object->getRefId()
+            $object->id,
+            $object->ref_id
         );
         if ($ilias_object === null) {
             return null;
         }
 
-        if ($force || $object->getRefId() === null || $object->getParentRefId() === null || $ilias_object instanceof ilObjOrgUnit || $ilias_object instanceof ilObjRole
+        if ($force || $object->ref_id === null || $object->parent_ref_id === null || $ilias_object instanceof ilObjOrgUnit || $ilias_object instanceof ilObjRole
             || $ilias_object instanceof ilObjUser
         ) {
             $ilias_object->delete();
         } else {
-            if (!$object->isInTrash()) {
-                ilRepUtil::deleteObjects($object->getParentRefId(), [$object->getRefId()]);
+            if (!$object->in_trash) {
+                ilRepUtil::deleteObjects($object->parent_ref_id, [$object->ref_id]);
             }
         }
 
         return ObjectIdDto::new(
-            $object->getId(),
-            $object->getImportId(),
-            $object->getRefId()
+            $object->id,
+            $object->import_id,
+            $object->ref_id
         );
     }
 }

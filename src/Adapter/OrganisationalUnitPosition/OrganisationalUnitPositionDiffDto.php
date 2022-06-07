@@ -8,9 +8,9 @@ class OrganisationalUnitPositionDiffDto
     /**
      * @var OrganisationalUnitPositionAuthorityDto[]|null
      */
-    private ?array $authorities;
-    private ?string $description;
-    private ?string $title;
+    public ?array $authorities;
+    public ?string $description;
+    public ?string $title;
 
 
     /**
@@ -53,26 +53,5 @@ class OrganisationalUnitPositionDiffDto
             $data->description ?? null,
             ($authorities = $data->authorities ?? null) !== null ? array_map([OrganisationalUnitPositionAuthorityDto::class, "newFromData"], $authorities) : null
         );
-    }
-
-
-    /**
-     * @return OrganisationalUnitPositionAuthorityDto[]|null
-     */
-    public function getAuthorities() : ?array
-    {
-        return $this->authorities;
-    }
-
-
-    public function getDescription() : ?string
-    {
-        return $this->description;
-    }
-
-
-    public function getTitle() : ?string
-    {
-        return $this->title;
     }
 }

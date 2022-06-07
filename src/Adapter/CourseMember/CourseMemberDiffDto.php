@@ -7,14 +7,14 @@ use FluxIliasApi\Adapter\ObjectLearningProgress\LegacyObjectLearningProgress;
 class CourseMemberDiffDto
 {
 
-    private ?bool $access_refused;
-    private ?bool $administrator_role;
-    private ?LegacyObjectLearningProgress $learning_progress;
-    private ?bool $member_role;
-    private ?bool $notification;
-    private ?bool $passed;
-    private ?bool $tutor_role;
-    private ?bool $tutorial_support;
+    public ?bool $access_refused;
+    public ?bool $administrator_role;
+    public ?LegacyObjectLearningProgress $learning_progress;
+    public ?bool $member_role;
+    public ?bool $notification;
+    public ?bool $passed;
+    public ?bool $tutor_role;
+    public ?bool $tutorial_support;
 
 
     private function __construct(
@@ -76,53 +76,5 @@ class CourseMemberDiffDto
             $data->tutorial_support ?? null,
             $data->notification ?? null
         );
-    }
-
-
-    public function getLearningProgress() : ?LegacyObjectLearningProgress
-    {
-        return $this->learning_progress;
-    }
-
-
-    public function isAccessRefused() : ?bool
-    {
-        return $this->access_refused;
-    }
-
-
-    public function isAdministratorRole() : ?bool
-    {
-        return $this->administrator_role;
-    }
-
-
-    public function isMemberRole() : ?bool
-    {
-        return $this->member_role;
-    }
-
-
-    public function isNotification() : ?bool
-    {
-        return $this->notification;
-    }
-
-
-    public function isPassed() : ?bool
-    {
-        return $this->passed;
-    }
-
-
-    public function isTutorRole() : ?bool
-    {
-        return $this->tutor_role;
-    }
-
-
-    public function isTutorialSupport() : ?bool
-    {
-        return $this->tutorial_support;
     }
 }

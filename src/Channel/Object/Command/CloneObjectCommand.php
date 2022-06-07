@@ -206,17 +206,17 @@ class CloneObjectCommand
 
     private function cloneObject(?ObjectDto $object, ?ObjectDto $parent_object, bool $link = false, bool $prefer_link = false) : ?ObjectIdDto
     {
-        if ($object === null || $parent_object === null || $parent_object->getRefId() === null) {
+        if ($object === null || $parent_object === null || $parent_object->ref_id === null) {
             return null;
         }
 
-        if ($object->getId() === $parent_object->getId()) {
+        if ($object->id === $parent_object->id) {
             throw new LogicException("Can't clone to its self");
         }
 
         $ilias_object = $this->getIliasObject(
-            $object->getId(),
-            $object->getRefId()
+            $object->id,
+            $object->ref_id
         );
         if ($ilias_object === null) {
             return null;

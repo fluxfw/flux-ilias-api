@@ -59,26 +59,26 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
 
     private function mapGroupDiff(GroupDiffDto $diff, ilObjGroup $ilias_group) : void
     {
-        if ($diff->getImportId() !== null) {
-            $ilias_group->setImportId($diff->getImportId());
+        if ($diff->import_id !== null) {
+            $ilias_group->setImportId($diff->import_id);
         }
 
-        if ($diff->getTitle() !== null) {
-            $ilias_group->setTitle($diff->getTitle());
+        if ($diff->title !== null) {
+            $ilias_group->setTitle($diff->title);
         }
 
-        if ($diff->getDescription() !== null) {
-            $ilias_group->setDescription($diff->getDescription());
+        if ($diff->description !== null) {
+            $ilias_group->setDescription($diff->description);
         }
 
-        if ($diff->getDidacticTemplateId() !== null) {
-            $ilias_group->applyDidacticTemplate($diff->getDidacticTemplateId());
+        if ($diff->didactic_template_id !== null) {
+            $ilias_group->applyDidacticTemplate($diff->didactic_template_id);
         }
 
-        if ($diff->getCustomMetadata() !== null) {
+        if ($diff->custom_metadata !== null) {
             $this->updateCustomMetadata(
                 $ilias_group->getId(),
-                $diff->getCustomMetadata()
+                $diff->custom_metadata
             );
         }
     }

@@ -74,149 +74,149 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
 
     private function mapCourseDiff(CourseDiffDto $diff, ilObjCourse $ilias_course) : void
     {
-        if ($diff->getImportId() !== null) {
-            $ilias_course->setImportId($diff->getImportId());
+        if ($diff->import_id !== null) {
+            $ilias_course->setImportId($diff->import_id);
         }
 
-        if ($diff->getTitle() !== null) {
-            $ilias_course->setTitle($diff->getTitle());
+        if ($diff->title !== null) {
+            $ilias_course->setTitle($diff->title);
         }
 
-        if ($diff->getDescription() !== null) {
-            $ilias_course->setDescription($diff->getDescription());
+        if ($diff->description !== null) {
+            $ilias_course->setDescription($diff->description);
         }
 
-        if ($diff->getPeriodStart() !== null || $diff->getPeriodEnd() !== null) {
-            $period_date_class = ($diff->isPeriodTimeIndication() ?? $ilias_course->getCourseStartTimeIndication()) ? ilDateTime::class : ilDate::class;
+        if ($diff->period_start !== null || $diff->period_end !== null) {
+            $period_date_class = ($diff->period_time_indication ?? $ilias_course->getCourseStartTimeIndication()) ? ilDateTime::class : ilDate::class;
 
             $ilias_course->setCoursePeriod(
-                $diff->getPeriodStart() !== null ? new $period_date_class($diff->getPeriodStart(), IL_CAL_UNIX) : $ilias_course->getCourseStart(),
-                $diff->getPeriodEnd() !== null ? new $period_date_class($diff->getPeriodEnd(), IL_CAL_UNIX) : $ilias_course->getCourseEnd()
+                $diff->period_start !== null ? new $period_date_class($diff->period_start, IL_CAL_UNIX) : $ilias_course->getCourseStart(),
+                $diff->period_end !== null ? new $period_date_class($diff->period_end, IL_CAL_UNIX) : $ilias_course->getCourseEnd()
             );
         }
 
-        if ($diff->isPeriodUnset() !== null) {
-            if ($diff->getPeriodStart() !== null || $diff->getPeriodEnd() !== null) {
+        if ($diff->period_unset !== null) {
+            if ($diff->period_start !== null || $diff->period_end !== null) {
                 throw new LogicException("Can't both set and unset period date");
             }
 
-            if ($diff->isPeriodUnset()) {
+            if ($diff->period_unset) {
                 $ilias_course->setCoursePeriod(null, null);
             }
         }
 
-        if ($diff->isOnline() !== null) {
-            $ilias_course->setOfflineStatus(!$diff->isOnline());
+        if ($diff->online !== null) {
+            $ilias_course->setOfflineStatus(!$diff->online);
         }
 
-        if ($diff->getAvailabilityStart() !== null) {
-            $ilias_course->setActivationStart($diff->getAvailabilityStart());
+        if ($diff->availability_start !== null) {
+            $ilias_course->setActivationStart($diff->availability_start);
         }
 
-        if ($diff->getAvailabilityEnd() !== null) {
-            $ilias_course->setActivationEnd($diff->getAvailabilityEnd());
+        if ($diff->availability_end !== null) {
+            $ilias_course->setActivationEnd($diff->availability_end);
         }
 
-        if ($diff->isAvailabilityAlwaysVisible() !== null) {
-            $ilias_course->setActivationVisibility($diff->isAvailabilityAlwaysVisible());
+        if ($diff->availability_always_visible !== null) {
+            $ilias_course->setActivationVisibility($diff->availability_always_visible);
         }
 
-        if ($diff->isCalendar() !== null) {
-            $ilias_course::_writeContainerSetting($ilias_course->getId(), ilObjectServiceSettingsGUI::CALENDAR_ACTIVATION, $diff->isCalendar());
+        if ($diff->calendar !== null) {
+            $ilias_course::_writeContainerSetting($ilias_course->getId(), ilObjectServiceSettingsGUI::CALENDAR_ACTIVATION, $diff->calendar);
         }
 
-        if ($diff->isCalendarBlock() !== null) {
-            $ilias_course::_writeContainerSetting($ilias_course->getId(), ilObjectServiceSettingsGUI::CALENDAR_VISIBILITY, $diff->isCalendarBlock());
+        if ($diff->calendar_block !== null) {
+            $ilias_course::_writeContainerSetting($ilias_course->getId(), ilObjectServiceSettingsGUI::CALENDAR_VISIBILITY, $diff->calendar_block);
         }
 
-        if ($diff->isNews() !== null) {
-            $ilias_course::_writeContainerSetting($ilias_course->getId(), ilObjectServiceSettingsGUI::USE_NEWS, $diff->isNews());
+        if ($diff->news !== null) {
+            $ilias_course::_writeContainerSetting($ilias_course->getId(), ilObjectServiceSettingsGUI::USE_NEWS, $diff->news);
         }
 
-        if ($diff->isManageCustomMetadata() !== null) {
-            $ilias_course::_writeContainerSetting($ilias_course->getId(), ilObjectServiceSettingsGUI::CUSTOM_METADATA, $diff->isManageCustomMetadata());
+        if ($diff->manage_custom_metadata !== null) {
+            $ilias_course::_writeContainerSetting($ilias_course->getId(), ilObjectServiceSettingsGUI::CUSTOM_METADATA, $diff->manage_custom_metadata);
         }
 
-        if ($diff->isTagCloud() !== null) {
-            $ilias_course::_writeContainerSetting($ilias_course->getId(), ilObjectServiceSettingsGUI::TAG_CLOUD, $diff->isTagCloud());
+        if ($diff->tag_cloud !== null) {
+            $ilias_course::_writeContainerSetting($ilias_course->getId(), ilObjectServiceSettingsGUI::TAG_CLOUD, $diff->tag_cloud);
         }
 
-        if ($diff->isDefaultObjectRating() !== null) {
-            $ilias_course::_writeContainerSetting($ilias_course->getId(), ilObjectServiceSettingsGUI::AUTO_RATING_NEW_OBJECTS, $diff->isDefaultObjectRating());
+        if ($diff->default_object_rating !== null) {
+            $ilias_course::_writeContainerSetting($ilias_course->getId(), ilObjectServiceSettingsGUI::AUTO_RATING_NEW_OBJECTS, $diff->default_object_rating);
         }
 
-        if ($diff->isBadges() !== null) {
-            $ilias_course::_writeContainerSetting($ilias_course->getId(), ilObjectServiceSettingsGUI::BADGES, $diff->isBadges());
+        if ($diff->badges !== null) {
+            $ilias_course::_writeContainerSetting($ilias_course->getId(), ilObjectServiceSettingsGUI::BADGES, $diff->badges);
         }
 
-        if ($diff->isResources() !== null) {
-            $ilias_course::_writeContainerSetting($ilias_course->getId(), ilObjectServiceSettingsGUI::BOOKING, $diff->isResources());
+        if ($diff->resources !== null) {
+            $ilias_course::_writeContainerSetting($ilias_course->getId(), ilObjectServiceSettingsGUI::BOOKING, $diff->resources);
         }
 
-        if ($diff->getMailSubjectPrefix() !== null) {
-            $ilias_course::_writeContainerSetting($ilias_course->getId(), ilObjectServiceSettingsGUI::EXTERNAL_MAIL_PREFIX, $diff->getMailSubjectPrefix());
+        if ($diff->mail_subject_prefix !== null) {
+            $ilias_course::_writeContainerSetting($ilias_course->getId(), ilObjectServiceSettingsGUI::EXTERNAL_MAIL_PREFIX, $diff->mail_subject_prefix);
         }
 
-        if ($diff->isShowMembers() !== null) {
-            $ilias_course->setShowMembers($diff->isShowMembers());
+        if ($diff->show_members !== null) {
+            $ilias_course->setShowMembers($diff->show_members);
         }
 
-        if ($diff->isShowMembersParticipantsList() !== null) {
-            $ilias_course->setShowMembersExport($diff->isShowMembersParticipantsList());
+        if ($diff->show_members_participants_list !== null) {
+            $ilias_course->setShowMembersExport($diff->show_members_participants_list);
         }
 
-        if ($diff->getMailToMembersType() !== null) {
-            $ilias_course->setMailToMembersType(CourseMailToMembersTypeMapping::mapExternalToInternal($diff->getMailToMembersType())->value);
+        if ($diff->mail_to_members_type !== null) {
+            $ilias_course->setMailToMembersType(CourseMailToMembersTypeMapping::mapExternalToInternal($diff->mail_to_members_type)->value);
         }
 
-        if ($diff->isSendWelcomeEmail() !== null) {
-            $ilias_course->setAutoNotification($diff->isSendWelcomeEmail());
+        if ($diff->send_welcome_email !== null) {
+            $ilias_course->setAutoNotification($diff->send_welcome_email);
         }
 
-        if ($diff->isAddToFavourites() !== null) {
-            $ilias_course->setAboStatus($diff->isAddToFavourites());
+        if ($diff->add_to_favourites !== null) {
+            $ilias_course->setAboStatus($diff->add_to_favourites);
         }
 
-        if ($diff->getImportantInformation() !== null) {
-            $ilias_course->setImportantInformation($diff->getImportantInformation());
+        if ($diff->important_information !== null) {
+            $ilias_course->setImportantInformation($diff->important_information);
         }
 
-        if ($diff->getSyllabus() !== null) {
-            $ilias_course->setSyllabus($diff->getSyllabus());
+        if ($diff->syllabus !== null) {
+            $ilias_course->setSyllabus($diff->syllabus);
         }
 
-        if ($diff->getTargetGroup() !== null) {
-            $ilias_course->setTargetGroup($diff->getTargetGroup());
+        if ($diff->target_group !== null) {
+            $ilias_course->setTargetGroup($diff->target_group);
         }
 
-        if ($diff->getContactName() !== null) {
-            $ilias_course->setContactName($diff->getContactName());
+        if ($diff->contact_name !== null) {
+            $ilias_course->setContactName($diff->contact_name);
         }
 
-        if ($diff->getContactResponsibility() !== null) {
-            $ilias_course->setContactResponsibility($diff->getContactResponsibility());
+        if ($diff->contact_responsibility !== null) {
+            $ilias_course->setContactResponsibility($diff->contact_responsibility);
         }
 
-        if ($diff->getContactPhone() !== null) {
-            $ilias_course->setContactPhone($diff->getContactPhone());
+        if ($diff->contact_phone !== null) {
+            $ilias_course->setContactPhone($diff->contact_phone);
         }
 
-        if ($diff->getContactEmail() !== null) {
-            $ilias_course->setContactEmail($diff->getContactEmail());
+        if ($diff->contact_email !== null) {
+            $ilias_course->setContactEmail($diff->contact_email);
         }
 
-        if ($diff->getContactConsultation() !== null) {
-            $ilias_course->setContactConsultation($diff->getContactConsultation());
+        if ($diff->contact_consultation !== null) {
+            $ilias_course->setContactConsultation($diff->contact_consultation);
         }
 
-        if ($diff->getDidacticTemplateId() !== null) {
-            $ilias_course->applyDidacticTemplate($diff->getDidacticTemplateId());
+        if ($diff->didactic_template_id !== null) {
+            $ilias_course->applyDidacticTemplate($diff->didactic_template_id);
         }
 
-        if ($diff->getCustomMetadata() !== null) {
+        if ($diff->custom_metadata !== null) {
             $this->updateCustomMetadata(
                 $ilias_course->getId(),
-                $diff->getCustomMetadata()
+                $diff->custom_metadata
             );
         }
     }

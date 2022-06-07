@@ -241,53 +241,53 @@ trait CustomMetadataQuery
         foreach ($custom_metadata as $custom_metadata_field) {
             $fields ??= $this->getCustomMetadata($object_id);
 
-            if ($custom_metadata_field->getRecordTitle() !== null) {
-                if ($custom_metadata_field->getRecordId() !== null) {
+            if ($custom_metadata_field->record_title !== null) {
+                if ($custom_metadata_field->record_id !== null) {
                     throw new LogicException("Can't set both custom metadata record title and record id");
                 }
 
-                $record_titles = array_values(array_reduce(array_filter($fields, fn(CustomMetadataDto $field) : bool => $field->getRecordTitle() === $custom_metadata_field->getRecordTitle()),
+                $record_titles = array_values(array_reduce(array_filter($fields, fn(CustomMetadataDto $field) : bool => $field->record_title === $custom_metadata_field->record_title),
                     function (array $fields, CustomMetadataDto $field) : array {
-                        $fields[$field->getRecordId()] = $field;
+                        $fields[$field->record_id] = $field;
 
                         return $fields;
                     }, []));
                 if (empty($record_titles)) {
-                    throw new Exception("Custom metadata record title " . $custom_metadata_field->getRecordTitle() . " does not exists");
+                    throw new Exception("Custom metadata record title " . $custom_metadata_field->record_title . " does not exists");
                 }
                 if (count($record_titles) > 1) {
-                    throw new LogicException("Multiple custom metadata record titles " . $custom_metadata_field->getRecordTitle() . " found");
+                    throw new LogicException("Multiple custom metadata record titles " . $custom_metadata_field->record_title . " found");
                 }
                 $record_title = current($record_titles);
 
                 $record_id = $record_title->getRecordId();
             } else {
-                $record_id = $custom_metadata_field->getRecordId();
+                $record_id = $custom_metadata_field->record_id;
 
                 if ($record_id !== null) {
-                    $record_ids = array_filter($fields, fn(CustomMetadataDto $field) : bool => $field->getRecordId() === $record_id);
+                    $record_ids = array_filter($fields, fn(CustomMetadataDto $field) : bool => $field->record_id === $record_id);
                     if (empty($record_ids)) {
                         throw new Exception("Custom metadata record id " . $record_id . " does not exists");
                     }
                 }
             }
 
-            if ($custom_metadata_field->getFieldTitle() !== null) {
-                if ($custom_metadata_field->getFieldId() !== null) {
+            if ($custom_metadata_field->field_title !== null) {
+                if ($custom_metadata_field->field_id !== null) {
                     throw new LogicException("Can't set both custom metadata field title and field id");
                 }
 
                 $field_titles = array_filter($fields,
-                    fn(CustomMetadataDto $field) : bool => ($record_id === null || $field->getRecordId() === $record_id) && $field->getFieldTitle() === $custom_metadata_field->getFieldTitle());
+                    fn(CustomMetadataDto $field) : bool => ($record_id === null || $field->record_id === $record_id) && $field->field_title === $custom_metadata_field->field_title);
                 if (empty($field_titles)) {
-                    throw new Exception("Custom metadata field title " . $custom_metadata_field->getFieldTitle() . ($record_id !== null ? " in record id " . $record_id : "") . " does not exists");
+                    throw new Exception("Custom metadata field title " . $custom_metadata_field->field_title . ($record_id !== null ? " in record id " . $record_id : "") . " does not exists");
                 }
                 if (count($field_titles) > 1) {
                     if ($record_id !== null) {
-                        throw new LogicException("Multiple custom metadata field titles " . $custom_metadata_field->getFieldTitle()
+                        throw new LogicException("Multiple custom metadata field titles " . $custom_metadata_field->field_title
                             . " in record id " . $record_id . " found");
                     } else {
-                        throw new LogicException("Multiple custom metadata field titles " . $custom_metadata_field->getFieldTitle()
+                        throw new LogicException("Multiple custom metadata field titles " . $custom_metadata_field->field_title
                             . " found - Try additionally to set record title or record id");
                     }
                 }
@@ -299,10 +299,10 @@ trait CustomMetadataQuery
                     $record_id = $field_title->getRecordId();
                 }
             } else {
-                $field_id = $custom_metadata_field->getFieldId();
+                $field_id = $custom_metadata_field->field_id;
 
                 if ($field_id !== null) {
-                    $field_ids = array_filter($fields, fn(CustomMetadataDto $field) : bool => $field->getFieldId() === $field_id);
+                    $field_ids = array_filter($fields, fn(CustomMetadataDto $field) : bool => $field->field_id === $field_id);
                     if (empty($field_ids)) {
                         throw new Exception("Custom metadata field id " . $field_id . " does not exists");
                     }
@@ -322,7 +322,7 @@ trait CustomMetadataQuery
             $this->setCustomMetadataElementValue(
                 $md_values->getADTGroup()->getElement($field_id),
                 $md_values->getDefinitions()[$field_id],
-                $custom_metadata_field->getValue()
+                $custom_metadata_field->value
             );
 
             $md_values->write();

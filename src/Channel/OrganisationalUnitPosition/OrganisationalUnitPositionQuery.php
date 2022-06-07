@@ -56,42 +56,42 @@ ORDER BY title ASC";
 
     private function mapOrganisationalUnitPositionDiff(OrganisationalUnitPositionDiffDto $diff, ilOrgUnitPosition $ilias_organisational_unit_position) : void
     {
-        if ($diff->getTitle() !== null) {
-            $ilias_organisational_unit_position->setTitle($diff->getTitle());
+        if ($diff->title !== null) {
+            $ilias_organisational_unit_position->setTitle($diff->title);
         }
 
-        if ($diff->getDescription() !== null) {
-            $ilias_organisational_unit_position->setDescription($diff->getDescription());
+        if ($diff->description !== null) {
+            $ilias_organisational_unit_position->setDescription($diff->description);
         }
 
-        if ($diff->getAuthorities() !== null) {
+        if ($diff->authorities !== null) {
             $ilias_authorities = [];
-            foreach ($diff->getAuthorities() as $authority) {
-                if ($authority->getId() !== null) {
+            foreach ($diff->authorities as $authority) {
+                if ($authority->id !== null) {
                     $ilias_authority = $this->getIliasOrganisationalUnitPositionAuthority(
-                        $authority->getId()
+                        $authority->id
                     );
                     if ($ilias_authority === null) {
-                        throw new Exception("Authority id " . $authority->getId() . " does not exists");
+                        throw new Exception("Authority id " . $authority->id . " does not exists");
                     }
 
                     if ($ilias_authority->getPositionId() !== $ilias_organisational_unit_position->getId()) {
-                        throw new LogicException("Authority id " . $authority->getId() . " is not of the organisational unit position");
+                        throw new LogicException("Authority id " . $authority->id . " is not of the organisational unit position");
                     }
 
-                    if ($authority->getOverPositionId() === null && $authority->getScopeIn() === null) {
+                    if ($authority->over_position_id === null && $authority->scope_in === null) {
                         continue;
                     }
                 } else {
                     $ilias_authority = $this->newIliasOrganisationalUnitPositionAuthority();
                 }
 
-                if ($authority->getOverPositionId() !== null) {
-                    $ilias_authority->setOver($authority->getOverPositionId());
+                if ($authority->over_position_id !== null) {
+                    $ilias_authority->setOver($authority->over_position_id);
                 }
 
-                if ($authority->getScopeIn() !== null) {
-                    $ilias_authority->setScope(OrganisationalUnitPositionAuthorityScopeInMapping::mapExternalToInternal($authority->getScopeIn())->value);
+                if ($authority->scope_in !== null) {
+                    $ilias_authority->setScope(OrganisationalUnitPositionAuthorityScopeInMapping::mapExternalToInternal($authority->scope_in)->value);
                 }
 
                 $ilias_authorities[] = $ilias_authority;

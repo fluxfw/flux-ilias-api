@@ -2,14 +2,12 @@
 
 namespace FluxIliasApi\Adapter\User;
 
-use JsonSerializable;
-
-class UserDefinedFieldDto implements JsonSerializable
+class UserDefinedFieldDto
 {
 
-    private ?int $id;
-    private ?string $name;
-    private ?string $value;
+    public ?int $id;
+    public ?string $name;
+    public ?string $value;
 
 
     private function __construct(
@@ -46,29 +44,5 @@ class UserDefinedFieldDto implements JsonSerializable
             $data->name ?? null,
             $data->value ?? null
         );
-    }
-
-
-    public function getId() : ?int
-    {
-        return $this->id;
-    }
-
-
-    public function getName() : ?string
-    {
-        return $this->name;
-    }
-
-
-    public function getValue() : ?string
-    {
-        return $this->value;
-    }
-
-
-    public function jsonSerialize() : array
-    {
-        return get_object_vars($this);
     }
 }

@@ -84,8 +84,8 @@ class UpdateObjectCommand
         }
 
         $ilias_object = $this->getIliasObject(
-            $object->getId(),
-            $object->getRefId()
+            $object->id,
+            $object->ref_id
         );
         if ($ilias_object === null) {
             return null;
@@ -99,9 +99,9 @@ class UpdateObjectCommand
         $ilias_object->update();
 
         return ObjectIdDto::new(
-            $object->getId(),
-            $diff->getImportId() ?? $object->getImportId(),
-            $object->getRefId()
+            $object->id,
+            $diff->import_id ?? $object->import_id,
+            $object->ref_id
         );
     }
 }

@@ -2,20 +2,18 @@
 
 namespace FluxIliasApi\Adapter\OrganisationalUnitPosition;
 
-use JsonSerializable;
-
-class OrganisationalUnitPositionDto implements JsonSerializable
+class OrganisationalUnitPositionDto
 {
 
     /**
      * @var OrganisationalUnitPositionAuthorityDto[]|null
      */
-    private ?array $authorities;
-    private ?LegacyOrganisationalUnitPositionCoreIdentifier $core_identifier;
-    private ?bool $core_position;
-    private ?string $description;
-    private ?int $id;
-    private ?string $title;
+    public ?array $authorities;
+    public ?LegacyOrganisationalUnitPositionCoreIdentifier $core_identifier;
+    public ?bool $core_position;
+    public ?string $description;
+    public ?int $id;
+    public ?string $title;
 
 
     /**
@@ -58,50 +56,5 @@ class OrganisationalUnitPositionDto implements JsonSerializable
             $description,
             $authorities
         );
-    }
-
-
-    /**
-     * @return OrganisationalUnitPositionAuthorityDto[]|null
-     */
-    public function getAuthorities() : ?array
-    {
-        return $this->authorities;
-    }
-
-
-    public function getCoreIdentifier() : ?LegacyOrganisationalUnitPositionCoreIdentifier
-    {
-        return $this->core_identifier;
-    }
-
-
-    public function getDescription() : ?string
-    {
-        return $this->description;
-    }
-
-
-    public function getId() : ?int
-    {
-        return $this->id;
-    }
-
-
-    public function getTitle() : ?string
-    {
-        return $this->title;
-    }
-
-
-    public function isCorePosition() : ?bool
-    {
-        return $this->core_position;
-    }
-
-
-    public function jsonSerialize() : array
-    {
-        return get_object_vars($this);
     }
 }

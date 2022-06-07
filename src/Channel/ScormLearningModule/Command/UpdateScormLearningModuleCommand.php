@@ -76,8 +76,8 @@ class UpdateScormLearningModuleCommand
         }
 
         $ilias_scorm_learning_module = $this->getIliasScormLearningModule(
-            $scorm_learning_module->getId(),
-            $scorm_learning_module->getRefId()
+            $scorm_learning_module->id,
+            $scorm_learning_module->ref_id
         );
         if ($ilias_scorm_learning_module === null) {
             return null;
@@ -91,9 +91,9 @@ class UpdateScormLearningModuleCommand
         $ilias_scorm_learning_module->update();
 
         return ObjectIdDto::new(
-            $scorm_learning_module->getId(),
-            $diff->getImportId() ?? $scorm_learning_module->getImportId(),
-            $scorm_learning_module->getRefId()
+            $scorm_learning_module->id,
+            $diff->import_id ?? $scorm_learning_module->import_id,
+            $scorm_learning_module->ref_id
         );
     }
 }
