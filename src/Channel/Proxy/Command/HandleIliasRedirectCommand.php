@@ -42,6 +42,9 @@ class HandleIliasRedirectCommand
         switch (true) {
             case $target === LegacyProxyTarget::CONFIG()->value:
             case str_starts_with($target, LegacyProxyTarget::API_PROXY()->value):
+            case str_starts_with($target, LegacyProxyTarget::OBJECT_API_PROXY()->value):
+            case str_starts_with($target, LegacyProxyTarget::OBJECT_CONFIG()->value):
+            case str_starts_with($target, LegacyProxyTarget::OBJECT_WEB_PROXY()->value):
             case str_starts_with($target, LegacyProxyTarget::WEB_PROXY()->value):
                 $is_ilias_entrypoint = false;
                 foreach (

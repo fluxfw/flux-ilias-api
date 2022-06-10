@@ -1,7 +1,7 @@
 import {getValues} from "./fetch/getValues.mjs";
 import {initForm} from "./form/initForm.mjs";
-import {insertError} from "./loading/insertError.mjs";
-import {insertLoading} from "./loading/insertLoading.mjs";
+import {insertError} from "../../../../flux-ilias-rest-web-proxy/static/js/loading/insertError.mjs";
+import {insertLoading} from "./../../../flux-ilias-rest-web-proxy/static/js/loading/insertLoading.mjs";
 import {storeForm} from "./form/storeForm.mjs";
 
 async function flilre_config() {

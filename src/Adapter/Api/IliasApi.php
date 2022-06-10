@@ -58,7 +58,10 @@ use FluxIliasApi\Channel\Group\Port\GroupService;
 use FluxIliasApi\Channel\GroupMember\Port\GroupMemberService;
 use FluxIliasApi\Channel\Menu\Port\MenuService;
 use FluxIliasApi\Channel\Object\Port\ObjectService;
+use FluxIliasApi\Channel\ObjectConfig\Port\ObjectConfigService;
+use FluxIliasApi\Channel\ObjectConfigForm\Port\ObjectConfigFormService;
 use FluxIliasApi\Channel\ObjectLearningProgress\Port\ObjectLearningProgressService;
+use FluxIliasApi\Channel\ObjectProxyConfig\Port\ObjectProxyConfigService;
 use FluxIliasApi\Channel\OrganisationalUnit\Port\OrganisationalUnitService;
 use FluxIliasApi\Channel\OrganisationalUnitPosition\Port\OrganisationalUnitPositionService;
 use FluxIliasApi\Channel\OrganisationalUnitStaff\Port\OrganisationalUnitStaffService;
@@ -73,6 +76,7 @@ use FluxIliasApi\Channel\UserFavourite\Port\UserFavouriteService;
 use FluxIliasApi\Channel\UserMail\Port\UserMailService;
 use FluxIliasApi\Channel\UserRole\Port\UserRoleService;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Api\RestApi;
+use ilAccessHandler;
 use ilCronJob;
 use ilCronServices;
 use ilDBInterface;
@@ -81,6 +85,7 @@ use ilGlobalTemplateInterface;
 use ILIAS\DI\Container;
 use ILIAS\DI\RBACServices;
 use ILIAS\FileUpload\FileUpload;
+use ilLocatorGUI;
 use ilObjectDefinition;
 use ilObjUser;
 use ilPlugin;
@@ -798,6 +803,15 @@ class IliasApi
     }
 
 
+    public function deleteObjectConfig(int $id) : void
+    {
+        $this->getObjectConfigService()
+            ->deleteObjectConfig(
+                $id
+            );
+    }
+
+
     public function deleteOrganisationalUnitPositionById(int $id) : ?OrganisationalUnitPositionIdDto
     {
         return $this->getOrganisationalUnitPositionService()
@@ -1189,6 +1203,15 @@ class IliasApi
     }
 
 
+    public function getObjectConfigLink(int $ref_id) : string
+    {
+        return $this->getProxyService()
+            ->getObjectConfigLink(
+                $ref_id
+            );
+    }
+
+
     /**
      * @return ObjectLearningProgressDto[]
      */
@@ -1208,6 +1231,18 @@ class IliasApi
                 $user_id,
                 $user_import_id,
                 $learning_progress
+            );
+    }
+
+
+    public function getObjectWebProxyLink(int $ref_id) : string
+    {
+        return $this->getProxyService()
+            ->getObjectWebProxyLink(
+                $this->getObjectByRefId(
+                    $ref_id
+                ),
+                $this->getCurrentApiUser()
             );
     }
 
@@ -1545,6 +1580,7 @@ class IliasApi
         $this->getProxyService()
             ->handleIliasGoto(
                 $this->getIliasGlobalTemplate(),
+                $this->getIliasLocator(),
                 $this->getCurrentApiUser()
             );
     }
@@ -2718,6 +2754,12 @@ class IliasApi
     }
 
 
+    private function getIliasAccess() : ilAccessHandler
+    {
+        return $this->getIliasDic()->access();
+    }
+
+
     private function getIliasCron() : ilCronServices
     {
         return $this->getIliasDic()->cron();
@@ -2762,6 +2804,12 @@ class IliasApi
     }
 
 
+    private function getIliasLocator() : ilLocatorGUI
+    {
+        return $this->getIliasDic()["ilLocator"];
+    }
+
+
     private function getIliasObjectDefinition() : ilObjectDefinition
     {
         return $this->getIliasDic()["objDefinition"];
@@ -2802,12 +2850,40 @@ class IliasApi
     }
 
 
+    private function getObjectConfigFormService() : ObjectConfigFormService
+    {
+        return ObjectConfigFormService::new(
+            $this->getObjectProxyConfigService(),
+            $this->getObjectService(),
+            $this->getIliasAccess()
+        );
+    }
+
+
+    private function getObjectConfigService() : ObjectConfigService
+    {
+        return ObjectConfigService::new(
+            $this->getIliasDatabase()
+        );
+    }
+
+
     private function getObjectLearningProgressService() : ObjectLearningProgressService
     {
         return ObjectLearningProgressService::new(
             $this->getIliasDatabase(),
             $this->getObjectService(),
             $this->getUserService()
+        );
+    }
+
+
+    private function getObjectProxyConfigService() : ObjectProxyConfigService
+    {
+        return ObjectProxyConfigService::new(
+            $this->getProxyConfigService(),
+            $this->getObjectConfigService(),
+            $this->getIliasAccess()
         );
     }
 
@@ -2864,6 +2940,9 @@ class IliasApi
             $this->getRestApi(),
             $this->getConfigFormService(),
             $this->getProxyConfigService(),
+            $this->getObjectService(),
+            $this->getObjectConfigFormService(),
+            $this->getObjectProxyConfigService(),
             $this->getIliasDic()
         );
     }
@@ -2907,7 +2986,8 @@ class IliasApi
         return SetupService::new(
             $this->getChangeService(),
             $this->getConfigService(),
-            $this->getCronService()
+            $this->getCronService(),
+            $this->getObjectConfigService()
         );
     }
 
