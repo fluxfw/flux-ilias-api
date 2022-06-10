@@ -2,8 +2,6 @@
 
 namespace FluxIliasApi\Adapter\Proxy;
 
-use FluxIliasApi\Channel\Proxy\LegacyProxyTarget;
-
 class WebProxyMapDto
 {
 
@@ -93,6 +91,6 @@ class WebProxyMapDto
 
     public function getRewriteUrlWithDefault() : string
     {
-        return $this->rewrite_url ?? "/goto.php?target=" . LegacyProxyTarget::WEB_PROXY()->value . $this->target_key;
+        return $this->rewrite_url ?? "/flux-ilias-rest-web-proxy/" . $this->target_key;
     }
 }

@@ -16,7 +16,6 @@ class ConfigFormRoute implements Route
 {
 
     private ilGlobalTemplateInterface $ilias_global_template;
-    private string $original_route;
     private ProxyService $proxy_service;
 
 

@@ -71,7 +71,8 @@ class ObjectTypeMapping
             LegacyDefaultInternalObjectType::TST()->value  => LegacyDefaultObjectType::TEST()->value,
             LegacyDefaultInternalObjectType::USR()->value  => LegacyDefaultObjectType::USER()->value,
             LegacyDefaultInternalObjectType::WEBR()->value => LegacyDefaultObjectType::WEB_LINK()->value,
-            LegacyDefaultInternalObjectType::WIKI()->value => LegacyDefaultObjectType::WIKI()->value
+            LegacyDefaultInternalObjectType::WIKI()->value => LegacyDefaultObjectType::WIKI()->value,
+            LegacyDefaultInternalObjectType::XFRH()->value => LegacyDefaultObjectType::FLUX_ILIAS_REST_OBJECT_HELPER_PLUGIN()->value
         ];
     }
 }

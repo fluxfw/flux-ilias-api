@@ -18,6 +18,7 @@ use FluxIliasApi\Libs\FluxLegacyEnum\Adapter\Backed\LegacyStringBackedEnum;
  * @method static static DATA_COLLECTION() data_collection
  * @method static static EXERCISE() exercise
  * @method static static FILE() file
+ * @method static static FLUX_ILIAS_REST_OBJECT_HELPER_PLUGIN() flux_ilias_rest_object_helper_plugin
  * @method static static FOLDER() folder
  * @method static static FORUM() forum
  * @method static static GLOSSARY() glossary

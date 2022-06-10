@@ -56,6 +56,8 @@ class GetWebProxyCommand
         PageContentProvider::setShortTitle($short_title ?? "");
         PageContentProvider::setViewTitle($view_title ?? "");
 
+        $this->ilias_global_template->setLocator();
+
         $this->ilias_global_template->setContent("%CONTENT%");
 
         $html = $this->ilias_global_template->printToString();
