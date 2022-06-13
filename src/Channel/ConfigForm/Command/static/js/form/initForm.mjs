@@ -57,7 +57,7 @@ export function initForm(form_template_el, action, values) {
     });
 
     initEntriesForm("flux_ilias_rest_object_api_proxy_maps", entries_template_el, ["key", "url"], values, form_el);
-    initEntriesForm("flux_ilias_rest_object_web_proxy_maps", entries_template_el, ["key", "iframe_url", "page_title", "rewrite_url", "short_title", "view_title"], values, form_el);
+    initEntriesForm("flux_ilias_rest_object_web_proxy_maps", entries_template_el, ["icon_url", "iframe_url", "key", "page_title", "pass_ref_id", "rewrite_url", "short_title", "view_title"], values, form_el);
 
     initScheduleForm("purge_changes_schedule", schedule_template_el, values, form_el);
     initScheduleForm("transfer_changes_schedule", schedule_template_el, values, form_el);

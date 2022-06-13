@@ -436,9 +436,9 @@ class HandleIliasGotoCommand
                     $request->getQueryParam(
                         "route"
                     ),
-                    [
+                    ($web_proxy_map->pass_ref_id ? [
                         "ref_id" => $object->ref_id
-                    ] + $this->getQueryParams(
+                    ] : []) + $this->getQueryParams(
                         $request
                     ),
                     $request->original_route

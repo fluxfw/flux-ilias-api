@@ -17,6 +17,7 @@ use FluxIliasApi\Adapter\File\FileDiffDto;
 use FluxIliasApi\Adapter\File\FileDto;
 use FluxIliasApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectDiffDto;
 use FluxIliasApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectDto;
+use FluxIliasApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectWebProxyMapDto;
 use FluxIliasApi\Adapter\Group\GroupDiffDto;
 use FluxIliasApi\Adapter\Group\GroupDto;
 use FluxIliasApi\Adapter\GroupMember\GroupMemberDiffDto;
@@ -61,6 +62,7 @@ use FluxIliasApi\Channel\Group\Port\GroupService;
 use FluxIliasApi\Channel\GroupMember\Port\GroupMemberService;
 use FluxIliasApi\Channel\Menu\Port\MenuService;
 use FluxIliasApi\Channel\Object\Port\ObjectService;
+use FluxIliasApi\Channel\ObjectConfig\LegacyObjectConfigKey;
 use FluxIliasApi\Channel\ObjectConfig\Port\ObjectConfigService;
 use FluxIliasApi\Channel\ObjectLearningProgress\Port\ObjectLearningProgressService;
 use FluxIliasApi\Channel\OrganisationalUnit\Port\OrganisationalUnitService;
@@ -1165,6 +1167,15 @@ class IliasApi
     }
 
 
+    public function getFluxIliasRestObjectWebProxyMapByKey(string $key) : ?FluxIliasRestObjectWebProxyMapDto
+    {
+        return $this->getFluxIliasRestObjectService()
+            ->getFluxIliasRestObjectWebProxyMapByKey(
+                $key
+            );
+    }
+
+
     /**
      * @return FluxIliasRestObjectDto[]
      */
@@ -1294,6 +1305,16 @@ class IliasApi
             ->getObjectByRefId(
                 $ref_id,
                 $in_trash
+            );
+    }
+
+
+    public function getObjectConfig(int $id, LegacyObjectConfigKey $key)/* : mixed*/
+    {
+        return $this->getObjectConfigService()
+            ->getObjectConfig(
+                $id,
+                $key
             );
     }
 
