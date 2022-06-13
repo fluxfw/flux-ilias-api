@@ -11,9 +11,9 @@ export function initForm(form_template_el, action, values) {
     schedule_template_el.remove();
 
     form_el.elements.enable_api_proxy.checked = values.enable_api_proxy;
+    form_el.elements.enable_flux_ilias_rest_object_api_proxy.checked = values.enable_flux_ilias_rest_object_api_proxy;
+    form_el.elements.enable_flux_ilias_rest_object_web_proxy.checked = values.enable_flux_ilias_rest_object_web_proxy;
     form_el.elements.enable_log_changes.checked = values.enable_log_changes;
-    form_el.elements.enable_object_api_proxy.checked = values.enable_object_api_proxy;
-    form_el.elements.enable_object_web_proxy.checked = values.enable_object_web_proxy;
     form_el.elements.enable_purge_changes.checked = values.enable_purge_changes;
     form_el.elements.enable_rest_api.checked = values.enable_rest_api;
     form_el.elements.enable_transfer_changes.checked = values.enable_transfer_changes;
@@ -56,8 +56,8 @@ export function initForm(form_template_el, action, values) {
         }
     });
 
-    initEntriesForm("object_api_proxy_map", entries_template_el, ["key", "url"], values, form_el);
-    initEntriesForm("object_web_proxy_map", entries_template_el, ["key", "iframe_url", "page_title", "rewrite_url", "short_title", "view_title"], values, form_el);
+    initEntriesForm("flux_ilias_rest_object_api_proxy_maps", entries_template_el, ["key", "url"], values, form_el);
+    initEntriesForm("flux_ilias_rest_object_web_proxy_maps", entries_template_el, ["key", "iframe_url", "page_title", "rewrite_url", "short_title", "view_title"], values, form_el);
 
     initScheduleForm("purge_changes_schedule", schedule_template_el, values, form_el);
     initScheduleForm("transfer_changes_schedule", schedule_template_el, values, form_el);

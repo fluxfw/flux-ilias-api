@@ -3,12 +3,13 @@
 namespace FluxIliasApi\Channel\ConfigForm\Command;
 
 use FluxIliasApi\Adapter\CronConfig\CustomScheduleTypeCronConfig;
+use FluxIliasApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectApiProxyMapDto;
+use FluxIliasApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectWebProxyMapDto;
 use FluxIliasApi\Adapter\Proxy\ApiProxyMapDto;
-use FluxIliasApi\Adapter\Proxy\ObjectApiProxyMapDto;
-use FluxIliasApi\Adapter\Proxy\ObjectWebProxyMapDto;
 use FluxIliasApi\Adapter\Proxy\WebProxyMapDto;
 use FluxIliasApi\Channel\Change\Port\ChangeService;
 use FluxIliasApi\Channel\Config\LegacyConfigKey;
+use FluxIliasApi\Channel\FluxIliasRestObject\Port\FluxIliasRestObjectService;
 use FluxIliasApi\Channel\ProxyConfig\Port\ProxyConfigService;
 use FluxIliasApi\Channel\RestConfig\Port\RestConfigService;
 
@@ -16,16 +17,19 @@ class StoreConfigFormValuesCommand
 {
 
     private ChangeService $change_service;
+    private FluxIliasRestObjectService $flux_ilias_rest_object_service;
     private ProxyConfigService $proxy_config_service;
     private RestConfigService $rest_config_service;
 
 
     private function __construct(
         /*private readonly*/ ChangeService $change_service,
+        /*private readonly*/ FluxIliasRestObjectService $flux_ilias_rest_object_service,
         /*private readonly*/ ProxyConfigService $proxy_config_service,
         /*private readonly*/ RestConfigService $rest_config_service
     ) {
         $this->change_service = $change_service;
+        $this->flux_ilias_rest_object_service = $flux_ilias_rest_object_service;
         $this->proxy_config_service = $proxy_config_service;
         $this->rest_config_service = $rest_config_service;
     }
@@ -33,12 +37,14 @@ class StoreConfigFormValuesCommand
 
     public static function new(
         ChangeService $change_service,
+        FluxIliasRestObjectService $flux_ilias_rest_object_service,
         ProxyConfigService $proxy_config_service,
         RestConfigService $rest_config_service
     ) : /*static*/ self
     {
         return new static(
             $change_service,
+            $flux_ilias_rest_object_service,
             $proxy_config_service,
             $rest_config_service
         );
@@ -55,16 +61,16 @@ class StoreConfigFormValuesCommand
             boolval($values->{LegacyConfigKey::ENABLE_API_PROXY()->value} ?? null)
         );
 
+        $this->flux_ilias_rest_object_service->setEnableFluxIliasRestObjectApiProxy(
+            boolval($values->{LegacyConfigKey::ENABLE_FLUX_ILIAS_REST_OBJECT_API_PROXY()->value} ?? null)
+        );
+
+        $this->flux_ilias_rest_object_service->setEnableFluxIliasRestObjectWebProxy(
+            boolval($values->{LegacyConfigKey::ENABLE_FLUX_ILIAS_REST_OBJECT_WEB_PROXY()->value} ?? null)
+        );
+
         $this->change_service->setEnableLogChanges(
             boolval($values->{LegacyConfigKey::ENABLE_LOG_CHANGES()->value} ?? null)
-        );
-
-        $this->proxy_config_service->setEnableObjectApiProxy(
-            boolval($values->{LegacyConfigKey::ENABLE_OBJECT_API_PROXY()->value} ?? null)
-        );
-
-        $this->proxy_config_service->setEnableObjectWebProxy(
-            boolval($values->{LegacyConfigKey::ENABLE_OBJECT_WEB_PROXY()->value} ?? null)
         );
 
         $this->change_service->setEnablePurgeChanges(
@@ -83,16 +89,16 @@ class StoreConfigFormValuesCommand
             boolval($values->{LegacyConfigKey::ENABLE_WEB_PROXY()->value} ?? null)
         );
 
+        $this->flux_ilias_rest_object_service->setFluxIliasRestObjectApiProxyMaps(
+            array_map([FluxIliasRestObjectApiProxyMapDto::class, "newFromObject"], (array) ($values->{LegacyConfigKey::FLUX_ILIAS_REST_OBJECT_API_PROXY_MAPS()->value} ?? null))
+        );
+
+        $this->flux_ilias_rest_object_service->setFluxIliasRestObjectWebProxyMaps(
+            array_map([FluxIliasRestObjectWebProxyMapDto::class, "newFromObject"], (array) ($values->{LegacyConfigKey::FLUX_ILIAS_REST_OBJECT_WEB_PROXY_MAPS()->value} ?? null))
+        );
+
         $this->change_service->setKeepChangesInsideDays(
             ($keep_changes_inside_days = $values->{LegacyConfigKey::KEEP_CHANGES_INSIDE_DAYS()->value} ?? null) !== null ? intval($keep_changes_inside_days) : null
-        );
-
-        $this->proxy_config_service->setObjectApiProxyMap(
-            array_map([ObjectApiProxyMapDto::class, "newFromObject"], (array) ($values->{LegacyConfigKey::OBJECT_API_PROXY_MAP()->value} ?? null))
-        );
-
-        $this->proxy_config_service->setObjectWebProxyMap(
-            array_map([ObjectWebProxyMapDto::class, "newFromObject"], (array) ($values->{LegacyConfigKey::OBJECT_WEB_PROXY_MAP()->value} ?? null))
         );
 
         $this->change_service->setPurgeChangesSchedule(
