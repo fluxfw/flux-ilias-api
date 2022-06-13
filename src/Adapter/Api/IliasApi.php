@@ -15,6 +15,8 @@ use FluxIliasApi\Adapter\CronConfig\Wrapper\LegacyIliasCronWrapper;
 use FluxIliasApi\Adapter\CronConfig\Wrapper\NewIliasCronWrapper;
 use FluxIliasApi\Adapter\File\FileDiffDto;
 use FluxIliasApi\Adapter\File\FileDto;
+use FluxIliasApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectDiffDto;
+use FluxIliasApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectDto;
 use FluxIliasApi\Adapter\Group\GroupDiffDto;
 use FluxIliasApi\Adapter\Group\GroupDto;
 use FluxIliasApi\Adapter\GroupMember\GroupMemberDiffDto;
@@ -54,14 +56,13 @@ use FluxIliasApi\Channel\CourseMember\Port\CourseMemberService;
 use FluxIliasApi\Channel\Cron\Port\CronService;
 use FluxIliasApi\Channel\CronConfig\Port\CronConfigService;
 use FluxIliasApi\Channel\File\Port\FileService;
+use FluxIliasApi\Channel\FluxIliasRestObject\Port\FluxIliasRestObjectService;
 use FluxIliasApi\Channel\Group\Port\GroupService;
 use FluxIliasApi\Channel\GroupMember\Port\GroupMemberService;
 use FluxIliasApi\Channel\Menu\Port\MenuService;
 use FluxIliasApi\Channel\Object\Port\ObjectService;
 use FluxIliasApi\Channel\ObjectConfig\Port\ObjectConfigService;
-use FluxIliasApi\Channel\ObjectConfigForm\Port\ObjectConfigFormService;
 use FluxIliasApi\Channel\ObjectLearningProgress\Port\ObjectLearningProgressService;
-use FluxIliasApi\Channel\ObjectProxyConfig\Port\ObjectProxyConfigService;
 use FluxIliasApi\Channel\OrganisationalUnit\Port\OrganisationalUnitService;
 use FluxIliasApi\Channel\OrganisationalUnitPosition\Port\OrganisationalUnitPositionService;
 use FluxIliasApi\Channel\OrganisationalUnitStaff\Port\OrganisationalUnitStaffService;
@@ -602,6 +603,36 @@ class IliasApi
     }
 
 
+    public function createFluxIliasRestObjectToId(int $parent_id, FluxIliasRestObjectDiffDto $diff) : ?ObjectIdDto
+    {
+        return $this->getFluxIliasRestObjectService()
+            ->createFluxIliasRestObjectToId(
+                $parent_id,
+                $diff
+            );
+    }
+
+
+    public function createFluxIliasRestObjectToImportId(string $parent_import_id, FluxIliasRestObjectDiffDto $diff) : ?ObjectIdDto
+    {
+        return $this->getFluxIliasRestObjectService()
+            ->createFluxIliasRestObjectToImportId(
+                $parent_import_id,
+                $diff
+            );
+    }
+
+
+    public function createFluxIliasRestObjectToRefId(int $parent_ref_id, FluxIliasRestObjectDiffDto $diff) : ?ObjectIdDto
+    {
+        return $this->getFluxIliasRestObjectService()
+            ->createFluxIliasRestObjectToRefId(
+                $parent_ref_id,
+                $diff
+            );
+    }
+
+
     public function createGroupToId(int $parent_id, GroupDiffDto $diff) : ?ObjectIdDto
     {
         return $this->getGroupService()
@@ -1083,6 +1114,70 @@ class IliasApi
     }
 
 
+    public function getFluxIliasRestObjectById(int $id, ?bool $in_trash = null) : ?FluxIliasRestObjectDto
+    {
+        return $this->getFluxIliasRestObjectService()
+            ->getFluxIliasRestObjectById(
+                $id,
+                $in_trash
+            );
+    }
+
+
+    public function getFluxIliasRestObjectByImportId(string $import_id, ?bool $in_trash = null) : ?FluxIliasRestObjectDto
+    {
+        return $this->getFluxIliasRestObjectService()
+            ->getFluxIliasRestObjectByImportId(
+                $import_id,
+                $in_trash
+            );
+    }
+
+
+    public function getFluxIliasRestObjectByRefId(int $ref_id, ?bool $in_trash = null) : ?FluxIliasRestObjectDto
+    {
+        return $this->getFluxIliasRestObjectService()
+            ->getFluxIliasRestObjectByRefId(
+                $ref_id,
+                $in_trash
+            );
+    }
+
+
+    public function getFluxIliasRestObjectConfigLink(int $ref_id) : string
+    {
+        return $this->getFluxIliasRestObjectService()
+            ->getFluxIliasRestObjectConfigLink(
+                $ref_id
+            );
+    }
+
+
+    public function getFluxIliasRestObjectWebProxyLink(int $ref_id) : string
+    {
+        return $this->getFluxIliasRestObjectService()
+            ->getFluxIliasRestObjectWebProxyLink(
+                $this->getFluxIliasRestObjectByRefId(
+                    $ref_id
+                ),
+                $this->getCurrentApiUser()
+            );
+    }
+
+
+    /**
+     * @return FluxIliasRestObjectDto[]
+     */
+    public function getFluxIliasRestObjects(bool $container_settings = false, ?bool $in_trash = null) : array
+    {
+        return $this->getFluxIliasRestObjectService()
+            ->getFluxIliasRestObjects(
+                $container_settings,
+                $in_trash
+            );
+    }
+
+
     public function getGlobalRoleObject() : ?ObjectDto
     {
         return $this->getRoleService()
@@ -1203,15 +1298,6 @@ class IliasApi
     }
 
 
-    public function getObjectConfigLink(int $ref_id) : string
-    {
-        return $this->getProxyService()
-            ->getObjectConfigLink(
-                $ref_id
-            );
-    }
-
-
     /**
      * @return ObjectLearningProgressDto[]
      */
@@ -1231,18 +1317,6 @@ class IliasApi
                 $user_id,
                 $user_import_id,
                 $learning_progress
-            );
-    }
-
-
-    public function getObjectWebProxyLink(int $ref_id) : string
-    {
-        return $this->getProxyService()
-            ->getObjectWebProxyLink(
-                $this->getObjectByRefId(
-                    $ref_id
-                ),
-                $this->getCurrentApiUser()
             );
     }
 
@@ -2272,6 +2346,36 @@ class IliasApi
     }
 
 
+    public function updateFluxIliasRestObjectById(int $id, FluxIliasRestObjectDiffDto $diff) : ?ObjectIdDto
+    {
+        return $this->getFluxIliasRestObjectService()
+            ->updateFluxIliasRestObjectById(
+                $id,
+                $diff
+            );
+    }
+
+
+    public function updateFluxIliasRestObjectByImportId(string $import_id, FluxIliasRestObjectDiffDto $diff) : ?ObjectIdDto
+    {
+        return $this->getFluxIliasRestObjectService()
+            ->updateFluxIliasRestObjectByImportId(
+                $import_id,
+                $diff
+            );
+    }
+
+
+    public function updateFluxIliasRestObjectByRefId(int $ref_id, FluxIliasRestObjectDiffDto $diff) : ?ObjectIdDto
+    {
+        return $this->getFluxIliasRestObjectService()
+            ->updateFluxIliasRestObjectByRefId(
+                $ref_id,
+                $diff
+            );
+    }
+
+
     public function updateGroupById(int $id, GroupDiffDto $diff) : ?ObjectIdDto
     {
         return $this->getGroupService()
@@ -2655,6 +2759,7 @@ class IliasApi
             $this->getCourseService(),
             $this->getCourseMemberService(),
             $this->getFileService(),
+            $this->getFluxIliasRestObjectService(),
             $this->getGroupService(),
             $this->getGroupMemberService(),
             $this->getObjectService(),
@@ -2675,6 +2780,7 @@ class IliasApi
     {
         return ConfigFormService::new(
             $this->getChangeService(),
+            $this->getFluxIliasRestObjectService(),
             $this->getProxyConfigService(),
             $this->getRestConfigService(),
             $this->getIliasDic()
@@ -2731,6 +2837,18 @@ class IliasApi
             $this->getIliasDatabase(),
             $this->getIliasUpload(),
             $this->getObjectService()
+        );
+    }
+
+
+    private function getFluxIliasRestObjectService() : FluxIliasRestObjectService
+    {
+        return FluxIliasRestObjectService::new(
+            $this->getConfigService(),
+            $this->getObjectService(),
+            $this->getObjectConfigService(),
+            $this->getIliasDatabase(),
+            $this->getIliasAccess()
         );
     }
 
@@ -2850,16 +2968,6 @@ class IliasApi
     }
 
 
-    private function getObjectConfigFormService() : ObjectConfigFormService
-    {
-        return ObjectConfigFormService::new(
-            $this->getObjectProxyConfigService(),
-            $this->getObjectService(),
-            $this->getIliasAccess()
-        );
-    }
-
-
     private function getObjectConfigService() : ObjectConfigService
     {
         return ObjectConfigService::new(
@@ -2874,16 +2982,6 @@ class IliasApi
             $this->getIliasDatabase(),
             $this->getObjectService(),
             $this->getUserService()
-        );
-    }
-
-
-    private function getObjectProxyConfigService() : ObjectProxyConfigService
-    {
-        return ObjectProxyConfigService::new(
-            $this->getProxyConfigService(),
-            $this->getObjectConfigService(),
-            $this->getIliasAccess()
         );
     }
 
@@ -2940,9 +3038,7 @@ class IliasApi
             $this->getRestApi(),
             $this->getConfigFormService(),
             $this->getProxyConfigService(),
-            $this->getObjectService(),
-            $this->getObjectConfigFormService(),
-            $this->getObjectProxyConfigService(),
+            $this->getFluxIliasRestObjectService(),
             $this->getIliasDic()
         );
     }

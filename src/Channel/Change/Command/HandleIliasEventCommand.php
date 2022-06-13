@@ -15,6 +15,7 @@ use FluxIliasApi\Channel\Change\Port\ChangeService;
 use FluxIliasApi\Channel\Course\Port\CourseService;
 use FluxIliasApi\Channel\CourseMember\Port\CourseMemberService;
 use FluxIliasApi\Channel\File\Port\FileService;
+use FluxIliasApi\Channel\FluxIliasRestObject\Port\FluxIliasRestObjectService;
 use FluxIliasApi\Channel\Group\Port\GroupService;
 use FluxIliasApi\Channel\GroupMember\Port\GroupMemberService;
 use FluxIliasApi\Channel\Object\LegacyDefaultInternalObjectType;
@@ -32,6 +33,7 @@ use ilObjCategory;
 use ilObjCourse;
 use ilObject;
 use ilObjFile;
+use ilObjflux_ilias_rest_object_helper_plugin;
 use ilObjGroup;
 use ilObjOrgUnit;
 use ilObjRole;
@@ -48,6 +50,7 @@ class HandleIliasEventCommand
     private CourseMemberService $course_member_service;
     private CourseService $course_service;
     private FileService $file_service;
+    private FluxIliasRestObjectService $flux_ilias_rest_object_service;
     private GroupMemberService $group_member_service;
     private GroupService $group_service;
     private ilDBInterface $ilias_database;
@@ -68,6 +71,7 @@ class HandleIliasEventCommand
         /*private readonly*/ CourseService $course_service,
         /*private readonly*/ CourseMemberService $course_member_service,
         /*private readonly*/ FileService $file_service,
+        /*private readonly*/ FluxIliasRestObjectService $flux_ilias_rest_object_service,
         /*private readonly*/ GroupService $group_service,
         /*private readonly*/ GroupMemberService $group_member_service,
         /*private readonly*/ ObjectService $object_service,
@@ -85,6 +89,7 @@ class HandleIliasEventCommand
         $this->course_service = $course_service;
         $this->course_member_service = $course_member_service;
         $this->file_service = $file_service;
+        $this->flux_ilias_rest_object_service = $flux_ilias_rest_object_service;
         $this->group_service = $group_service;
         $this->group_member_service = $group_member_service;
         $this->object_service = $object_service;
@@ -105,6 +110,7 @@ class HandleIliasEventCommand
         CourseService $course_service,
         CourseMemberService $course_member_service,
         FileService $file_service,
+        FluxIliasRestObjectService $flux_ilias_rest_object_service,
         GroupService $group_service,
         GroupMemberService $group_member_service,
         ObjectService $object_service,
@@ -124,6 +130,7 @@ class HandleIliasEventCommand
             $course_service,
             $course_member_service,
             $file_service,
+            $flux_ilias_rest_object_service,
             $group_service,
             $group_member_service,
             $object_service,
@@ -259,6 +266,20 @@ class HandleIliasEventCommand
             );
         } else {
             return $this->file_service->getFileById(
+                $id
+            );
+        }
+    }
+
+
+    private function getFluxIliasRestObjectData(int $id, ?int $ref_id = null) : ?object
+    {
+        if ($ref_id !== null) {
+            return $this->flux_ilias_rest_object_service->getFluxIliasRestObjectByRefId(
+                $ref_id
+            );
+        } else {
+            return $this->flux_ilias_rest_object_service->getFluxIliasRestObjectById(
                 $id
             );
         }
@@ -583,6 +604,44 @@ class HandleIliasEventCommand
     }
 
 
+    private function handleFluxIliasRestObjectCreated(UserDto $user, int $id) : void
+    {
+        $this->storeChange(
+            LegacyChangeType::CREATED_FLUX_ILIAS_REST_OBJECT(),
+            $user,
+            $this->getFluxIliasRestObjectData(
+                $id
+            )
+        );
+    }
+
+
+    private function handleFluxIliasRestObjectDeleted(UserDto $user, ilObjflux_ilias_rest_object_helper_plugin $ilias_flux_ilias_rest_object) : void
+    {
+        $this->storeChange(
+            LegacyChangeType::DELETED_FLUX_ILIAS_REST_OBJECT(),
+            $user,
+            $this->getObjectData(
+                $ilias_flux_ilias_rest_object->getId(),
+                $ilias_flux_ilias_rest_object->getRefId() ?: null
+            )
+        );
+    }
+
+
+    private function handleFluxIliasRestObjectUpdated(UserDto $user, int $id, ?int $ref_id) : void
+    {
+        $this->storeChange(
+            LegacyChangeType::UPDATED_FLUX_ILIAS_REST_OBJECT(),
+            $user,
+            $this->getFluxIliasRestObjectData(
+                $id,
+                $ref_id
+            )
+        );
+    }
+
+
     private function handleGroup(UserDto $user, string $event, array $parameters) : void
     {
         switch ($event) {
@@ -789,6 +848,12 @@ class HandleIliasEventCommand
                     $id
                 );
                 break;
+            case LegacyDefaultInternalObjectType::XFRH()->value:
+                $this->handleFluxIliasRestObjectCreated(
+                    $user,
+                    $id
+                );
+                break;
             default:
                 $this->storeChange(
                     LegacyChangeType::CREATED_OBJECT(),
@@ -819,6 +884,12 @@ class HandleIliasEventCommand
                 break;
             case $ilias_object instanceof ilObjFile:
                 $this->handleFileDeleted(
+                    $user,
+                    $ilias_object
+                );
+                break;
+            case $ilias_object instanceof ilObjflux_ilias_rest_object_helper_plugin:
+                $this->handleFluxIliasRestObjectDeleted(
                     $user,
                     $ilias_object
                 );
@@ -984,6 +1055,13 @@ class HandleIliasEventCommand
                 break;
             case LegacyDefaultInternalObjectType::SAHS()->value:
                 $this->handleScormLearningModuleUpdated(
+                    $user,
+                    $id,
+                    $ref_id
+                );
+                break;
+            case LegacyDefaultInternalObjectType::XFRH()->value:
+                $this->handleFluxIliasRestObjectUpdated(
                     $user,
                     $id,
                     $ref_id

@@ -38,6 +38,7 @@ use FluxIliasApi\Channel\Course\Port\CourseService;
 use FluxIliasApi\Channel\CourseMember\Port\CourseMemberService;
 use FluxIliasApi\Channel\CronConfig\Port\CronConfigService;
 use FluxIliasApi\Channel\File\Port\FileService;
+use FluxIliasApi\Channel\FluxIliasRestObject\Port\FluxIliasRestObjectService;
 use FluxIliasApi\Channel\Group\Port\GroupService;
 use FluxIliasApi\Channel\GroupMember\Port\GroupMemberService;
 use FluxIliasApi\Channel\Object\Port\ObjectService;
@@ -61,6 +62,7 @@ class ChangeService
     private CourseService $course_service;
     private CronConfigService $cron_config_service;
     private FileService $file_service;
+    private FluxIliasRestObjectService $flux_ilias_rest_object_service;
     private GroupMemberService $group_member_service;
     private GroupService $group_service;
     private ilDBInterface $ilias_database;
@@ -82,6 +84,7 @@ class ChangeService
         /*private readonly*/ CourseService $course_service,
         /*private readonly*/ CourseMemberService $course_member_service,
         /*private readonly*/ FileService $file_service,
+        /*private readonly*/ FluxIliasRestObjectService $flux_ilias_rest_object_service,
         /*private readonly*/ GroupService $group_service,
         /*private readonly*/ GroupMemberService $group_member_service,
         /*private readonly*/ ObjectService $object_service,
@@ -101,6 +104,7 @@ class ChangeService
         $this->course_service = $course_service;
         $this->course_member_service = $course_member_service;
         $this->file_service = $file_service;
+        $this->flux_ilias_rest_object_service = $flux_ilias_rest_object_service;
         $this->group_service = $group_service;
         $this->group_member_service = $group_member_service;
         $this->object_service = $object_service;
@@ -123,6 +127,7 @@ class ChangeService
         CourseService $course_service,
         CourseMemberService $course_member_service,
         FileService $file_service,
+        FluxIliasRestObjectService $flux_ilias_rest_object_service,
         GroupService $group_service,
         GroupMemberService $group_member_service,
         ObjectService $object_service,
@@ -144,6 +149,7 @@ class ChangeService
             $course_service,
             $course_member_service,
             $file_service,
+            $flux_ilias_rest_object_service,
             $group_service,
             $group_member_service,
             $object_service,
@@ -281,6 +287,7 @@ class ChangeService
             $this->course_service,
             $this->course_member_service,
             $this->file_service,
+            $this->flux_ilias_rest_object_service,
             $this->group_service,
             $this->group_member_service,
             $this->object_service,

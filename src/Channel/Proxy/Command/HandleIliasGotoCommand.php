@@ -4,13 +4,11 @@ namespace FluxIliasApi\Channel\Proxy\Command;
 
 use FluxIliasApi\Adapter\Authorization\ConfigForm\ConfigFormAuthorization;
 use FluxIliasApi\Adapter\Route\ConfigForm\ConfigFormRouteCollector;
-use FluxIliasApi\Adapter\Route\ObjectConfigForm\ObjectConfigFormRouteCollector;
+use FluxIliasApi\Adapter\Route\FluxIliasRestObjectForm\FluxIliasRestObjectConfigFormRouteCollector;
 use FluxIliasApi\Adapter\User\UserDto;
 use FluxIliasApi\Channel\ConfigForm\Port\ConfigFormService;
+use FluxIliasApi\Channel\FluxIliasRestObject\Port\FluxIliasRestObjectService;
 use FluxIliasApi\Channel\Object\ObjectQuery;
-use FluxIliasApi\Channel\Object\Port\ObjectService;
-use FluxIliasApi\Channel\ObjectConfigForm\Port\ObjectConfigFormService;
-use FluxIliasApi\Channel\ObjectProxyConfig\Port\ObjectProxyConfigService;
 use FluxIliasApi\Channel\Proxy\LegacyProxyTarget;
 use FluxIliasApi\Channel\Proxy\Port\ProxyService;
 use FluxIliasApi\Channel\ProxyConfig\Port\ProxyConfigService;
@@ -37,11 +35,9 @@ class HandleIliasGotoCommand
     use ObjectQuery;
 
     private ConfigFormService $config_form_service;
+    private FluxIliasRestObjectService $flux_ilias_rest_object_service;
     private ilGlobalTemplateInterface $ilias_global_template;
     private ilLocatorGUI $ilias_locator;
-    private ObjectConfigFormService $object_config_form_service;
-    private ObjectProxyConfigService $object_proxy_config_service;
-    private ObjectService $object_service;
     private ProxyConfigService $proxy_config_service;
     private ProxyService $proxy_service;
     private RestApi $rest_api;
@@ -52,9 +48,7 @@ class HandleIliasGotoCommand
         /*private readonly*/ ProxyConfigService $proxy_config_service,
         /*private readonly*/ RestApi $rest_api,
         /*private readonly*/ ConfigFormService $config_form_service,
-        /*private readonly*/ ObjectService $object_service,
-        /*private readonly*/ ObjectConfigFormService $object_config_form_service,
-        /*private readonly*/ ObjectProxyConfigService $object_proxy_config_service,
+        /*private readonly*/ FluxIliasRestObjectService $flux_ilias_rest_object_service,
         /*private readonly*/ ilGlobalTemplateInterface $ilias_global_template,
         /*private readonly*/ ilLocatorGUI $ilias_locator
     ) {
@@ -62,9 +56,7 @@ class HandleIliasGotoCommand
         $this->proxy_config_service = $proxy_config_service;
         $this->rest_api = $rest_api;
         $this->config_form_service = $config_form_service;
-        $this->object_service = $object_service;
-        $this->object_config_form_service = $object_config_form_service;
-        $this->object_proxy_config_service = $object_proxy_config_service;
+        $this->flux_ilias_rest_object_service = $flux_ilias_rest_object_service;
         $this->ilias_global_template = $ilias_global_template;
         $this->ilias_locator = $ilias_locator;
     }
@@ -75,9 +67,7 @@ class HandleIliasGotoCommand
         ProxyConfigService $proxy_config_service,
         RestApi $rest_api,
         ConfigFormService $config_form_service,
-        ObjectService $object_service,
-        ObjectConfigFormService $object_config_form_service,
-        ObjectProxyConfigService $object_proxy_config_service,
+        FluxIliasRestObjectService $flux_ilias_rest_object_service,
         ilGlobalTemplateInterface $ilias_global_template,
         ilLocatorGUI $ilias_locator
     ) : /*static*/ self
@@ -87,9 +77,7 @@ class HandleIliasGotoCommand
             $proxy_config_service,
             $rest_api,
             $config_form_service,
-            $object_service,
-            $object_config_form_service,
-            $object_proxy_config_service,
+            $flux_ilias_rest_object_service,
             $ilias_global_template,
             $ilias_locator
         );
@@ -312,11 +300,12 @@ class HandleIliasGotoCommand
 
     private function handleObjectApiProxy(?UserDto $user, ServerRawRequestDto $request, int $ref_id) : void
     {
-        $object = $this->object_service->getObjectByRefId(
+        $object = $this->flux_ilias_rest_object_service->getFluxIliasRestObjectByRefId(
             $ref_id
         );
 
-        if (($object_api_proxy_map = $this->object_proxy_config_service->getObjectApiProxyMap(
+        if ($object === null
+            || ($api_proxy_map = $this->flux_ilias_rest_object_service->getFluxIliasRestObjectApiProxyMap(
                 $object,
                 $user
             )) === null
@@ -348,7 +337,7 @@ class HandleIliasGotoCommand
 
         $response = $this->rest_api->makeRequest(
             ClientRequestDto::new(
-                rtrim($object_api_proxy_map->url, "/") . (!empty($route = trim($request->getQueryParam(
+                rtrim($api_proxy_map->url, "/") . (!empty($route = trim($request->getQueryParam(
                     "route"
                 ), "/")) ? "/" . $route : ""),
                 $request->method,
@@ -390,22 +379,23 @@ class HandleIliasGotoCommand
 
     private function handleObjectConfig(?UserDto $user, ServerRawRequestDto $request, int $ref_id) : void
     {
-        $object = $this->object_service->getObjectByRefId(
+        $object = $this->flux_ilias_rest_object_service->getFluxIliasRestObjectByRefId(
             $ref_id
         );
 
-        if (!$this->object_config_form_service->hasAccessToObjectConfigForm(
-            $object,
-            $user
-        )
+        if ($object === null
+            || !$this->flux_ilias_rest_object_service->hasAccessToFluxIliasRestObjectConfigForm(
+                $object->ref_id,
+                $user
+            )
         ) {
             return;
         }
 
         $this->handleRequest(
             $request,
-            ObjectConfigFormRouteCollector::new(
-                $this->object_config_form_service,
+            FluxIliasRestObjectConfigFormRouteCollector::new(
+                $this->flux_ilias_rest_object_service,
                 $this->proxy_service,
                 $this->ilias_global_template,
                 $this->ilias_locator,
@@ -417,11 +407,12 @@ class HandleIliasGotoCommand
 
     private function handleObjectWebProxy(?UserDto $user, ServerRawRequestDto $request, int $ref_id) : void
     {
-        $object = $this->object_service->getObjectByRefId(
+        $object = $this->flux_ilias_rest_object_service->getFluxIliasRestObjectByRefId(
             $ref_id
         );
 
-        if (($object_web_proxy_map = $this->object_proxy_config_service->getObjectWebProxyMap(
+        if ($object === null
+            || ($web_proxy_map = $this->flux_ilias_rest_object_service->getFluxIliasRestObjectWebProxyMap(
                 $object,
                 $user
             )) === null
@@ -438,10 +429,10 @@ class HandleIliasGotoCommand
             HtmlBodyDto::new(
                 $this->proxy_service->getWebProxy(
                     $this->ilias_global_template,
-                    $object_web_proxy_map->iframe_url,
-                    $object_web_proxy_map->page_title,
-                    $object_web_proxy_map->short_title,
-                    $object_web_proxy_map->view_title,
+                    $web_proxy_map->iframe_url,
+                    $web_proxy_map->page_title,
+                    $web_proxy_map->short_title,
+                    $web_proxy_map->view_title,
                     $request->getQueryParam(
                         "route"
                     ),

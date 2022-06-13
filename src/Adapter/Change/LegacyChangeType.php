@@ -13,6 +13,7 @@ use FluxIliasApi\Libs\FluxLegacyEnum\Adapter\Backed\LegacyStringBackedEnum;
  * @method static static CREATED_CATEGORY() created_category
  * @method static static CREATED_COURSE() created_course
  * @method static static CREATED_FILE() created_file
+ * @method static static CREATED_FLUX_ILIAS_REST_OBJECT() created_flux_ilias_rest_object
  * @method static static CREATED_GROUP() created_group
  * @method static static CREATED_OBJECT() created_object
  * @method static static CREATED_ORGANISATIONAL_UNIT() created_organisational_unit
@@ -22,6 +23,7 @@ use FluxIliasApi\Libs\FluxLegacyEnum\Adapter\Backed\LegacyStringBackedEnum;
  * @method static static DELETED_CATEGORY() deleted_category
  * @method static static DELETED_COURSE() deleted_course
  * @method static static DELETED_FILE() deleted_file
+ * @method static static DELETED_FLUX_ILIAS_REST_OBJECT() deleted_flux_ilias_rest_object
  * @method static static DELETED_GROUP() deleted_group
  * @method static static DELETED_OBJECT() deleted_object
  * @method static static DELETED_ORGANISATIONAL_UNIT() deleted_organisational_unit
@@ -39,6 +41,7 @@ use FluxIliasApi\Libs\FluxLegacyEnum\Adapter\Backed\LegacyStringBackedEnum;
  * @method static static UPDATED_CATEGORY() updated_category
  * @method static static UPDATED_COURSE() updated_course
  * @method static static UPDATED_FILE() updated_file
+ * @method static static UPDATED_FLUX_ILIAS_REST_OBJECT() updated_flux_ilias_rest_object
  * @method static static UPDATED_GROUP() updated_group
  * @method static static UPDATED_OBJECT() updated_object
  * @method static static UPDATED_OBJECT_LEARNING_PROGRESS() updated_object_learning_progress

@@ -8,6 +8,7 @@ use FluxIliasApi\Channel\ConfigForm\Command\GetConfigFormMenuItemsCommand;
 use FluxIliasApi\Channel\ConfigForm\Command\GetConfigFormValuesCommand;
 use FluxIliasApi\Channel\ConfigForm\Command\HasAccessToConfigFormCommand;
 use FluxIliasApi\Channel\ConfigForm\Command\StoreConfigFormValuesCommand;
+use FluxIliasApi\Channel\FluxIliasRestObject\Port\FluxIliasRestObjectService;
 use FluxIliasApi\Channel\ProxyConfig\Port\ProxyConfigService;
 use FluxIliasApi\Channel\RestConfig\Port\RestConfigService;
 use ILIAS\DI\Container;
@@ -18,6 +19,7 @@ class ConfigFormService
 {
 
     private ChangeService $change_service;
+    private FluxIliasRestObjectService $flux_ilias_rest_object_service;
     private Container $ilias_dic;
     private ProxyConfigService $proxy_config_service;
     private RestConfigService $rest_config_service;
@@ -25,11 +27,13 @@ class ConfigFormService
 
     private function __construct(
         /*private readonly*/ ChangeService $change_service,
+        /*private readonly*/ FluxIliasRestObjectService $flux_ilias_rest_object_service,
         /*private readonly*/ ProxyConfigService $proxy_config_service,
         /*private readonly*/ RestConfigService $rest_config_service,
         /*private readonly*/ Container $ilias_dic
     ) {
         $this->change_service = $change_service;
+        $this->flux_ilias_rest_object_service = $flux_ilias_rest_object_service;
         $this->proxy_config_service = $proxy_config_service;
         $this->rest_config_service = $rest_config_service;
         $this->ilias_dic = $ilias_dic;
@@ -38,6 +42,7 @@ class ConfigFormService
 
     public static function new(
         ChangeService $change_service,
+        FluxIliasRestObjectService $flux_ilias_rest_object_service,
         ProxyConfigService $proxy_config_service,
         RestConfigService $rest_config_service,
         Container $ilias_dic
@@ -45,6 +50,7 @@ class ConfigFormService
     {
         return new static(
             $change_service,
+            $flux_ilias_rest_object_service,
             $proxy_config_service,
             $rest_config_service,
             $ilias_dic
@@ -69,6 +75,7 @@ class ConfigFormService
     {
         return GetConfigFormValuesCommand::new(
             $this->change_service,
+            $this->flux_ilias_rest_object_service,
             $this->proxy_config_service,
             $this->rest_config_service
         )
@@ -89,6 +96,7 @@ class ConfigFormService
     {
         return StoreConfigFormValuesCommand::new(
             $this->change_service,
+            $this->flux_ilias_rest_object_service,
             $this->proxy_config_service,
             $this->rest_config_service
         )

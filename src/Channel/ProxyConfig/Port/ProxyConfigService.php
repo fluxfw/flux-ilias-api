@@ -3,30 +3,18 @@
 namespace FluxIliasApi\Channel\ProxyConfig\Port;
 
 use FluxIliasApi\Adapter\Proxy\ApiProxyMapDto;
-use FluxIliasApi\Adapter\Proxy\ObjectApiProxyMapDto;
-use FluxIliasApi\Adapter\Proxy\ObjectWebProxyMapDto;
 use FluxIliasApi\Adapter\Proxy\WebProxyMapDto;
 use FluxIliasApi\Channel\Config\Port\ConfigService;
 use FluxIliasApi\Channel\ProxyConfig\Command\GetApiProxyMapByKeyCommand;
 use FluxIliasApi\Channel\ProxyConfig\Command\GetApiProxyMapCommand;
-use FluxIliasApi\Channel\ProxyConfig\Command\GetObjectApiProxyMapByKeyCommand;
-use FluxIliasApi\Channel\ProxyConfig\Command\GetObjectApiProxyMapCommand;
-use FluxIliasApi\Channel\ProxyConfig\Command\GetObjectWebProxyMapByKeyCommand;
-use FluxIliasApi\Channel\ProxyConfig\Command\GetObjectWebProxyMapCommand;
 use FluxIliasApi\Channel\ProxyConfig\Command\GetWebProxyIframeHeightOffsetCommand;
 use FluxIliasApi\Channel\ProxyConfig\Command\GetWebProxyMapByKeyCommand;
 use FluxIliasApi\Channel\ProxyConfig\Command\GetWebProxyMapCommand;
 use FluxIliasApi\Channel\ProxyConfig\Command\IsEnableApiProxyCommand;
-use FluxIliasApi\Channel\ProxyConfig\Command\IsEnableObjectApiProxyCommand;
-use FluxIliasApi\Channel\ProxyConfig\Command\IsEnableObjectWebProxyCommand;
 use FluxIliasApi\Channel\ProxyConfig\Command\IsEnableWebProxyCommand;
 use FluxIliasApi\Channel\ProxyConfig\Command\SetApiProxyMapCommand;
 use FluxIliasApi\Channel\ProxyConfig\Command\SetEnableApiProxyCommand;
-use FluxIliasApi\Channel\ProxyConfig\Command\SetEnableObjectApiProxyCommand;
-use FluxIliasApi\Channel\ProxyConfig\Command\SetEnableObjectWebProxyCommand;
 use FluxIliasApi\Channel\ProxyConfig\Command\SetEnableWebProxyCommand;
-use FluxIliasApi\Channel\ProxyConfig\Command\SetObjectApiProxyMapCommand;
-use FluxIliasApi\Channel\ProxyConfig\Command\SetObjectWebProxyMapCommand;
 use FluxIliasApi\Channel\ProxyConfig\Command\SetWebProxyIframeHeightOffsetCommand;
 use FluxIliasApi\Channel\ProxyConfig\Command\SetWebProxyMapCommand;
 
@@ -76,52 +64,6 @@ class ProxyConfigService
     }
 
 
-    /**
-     * @return ObjectApiProxyMapDto[]
-     */
-    public function getObjectApiProxyMap() : array
-    {
-        return GetObjectApiProxyMapCommand::new(
-            $this->config_service
-        )
-            ->getObjectApiProxyMap();
-    }
-
-
-    public function getObjectApiProxyMapByKey(string $key) : ?ObjectApiProxyMapDto
-    {
-        return GetObjectApiProxyMapByKeyCommand::new(
-            $this->getObjectApiProxyMap()
-        )
-            ->getObjectApiProxyMapByKey(
-                $key
-            );
-    }
-
-
-    /**
-     * @return ObjectWebProxyMapDto[]
-     */
-    public function getObjectWebProxyMap() : array
-    {
-        return GetObjectWebProxyMapCommand::new(
-            $this->config_service
-        )
-            ->getObjectWebProxyMap();
-    }
-
-
-    public function getObjectWebProxyMapByKey(string $key) : ?ObjectWebProxyMapDto
-    {
-        return GetObjectWebProxyMapByKeyCommand::new(
-            $this->getObjectWebProxyMap()
-        )
-            ->getObjectWebProxyMapByKey(
-                $key
-            );
-    }
-
-
     public function getWebProxyIframeHeightOffset() : int
     {
         return GetWebProxyIframeHeightOffsetCommand::new(
@@ -163,24 +105,6 @@ class ProxyConfigService
     }
 
 
-    public function isEnableObjectApiProxy() : bool
-    {
-        return IsEnableObjectApiProxyCommand::new(
-            $this->config_service
-        )
-            ->isEnableObjectApiProxy();
-    }
-
-
-    public function isEnableObjectWebProxy() : bool
-    {
-        return IsEnableObjectWebProxyCommand::new(
-            $this->config_service
-        )
-            ->isEnableObjectWebProxy();
-    }
-
-
     public function isEnableWebProxy() : bool
     {
         return IsEnableWebProxyCommand::new(
@@ -215,28 +139,6 @@ class ProxyConfigService
     }
 
 
-    public function setEnableObjectApiProxy(bool $enable_object_api_proxy) : void
-    {
-        SetEnableObjectApiProxyCommand::new(
-            $this->config_service
-        )
-            ->setEnableObjectApiProxy(
-                $enable_object_api_proxy
-            );
-    }
-
-
-    public function setEnableObjectWebProxy(bool $enable_object_web_proxy) : void
-    {
-        SetEnableObjectWebProxyCommand::new(
-            $this->config_service
-        )
-            ->setEnableObjectWebProxy(
-                $enable_object_web_proxy
-            );
-    }
-
-
     public function setEnableWebProxy(bool $enable_web_proxy) : void
     {
         SetEnableWebProxyCommand::new(
@@ -244,34 +146,6 @@ class ProxyConfigService
         )
             ->setEnableWebProxy(
                 $enable_web_proxy
-            );
-    }
-
-
-    /**
-     * @param ObjectApiProxyMapDto[] $object_api_proxy_map
-     */
-    public function setObjectApiProxyMap(array $object_api_proxy_map) : void
-    {
-        SetObjectApiProxyMapCommand::new(
-            $this->config_service
-        )
-            ->setObjectApiProxyMap(
-                $object_api_proxy_map
-            );
-    }
-
-
-    /**
-     * @param ObjectWebProxyMapDto[] $object_web_proxy_map
-     */
-    public function setObjectWebProxyMap(array $object_web_proxy_map) : void
-    {
-        SetObjectWebProxyMapCommand::new(
-            $this->config_service
-        )
-            ->setObjectWebProxyMap(
-                $object_web_proxy_map
             );
     }
 
