@@ -396,8 +396,7 @@ class HandleIliasGotoCommand
                 $this->proxy_service,
                 $this->ilias_global_template,
                 $this->ilias_locator,
-                $object,
-                $user
+                $object
             )
         );
     }
@@ -421,8 +420,7 @@ class HandleIliasGotoCommand
         $this->ilias_locator->addRepositoryItems($object->ref_id);
         $this->ilias_locator->addItem($object->title, $this->flux_ilias_rest_object_service->getFluxIliasRestObjectWebProxyLink(
             $object->ref_id,
-            $object->id,
-            $user->id
+            $object->id
         ));
 
         $this->bodyResponse(

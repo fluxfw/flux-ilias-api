@@ -3,7 +3,6 @@
 namespace FluxIliasApi\Adapter\Route\FluxIliasRestObjectForm;
 
 use FluxIliasApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectDto;
-use FluxIliasApi\Adapter\User\UserDto;
 use FluxIliasApi\Channel\FluxIliasRestObject\Port\FluxIliasRestObjectService;
 use FluxIliasApi\Channel\Proxy\Port\ProxyService;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\HtmlBodyDto;
@@ -24,7 +23,6 @@ class FluxIliasRestObjectConfigFormRoute implements Route
     private ilLocatorGUI $ilias_locator;
     private FluxIliasRestObjectDto $object;
     private ProxyService $proxy_service;
-    private UserDto $user;
 
 
     private function __construct(
@@ -32,15 +30,13 @@ class FluxIliasRestObjectConfigFormRoute implements Route
         /*private readonly*/ ProxyService $proxy_service,
         /*private readonly*/ ilGlobalTemplateInterface $ilias_global_template,
         /*private readonly*/ ilLocatorGUI $ilias_locator,
-        /*private readonly*/ FluxIliasRestObjectDto $object,
-        /*private readonly*/ UserDto $user
+        /*private readonly*/ FluxIliasRestObjectDto $object
     ) {
         $this->flux_ilias_rest_object_service = $flux_ilias_rest_object_service;
         $this->proxy_service = $proxy_service;
         $this->ilias_global_template = $ilias_global_template;
         $this->ilias_locator = $ilias_locator;
         $this->object = $object;
-        $this->user = $user;
     }
 
 
@@ -49,8 +45,7 @@ class FluxIliasRestObjectConfigFormRoute implements Route
         ProxyService $proxy_service,
         ilGlobalTemplateInterface $ilias_global_template,
         ilLocatorGUI $ilias_locator,
-        FluxIliasRestObjectDto $object,
-        UserDto $user
+        FluxIliasRestObjectDto $object
     ) : /*static*/ self
     {
         return new static(
@@ -58,8 +53,7 @@ class FluxIliasRestObjectConfigFormRoute implements Route
             $proxy_service,
             $ilias_global_template,
             $ilias_locator,
-            $object,
-            $user
+            $object
         );
     }
 
@@ -85,10 +79,8 @@ class FluxIliasRestObjectConfigFormRoute implements Route
     public function handle(ServerRequestDto $request) : ?ServerResponseDto
     {
         $this->ilias_locator->addRepositoryItems($this->object->ref_id);
-        $this->ilias_locator->addItem($this->object->title, $this->flux_ilias_rest_object_service->getFluxIliasRestObjectWebProxyLink(
-            $this->object->ref_id,
-            $this->object->id,
-            $this->user->id
+        $this->ilias_locator->addItem($this->object->title, $this->flux_ilias_rest_object_service->getFluxIliasRestObjectConfigLink(
+            $this->object->ref_id
         ));
 
         return ServerResponseDto::new(

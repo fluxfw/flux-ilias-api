@@ -6,6 +6,7 @@ class WebProxyMapDto
 {
 
     public string $iframe_url;
+    public ?string $menu_icon_url;
     public bool $menu_item;
     public ?string $menu_title;
     public string $page_title;
@@ -25,6 +26,7 @@ class WebProxyMapDto
         /*public readonly*/ ?string $rewrite_url,
         /*public readonly*/ bool $menu_item,
         /*public readonly*/ ?string $menu_title,
+        /*public readonly*/ ?string $menu_icon_url,
         /*public readonly*/ bool $visible_public_menu_item
     ) {
         $this->target_key = $target_key;
@@ -35,6 +37,7 @@ class WebProxyMapDto
         $this->rewrite_url = $rewrite_url;
         $this->menu_item = $menu_item;
         $this->menu_title = $menu_title;
+        $this->menu_icon_url = $menu_icon_url;
         $this->visible_public_menu_item = $visible_public_menu_item;
     }
 
@@ -48,6 +51,7 @@ class WebProxyMapDto
         ?string $rewrite_url,
         ?bool $menu_item,
         ?string $menu_title,
+        ?string $menu_icon_url,
         ?bool $visible_public_menu_item
     ) : /*static*/ self
     {
@@ -60,6 +64,7 @@ class WebProxyMapDto
             $rewrite_url,
             $menu_item ?? false,
             $menu_title,
+            $menu_icon_url,
             $visible_public_menu_item ?? false
         );
     }
@@ -78,6 +83,7 @@ class WebProxyMapDto
             ($web_proxy_map->rewrite_url ?? null) ?: null,
             $web_proxy_map->menu_item ?? null,
             ($web_proxy_map->menu_title ?? null) ?: null,
+            ($web_proxy_map->menu_icon_url ?? null) ?: null,
             $web_proxy_map->visible_public_menu_item ?? null
         );
     }

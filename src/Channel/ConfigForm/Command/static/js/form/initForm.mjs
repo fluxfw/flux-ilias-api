@@ -27,7 +27,8 @@ export function initForm(form_template_el, action, values) {
     changedEnableTransferChanges();
 
     initEntriesForm("api_proxy_map", entries_template_el, ["target_key", "url"], values, form_el);
-    initEntriesForm("web_proxy_map", entries_template_el, ["iframe_url", "menu_item", "menu_title", "page_title", "rewrite_url", "short_title", "target_key", "view_title", "visible_public_menu_item"], values, form_el, (entry_el) => {
+    initEntriesForm("web_proxy_map", entries_template_el, ["iframe_url", "menu_icon_url", "menu_item", "menu_title", "page_title", "rewrite_url", "short_title", "target_key", "view_title", "visible_public_menu_item"], values, form_el, (entry_el) => {
+        const menu_icon_url_el = entry_el.querySelector("[data-entry-menu_icon_url]");
         const menu_item_el = entry_el.querySelector("[data-entry-menu_item]");
         const menu_title_el = entry_el.querySelector("[data-entry-menu_title]");
         const visible_public_menu_item_el = entry_el.querySelector("[data-entry-visible_public_menu_item]");
@@ -42,10 +43,10 @@ export function initForm(form_template_el, action, values) {
         function changedMenuItem() {
             const old_disabled = menu_title_el.disabled;
 
-            menu_title_el.disabled = visible_public_menu_item_el.disabled = !menu_item_el.checked;
+            menu_title_el.disabled = menu_icon_url_el.disabled = visible_public_menu_item_el.disabled = !menu_item_el.checked;
 
             if (old_disabled !== menu_title_el.disabled) {
-                menu_title_el.value = "";
+                menu_title_el.value = menu_icon_url_el.value = "";
                 visible_public_menu_item_el.checked = false;
             }
 
