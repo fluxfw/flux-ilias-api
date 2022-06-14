@@ -119,8 +119,12 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
             $scorm_learning_module["parent_obj_id"] ?: null,
             $scorm_learning_module["parent_import_id"] ?: null,
             $scorm_learning_module["parent_ref_id"] ?: null,
-            $this->getObjectUrl($scorm_learning_module["ref_id"] ?: null, $object_type),
-            $this->getObjectIconUrl($scorm_learning_module["obj_id"] ?: null, $object_type),
+            $this->getObjectUrl(
+                $scorm_learning_module["ref_id"] ?: null, $object_type
+            ),
+            $this->getObjectIconUrl(
+                $scorm_learning_module["obj_id"] ?: null, $object_type
+            ),
             $scorm_learning_module["title"] ?? "",
             $scorm_learning_module["description"] ?? "",
             ($type = $scorm_learning_module["c_type"] ?: null) !== null ? ScormLearningModuleTypeMapping::mapInternalToExternal(LegacyInternalScormLearningModuleType::from($type)) : null,

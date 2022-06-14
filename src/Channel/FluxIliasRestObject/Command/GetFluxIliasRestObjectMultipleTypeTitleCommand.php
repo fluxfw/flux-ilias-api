@@ -5,7 +5,7 @@ namespace FluxIliasApi\Channel\FluxIliasRestObject\Command;
 use FluxIliasApi\Channel\Config\LegacyConfigKey;
 use FluxIliasApi\Channel\Config\Port\ConfigService;
 
-class SetEnableFluxIliasRestObjectWebProxyCommand
+class GetFluxIliasRestObjectMultipleTypeTitleCommand
 {
 
     private ConfigService $config_service;
@@ -28,11 +28,10 @@ class SetEnableFluxIliasRestObjectWebProxyCommand
     }
 
 
-    public function setEnableFluxIliasRestObjectWebProxy(bool $enable_flux_ilias_rest_object_web_proxy) : void
+    public function getFluxIliasRestObjectMultipleTypeTitle() : ?string
     {
-        $this->config_service->setConfig(
-            LegacyConfigKey::ENABLE_FLUX_ILIAS_REST_OBJECT_WEB_PROXY(),
-            $enable_flux_ilias_rest_object_web_proxy
+        return $this->config_service->getConfig(
+            LegacyConfigKey::FLUX_ILIAS_REST_OBJECT_MULTIPLE_TYPE_TITLE()
         );
     }
 }

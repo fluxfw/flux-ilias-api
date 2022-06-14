@@ -2,7 +2,6 @@
 
 namespace FluxIliasApi\Channel\FluxIliasRestObject\Command;
 
-use FluxIliasApi\Adapter\User\UserDto;
 use ilAccessHandler;
 
 class HasAccessToFluxIliasRestObjectProxyCommand
@@ -28,8 +27,8 @@ class HasAccessToFluxIliasRestObjectProxyCommand
     }
 
 
-    public function hasAccessToFluxIliasRestObjectProxy(int $ref_id, ?UserDto $user) : bool
+    public function hasAccessToFluxIliasRestObjectProxy(int $ref_id, int $user_id) : bool
     {
-        return $user !== null && $this->ilias_access->checkAccessOfUser($user->id, "read", "", $ref_id);
+        return $this->ilias_access->checkAccessOfUser($user_id, "read", "", $ref_id);
     }
 }

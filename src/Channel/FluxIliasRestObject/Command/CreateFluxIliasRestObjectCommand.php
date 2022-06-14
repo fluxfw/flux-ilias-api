@@ -6,8 +6,8 @@ use FluxIliasApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectDiffDto;
 use FluxIliasApi\Adapter\Object\ObjectDto;
 use FluxIliasApi\Adapter\Object\ObjectIdDto;
 use FluxIliasApi\Channel\FluxIliasRestObject\FluxIliasRestObjectQuery;
+use FluxIliasApi\Channel\FluxIliasRestObject\Port\FluxIliasRestObjectService;
 use FluxIliasApi\Channel\Object\Port\ObjectService;
-use FluxIliasApi\Channel\ObjectConfig\Port\ObjectConfigService;
 use ilDBInterface;
 
 class CreateFluxIliasRestObjectCommand
@@ -15,31 +15,31 @@ class CreateFluxIliasRestObjectCommand
 
     use FluxIliasRestObjectQuery;
 
+    private FluxIliasRestObjectService $flux_ilias_rest_object_service;
     private ilDBInterface $ilias_database;
-    private ObjectConfigService $object_config_service;
     private ObjectService $object_service;
 
 
     private function __construct(
+        /*private readonly*/ FluxIliasRestObjectService $flux_ilias_rest_object_service,
         /*private readonly*/ ObjectService $object_service,
-        /*private readonly*/ ObjectConfigService $object_config_service,
         /*private readonly*/ ilDBInterface $ilias_database
     ) {
+        $this->flux_ilias_rest_object_service = $flux_ilias_rest_object_service;
         $this->object_service = $object_service;
-        $this->object_config_service = $object_config_service;
         $this->ilias_database = $ilias_database;
     }
 
 
     public static function new(
+        FluxIliasRestObjectService $flux_ilias_rest_object_service,
         ObjectService $object_service,
-        ObjectConfigService $object_config_service,
         ilDBInterface $ilias_database
     ) : /*static*/ self
     {
         return new static(
+            $flux_ilias_rest_object_service,
             $object_service,
-            $object_config_service,
             $ilias_database
         );
     }

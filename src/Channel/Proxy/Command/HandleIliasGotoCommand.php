@@ -8,7 +8,6 @@ use FluxIliasApi\Adapter\Route\FluxIliasRestObjectForm\FluxIliasRestObjectConfig
 use FluxIliasApi\Adapter\User\UserDto;
 use FluxIliasApi\Channel\ConfigForm\Port\ConfigFormService;
 use FluxIliasApi\Channel\FluxIliasRestObject\Port\FluxIliasRestObjectService;
-use FluxIliasApi\Channel\Object\ObjectQuery;
 use FluxIliasApi\Channel\Proxy\LegacyProxyTarget;
 use FluxIliasApi\Channel\Proxy\Port\ProxyService;
 use FluxIliasApi\Channel\ProxyConfig\Port\ProxyConfigService;
@@ -31,8 +30,6 @@ use Throwable;
 
 class HandleIliasGotoCommand
 {
-
-    use ObjectQuery;
 
     private ConfigFormService $config_form_service;
     private FluxIliasRestObjectService $flux_ilias_rest_object_service;
@@ -304,10 +301,10 @@ class HandleIliasGotoCommand
             $ref_id
         );
 
-        if ($object === null
+        if ($object === null || $user === null
             || ($api_proxy_map = $this->flux_ilias_rest_object_service->getFluxIliasRestObjectApiProxyMap(
                 $object,
-                $user
+                $user->id
             )) === null
         ) {
             $this->bodyResponse(
@@ -383,10 +380,10 @@ class HandleIliasGotoCommand
             $ref_id
         );
 
-        if ($object === null
+        if ($object === null || $user === null
             || !$this->flux_ilias_rest_object_service->hasAccessToFluxIliasRestObjectConfigForm(
                 $object->ref_id,
-                $user
+                $user->id
             )
         ) {
             return;
@@ -399,7 +396,8 @@ class HandleIliasGotoCommand
                 $this->proxy_service,
                 $this->ilias_global_template,
                 $this->ilias_locator,
-                $object
+                $object,
+                $user
             )
         );
     }
@@ -411,18 +409,20 @@ class HandleIliasGotoCommand
             $ref_id
         );
 
-        if ($object === null
+        if ($object === null || $user === null
             || ($web_proxy_map = $this->flux_ilias_rest_object_service->getFluxIliasRestObjectWebProxyMap(
                 $object,
-                $user
+                $user->id
             )) === null
         ) {
             return;
         }
 
         $this->ilias_locator->addRepositoryItems($object->ref_id);
-        $this->ilias_locator->addItem($object->title, $this->getObjectUrl(
-            $object->ref_id
+        $this->ilias_locator->addItem($object->title, $this->flux_ilias_rest_object_service->getFluxIliasRestObjectWebProxyLink(
+            $object->ref_id,
+            $object->id,
+            $user->id
         ));
 
         $this->bodyResponse(

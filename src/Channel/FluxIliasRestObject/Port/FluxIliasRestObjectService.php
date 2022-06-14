@@ -7,29 +7,37 @@ use FluxIliasApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectDiffDto;
 use FluxIliasApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectDto;
 use FluxIliasApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectWebProxyMapDto;
 use FluxIliasApi\Adapter\Object\ObjectIdDto;
-use FluxIliasApi\Adapter\User\UserDto;
 use FluxIliasApi\Channel\Config\Port\ConfigService;
 use FluxIliasApi\Channel\FluxIliasRestObject\Command\CreateFluxIliasRestObjectCommand;
 use FluxIliasApi\Channel\FluxIliasRestObject\Command\GetFluxIliasRestObjectApiProxyMapByKeyCommand;
 use FluxIliasApi\Channel\FluxIliasRestObject\Command\GetFluxIliasRestObjectApiProxyMapCommand;
+use FluxIliasApi\Channel\FluxIliasRestObject\Command\GetFluxIliasRestObjectApiProxyMapKeyCommand;
 use FluxIliasApi\Channel\FluxIliasRestObject\Command\GetFluxIliasRestObjectApiProxyMapsCommand;
 use FluxIliasApi\Channel\FluxIliasRestObject\Command\GetFluxIliasRestObjectApiProxyMapSelectionCommand;
 use FluxIliasApi\Channel\FluxIliasRestObject\Command\GetFluxIliasRestObjectCommand;
 use FluxIliasApi\Channel\FluxIliasRestObject\Command\GetFluxIliasRestObjectConfigFormValuesCommand;
 use FluxIliasApi\Channel\FluxIliasRestObject\Command\GetFluxIliasRestObjectConfigLinkCommand;
+use FluxIliasApi\Channel\FluxIliasRestObject\Command\GetFluxIliasRestObjectDefaultIconUrlCommand;
+use FluxIliasApi\Channel\FluxIliasRestObject\Command\GetFluxIliasRestObjectMultipleTypeTitleCommand;
 use FluxIliasApi\Channel\FluxIliasRestObject\Command\GetFluxIliasRestObjectsCommand;
+use FluxIliasApi\Channel\FluxIliasRestObject\Command\GetFluxIliasRestObjectTypeTitleCommand;
+use FluxIliasApi\Channel\FluxIliasRestObject\Command\GetFluxIliasRestObjectWebIconUrlCommand;
+use FluxIliasApi\Channel\FluxIliasRestObject\Command\GetFluxIliasRestObjectWebMultipleTypeTitleCommand;
 use FluxIliasApi\Channel\FluxIliasRestObject\Command\GetFluxIliasRestObjectWebProxyLinkCommand;
 use FluxIliasApi\Channel\FluxIliasRestObject\Command\GetFluxIliasRestObjectWebProxyMapByKeyCommand;
 use FluxIliasApi\Channel\FluxIliasRestObject\Command\GetFluxIliasRestObjectWebProxyMapCommand;
+use FluxIliasApi\Channel\FluxIliasRestObject\Command\GetFluxIliasRestObjectWebProxyMapKeyCommand;
 use FluxIliasApi\Channel\FluxIliasRestObject\Command\GetFluxIliasRestObjectWebProxyMapsCommand;
 use FluxIliasApi\Channel\FluxIliasRestObject\Command\GetFluxIliasRestObjectWebProxyMapSelectionCommand;
+use FluxIliasApi\Channel\FluxIliasRestObject\Command\GetFluxIliasRestObjectWebTypeTitleCommand;
 use FluxIliasApi\Channel\FluxIliasRestObject\Command\HasAccessToFluxIliasRestObjectConfigFormCommand;
 use FluxIliasApi\Channel\FluxIliasRestObject\Command\HasAccessToFluxIliasRestObjectProxyCommand;
-use FluxIliasApi\Channel\FluxIliasRestObject\Command\IsEnableFluxIliasRestObjectApiProxyCommand;
-use FluxIliasApi\Channel\FluxIliasRestObject\Command\IsEnableFluxIliasRestObjectWebProxyCommand;
-use FluxIliasApi\Channel\FluxIliasRestObject\Command\SetEnableFluxIliasRestObjectApiProxyCommand;
-use FluxIliasApi\Channel\FluxIliasRestObject\Command\SetEnableFluxIliasRestObjectWebProxyCommand;
+use FluxIliasApi\Channel\FluxIliasRestObject\Command\SetFluxIliasRestObjectApiProxyMapKeyCommand;
 use FluxIliasApi\Channel\FluxIliasRestObject\Command\SetFluxIliasRestObjectApiProxyMapsCommand;
+use FluxIliasApi\Channel\FluxIliasRestObject\Command\SetFluxIliasRestObjectDefaultIconUrlCommand;
+use FluxIliasApi\Channel\FluxIliasRestObject\Command\SetFluxIliasRestObjectMultipleTypeTitleCommand;
+use FluxIliasApi\Channel\FluxIliasRestObject\Command\SetFluxIliasRestObjectTypeTitleCommand;
+use FluxIliasApi\Channel\FluxIliasRestObject\Command\SetFluxIliasRestObjectWebProxyMapKeyCommand;
 use FluxIliasApi\Channel\FluxIliasRestObject\Command\SetFluxIliasRestObjectWebProxyMapsCommand;
 use FluxIliasApi\Channel\FluxIliasRestObject\Command\StoreFluxIliasRestObjectConfigFormValuesCommand;
 use FluxIliasApi\Channel\FluxIliasRestObject\Command\UpdateFluxIliasRestObjectCommand;
@@ -84,8 +92,8 @@ class FluxIliasRestObjectService
     public function createFluxIliasRestObjectToId(int $parent_id, FluxIliasRestObjectDiffDto $diff) : ?ObjectIdDto
     {
         return CreateFluxIliasRestObjectCommand::new(
+            $this,
             $this->object_service,
-            $this->object_config_service,
             $this->ilias_database
         )
             ->createFluxIliasRestObjectToId(
@@ -98,8 +106,8 @@ class FluxIliasRestObjectService
     public function createFluxIliasRestObjectToImportId(string $parent_import_id, FluxIliasRestObjectDiffDto $diff) : ?ObjectIdDto
     {
         return CreateFluxIliasRestObjectCommand::new(
+            $this,
             $this->object_service,
-            $this->object_config_service,
             $this->ilias_database
         )
             ->createFluxIliasRestObjectToImportId(
@@ -112,8 +120,8 @@ class FluxIliasRestObjectService
     public function createFluxIliasRestObjectToRefId(int $parent_ref_id, FluxIliasRestObjectDiffDto $diff) : ?ObjectIdDto
     {
         return CreateFluxIliasRestObjectCommand::new(
+            $this,
             $this->object_service,
-            $this->object_config_service,
             $this->ilias_database
         )
             ->createFluxIliasRestObjectToRefId(
@@ -123,15 +131,14 @@ class FluxIliasRestObjectService
     }
 
 
-    public function getFluxIliasRestObjectApiProxyMap(FluxIliasRestObjectDto $object, ?UserDto $user) : ?FluxIliasRestObjectApiProxyMapDto
+    public function getFluxIliasRestObjectApiProxyMap(FluxIliasRestObjectDto $object, int $user_id) : ?FluxIliasRestObjectApiProxyMapDto
     {
         return GetFluxIliasRestObjectApiProxyMapCommand::new(
             $this
-
         )
             ->getFluxIliasRestObjectApiProxyMap(
                 $object,
-                $user
+                $user_id
             );
     }
 
@@ -143,6 +150,17 @@ class FluxIliasRestObjectService
         )
             ->getFluxIliasRestObjectApiProxyMapByKey(
                 $key
+            );
+    }
+
+
+    public function getFluxIliasRestObjectApiProxyMapKey(int $id) : ?string
+    {
+        return GetFluxIliasRestObjectApiProxyMapKeyCommand::new(
+            $this->object_config_service
+        )
+            ->getFluxIliasRestObjectApiProxyMapKey(
+                $id
             );
     }
 
@@ -173,6 +191,7 @@ class FluxIliasRestObjectService
     public function getFluxIliasRestObjectById(int $id, ?bool $in_trash = null) : ?FluxIliasRestObjectDto
     {
         return GetFluxIliasRestObjectCommand::new(
+            $this,
             $this->ilias_database
         )
             ->getFluxIliasRestObjectById(
@@ -185,6 +204,7 @@ class FluxIliasRestObjectService
     public function getFluxIliasRestObjectByImportId(string $import_id, ?bool $in_trash = null) : ?FluxIliasRestObjectDto
     {
         return GetFluxIliasRestObjectCommand::new(
+            $this,
             $this->ilias_database
         )
             ->getFluxIliasRestObjectByImportId(
@@ -197,6 +217,7 @@ class FluxIliasRestObjectService
     public function getFluxIliasRestObjectByRefId(int $ref_id, ?bool $in_trash = null) : ?FluxIliasRestObjectDto
     {
         return GetFluxIliasRestObjectCommand::new(
+            $this,
             $this->ilias_database
         )
             ->getFluxIliasRestObjectByRefId(
@@ -226,27 +247,74 @@ class FluxIliasRestObjectService
     }
 
 
-    public function getFluxIliasRestObjectWebProxyLink(?FluxIliasRestObjectDto $object, ?UserDto $user) : string
+    public function getFluxIliasRestObjectDefaultIconUrl() : ?string
+    {
+        return GetFluxIliasRestObjectDefaultIconUrlCommand::new(
+            $this->config_service
+        )
+            ->getFluxIliasRestObjectDefaultIconUrl();
+    }
+
+
+    public function getFluxIliasRestObjectMultipleTypeTitle() : ?string
+    {
+        return GetFluxIliasRestObjectMultipleTypeTitleCommand::new(
+            $this->config_service
+        )
+            ->getFluxIliasRestObjectMultipleTypeTitle();
+    }
+
+
+    public function getFluxIliasRestObjectTypeTitle() : ?string
+    {
+        return GetFluxIliasRestObjectTypeTitleCommand::new(
+            $this->config_service
+        )
+            ->getFluxIliasRestObjectTypeTitle();
+    }
+
+
+    public function getFluxIliasRestObjectWebIconUrl(?int $id = null) : string
+    {
+        return GetFluxIliasRestObjectWebIconUrlCommand::new(
+            $this
+        )
+            ->getFluxIliasRestObjectWebIconUrl(
+                $id
+            );
+    }
+
+
+    public function getFluxIliasRestObjectWebMultipleTypeTitle() : string
+    {
+        return GetFluxIliasRestObjectWebMultipleTypeTitleCommand::new(
+            $this
+        )
+            ->getFluxIliasRestObjectWebMultipleTypeTitle();
+    }
+
+
+    public function getFluxIliasRestObjectWebProxyLink(int $ref_id, int $id, ?int $user_id = null) : string
     {
         return GetFluxIliasRestObjectWebProxyLinkCommand::new(
             $this
         )
             ->getFluxIliasRestObjectWebProxyLink(
-                $object,
-                $user
+                $ref_id,
+                $id,
+                $user_id
             );
     }
 
 
-    public function getFluxIliasRestObjectWebProxyMap(FluxIliasRestObjectDto $object, ?UserDto $user) : ?FluxIliasRestObjectWebProxyMapDto
+    public function getFluxIliasRestObjectWebProxyMap(FluxIliasRestObjectDto $object, int $user_id) : ?FluxIliasRestObjectWebProxyMapDto
     {
         return GetFluxIliasRestObjectWebProxyMapCommand::new(
             $this
-
         )
             ->getFluxIliasRestObjectWebProxyMap(
                 $object,
-                $user
+                $user_id
             );
     }
 
@@ -258,6 +326,17 @@ class FluxIliasRestObjectService
         )
             ->getFluxIliasRestObjectWebProxyMapByKey(
                 $key
+            );
+    }
+
+
+    public function getFluxIliasRestObjectWebProxyMapKey(int $id) : ?string
+    {
+        return GetFluxIliasRestObjectWebProxyMapKeyCommand::new(
+            $this->object_config_service
+        )
+            ->getFluxIliasRestObjectWebProxyMapKey(
+                $id
             );
     }
 
@@ -285,12 +364,22 @@ class FluxIliasRestObjectService
     }
 
 
+    public function getFluxIliasRestObjectWebTypeTitle() : string
+    {
+        return GetFluxIliasRestObjectWebTypeTitleCommand::new(
+            $this
+        )
+            ->getFluxIliasRestObjectWebTypeTitle();
+    }
+
+
     /**
      * @return FluxIliasRestObjectDto[]
      */
     public function getFluxIliasRestObjects(bool $container_settings = false, ?bool $in_trash = null) : array
     {
         return GetFluxIliasRestObjectsCommand::new(
+            $this,
             $this->ilias_database
         )
             ->getFluxIliasRestObjects(
@@ -300,66 +389,38 @@ class FluxIliasRestObjectService
     }
 
 
-    public function hasAccessToFluxIliasRestObjectConfigForm(int $ref_id, ?UserDto $user) : bool
+    public function hasAccessToFluxIliasRestObjectConfigForm(int $ref_id, int $user_id) : bool
     {
         return HasAccessToFluxIliasRestObjectConfigFormCommand::new(
             $this->ilias_access
         )
             ->hasAccessToFluxIliasRestObjectConfigForm(
                 $ref_id,
-                $user
+                $user_id
             );
     }
 
 
-    public function hasAccessToFluxIliasRestObjectProxy(int $ref_id, ?UserDto $user) : bool
+    public function hasAccessToFluxIliasRestObjectProxy(int $ref_id, int $user_id) : bool
     {
         return HasAccessToFluxIliasRestObjectProxyCommand::new(
             $this->ilias_access
         )
             ->hasAccessToFluxIliasRestObjectProxy(
                 $ref_id,
-                $user
+                $user_id
             );
     }
 
 
-    public function isEnableFluxIliasRestObjectApiProxy() : bool
+    public function setFluxIliasRestObjectApiProxyMapKey(int $id, ?string $api_proxy_map_key) : void
     {
-        return IsEnableFluxIliasRestObjectApiProxyCommand::new(
-            $this->config_service
+        SetFluxIliasRestObjectApiProxyMapKeyCommand::new(
+            $this->object_config_service
         )
-            ->isEnableFluxIliasRestObjectApiProxy();
-    }
-
-
-    public function isEnableFluxIliasRestObjectWebProxy() : bool
-    {
-        return IsEnableFluxIliasRestObjectWebProxyCommand::new(
-            $this->config_service
-        )
-            ->isEnableFluxIliasRestObjectWebProxy();
-    }
-
-
-    public function setEnableFluxIliasRestObjectApiProxy(bool $enable_flux_ilias_rest_object_api_proxy) : void
-    {
-        SetEnableFluxIliasRestObjectApiProxyCommand::new(
-            $this->config_service
-        )
-            ->setEnableFluxIliasRestObjectApiProxy(
-                $enable_flux_ilias_rest_object_api_proxy
-            );
-    }
-
-
-    public function setEnableFluxIliasRestObjectWebProxy(bool $enable_flux_ilias_rest_object_web_proxy) : void
-    {
-        SetEnableFluxIliasRestObjectWebProxyCommand::new(
-            $this->config_service
-        )
-            ->setEnableFluxIliasRestObjectWebProxy(
-                $enable_flux_ilias_rest_object_web_proxy
+            ->setFluxIliasRestObjectApiProxyMapKey(
+                $id,
+                $api_proxy_map_key
             );
     }
 
@@ -374,6 +435,51 @@ class FluxIliasRestObjectService
         )
             ->setFluxIliasRestObjectApiProxyMaps(
                 $api_proxy_maps
+            );
+    }
+
+
+    public function setFluxIliasRestObjectDefaultIconUrl(?string $default_icon_url) : void
+    {
+        SetFluxIliasRestObjectDefaultIconUrlCommand::new(
+            $this->config_service
+        )
+            ->setFluxIliasRestObjectDefaultIconUrl(
+                $default_icon_url
+            );
+    }
+
+
+    public function setFluxIliasRestObjectMultipleTypeTitle(?string $multiple_type_title) : void
+    {
+        SetFluxIliasRestObjectMultipleTypeTitleCommand::new(
+            $this->config_service
+        )
+            ->setFluxIliasRestObjectMultipleTypeTitle(
+                $multiple_type_title
+            );
+    }
+
+
+    public function setFluxIliasRestObjectTypeTitle(?string $type_title) : void
+    {
+        SetFluxIliasRestObjectTypeTitleCommand::new(
+            $this->config_service
+        )
+            ->setFluxIliasRestObjectTypeTitle(
+                $type_title
+            );
+    }
+
+
+    public function setFluxIliasRestObjectWebProxyMapKey(int $id, ?string $web_proxy_map_key) : void
+    {
+        SetFluxIliasRestObjectWebProxyMapKeyCommand::new(
+            $this->object_config_service
+        )
+            ->setFluxIliasRestObjectWebProxyMapKey(
+                $id,
+                $web_proxy_map_key
             );
     }
 
@@ -408,7 +514,6 @@ class FluxIliasRestObjectService
     {
         return UpdateFluxIliasRestObjectCommand::new(
             $this,
-            $this->object_config_service,
             $this->ilias_database
         )
             ->updateFluxIliasRestObjectById(
@@ -422,7 +527,6 @@ class FluxIliasRestObjectService
     {
         return UpdateFluxIliasRestObjectCommand::new(
             $this,
-            $this->object_config_service,
             $this->ilias_database
         )
             ->updateFluxIliasRestObjectByImportId(
@@ -436,7 +540,6 @@ class FluxIliasRestObjectService
     {
         return UpdateFluxIliasRestObjectCommand::new(
             $this,
-            $this->object_config_service,
             $this->ilias_database
         )
             ->updateFluxIliasRestObjectByRefId(

@@ -61,14 +61,6 @@ class StoreConfigFormValuesCommand
             boolval($values->{LegacyConfigKey::ENABLE_API_PROXY()->value} ?? null)
         );
 
-        $this->flux_ilias_rest_object_service->setEnableFluxIliasRestObjectApiProxy(
-            boolval($values->{LegacyConfigKey::ENABLE_FLUX_ILIAS_REST_OBJECT_API_PROXY()->value} ?? null)
-        );
-
-        $this->flux_ilias_rest_object_service->setEnableFluxIliasRestObjectWebProxy(
-            boolval($values->{LegacyConfigKey::ENABLE_FLUX_ILIAS_REST_OBJECT_WEB_PROXY()->value} ?? null)
-        );
-
         $this->change_service->setEnableLogChanges(
             boolval($values->{LegacyConfigKey::ENABLE_LOG_CHANGES()->value} ?? null)
         );
@@ -91,6 +83,18 @@ class StoreConfigFormValuesCommand
 
         $this->flux_ilias_rest_object_service->setFluxIliasRestObjectApiProxyMaps(
             array_map([FluxIliasRestObjectApiProxyMapDto::class, "newFromObject"], (array) ($values->{LegacyConfigKey::FLUX_ILIAS_REST_OBJECT_API_PROXY_MAPS()->value} ?? null))
+        );
+
+        $this->flux_ilias_rest_object_service->setFluxIliasRestObjectDefaultIconUrl(
+            ($values->{LegacyConfigKey::FLUX_ILIAS_REST_OBJECT_DEFAULT_ICON_URL()->value} ?? null) ?: null
+        );
+
+        $this->flux_ilias_rest_object_service->setFluxIliasRestObjectMultipleTypeTitle(
+            ($values->{LegacyConfigKey::FLUX_ILIAS_REST_OBJECT_MULTIPLE_TYPE_TITLE()->value} ?? null) ?: null
+        );
+
+        $this->flux_ilias_rest_object_service->setFluxIliasRestObjectTypeTitle(
+            ($values->{LegacyConfigKey::FLUX_ILIAS_REST_OBJECT_TYPE_TITLE()->value} ?? null) ?: null
         );
 
         $this->flux_ilias_rest_object_service->setFluxIliasRestObjectWebProxyMaps(
