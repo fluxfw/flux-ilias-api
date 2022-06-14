@@ -2,7 +2,6 @@
 
 namespace FluxIliasApi\Channel\FluxIliasRestObject\Command;
 
-use FluxIliasApi\Adapter\User\UserDto;
 use ilAccessHandler;
 
 class HasAccessToFluxIliasRestObjectConfigFormCommand
@@ -28,8 +27,8 @@ class HasAccessToFluxIliasRestObjectConfigFormCommand
     }
 
 
-    public function hasAccessToFluxIliasRestObjectConfigForm(int $ref_id, ?UserDto $user) : bool
+    public function hasAccessToFluxIliasRestObjectConfigForm(int $ref_id, int $user_id) : bool
     {
-        return $user !== null && $this->ilias_access->checkAccessOfUser($user->id, "write", "", $ref_id);
+        return $this->ilias_access->checkAccessOfUser($user_id, "write", "", $ref_id);
     }
 }

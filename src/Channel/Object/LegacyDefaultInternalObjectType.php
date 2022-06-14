@@ -49,7 +49,7 @@ use FluxIliasApi\Libs\FluxLegacyEnum\Adapter\Backed\LegacyStringBackedEnum;
  * @method static static USR() usr
  * @method static static WEBR() webr
  * @method static static WIKI() wiki
- * @method static static XFRH() xfrh
+ * @method static static XFRO() xfro
  */
 class LegacyDefaultInternalObjectType extends LegacyStringBackedEnum implements InternalObjectType
 {

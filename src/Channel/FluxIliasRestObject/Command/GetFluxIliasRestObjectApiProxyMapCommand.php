@@ -4,7 +4,6 @@ namespace FluxIliasApi\Channel\FluxIliasRestObject\Command;
 
 use FluxIliasApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectApiProxyMapDto;
 use FluxIliasApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectDto;
-use FluxIliasApi\Adapter\User\UserDto;
 use FluxIliasApi\Channel\FluxIliasRestObject\Port\FluxIliasRestObjectService;
 
 class GetFluxIliasRestObjectApiProxyMapCommand
@@ -30,19 +29,11 @@ class GetFluxIliasRestObjectApiProxyMapCommand
     }
 
 
-    public function getFluxIliasRestObjectApiProxyMap(FluxIliasRestObjectDto $object, ?UserDto $user) : ?FluxIliasRestObjectApiProxyMapDto
+    public function getFluxIliasRestObjectApiProxyMap(FluxIliasRestObjectDto $object, int $user_id) : ?FluxIliasRestObjectApiProxyMapDto
     {
-        if ($user === null) {
-            return null;
-        }
-
-        if (!$this->flux_ilias_rest_object_service->isEnableFluxIliasRestObjectApiProxy()) {
-            return null;
-        }
-
         if (!$this->flux_ilias_rest_object_service->hasAccessToFluxIliasRestObjectProxy(
             $object->ref_id,
-            $user
+            $user_id
         )
         ) {
             return null;

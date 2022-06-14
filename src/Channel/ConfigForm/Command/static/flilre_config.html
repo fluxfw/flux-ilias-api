@@ -282,7 +282,7 @@
 					</div>
 					<div class="form_field"></div>
 					<div>
-						<em>You can access the passed <code>ref_id</code> query parameter to detect in which object the user is</em>
+						<em>If enabled, you can access the passed <code>ref_id</code> query parameter to detect in which object the user is</em>
 					</div>
 					<div class="form_field"></div>
 					<div>
@@ -296,14 +296,38 @@
 					<div>
 						<em>The custom rewrite url is used in the object if you wish a different as the default (Use the <code>%ref_id%</code> placeholder)</em>
 					</div>
+					<div class="form_field"></div>
+					<div>
+						<em>The custom icon url is used, if the web proxy map is selected in the object and is available in the object context</em>
+					</div>
+					<div class="form_field"></div>
+					<div>
+						<em>The custom default icon url is used in the default object context or the object has no selected web proxy map or is not available in the object context</em>
+					</div>
+					<div class="form_field"></div>
+					<div>
+						<em>If both custom icon url or custom default icon url are not available, the icon for the weblink object type is used</em>
+					</div>
 				</details>
 			</div>
 			<div class="form_field"></div>
 			<div class="form_field"></div>
 			<div class="form_field">
-				<div class="form_field_label">Enable</div>
+				<div class="form_field_label">Custom default icon url</div>
 				<div class="form_field_field">
-					<input name="enable_flux_ilias_rest_object_web_proxy" type="checkbox">
+					<input name="flux_ilias_rest_object_default_icon_url" type="url">
+				</div>
+			</div>
+			<div class="form_field">
+				<div class="form_field_label">Custom object type title</div>
+				<div class="form_field_field">
+					<input name="flux_ilias_rest_object_type_title" type="text">
+				</div>
+			</div>
+			<div class="form_field">
+				<div class="form_field_label">Custom multiple objects type title</div>
+				<div class="form_field_field">
+					<input name="flux_ilias_rest_object_multiple_type_title" type="text">
 				</div>
 			</div>
 			<div class="form_field">
@@ -360,7 +384,7 @@
 								</div>
 								<div class="form_field">
 									<div class="form_field_button"></div>
-									<div class="form_field_label">Icon url</div>
+									<div class="form_field_label">Custom icon url</div>
 									<div class="form_field_field">
 										<input data-entry-icon_url type="url">
 									</div>
@@ -417,12 +441,6 @@
 			</div>
 			<div class="form_field"></div>
 			<div class="form_field"></div>
-			<div class="form_field">
-				<div class="form_field_label">Enable</div>
-				<div class="form_field_field">
-					<input name="enable_flux_ilias_rest_object_api_proxy" type="checkbox">
-				</div>
-			</div>
 			<div class="form_field">
 				<div class="form_field_label">Map</div>
 				<div class="form_field_field">

@@ -99,8 +99,12 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
             $group["parent_obj_id"] ?: null,
             $group["parent_import_id"] ?: null,
             $group["parent_ref_id"] ?: null,
-            $this->getObjectUrl($group["ref_id"] ?: null, $type),
-            $this->getObjectIconUrl($group["obj_id"] ?: null, $type),
+            $this->getObjectUrl(
+                $group["ref_id"] ?: null, $type
+            ),
+            $this->getObjectIconUrl(
+                $group["obj_id"] ?: null, $type
+            ),
             $group["title"] ?? "",
             $group["description"] ?? "",
             $group["tpl_id"] ?: null,

@@ -19,6 +19,6 @@ class GetFluxIliasRestObjectConfigLinkCommand
 
     public function getFluxIliasRestObjectConfigLink(int $ref_id) : string
     {
-        return "flux-ilias-rest-object-config/" . $ref_id;
+        return ILIAS_HTTP_PATH . "/flux-ilias-rest-object-config/" . $ref_id;
     }
 }

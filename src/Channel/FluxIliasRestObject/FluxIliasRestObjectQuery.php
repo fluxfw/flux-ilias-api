@@ -24,7 +24,7 @@ WHERE " . $this->ilias_database->in("id", $ids, false, ilDBConstants::T_INTEGER)
     private function getFluxIliasRestObjectQuery(?int $id = null, ?string $import_id = null, ?int $ref_id = null, ?bool $in_trash = null) : string
     {
         $wheres = [
-            "object_data.type=" . $this->ilias_database->quote(LegacyDefaultInternalObjectType::XFRH()->value, ilDBConstants::T_TEXT)
+            "object_data.type=" . $this->ilias_database->quote(LegacyDefaultInternalObjectType::XFRO()->value, ilDBConstants::T_TEXT)
         ];
 
         if ($id !== null) {
@@ -80,17 +80,15 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
         }
 
         if ($diff->web_proxy_map_key !== null) {
-            $this->object_config_service->setObjectConfig(
+            $this->flux_ilias_rest_object_service->setFluxIliasRestObjectWebProxyMapKey(
                 $ilias_flux_ilias_rest_object->getId(),
-                LegacyObjectConfigKey::WEB_PROXY_MAP_KEY(),
                 $diff->web_proxy_map_key
             );
         }
 
         if ($diff->api_proxy_map_key !== null) {
-            $this->object_config_service->setObjectConfig(
+            $this->flux_ilias_rest_object_service->setFluxIliasRestObjectApiProxyMapKey(
                 $ilias_flux_ilias_rest_object->getId(),
-                LegacyObjectConfigKey::API_PROXY_MAP_KEY(),
                 $diff->api_proxy_map_key
             );
         }
@@ -120,8 +118,13 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
             $object["parent_obj_id"] ?: null,
             $object["parent_import_id"] ?: null,
             $object["parent_ref_id"] ?: null,
-            $this->getObjectUrl($object["ref_id"] ?: null, $type),
-            $this->getObjectIconUrl($object["obj_id"] ?: null, $type),
+            $this->flux_ilias_rest_object_service->getFluxIliasRestObjectWebProxyLink(
+                $object["ref_id"] ?: null,
+                $object["obj_id"] ?: null
+            ),
+            $this->getObjectIconUrl(
+                $object["obj_id"] ?: null, $type
+            ),
             $object["title"] ?? "",
             $object["description"] ?? "",
             $getFluxIliasRestObjectContainerSetting(

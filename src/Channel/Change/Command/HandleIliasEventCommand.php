@@ -848,7 +848,7 @@ class HandleIliasEventCommand
                     $id
                 );
                 break;
-            case LegacyDefaultInternalObjectType::XFRH()->value:
+            case LegacyDefaultInternalObjectType::XFRO()->value:
                 $this->handleFluxIliasRestObjectCreated(
                     $user,
                     $id
@@ -1060,7 +1060,7 @@ class HandleIliasEventCommand
                     $ref_id
                 );
                 break;
-            case LegacyDefaultInternalObjectType::XFRH()->value:
+            case LegacyDefaultInternalObjectType::XFRO()->value:
                 $this->handleFluxIliasRestObjectUpdated(
                     $user,
                     $id,

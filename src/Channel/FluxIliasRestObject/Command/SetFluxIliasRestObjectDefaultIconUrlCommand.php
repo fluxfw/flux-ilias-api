@@ -5,7 +5,7 @@ namespace FluxIliasApi\Channel\FluxIliasRestObject\Command;
 use FluxIliasApi\Channel\Config\LegacyConfigKey;
 use FluxIliasApi\Channel\Config\Port\ConfigService;
 
-class IsEnableFluxIliasRestObjectApiProxyCommand
+class SetFluxIliasRestObjectDefaultIconUrlCommand
 {
 
     private ConfigService $config_service;
@@ -28,10 +28,11 @@ class IsEnableFluxIliasRestObjectApiProxyCommand
     }
 
 
-    public function isEnableFluxIliasRestObjectApiProxy() : bool
+    public function setFluxIliasRestObjectDefaultIconUrl(?string $default_icon_url) : void
     {
-        return boolval($this->config_service->getConfig(
-            LegacyConfigKey::ENABLE_FLUX_ILIAS_REST_OBJECT_API_PROXY()
-        ));
+        $this->config_service->setConfig(
+            LegacyConfigKey::FLUX_ILIAS_REST_OBJECT_DEFAULT_ICON_URL(),
+            $default_icon_url
+        );
     }
 }
