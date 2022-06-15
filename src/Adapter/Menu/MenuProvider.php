@@ -3,8 +3,8 @@
 namespace FluxIliasApi\Adapter\Menu;
 
 use FluxIliasApi\Adapter\User\UserDto;
-use FluxIliasApi\Channel\ConfigForm\Port\ConfigFormService;
-use FluxIliasApi\Channel\Proxy\Port\ProxyService;
+use FluxIliasApi\Service\ConfigForm\Port\ConfigFormService;
+use FluxIliasApi\Service\Proxy\Port\ProxyService;
 use ILIAS\DI\Container;
 use ILIAS\GlobalScreen\Scope\MainMenu\Provider\AbstractStaticMainMenuPluginProvider;
 use ilPlugin;

@@ -2,7 +2,6 @@
 
 namespace FluxIliasApi\Adapter\Route\ConfigForm;
 
-use FluxIliasApi\Channel\Proxy\Port\ProxyService;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\HtmlBodyDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Method\LegacyDefaultMethod;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Method\Method;
@@ -10,6 +9,7 @@ use FluxIliasApi\Libs\FluxRestApi\Adapter\Route\Documentation\RouteDocumentation
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Route\Route;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Server\ServerRequestDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Server\ServerResponseDto;
+use FluxIliasApi\Service\Proxy\Port\ProxyService;
 use ilGlobalTemplateInterface;
 
 class ConfigFormRoute implements Route

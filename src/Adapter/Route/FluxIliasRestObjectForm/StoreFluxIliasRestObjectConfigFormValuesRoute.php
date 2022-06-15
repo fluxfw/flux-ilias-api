@@ -3,7 +3,6 @@
 namespace FluxIliasApi\Adapter\Route\FluxIliasRestObjectForm;
 
 use FluxIliasApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectDto;
-use FluxIliasApi\Channel\FluxIliasRestObject\Port\FluxIliasRestObjectService;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\JsonBodyDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\TextBodyDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Method\LegacyDefaultMethod;
@@ -13,6 +12,7 @@ use FluxIliasApi\Libs\FluxRestApi\Adapter\Route\Route;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Server\ServerRequestDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Server\ServerResponseDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Status\LegacyDefaultStatus;
+use FluxIliasApi\Service\FluxIliasRestObject\Port\FluxIliasRestObjectService;
 
 class StoreFluxIliasRestObjectConfigFormValuesRoute implements Route
 {
