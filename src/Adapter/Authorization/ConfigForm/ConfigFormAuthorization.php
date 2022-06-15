@@ -3,12 +3,12 @@
 namespace FluxIliasApi\Adapter\Authorization\ConfigForm;
 
 use FluxIliasApi\Adapter\User\UserDto;
-use FluxIliasApi\Channel\ConfigForm\Port\ConfigFormService;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Authorization\Authorization;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\TextBodyDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Server\ServerRawRequestDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Server\ServerResponseDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Status\LegacyDefaultStatus;
+use FluxIliasApi\Service\ConfigForm\Port\ConfigFormService;
 
 class ConfigFormAuthorization implements Authorization
 {

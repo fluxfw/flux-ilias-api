@@ -2,9 +2,9 @@
 
 namespace FluxIliasApi\Adapter\Route\ConfigForm;
 
-use FluxIliasApi\Channel\ConfigForm\Port\ConfigFormService;
-use FluxIliasApi\Channel\Proxy\Port\ProxyService;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Route\Collector\RouteCollector;
+use FluxIliasApi\Service\ConfigForm\Port\ConfigFormService;
+use FluxIliasApi\Service\Proxy\Port\ProxyService;
 use ilGlobalTemplateInterface;
 
 class ConfigFormRouteCollector implements RouteCollector

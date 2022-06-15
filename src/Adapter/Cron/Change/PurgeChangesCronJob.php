@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Adapter\Cron\Change;
 
-use FluxIliasApi\Channel\Change\Port\ChangeService;
+use FluxIliasApi\Service\Change\Port\ChangeService;
 use ilCronJob;
 use ilCronJobResult;
 
