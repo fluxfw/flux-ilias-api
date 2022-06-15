@@ -91,8 +91,7 @@ class FileDto implements JsonSerializable
         ?string $mime_type = null,
         ?int $didactic_template_id = null,
         ?bool $in_trash = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $id,
             $import_id,

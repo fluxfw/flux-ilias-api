@@ -32,8 +32,7 @@ class RemoveUserRoleCommand
         UserService $user_service,
         RoleService $role_service,
         RBACServices $ilias_rbac
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $user_service,
             $role_service,

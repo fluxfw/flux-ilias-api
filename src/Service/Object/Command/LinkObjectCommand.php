@@ -30,8 +30,7 @@ class LinkObjectCommand
     public static function new(
         ObjectService $object_service,
         ilObjectDefinition $ilias_object_definition
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $object_service,
             $ilias_object_definition

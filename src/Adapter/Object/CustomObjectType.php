@@ -28,8 +28,7 @@ class CustomObjectType implements ObjectType, JsonSerializable
 
     private static function new(
         string $value
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $value
         );

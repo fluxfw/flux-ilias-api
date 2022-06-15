@@ -29,8 +29,7 @@ class UserRoleDto
         ?string $user_import_id = null,
         ?int $role_id = null,
         ?string $role_import_id = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $user_id,
             $user_import_id,

@@ -35,8 +35,7 @@ class CreateFluxIliasRestObjectCommand
         FluxIliasRestObjectService $flux_ilias_rest_object_service,
         ObjectService $object_service,
         ilDBInterface $ilias_database
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $flux_ilias_rest_object_service,
             $object_service,

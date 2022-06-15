@@ -28,8 +28,7 @@ class CustomCustomMetadataFieldType implements CustomMetadataFieldType, JsonSeri
 
     private static function new(
         string $value
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $value
         );

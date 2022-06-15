@@ -33,8 +33,7 @@ class UpdateCourseMemberCommand
     public static function new(
         CourseService $course_service,
         UserService $user_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $course_service,
             $user_service

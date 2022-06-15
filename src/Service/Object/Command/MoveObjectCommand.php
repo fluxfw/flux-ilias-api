@@ -30,8 +30,7 @@ class MoveObjectCommand
     public static function new(
         ObjectService $object_service,
         ilTree $ilias_tree
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $object_service,
             $ilias_tree

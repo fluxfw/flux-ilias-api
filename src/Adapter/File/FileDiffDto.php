@@ -29,8 +29,7 @@ class FileDiffDto
         ?string $title = null,
         ?string $description = null,
         ?int $didactic_template_id = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $import_id,
             $title,
@@ -42,8 +41,7 @@ class FileDiffDto
 
     public static function newFromObject(
         object $diff
-    ) : /*static*/ self
-    {
+    ) : static {
         return static::new(
             $diff->import_id ?? null,
             $diff->title ?? null,

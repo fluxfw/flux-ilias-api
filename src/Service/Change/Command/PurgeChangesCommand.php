@@ -27,8 +27,7 @@ class PurgeChangesCommand
     public static function new(
         ilDBInterface $ilias_database,
         ChangeService $change_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $ilias_database,
             $change_service

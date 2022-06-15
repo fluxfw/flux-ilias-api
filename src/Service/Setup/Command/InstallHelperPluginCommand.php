@@ -19,8 +19,7 @@ class InstallHelperPluginCommand
 
     public static function new(
         ChangeService $change_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $change_service
         );

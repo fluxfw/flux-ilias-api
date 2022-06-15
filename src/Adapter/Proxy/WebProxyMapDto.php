@@ -53,8 +53,7 @@ class WebProxyMapDto
         ?string $menu_title,
         ?string $menu_icon_url,
         ?bool $visible_public_menu_item
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $target_key,
             $iframe_url,
@@ -72,8 +71,7 @@ class WebProxyMapDto
 
     public static function newFromObject(
         object $web_proxy_map
-    ) : /*static*/ self
-    {
+    ) : static {
         return static::new(
             $web_proxy_map->target_key ?? "",
             $web_proxy_map->iframe_url ?? "",

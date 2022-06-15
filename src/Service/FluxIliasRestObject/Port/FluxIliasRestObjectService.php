@@ -77,8 +77,7 @@ class FluxIliasRestObjectService
         ObjectConfigService $object_config_service,
         ilDBInterface $ilias_database,
         ilAccessHandler $ilias_access
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $config_service,
             $object_service,

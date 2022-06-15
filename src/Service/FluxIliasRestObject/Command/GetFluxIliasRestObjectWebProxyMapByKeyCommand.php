@@ -28,8 +28,7 @@ class GetFluxIliasRestObjectWebProxyMapByKeyCommand
      */
     public static function new(
         array $web_proxy_maps
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $web_proxy_maps
         );

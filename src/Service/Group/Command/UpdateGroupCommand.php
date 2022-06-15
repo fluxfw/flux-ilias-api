@@ -32,8 +32,7 @@ class UpdateGroupCommand
     public static function new(
         GroupService $group_service,
         ilDBInterface $ilias_database
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $group_service,
             $ilias_database

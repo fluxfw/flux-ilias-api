@@ -25,8 +25,7 @@ class UpdateRoleCommand
 
     public static function new(
         RoleService $role_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $role_service
         );

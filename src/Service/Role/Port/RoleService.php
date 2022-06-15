@@ -38,8 +38,7 @@ class RoleService
         ilDBInterface $ilias_database,
         ObjectService $object_service,
         RBACServices $ilias_rbac
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $ilias_database,
             $object_service,

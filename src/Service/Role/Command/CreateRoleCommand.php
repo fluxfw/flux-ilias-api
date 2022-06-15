@@ -30,8 +30,7 @@ class CreateRoleCommand
     public static function new(
         ObjectService $object_service,
         RBACServices $ilias_rbac
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $object_service,
             $ilias_rbac

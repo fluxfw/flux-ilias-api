@@ -28,8 +28,7 @@ class GetWebProxyMenuItemsCommand
     public static function new(
         ProxyConfigService $proxy_config_service,
         Container $ilias_dic
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $proxy_config_service,
             $ilias_dic

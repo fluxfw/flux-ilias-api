@@ -25,8 +25,7 @@ class SetTransferChangesScheduleCommand
     public static function new(
         ChangeService $change_service,
         CronConfigService $cron_config_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $change_service,
             $cron_config_service

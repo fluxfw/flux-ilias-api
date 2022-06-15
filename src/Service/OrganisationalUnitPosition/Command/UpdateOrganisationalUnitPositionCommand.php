@@ -25,8 +25,7 @@ class UpdateOrganisationalUnitPositionCommand
 
     public static function new(
         OrganisationalUnitPositionService $organisational_unit_position_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $organisational_unit_position_service
         );

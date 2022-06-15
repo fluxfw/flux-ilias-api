@@ -33,8 +33,7 @@ class StoreFluxIliasRestObjectConfigFormValuesRoute implements Route
     public static function new(
         FluxIliasRestObjectService $flux_ilias_rest_object_service,
         FluxIliasRestObjectDto $object
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $flux_ilias_rest_object_service,
             $object

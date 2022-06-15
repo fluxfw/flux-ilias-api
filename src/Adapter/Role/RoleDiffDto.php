@@ -25,8 +25,7 @@ class RoleDiffDto
         ?string $import_id = null,
         ?string $title = null,
         ?string $description = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $import_id,
             $title,
@@ -37,8 +36,7 @@ class RoleDiffDto
 
     public static function newFromObject(
         object $diff
-    ) : /*static*/ self
-    {
+    ) : static {
         return static::new(
             $diff->import_id ?? null,
             $diff->title ?? null,

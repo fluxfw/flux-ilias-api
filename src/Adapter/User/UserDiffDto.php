@@ -209,8 +209,7 @@ class UserDiffDto
         ?int $location_zoom = null,
         ?array $user_defined_fields = null,
         ?LegacyUserLanguage $language = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $import_id,
             $external_account,
@@ -261,8 +260,7 @@ class UserDiffDto
 
     public static function newFromObject(
         object $diff
-    ) : /*static*/ self
-    {
+    ) : static {
         return static::new(
             $diff->import_id ?? null,
             $diff->external_account ?? null,

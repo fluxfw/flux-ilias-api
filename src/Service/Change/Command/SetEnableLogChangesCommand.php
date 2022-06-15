@@ -20,8 +20,7 @@ class SetEnableLogChangesCommand
 
     public static function new(
         ConfigService $config_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $config_service
         );

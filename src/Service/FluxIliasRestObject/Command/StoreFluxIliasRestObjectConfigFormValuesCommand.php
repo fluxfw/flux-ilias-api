@@ -22,8 +22,7 @@ class StoreFluxIliasRestObjectConfigFormValuesCommand
 
     public static function new(
         FluxIliasRestObjectService $flux_ilias_rest_object_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $flux_ilias_rest_object_service
         );

@@ -32,8 +32,7 @@ class RemoveUserFavouriteCommand
         UserService $user_service,
         ObjectService $object_service,
         ilFavouritesDBRepository $ilias_favourite
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $user_service,
             $object_service,

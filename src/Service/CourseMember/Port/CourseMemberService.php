@@ -37,8 +37,7 @@ class CourseMemberService
         ilDBInterface $ilias_database,
         CourseService $course_service,
         UserService $user_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $ilias_database,
             $course_service,

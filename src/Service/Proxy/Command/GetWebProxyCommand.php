@@ -25,8 +25,7 @@ class GetWebProxyCommand
     public static function new(
         ProxyConfigService $proxy_config_service,
         ilGlobalTemplateInterface $ilias_global_template
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $proxy_config_service,
             $ilias_global_template

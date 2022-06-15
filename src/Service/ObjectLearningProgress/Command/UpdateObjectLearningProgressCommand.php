@@ -33,8 +33,7 @@ class UpdateObjectLearningProgressCommand
     public static function new(
         ObjectService $object_service,
         UserService $user_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $object_service,
             $user_service

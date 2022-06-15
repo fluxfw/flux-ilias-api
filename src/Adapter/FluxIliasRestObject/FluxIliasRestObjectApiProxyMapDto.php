@@ -21,8 +21,7 @@ class FluxIliasRestObjectApiProxyMapDto
     public static function new(
         string $key,
         string $url
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $key,
             $url
@@ -32,8 +31,7 @@ class FluxIliasRestObjectApiProxyMapDto
 
     public static function newFromObject(
         object $api_proxy_map
-    ) : /*static*/ self
-    {
+    ) : static {
         return static::new(
             $api_proxy_map->key ?? "",
             $api_proxy_map->url ?? ""

@@ -25,8 +25,7 @@ class SetCronJobEnabledCommand
     public static function new(
         IliasCronWrapper $ilias_cron_wrapper,
         ilObjUser $ilias_user
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $ilias_cron_wrapper,
             $ilias_user

@@ -25,8 +25,7 @@ class CreateOrganisationalUnitCommand
 
     public static function new(
         OrganisationalUnitService $organisational_unit_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $organisational_unit_service
         );

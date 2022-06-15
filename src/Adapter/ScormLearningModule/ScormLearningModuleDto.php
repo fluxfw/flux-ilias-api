@@ -91,8 +91,7 @@ class ScormLearningModuleDto implements JsonSerializable
         ?bool $sequencing_expert_mode = null,
         ?int $didactic_template_id = null,
         ?bool $in_trash = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $id,
             $import_id,

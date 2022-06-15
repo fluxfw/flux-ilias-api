@@ -38,8 +38,7 @@ class UserRoleService
         UserService $user_service,
         RoleService $role_service,
         RBACServices $ilias_rbac
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $ilias_database,
             $user_service,

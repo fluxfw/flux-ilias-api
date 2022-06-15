@@ -40,8 +40,7 @@ class CloneObjectCommand
         ilTree $ilias_tree,
         ilObjUser $ilias_user,
         ilObjectDefinition $ilias_object_definition
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $object_service,
             $ilias_tree,

@@ -26,8 +26,7 @@ class UploadScormLearningModuleCommand
 
     public static function new(
         ScormLearningModuleService $scorm_learning_module_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $scorm_learning_module_service
         );

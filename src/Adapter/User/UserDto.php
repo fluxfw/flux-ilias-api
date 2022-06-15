@@ -233,8 +233,7 @@ class UserDto
         ?int $location_zoom = null,
         ?array $user_defined_fields = null,
         ?LegacyUserLanguage $language = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $id,
             $import_id,

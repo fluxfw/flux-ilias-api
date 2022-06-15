@@ -33,8 +33,7 @@ class CourseMemberIdDto
         ?int $course_ref_id = null,
         ?int $user_id = null,
         ?string $user_import_id = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $course_id,
             $course_import_id,

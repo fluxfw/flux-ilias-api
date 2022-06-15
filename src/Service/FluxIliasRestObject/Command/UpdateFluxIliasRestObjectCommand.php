@@ -30,8 +30,7 @@ class UpdateFluxIliasRestObjectCommand
     public static function new(
         FluxIliasRestObjectService $flux_ilias_rest_object_service,
         ilDBInterface $ilias_database
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $flux_ilias_rest_object_service,
             $ilias_database

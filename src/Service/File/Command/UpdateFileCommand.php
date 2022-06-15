@@ -25,8 +25,7 @@ class UpdateFileCommand
 
     public static function new(
         FileService $file_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $file_service
         );

@@ -38,8 +38,7 @@ class OrganisationalUnitStaffService
         OrganisationalUnitService $organisational_unit_service,
         UserService $user_service,
         OrganisationalUnitPositionService $organisational_unit_position_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $ilias_database,
             $organisational_unit_service,

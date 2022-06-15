@@ -36,8 +36,7 @@ class SetupService
         ConfigService $config_service,
         CronService $cron_service,
         ObjectConfigService $object_config_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $change_service,
             $config_service,

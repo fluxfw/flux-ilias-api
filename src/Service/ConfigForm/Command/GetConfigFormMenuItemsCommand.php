@@ -30,8 +30,7 @@ class GetConfigFormMenuItemsCommand
     public static function new(
         ConfigFormService $config_form_service,
         Container $ilias_dic
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $config_form_service,
             $ilias_dic

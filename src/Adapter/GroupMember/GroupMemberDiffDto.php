@@ -35,8 +35,7 @@ class GroupMemberDiffDto
         ?LegacyObjectLearningProgress $learning_progress = null,
         ?bool $tutorial_support = null,
         ?bool $notification = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $member_role,
             $administrator_role,
@@ -49,8 +48,7 @@ class GroupMemberDiffDto
 
     public static function newFromObject(
         object $diff
-    ) : /*static*/ self
-    {
+    ) : static {
         return static::new(
             $diff->member_role ?? null,
             $diff->administrator_role ?? null,

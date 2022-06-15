@@ -24,8 +24,7 @@ class GetGroupMembersCommand
 
     public static function new(
         ilDBInterface $ilias_database
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $ilias_database
         );

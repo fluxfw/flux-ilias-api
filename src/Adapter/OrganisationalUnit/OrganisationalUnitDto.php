@@ -65,8 +65,7 @@ class OrganisationalUnitDto
         ?int $type_id = null,
         ?string $external_id = null,
         ?int $didactic_template_id = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $id,
             $ref_id,

@@ -33,8 +33,7 @@ class AddGroupMemberCommand
     public static function new(
         GroupService $group_service,
         UserService $user_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $group_service,
             $user_service

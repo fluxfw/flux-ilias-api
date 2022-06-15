@@ -45,8 +45,7 @@ class ScormLearningModuleDiffDto
         ?bool $authoring_mode = null,
         ?bool $sequencing_expert_mode = null,
         ?int $didactic_template_id = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $import_id,
             $title,
@@ -62,8 +61,7 @@ class ScormLearningModuleDiffDto
 
     public static function newFromObject(
         object $diff
-    ) : /*static*/ self
-    {
+    ) : static {
         return static::new(
             $diff->import_id ?? null,
             $diff->title ?? null,

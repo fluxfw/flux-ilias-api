@@ -21,8 +21,7 @@ class NewIliasCronWrapper implements IliasCronWrapper
 
     public static function new(
         ilCronServices $ilias_cron
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $ilias_cron
         );

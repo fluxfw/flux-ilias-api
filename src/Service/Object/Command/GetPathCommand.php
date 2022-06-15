@@ -33,8 +33,7 @@ class GetPathCommand
         ObjectService $object_service,
         ilDBInterface $ilias_database,
         ilTree $ilias_tree
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $object_service,
             $ilias_database,

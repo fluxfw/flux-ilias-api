@@ -40,8 +40,7 @@ class StoreConfigFormValuesCommand
         FluxIliasRestObjectService $flux_ilias_rest_object_service,
         ProxyConfigService $proxy_config_service,
         RestConfigService $rest_config_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $change_service,
             $flux_ilias_rest_object_service,

@@ -25,8 +25,7 @@ class UserDefinedFieldDto
         ?int $id = null,
         ?string $name = null,
         ?string $value = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $id,
             $name,
@@ -37,8 +36,7 @@ class UserDefinedFieldDto
 
     public static function newFromObject(
         object $user_definied_field
-    ) : /*static*/ self
-    {
+    ) : static {
         return static::new(
             $user_definied_field->id ?? null,
             $user_definied_field->name ?? null,

@@ -28,8 +28,7 @@ class CustomInternalCustomMetadataFieldType implements InternalCustomMetadataFie
 
     private static function new(
         int $value
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $value
         );

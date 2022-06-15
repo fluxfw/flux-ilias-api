@@ -37,8 +37,7 @@ class OrganisationalUnitStaffDto
         ?int $user_id = null,
         ?string $user_import_id = null,
         ?int $position_id = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $organisational_unit_id,
             $organisational_unit_external_id,

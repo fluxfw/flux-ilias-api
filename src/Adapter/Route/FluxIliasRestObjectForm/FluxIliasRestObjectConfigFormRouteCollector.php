@@ -40,8 +40,7 @@ class FluxIliasRestObjectConfigFormRouteCollector implements RouteCollector
         ilGlobalTemplateInterface $ilias_global_template,
         ilLocatorGUI $ilias_locator,
         FluxIliasRestObjectDto $object
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $flux_ilias_rest_object_service,
             $proxy_service,

@@ -25,8 +25,7 @@ class CreateFileCommand
 
     public static function new(
         ObjectService $object_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $object_service
         );

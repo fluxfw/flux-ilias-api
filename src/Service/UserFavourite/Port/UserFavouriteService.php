@@ -38,8 +38,7 @@ class UserFavouriteService
         UserService $user_service,
         ObjectService $object_service,
         ilFavouritesDBRepository $ilias_favourite
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $ilias_database,
             $user_service,
