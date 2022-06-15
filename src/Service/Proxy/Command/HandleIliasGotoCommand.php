@@ -67,8 +67,7 @@ class HandleIliasGotoCommand
         FluxIliasRestObjectService $flux_ilias_rest_object_service,
         ilGlobalTemplateInterface $ilias_global_template,
         ilLocatorGUI $ilias_locator
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $proxy_service,
             $proxy_config_service,

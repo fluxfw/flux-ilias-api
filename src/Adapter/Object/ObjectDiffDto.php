@@ -48,8 +48,7 @@ class ObjectDiffDto
         ?string $description = null,
         ?int $didactic_template_id = null,
         ?array $custom_metadata = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $import_id,
             $online,
@@ -63,8 +62,7 @@ class ObjectDiffDto
 
     public static function newFromObject(
         object $diff
-    ) : /*static*/ self
-    {
+    ) : static {
         return static::new(
             $diff->import_id ?? null,
             $diff->online ?? null,

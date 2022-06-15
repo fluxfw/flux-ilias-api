@@ -28,8 +28,7 @@ class GetWebProxyMapByKeyCommand
      */
     public static function new(
         array $web_proxy_map
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $web_proxy_map
         );

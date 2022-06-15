@@ -28,8 +28,7 @@ class GetApiProxyMapByKeyCommand
      */
     public static function new(
         array $api_proxy_map
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $api_proxy_map
         );

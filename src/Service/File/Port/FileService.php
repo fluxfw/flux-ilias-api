@@ -37,8 +37,7 @@ class FileService
         ilDBInterface $ilias_database,
         FileUpload $ilias_upload,
         ObjectService $object_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $ilias_database,
             $ilias_upload,

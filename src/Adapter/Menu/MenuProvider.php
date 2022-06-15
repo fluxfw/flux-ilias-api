@@ -23,8 +23,7 @@ class MenuProvider extends AbstractStaticMainMenuPluginProvider
         ConfigFormService $config_form_service,
         ProxyService $proxy_service,
         ?UserDto $user
-    ) : /*static*/ self
-    {
+    ) : static {
         $provider = new static(
             $ilias_dic,
             $ilias_plugin

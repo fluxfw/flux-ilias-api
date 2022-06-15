@@ -20,8 +20,7 @@ class HandleIliasRedirectCommand
 
     public static function new(
         RestApi $rest_api
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $rest_api
         );

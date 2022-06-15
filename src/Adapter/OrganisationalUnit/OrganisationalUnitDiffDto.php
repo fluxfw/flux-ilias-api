@@ -33,8 +33,7 @@ class OrganisationalUnitDiffDto
         ?int $type_id = null,
         ?string $external_id = null,
         ?int $didactic_template_id = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $title,
             $description,
@@ -47,8 +46,7 @@ class OrganisationalUnitDiffDto
 
     public static function newFromObject(
         object $diff
-    ) : /*static*/ self
-    {
+    ) : static {
         return static::new(
             $diff->title ?? null,
             $diff->description ?? null,

@@ -46,8 +46,7 @@ class OrganisationalUnitPositionDto
         ?string $title = null,
         ?string $description = null,
         ?array $authorities = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $id,
             $core_position,

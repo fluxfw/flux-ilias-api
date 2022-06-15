@@ -31,8 +31,7 @@ class GroupService
     public static function new(
         ilDBInterface $ilias_database,
         ObjectService $object_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $ilias_database,
             $object_service

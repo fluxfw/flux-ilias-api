@@ -29,8 +29,7 @@ class ConfigFormAuthorization implements Authorization
     public static function new(
         ConfigFormService $config_form_service,
         ?UserDto $user
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $config_form_service,
             $user

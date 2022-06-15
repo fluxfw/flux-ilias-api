@@ -19,8 +19,7 @@ class HasAccessToFluxIliasRestObjectProxyCommand
 
     public static function new(
         ilAccessHandler $ilias_access
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $ilias_access
         );

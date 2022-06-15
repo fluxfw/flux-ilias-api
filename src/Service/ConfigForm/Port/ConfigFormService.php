@@ -46,8 +46,7 @@ class ConfigFormService
         ProxyConfigService $proxy_config_service,
         RestConfigService $rest_config_service,
         Container $ilias_dic
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $change_service,
             $flux_ilias_rest_object_service,

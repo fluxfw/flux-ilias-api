@@ -28,8 +28,7 @@ class CustomInternalScheduleTypeCronConfig implements InternalScheduleTypeCronCo
 
     private static function new(
         int $value
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $value
         );

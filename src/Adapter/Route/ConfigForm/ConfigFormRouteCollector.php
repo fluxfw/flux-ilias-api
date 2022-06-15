@@ -30,8 +30,7 @@ class ConfigFormRouteCollector implements RouteCollector
         ConfigFormService $config_form_service,
         ProxyService $proxy_service,
         ilGlobalTemplateInterface $ilias_global_template
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $config_form_service,
             $proxy_service,

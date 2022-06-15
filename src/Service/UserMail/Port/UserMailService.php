@@ -25,8 +25,7 @@ class UserMailService
     public static function new(
         ilDBInterface $ilias_database,
         UserService $user_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $ilias_database,
             $user_service

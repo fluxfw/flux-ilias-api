@@ -25,8 +25,7 @@ class OrganisationalUnitIdDto
         ?int $id = null,
         ?string $external_id = null,
         ?int $ref_id = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $id,
             $external_id,

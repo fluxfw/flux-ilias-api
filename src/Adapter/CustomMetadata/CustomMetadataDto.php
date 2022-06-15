@@ -40,8 +40,7 @@ class CustomMetadataDto
         ?string $record_title = null,
         /*mixed*/ $value = null,
         ?CustomMetadataFieldType $field_type = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $field_id,
             $field_title,
@@ -55,8 +54,7 @@ class CustomMetadataDto
 
     public static function newFromObject(
         object $custom_metadata
-    ) : /*static*/ self
-    {
+    ) : static {
         return static::new(
             $custom_metadata->field_id ?? null,
             $custom_metadata->field_title ?? null,

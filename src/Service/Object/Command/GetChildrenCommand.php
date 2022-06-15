@@ -28,8 +28,7 @@ class GetChildrenCommand
     public static function new(
         ObjectService $object_service,
         ilDBInterface $ilias_database
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $object_service,
             $ilias_database

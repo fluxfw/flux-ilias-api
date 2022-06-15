@@ -121,8 +121,7 @@ class HandleIliasEventCommand
         ScormLearningModuleService $scorm_learning_module_service,
         UserService $user_service,
         UserRoleService $user_role_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $ilias_database,
             $change_service,

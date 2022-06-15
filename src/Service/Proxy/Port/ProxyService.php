@@ -47,8 +47,7 @@ class ProxyService
         ProxyConfigService $proxy_config_service,
         FluxIliasRestObjectService $flux_ilias_rest_object_service,
         Container $ilias_dic
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $rest_api,
             $config_form_service,

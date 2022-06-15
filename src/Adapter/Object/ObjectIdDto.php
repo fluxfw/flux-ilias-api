@@ -25,8 +25,7 @@ class ObjectIdDto
         ?int $id = null,
         ?string $import_id = null,
         ?int $ref_id = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $id,
             $import_id,

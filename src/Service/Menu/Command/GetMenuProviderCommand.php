@@ -32,8 +32,7 @@ class GetMenuProviderCommand
         Container $ilias_dic,
         ConfigFormService $config_form_service,
         ProxyService $proxy_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $ilias_dic,
             $config_form_service,

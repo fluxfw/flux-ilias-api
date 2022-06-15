@@ -37,8 +37,7 @@ class ChangeDto
         int $user_id,
         ?string $user_import_id,
         object $data
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $id,
             $type,

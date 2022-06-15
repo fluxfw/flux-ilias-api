@@ -140,8 +140,7 @@ class ChangeService
         UserRoleService $user_role_service,
         RestApi $rest_api,
         CronConfigService $cron_config_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $ilias_database,
             $config_service,

@@ -49,8 +49,7 @@ class ObjectService
         ilTree $ilias_tree,
         ilObjUser $ilias_user,
         ilObjectDefinition $ilias_object_definition
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $ilias_database,
             $ilias_tree,

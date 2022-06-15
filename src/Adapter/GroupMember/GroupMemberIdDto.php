@@ -33,8 +33,7 @@ class GroupMemberIdDto
         ?int $group_ref_id = null,
         ?int $user_id = null,
         ?string $user_import_id = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $group_id,
             $group_import_id,

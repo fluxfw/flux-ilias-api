@@ -47,8 +47,7 @@ class CourseMemberDiffDto
         ?bool $access_refused = null,
         ?bool $tutorial_support = null,
         ?bool $notification = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $member_role,
             $tutor_role,
@@ -64,8 +63,7 @@ class CourseMemberDiffDto
 
     public static function newFromObject(
         object $diff
-    ) : /*static*/ self
-    {
+    ) : static {
         return static::new(
             $diff->member_role ?? null,
             $diff->tutor_role ?? null,

@@ -23,8 +23,7 @@ class GetCronJobScheduleCommand
 
     public static function new(
         IliasCronWrapper $ilias_cron_wrapper
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $ilias_cron_wrapper
         );

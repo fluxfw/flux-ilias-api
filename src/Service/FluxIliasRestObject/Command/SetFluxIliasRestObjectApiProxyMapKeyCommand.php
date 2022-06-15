@@ -21,8 +21,7 @@ class SetFluxIliasRestObjectApiProxyMapKeyCommand
 
     public static function new(
         ObjectConfigService $object_config_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $object_config_service
         );

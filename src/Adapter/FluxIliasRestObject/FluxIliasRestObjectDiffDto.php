@@ -33,8 +33,7 @@ class FluxIliasRestObjectDiffDto
         ?string $description = null,
         ?string $web_proxy_map_key = null,
         ?string $api_proxy_map_key = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $import_id,
             $title,
@@ -47,8 +46,7 @@ class FluxIliasRestObjectDiffDto
 
     public static function newFromObject(
         object $diff
-    ) : /*static*/ self
-    {
+    ) : static {
         return static::new(
             $diff->import_id ?? null,
             $diff->title ?? null,

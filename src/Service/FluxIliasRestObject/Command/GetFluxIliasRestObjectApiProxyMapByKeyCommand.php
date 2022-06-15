@@ -28,8 +28,7 @@ class GetFluxIliasRestObjectApiProxyMapByKeyCommand
      */
     public static function new(
         array $api_proxy_maps
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $api_proxy_maps
         );

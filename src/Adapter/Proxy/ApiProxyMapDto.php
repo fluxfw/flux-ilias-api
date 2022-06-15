@@ -21,8 +21,7 @@ class ApiProxyMapDto
     public static function new(
         string $target_key,
         string $url
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $target_key,
             $url
@@ -32,8 +31,7 @@ class ApiProxyMapDto
 
     public static function newFromObject(
         object $api_proxy_map
-    ) : /*static*/ self
-    {
+    ) : static {
         return static::new(
             $api_proxy_map->target_key ?? "",
             $api_proxy_map->url ?? ""

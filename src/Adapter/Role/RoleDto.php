@@ -49,8 +49,7 @@ class RoleDto
         ?int $object_ref_id = null,
         ?string $title = null,
         ?string $description = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $id,
             $import_id,

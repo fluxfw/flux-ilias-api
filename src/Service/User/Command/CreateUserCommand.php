@@ -29,8 +29,7 @@ class CreateUserCommand
     public static function new(
         RBACServices $ilias_rbac,
         ObjectService $object_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $ilias_rbac,
             $object_service

@@ -28,8 +28,7 @@ class GetCronJobCommand
      */
     public static function new(
         array $cron_jobs
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $cron_jobs
         );

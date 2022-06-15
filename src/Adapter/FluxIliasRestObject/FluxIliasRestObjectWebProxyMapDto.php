@@ -45,8 +45,7 @@ class FluxIliasRestObjectWebProxyMapDto
         ?bool $pass_ref_id,
         ?string $icon_url,
         ?string $rewrite_url
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $key,
             $iframe_url,
@@ -62,8 +61,7 @@ class FluxIliasRestObjectWebProxyMapDto
 
     public static function newFromObject(
         object $web_proxy_map
-    ) : /*static*/ self
-    {
+    ) : static {
         return static::new(
             $web_proxy_map->key ?? "",
             $web_proxy_map->iframe_url ?? "",

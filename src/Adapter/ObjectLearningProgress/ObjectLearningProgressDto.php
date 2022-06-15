@@ -37,8 +37,7 @@ class ObjectLearningProgressDto
         ?int $user_id = null,
         ?string $user_import_id = null,
         ?LegacyObjectLearningProgress $learning_progress = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $object_id,
             $object_import_id,

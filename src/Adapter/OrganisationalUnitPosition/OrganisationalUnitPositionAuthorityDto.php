@@ -25,8 +25,7 @@ class OrganisationalUnitPositionAuthorityDto
         ?int $id = null,
         ?int $over_position_id = null,
         ?LegacyOrganisationalUnitPositionAuthorityScopeIn $scope_in = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $id,
             $over_position_id,
@@ -37,8 +36,7 @@ class OrganisationalUnitPositionAuthorityDto
 
     public static function newFromObject(
         object $authority
-    ) : /*static*/ self
-    {
+    ) : static {
         return static::new(
             $authority->id ?? null,
             $authority->over_position_id ?? null,

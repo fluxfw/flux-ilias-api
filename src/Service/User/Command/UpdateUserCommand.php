@@ -30,8 +30,7 @@ class UpdateUserCommand
     public static function new(
         UserService $user_service,
         ObjectService $object_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $user_service,
             $object_service

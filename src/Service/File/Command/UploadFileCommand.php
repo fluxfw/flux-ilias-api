@@ -30,8 +30,7 @@ class UploadFileCommand
     public static function new(
         FileService $file_service,
         FileUpload $ilias_upload
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $file_service,
             $ilias_upload

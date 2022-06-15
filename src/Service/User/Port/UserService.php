@@ -38,8 +38,7 @@ class UserService
         ilDBInterface $ilias_database,
         RBACServices $ilias_rbac,
         ObjectService $object_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $ilias_database,
             $ilias_rbac,

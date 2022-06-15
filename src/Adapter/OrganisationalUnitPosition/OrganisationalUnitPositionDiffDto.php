@@ -34,8 +34,7 @@ class OrganisationalUnitPositionDiffDto
         ?string $title = null,
         ?string $description = null,
         ?array $authorities = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $title,
             $description,
@@ -46,8 +45,7 @@ class OrganisationalUnitPositionDiffDto
 
     public static function newFromObject(
         object $diff
-    ) : /*static*/ self
-    {
+    ) : static {
         return static::new(
             $diff->title ?? null,
             $diff->description ?? null,

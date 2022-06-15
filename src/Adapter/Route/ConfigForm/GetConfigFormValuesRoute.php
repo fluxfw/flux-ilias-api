@@ -26,8 +26,7 @@ class GetConfigFormValuesRoute implements Route
 
     public static function new(
         ConfigFormService $config_form_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $config_form_service
         );

@@ -17,8 +17,7 @@ class OrganisationalUnitPositionIdDto
 
     public static function new(
         ?int $id = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $id
         );

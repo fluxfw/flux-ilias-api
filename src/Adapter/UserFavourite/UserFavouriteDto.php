@@ -33,8 +33,7 @@ class UserFavouriteDto
         ?int $object_id = null,
         ?string $object_import_id = null,
         ?int $object_ref_id = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $user_id,
             $user_import_id,

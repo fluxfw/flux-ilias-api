@@ -102,8 +102,7 @@ class ObjectDto implements JsonSerializable
         ?int $didactic_template_id = null,
         ?bool $in_trash = null,
         ?array $custom_metadata = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $id,
             $import_id,

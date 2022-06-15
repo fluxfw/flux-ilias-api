@@ -67,8 +67,7 @@ class CourseMemberDto
         ?bool $access_refused = null,
         ?bool $tutorial_support = null,
         ?bool $notification = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $course_id,
             $course_import_id,

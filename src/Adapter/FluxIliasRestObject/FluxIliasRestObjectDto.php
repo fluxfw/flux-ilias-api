@@ -75,8 +75,7 @@ class FluxIliasRestObjectDto implements JsonSerializable
         ?string $web_proxy_map_key = null,
         ?string $api_proxy_map_key = null,
         ?bool $in_trash = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $id,
             $import_id,

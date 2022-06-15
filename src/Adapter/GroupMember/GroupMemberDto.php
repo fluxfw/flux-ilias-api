@@ -55,8 +55,7 @@ class GroupMemberDto
         ?LegacyObjectLearningProgress $learning_progress = null,
         ?bool $tutorial_support = null,
         ?bool $notification = null
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $group_id,
             $group_import_id,

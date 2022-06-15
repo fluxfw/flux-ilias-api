@@ -31,8 +31,7 @@ class ConfigFormRoute implements Route
     public static function new(
         ProxyService $proxy_service,
         ilGlobalTemplateInterface $ilias_global_template
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $proxy_service,
             $ilias_global_template

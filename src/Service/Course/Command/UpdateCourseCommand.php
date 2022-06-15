@@ -32,8 +32,7 @@ class UpdateCourseCommand
     public static function new(
         CourseService $course_service,
         ilDBInterface $ilias_database
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $course_service,
             $ilias_database

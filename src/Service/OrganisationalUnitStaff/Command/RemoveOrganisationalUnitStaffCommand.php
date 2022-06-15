@@ -36,8 +36,7 @@ class RemoveOrganisationalUnitStaffCommand
         OrganisationalUnitService $organisational_unit_service,
         UserService $user_service,
         OrganisationalUnitPositionService $organisational_unit_position_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $organisational_unit_service,
             $user_service,

@@ -25,8 +25,7 @@ class UpdateAvatarCommand
 
     public static function new(
         UserService $user_service
-    ) : /*static*/ self
-    {
+    ) : static {
         return new static(
             $user_service
         );
