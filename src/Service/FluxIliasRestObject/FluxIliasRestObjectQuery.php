@@ -97,8 +97,8 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
 
     private function mapFluxIliasRestObjectDto(array $object, ?array $container_settings = null) : FluxIliasRestObjectDto
     {
-        $getFluxIliasRestObjectContainerSetting = fn(LegacyObjectConfigKey $key)/* : mixed*/ => $container_settings !== null ? current(array_map(fn(array $container_setting
-        )/* : mixed*/ => $this->getValueFromJson(
+        $getFluxIliasRestObjectContainerSetting = fn(LegacyObjectConfigKey $key) : mixed => $container_settings !== null ? current(array_map(fn(array $container_setting
+        ) : mixed => $this->getValueFromJson(
             $container_setting["value"] ?? null
         ),
             array_filter($container_settings, fn(array $container_setting) : bool => $container_setting["id"] === $object["obj_id"]

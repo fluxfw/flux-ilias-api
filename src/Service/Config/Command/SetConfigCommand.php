@@ -23,7 +23,7 @@ class SetConfigCommand
     }
 
 
-    public function setConfig(LegacyConfigKey $key, /*mixed*/ $value) : void
+    public function setConfig(LegacyConfigKey $key, mixed $value) : void
     {
         (new ilSetting($this->getConfigSettingsModule()))->set($key->value, $this->getValueAsJson(
             $value

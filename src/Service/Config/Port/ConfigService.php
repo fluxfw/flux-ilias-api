@@ -29,7 +29,7 @@ class ConfigService
     }
 
 
-    public function getConfig(LegacyConfigKey $key)/* : mixed*/
+    public function getConfig(LegacyConfigKey $key) : mixed
     {
         return GetConfigCommand::new()
             ->getConfig(
@@ -38,7 +38,7 @@ class ConfigService
     }
 
 
-    public function setConfig(LegacyConfigKey $key, /*mixed*/ $value) : void
+    public function setConfig(LegacyConfigKey $key, mixed $value) : void
     {
         SetConfigCommand::new()
             ->setConfig(

@@ -52,7 +52,7 @@ trait CustomMetadataQuery
     }
 
 
-    private function getCustomMetadataElementEnumValue(array $options, /*mixed*/ $index) : array
+    private function getCustomMetadataElementEnumValue(array $options, mixed $index) : array
     {
         if (is_string($index) && is_numeric($index)) {
             $index = floatval($index);
@@ -62,7 +62,7 @@ trait CustomMetadataQuery
     }
 
 
-    private function getCustomMetadataElementValue(ilADT $md_element, ilAdvancedMDFieldDefinition $md_definition)/* : mixed*/
+    private function getCustomMetadataElementValue(ilADT $md_element, ilAdvancedMDFieldDefinition $md_definition) : mixed
     {
         switch (true) {
             case $md_element instanceof ilADTLocalizedText:
@@ -96,7 +96,7 @@ trait CustomMetadataQuery
                 ) : null;
 
             case $md_element instanceof ilADTMultiEnum:
-                return array_map(fn(/*mixed*/ $index) : array => $this->getCustomMetadataElementEnumValue(
+                return array_map(fn(mixed $index) : array => $this->getCustomMetadataElementEnumValue(
                     $md_definition->getOptions(),
                     $index
                 ), $md_element->getSelections() ?? []);
@@ -107,13 +107,13 @@ trait CustomMetadataQuery
     }
 
 
-    private function normalizeCustomMetadataText(/*mixed*/ $text) : string
+    private function normalizeCustomMetadataText(mixed $text) : string
     {
         return str_replace("\r", "\n", str_replace("\r\n", "\n", strval($text)));
     }
 
 
-    private function setCustomMetadataElementEnumValue(array $options, /*mixed*/ $index)/* : mixed*/
+    private function setCustomMetadataElementEnumValue(array $options, mixed $index) : mixed
     {
         if (is_object($index)) {
             $index = (array) $index;
@@ -154,7 +154,7 @@ trait CustomMetadataQuery
     }
 
 
-    private function setCustomMetadataElementValue(ilADT $md_element, ilAdvancedMDFieldDefinition $md_definition, /*mixed*/ $value) : void
+    private function setCustomMetadataElementValue(ilADT $md_element, ilAdvancedMDFieldDefinition $md_definition, mixed $value) : void
     {
         switch (true) {
             case $md_element instanceof ilADTLocalizedText:
@@ -219,7 +219,7 @@ trait CustomMetadataQuery
                 if (!is_array($value)) {
                     $value = [$value];
                 }
-                $md_element->setSelections(array_map(fn(/*mixed*/ $index)/* : mixed*/ => $this->setCustomMetadataElementEnumValue(
+                $md_element->setSelections(array_map(fn(mixed $index) : mixed => $this->setCustomMetadataElementEnumValue(
                     $md_definition->getOptions(),
                     $index
                 ), $value));

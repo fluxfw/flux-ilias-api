@@ -10,10 +10,7 @@ class CustomMetadataDto
     public ?CustomMetadataFieldType $field_type;
     public ?int $record_id;
     public ?string $record_title;
-    /**
-     * @var mixed
-     */
-    public $value;
+    public mixed $value;
 
 
     private function __construct(
@@ -21,7 +18,7 @@ class CustomMetadataDto
         /*public readonly*/ ?string $field_title,
         /*public readonly*/ ?int $record_id,
         /*public readonly*/ ?string $record_title,
-        /*public readonly mixed*/ $value,
+        /*public readonly*/ mixed $value,
         /*public readonly*/ ?CustomMetadataFieldType $field_type
     ) {
         $this->field_id = $field_id;
@@ -38,7 +35,7 @@ class CustomMetadataDto
         ?string $field_title = null,
         ?int $record_id = null,
         ?string $record_title = null,
-        /*mixed*/ $value = null,
+        mixed $value = null,
         ?CustomMetadataFieldType $field_type = null
     ) : static {
         return new static(

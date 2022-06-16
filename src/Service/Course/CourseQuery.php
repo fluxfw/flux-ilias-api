@@ -224,8 +224,8 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
 
     private function mapCourseDto(array $course, ?array $container_settings = null, bool $custom_metadata = false) : CourseDto
     {
-        $getCourseContainerSetting = fn(string $field, /*mixed*/ $null_default_value = null)/* : mixed*/ => $container_settings !== null ? current(array_map(fn(array $container_setting
-        )/* : mixed*/ => $container_setting["value"] ?? $null_default_value,
+        $getCourseContainerSetting = fn(string $field, mixed $null_default_value = null) : mixed => $container_settings !== null ? current(array_map(fn(array $container_setting
+        ) : mixed => $container_setting["value"] ?? $null_default_value,
             array_filter($container_settings, fn(array $container_setting) : bool => $container_setting["id"] === $course["obj_id"] && $container_setting["keyword"] === $field))) : null;
 
         $type = ($type = $course["type"] ?: null) !== null ? CustomInternalObjectType::factory(
