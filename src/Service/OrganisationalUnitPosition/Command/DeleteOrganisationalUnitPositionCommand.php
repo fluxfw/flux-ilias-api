@@ -12,13 +12,10 @@ class DeleteOrganisationalUnitPositionCommand
 
     use OrganisationalUnitPositionQuery;
 
-    private OrganisationalUnitPositionService $organisational_unit_position_service;
-
-
     private function __construct(
-        /*private readonly*/ OrganisationalUnitPositionService $organisational_unit_position_service
+        private readonly OrganisationalUnitPositionService $organisational_unit_position_service
     ) {
-        $this->organisational_unit_position_service = $organisational_unit_position_service;
+
     }
 
 

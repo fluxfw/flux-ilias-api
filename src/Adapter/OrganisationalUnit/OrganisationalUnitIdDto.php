@@ -5,19 +5,12 @@ namespace FluxIliasApi\Adapter\OrganisationalUnit;
 class OrganisationalUnitIdDto
 {
 
-    public ?string $external_id;
-    public ?int $id;
-    public ?int $ref_id;
-
-
     private function __construct(
-        /*public readonly*/ ?int $id,
-        /*public readonly*/ ?string $external_id,
-        /*public readonly*/ ?int $ref_id
+        public readonly ?int $id,
+        public readonly ?string $external_id,
+        public readonly ?int $ref_id
     ) {
-        $this->id = $id;
-        $this->external_id = $external_id;
-        $this->ref_id = $ref_id;
+
     }
 
 

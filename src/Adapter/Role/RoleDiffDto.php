@@ -5,19 +5,12 @@ namespace FluxIliasApi\Adapter\Role;
 class RoleDiffDto
 {
 
-    public ?string $description;
-    public ?string $import_id;
-    public ?string $title;
-
-
     private function __construct(
-        /*public readonly*/ ?string $import_id,
-        /*public readonly*/ ?string $title,
-        /*public readonly*/ ?string $description
+        public readonly ?string $import_id,
+        public readonly ?string $title,
+        public readonly ?string $description
     ) {
-        $this->import_id = $import_id;
-        $this->title = $title;
-        $this->description = $description;
+
     }
 
 

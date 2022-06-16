@@ -17,16 +17,11 @@ use FluxIliasApi\Service\FluxIliasRestObject\Port\FluxIliasRestObjectService;
 class StoreFluxIliasRestObjectConfigFormValuesRoute implements Route
 {
 
-    private FluxIliasRestObjectService $flux_ilias_rest_object_service;
-    private FluxIliasRestObjectDto $object;
-
-
     private function __construct(
-        /*private readonly*/ FluxIliasRestObjectService $flux_ilias_rest_object_service,
-        /*private readonly*/ FluxIliasRestObjectDto $object
+        private readonly FluxIliasRestObjectService $flux_ilias_rest_object_service,
+        private readonly FluxIliasRestObjectDto $object
     ) {
-        $this->flux_ilias_rest_object_service = $flux_ilias_rest_object_service;
-        $this->object = $object;
+
     }
 
 

@@ -8,18 +8,12 @@ class GetFluxIliasRestObjectApiProxyMapByKeyCommand
 {
 
     /**
-     * @var FluxIliasRestObjectApiProxyMapDto[]
-     */
-    private array $api_proxy_maps;
-
-
-    /**
      * @param FluxIliasRestObjectApiProxyMapDto[] $api_proxy_maps
      */
     private function __construct(
-        /*private readonly*/ array $api_proxy_maps
+        private readonly array $api_proxy_maps
     ) {
-        $this->api_proxy_maps = $api_proxy_maps;
+
     }
 
 

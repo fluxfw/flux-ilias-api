@@ -31,31 +31,16 @@ use Throwable;
 class HandleIliasGotoCommand
 {
 
-    private ConfigFormService $config_form_service;
-    private FluxIliasRestObjectService $flux_ilias_rest_object_service;
-    private ilGlobalTemplateInterface $ilias_global_template;
-    private ilLocatorGUI $ilias_locator;
-    private ProxyConfigService $proxy_config_service;
-    private ProxyService $proxy_service;
-    private RestApi $rest_api;
-
-
     private function __construct(
-        /*private readonly*/ ProxyService $proxy_service,
-        /*private readonly*/ ProxyConfigService $proxy_config_service,
-        /*private readonly*/ RestApi $rest_api,
-        /*private readonly*/ ConfigFormService $config_form_service,
-        /*private readonly*/ FluxIliasRestObjectService $flux_ilias_rest_object_service,
-        /*private readonly*/ ilGlobalTemplateInterface $ilias_global_template,
-        /*private readonly*/ ilLocatorGUI $ilias_locator
+        private readonly ProxyService $proxy_service,
+        private readonly ProxyConfigService $proxy_config_service,
+        private readonly RestApi $rest_api,
+        private readonly ConfigFormService $config_form_service,
+        private readonly FluxIliasRestObjectService $flux_ilias_rest_object_service,
+        private readonly ilGlobalTemplateInterface $ilias_global_template,
+        private readonly ilLocatorGUI $ilias_locator
     ) {
-        $this->proxy_service = $proxy_service;
-        $this->proxy_config_service = $proxy_config_service;
-        $this->rest_api = $rest_api;
-        $this->config_form_service = $config_form_service;
-        $this->flux_ilias_rest_object_service = $flux_ilias_rest_object_service;
-        $this->ilias_global_template = $ilias_global_template;
-        $this->ilias_locator = $ilias_locator;
+
     }
 
 

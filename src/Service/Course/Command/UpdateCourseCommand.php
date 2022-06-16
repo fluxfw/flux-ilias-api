@@ -16,16 +16,11 @@ class UpdateCourseCommand
     use CourseQuery;
     use CustomMetadataQuery;
 
-    private CourseService $course_service;
-    private ilDBInterface $ilias_database;
-
-
     private function __construct(
-        /*private readonly*/ CourseService $course_service,
-        /*private readonly*/ ilDBInterface $ilias_database
+        private readonly CourseService $course_service,
+        private readonly ilDBInterface $ilias_database
     ) {
-        $this->course_service = $course_service;
-        $this->ilias_database = $ilias_database;
+
     }
 
 

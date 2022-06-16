@@ -16,16 +16,11 @@ class UpdateCategoryCommand
     use CategoryQuery;
     use CustomMetadataQuery;
 
-    private CategoryService $category_service;
-    private ilDBInterface $ilias_database;
-
-
     private function __construct(
-        /*private readonly*/ CategoryService $category_service,
-        /*private readonly*/ ilDBInterface $ilias_database
+        private readonly CategoryService $category_service,
+        private readonly ilDBInterface $ilias_database
     ) {
-        $this->category_service = $category_service;
-        $this->ilias_database = $ilias_database;
+
     }
 
 

@@ -14,22 +14,13 @@ use ilDBInterface;
 class OrganisationalUnitStaffService
 {
 
-    private ilDBInterface $ilias_database;
-    private OrganisationalUnitPositionService $organisational_unit_position_service;
-    private OrganisationalUnitService $organisational_unit_service;
-    private UserService $user_service;
-
-
     private function __construct(
-        /*private readonly*/ ilDBInterface $ilias_database,
-        /*private readonly*/ OrganisationalUnitService $organisational_unit_service,
-        /*private readonly*/ UserService $user_service,
-        /*private readonly*/ OrganisationalUnitPositionService $organisational_unit_position_service
+        private readonly ilDBInterface $ilias_database,
+        private readonly OrganisationalUnitService $organisational_unit_service,
+        private readonly UserService $user_service,
+        private readonly OrganisationalUnitPositionService $organisational_unit_position_service
     ) {
-        $this->ilias_database = $ilias_database;
-        $this->organisational_unit_service = $organisational_unit_service;
-        $this->user_service = $user_service;
-        $this->organisational_unit_position_service = $organisational_unit_position_service;
+
     }
 
 

@@ -12,16 +12,11 @@ class GetChildrenCommand
 
     use ObjectQuery;
 
-    private ilDBInterface $ilias_database;
-    private ObjectService $object_service;
-
-
     private function __construct(
-        /*private readonly*/ ObjectService $object_service,
-        /*private readonly*/ ilDBInterface $ilias_database
+        private readonly ObjectService $object_service,
+        private readonly ilDBInterface $ilias_database
     ) {
-        $this->object_service = $object_service;
-        $this->ilias_database = $ilias_database;
+
     }
 
 

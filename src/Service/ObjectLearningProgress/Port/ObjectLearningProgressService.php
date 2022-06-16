@@ -14,19 +14,12 @@ use ilDBInterface;
 class ObjectLearningProgressService
 {
 
-    private ilDBInterface $ilias_database;
-    private ObjectService $object_service;
-    private UserService $user_service;
-
-
     private function __construct(
-        /*private readonly*/ ilDBInterface $ilias_database,
-        /*private readonly*/ ObjectService $object_service,
-        /*private readonly*/ UserService $user_service
+        private readonly ilDBInterface $ilias_database,
+        private readonly ObjectService $object_service,
+        private readonly UserService $user_service
     ) {
-        $this->ilias_database = $ilias_database;
-        $this->object_service = $object_service;
-        $this->user_service = $user_service;
+
     }
 
 

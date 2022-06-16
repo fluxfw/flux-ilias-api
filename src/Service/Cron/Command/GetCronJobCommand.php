@@ -8,18 +8,12 @@ class GetCronJobCommand
 {
 
     /**
-     * @var ilCronJob[]
-     */
-    private array $cron_jobs;
-
-
-    /**
      * @param ilCronJob[] $cron_jobs
      */
     private function __construct(
-        /*private readonly*/ array $cron_jobs
+        private readonly array $cron_jobs
     ) {
-        $this->cron_jobs = $cron_jobs;
+
     }
 
 

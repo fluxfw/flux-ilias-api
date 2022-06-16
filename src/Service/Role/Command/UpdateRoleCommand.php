@@ -13,13 +13,10 @@ class UpdateRoleCommand
 
     use RoleQuery;
 
-    private RoleService $role_service;
-
-
     private function __construct(
-        /*private readonly*/ RoleService $role_service
+        private readonly RoleService $role_service
     ) {
-        $this->role_service = $role_service;
+
     }
 
 

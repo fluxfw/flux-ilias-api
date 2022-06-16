@@ -19,25 +19,14 @@ use ilLocatorGUI;
 class ProxyService
 {
 
-    private ConfigFormService $config_form_service;
-    private FluxIliasRestObjectService $flux_ilias_rest_object_service;
-    private Container $ilias_dic;
-    private ProxyConfigService $proxy_config_service;
-    private RestApi $rest_api;
-
-
     private function __construct(
-        /*private readonly*/ RestApi $rest_api,
-        /*private readonly*/ ConfigFormService $config_form_service,
-        /*private readonly*/ ProxyConfigService $proxy_config_service,
-        /*private readonly*/ FluxIliasRestObjectService $flux_ilias_rest_object_service,
-        /*private readonly*/ Container $ilias_dic
+        private readonly RestApi $rest_api,
+        private readonly ConfigFormService $config_form_service,
+        private readonly ProxyConfigService $proxy_config_service,
+        private readonly FluxIliasRestObjectService $flux_ilias_rest_object_service,
+        private readonly Container $ilias_dic
     ) {
-        $this->rest_api = $rest_api;
-        $this->config_form_service = $config_form_service;
-        $this->proxy_config_service = $proxy_config_service;
-        $this->flux_ilias_rest_object_service = $flux_ilias_rest_object_service;
-        $this->ilias_dic = $ilias_dic;
+
     }
 
 

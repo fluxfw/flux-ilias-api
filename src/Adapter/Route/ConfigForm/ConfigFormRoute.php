@@ -15,16 +15,11 @@ use ilGlobalTemplateInterface;
 class ConfigFormRoute implements Route
 {
 
-    private ilGlobalTemplateInterface $ilias_global_template;
-    private ProxyService $proxy_service;
-
-
     private function __construct(
-        /*private readonly*/ ProxyService $proxy_service,
-        /*private readonly*/ ilGlobalTemplateInterface $ilias_global_template
+        private readonly ProxyService $proxy_service,
+        private readonly ilGlobalTemplateInterface $ilias_global_template
     ) {
-        $this->proxy_service = $proxy_service;
-        $this->ilias_global_template = $ilias_global_template;
+
     }
 
 

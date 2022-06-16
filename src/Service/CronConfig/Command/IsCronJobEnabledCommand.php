@@ -8,13 +8,10 @@ use ilCronJob;
 class IsCronJobEnabledCommand
 {
 
-    private IliasCronWrapper $ilias_cron_wrapper;
-
-
     private function __construct(
-        /*private readonly*/ IliasCronWrapper $ilias_cron_wrapper
+        private readonly IliasCronWrapper $ilias_cron_wrapper
     ) {
-        $this->ilias_cron_wrapper = $ilias_cron_wrapper;
+
     }
 
 

@@ -10,13 +10,10 @@ use FluxIliasApi\Libs\FluxAutoloadApi\Autoload\Autoload;
 class IliasAutoload implements Autoload
 {
 
-    private string $folder;
-
-
     private function __construct(
-        /*private readonly*/ string $folder
+        private readonly string $folder
     ) {
-        $this->folder = $folder;
+
     }
 
 

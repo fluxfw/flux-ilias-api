@@ -13,16 +13,11 @@ use FluxIliasApi\Service\ConfigForm\Port\ConfigFormService;
 class ConfigFormAuthorization implements Authorization
 {
 
-    private ConfigFormService $config_form_service;
-    private ?UserDto $user;
-
-
     private function __construct(
-        /*private readonly*/ ConfigFormService $config_form_service,
-        /*private readonly*/ ?UserDto $user
+        private readonly ConfigFormService $config_form_service,
+        private readonly ?UserDto $user
     ) {
-        $this->config_form_service = $config_form_service;
-        $this->user = $user;
+
     }
 
 

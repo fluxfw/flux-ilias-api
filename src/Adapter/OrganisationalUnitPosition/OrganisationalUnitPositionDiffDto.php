@@ -6,24 +6,14 @@ class OrganisationalUnitPositionDiffDto
 {
 
     /**
-     * @var OrganisationalUnitPositionAuthorityDto[]|null
-     */
-    public ?array $authorities;
-    public ?string $description;
-    public ?string $title;
-
-
-    /**
      * @param OrganisationalUnitPositionAuthorityDto[]|null $authorities
      */
     private function __construct(
-        /*public readonly*/ ?string $title,
-        /*public readonly*/ ?string $description,
-        /*public readonly*/ ?array $authorities
+        public readonly ?string $title,
+        public readonly ?string $description,
+        public readonly ?array $authorities
     ) {
-        $this->title = $title;
-        $this->description = $description;
-        $this->authorities = $authorities;
+
     }
 
 

@@ -13,19 +13,12 @@ class GetPathCommand
 
     use ObjectQuery;
 
-    private ilDBInterface $ilias_database;
-    private ilTree $ilias_tree;
-    private ObjectService $object_service;
-
-
     private function __construct(
-        /*private readonly*/ ObjectService $object_service,
-        /*private readonly*/ ilDBInterface $ilias_database,
-        /*private readonly*/ ilTree $ilias_tree
+        private readonly ObjectService $object_service,
+        private readonly ilDBInterface $ilias_database,
+        private readonly ilTree $ilias_tree
     ) {
-        $this->object_service = $object_service;
-        $this->ilias_database = $ilias_database;
-        $this->ilias_tree = $ilias_tree;
+
     }
 
 

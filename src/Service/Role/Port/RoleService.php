@@ -18,19 +18,12 @@ use ILIAS\DI\RBACServices;
 class RoleService
 {
 
-    private ilDBInterface $ilias_database;
-    private RBACServices $ilias_rbac;
-    private ObjectService $object_service;
-
-
     private function __construct(
-        /*private readonly*/ ilDBInterface $ilias_database,
-        /*private readonly*/ ObjectService $object_service,
-        /*private readonly*/ RBACServices $ilias_rbac
+        private readonly ilDBInterface $ilias_database,
+        private readonly ObjectService $object_service,
+        private readonly RBACServices $ilias_rbac
     ) {
-        $this->ilias_database = $ilias_database;
-        $this->object_service = $object_service;
-        $this->ilias_rbac = $ilias_rbac;
+
     }
 
 

@@ -13,13 +13,10 @@ class UpdateFileCommand
 
     use FileQuery;
 
-    private FileService $file_service;
-
-
     private function __construct(
-        /*private readonly*/ FileService $file_service
+        private readonly FileService $file_service
     ) {
-        $this->file_service = $file_service;
+
     }
 
 

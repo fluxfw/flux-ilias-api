@@ -14,16 +14,11 @@ class RemoveCourseMemberCommand
 
     use CourseQuery;
 
-    private CourseService $course_service;
-    private UserService $user_service;
-
-
     private function __construct(
-        /*private readonly*/ CourseService $course_service,
-        /*private readonly*/ UserService $user_service
+        private readonly CourseService $course_service,
+        private readonly UserService $user_service
     ) {
-        $this->course_service = $course_service;
-        $this->user_service = $user_service;
+
     }
 
 

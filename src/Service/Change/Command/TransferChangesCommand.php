@@ -16,19 +16,12 @@ class TransferChangesCommand
 
     use ChangeQuery;
 
-    private ChangeService $change_service;
-    private ilDBInterface $ilias_database;
-    private RestApi $rest_api;
-
-
     private function __construct(
-        /*private readonly*/ ilDBInterface $ilias_database,
-        /*private readonly*/ ChangeService $change_service,
-        /*private readonly*/ RestApi $rest_api
+        private readonly ilDBInterface $ilias_database,
+        private readonly ChangeService $change_service,
+        private readonly RestApi $rest_api
     ) {
-        $this->ilias_database = $ilias_database;
-        $this->change_service = $change_service;
-        $this->rest_api = $rest_api;
+
     }
 
 

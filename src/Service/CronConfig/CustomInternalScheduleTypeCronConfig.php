@@ -8,13 +8,10 @@ use LogicException;
 class CustomInternalScheduleTypeCronConfig implements InternalScheduleTypeCronConfig, JsonSerializable
 {
 
-    private int $_value;
-
-
     private function __construct(
-        /*private readonly*/ int $value
+        private readonly int $_value
     ) {
-        $this->_value = $value;
+
     }
 
 

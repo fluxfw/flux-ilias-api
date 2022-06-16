@@ -13,13 +13,10 @@ class UpdateScormLearningModuleCommand
 
     use ScormLearningModuleQuery;
 
-    private ScormLearningModuleService $scorm_learning_module_service;
-
-
     private function __construct(
-        /*private readonly*/ ScormLearningModuleService $scorm_learning_module_service
+        private readonly ScormLearningModuleService $scorm_learning_module_service
     ) {
-        $this->scorm_learning_module_service = $scorm_learning_module_service;
+
     }
 
 

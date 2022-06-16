@@ -13,13 +13,10 @@ class GetFilesCommand
     use FileQuery;
     use ObjectQuery;
 
-    private ilDBInterface $ilias_database;
-
-
     private function __construct(
-        /*private readonly*/ ilDBInterface $ilias_database
+        private readonly ilDBInterface $ilias_database
     ) {
-        $this->ilias_database = $ilias_database;
+
     }
 
 

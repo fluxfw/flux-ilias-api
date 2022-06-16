@@ -8,18 +8,12 @@ class GetFluxIliasRestObjectWebProxyMapByKeyCommand
 {
 
     /**
-     * @var FluxIliasRestObjectWebProxyMapDto[]
-     */
-    private array $web_proxy_maps;
-
-
-    /**
      * @param FluxIliasRestObjectWebProxyMapDto[] $web_proxy_maps
      */
     private function __construct(
-        /*private readonly*/ array $web_proxy_maps
+        private readonly array $web_proxy_maps
     ) {
-        $this->web_proxy_maps = $web_proxy_maps;
+
     }
 
 

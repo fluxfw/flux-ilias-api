@@ -5,40 +5,19 @@ namespace FluxIliasApi\Adapter\Proxy;
 class WebProxyMapDto
 {
 
-    public string $iframe_url;
-    public ?string $menu_icon_url;
-    public bool $menu_item;
-    public ?string $menu_title;
-    public string $page_title;
-    public ?string $rewrite_url;
-    public string $short_title;
-    public string $target_key;
-    public string $view_title;
-    public bool $visible_public_menu_item;
-
-
     private function __construct(
-        /*public readonly*/ string $target_key,
-        /*public readonly*/ string $iframe_url,
-        /*public readonly*/ string $page_title,
-        /*public readonly*/ string $short_title,
-        /*public readonly*/ string $view_title,
-        /*public readonly*/ ?string $rewrite_url,
-        /*public readonly*/ bool $menu_item,
-        /*public readonly*/ ?string $menu_title,
-        /*public readonly*/ ?string $menu_icon_url,
-        /*public readonly*/ bool $visible_public_menu_item
+        public readonly string $target_key,
+        public readonly string $iframe_url,
+        public readonly string $page_title,
+        public readonly string $short_title,
+        public readonly string $view_title,
+        public readonly ?string $rewrite_url,
+        public readonly bool $menu_item,
+        public readonly ?string $menu_title,
+        public readonly ?string $menu_icon_url,
+        public readonly bool $visible_public_menu_item
     ) {
-        $this->target_key = $target_key;
-        $this->iframe_url = $iframe_url;
-        $this->page_title = $page_title;
-        $this->short_title = $short_title;
-        $this->view_title = $view_title;
-        $this->rewrite_url = $rewrite_url;
-        $this->menu_item = $menu_item;
-        $this->menu_title = $menu_title;
-        $this->menu_icon_url = $menu_icon_url;
-        $this->visible_public_menu_item = $visible_public_menu_item;
+
     }
 
 

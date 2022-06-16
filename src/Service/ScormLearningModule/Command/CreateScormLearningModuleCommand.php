@@ -14,13 +14,10 @@ class CreateScormLearningModuleCommand
 
     use ScormLearningModuleQuery;
 
-    private ObjectService $object_service;
-
-
     private function __construct(
-        /*private readonly*/ ObjectService $object_service
+        private readonly ObjectService $object_service
     ) {
-        $this->object_service = $object_service;
+
     }
 
 

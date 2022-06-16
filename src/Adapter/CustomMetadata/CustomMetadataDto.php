@@ -5,28 +5,15 @@ namespace FluxIliasApi\Adapter\CustomMetadata;
 class CustomMetadataDto
 {
 
-    public ?int $field_id;
-    public ?string $field_title;
-    public ?CustomMetadataFieldType $field_type;
-    public ?int $record_id;
-    public ?string $record_title;
-    public mixed $value;
-
-
     private function __construct(
-        /*public readonly*/ ?int $field_id,
-        /*public readonly*/ ?string $field_title,
-        /*public readonly*/ ?int $record_id,
-        /*public readonly*/ ?string $record_title,
-        /*public readonly*/ mixed $value,
-        /*public readonly*/ ?CustomMetadataFieldType $field_type
+        public readonly ?int $field_id,
+        public readonly ?string $field_title,
+        public readonly ?int $record_id,
+        public readonly ?string $record_title,
+        public readonly mixed $value,
+        public readonly ?CustomMetadataFieldType $field_type
     ) {
-        $this->field_id = $field_id;
-        $this->field_title = $field_title;
-        $this->record_id = $record_id;
-        $this->record_title = $record_title;
-        $this->value = $value;
-        $this->field_type = $field_type;
+
     }
 
 

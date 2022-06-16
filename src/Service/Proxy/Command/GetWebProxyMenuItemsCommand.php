@@ -12,16 +12,11 @@ use ILIAS\UI\Component\Symbol\Icon\Standard;
 class GetWebProxyMenuItemsCommand
 {
 
-    private Container $ilias_dic;
-    private ProxyConfigService $proxy_config_service;
-
-
     private function __construct(
-        /*private readonly*/ ProxyConfigService $proxy_config_service,
-        /*private readonly*/ Container $ilias_dic
+        private readonly ProxyConfigService $proxy_config_service,
+        private readonly Container $ilias_dic
     ) {
-        $this->proxy_config_service = $proxy_config_service;
-        $this->ilias_dic = $ilias_dic;
+
     }
 
 
