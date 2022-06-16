@@ -23,7 +23,7 @@ class GetConfigCommand
     }
 
 
-    public function getConfig(LegacyConfigKey $key)/* : mixed*/
+    public function getConfig(LegacyConfigKey $key) : mixed
     {
         return $this->getValueFromJson(
             (new ilSetting($this->getConfigSettingsModule()))->get($key->value, null)

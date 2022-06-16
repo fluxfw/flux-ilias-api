@@ -25,7 +25,7 @@ class SetObjectConfigCommand
     }
 
 
-    public function setObjectConfig(int $id, LegacyObjectConfigKey $key, /*mixed*/ $value) : void
+    public function setObjectConfig(int $id, LegacyObjectConfigKey $key, mixed $value) : void
     {
         ilContainer::_writeContainerSetting($id, $this->getObjectConfigContainerSettingsPrefix() . $key->value, $this->getValueAsJson(
             $value

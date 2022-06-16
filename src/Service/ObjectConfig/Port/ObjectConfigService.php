@@ -49,7 +49,7 @@ class ObjectConfigService
     }
 
 
-    public function getObjectConfig(int $id, LegacyObjectConfigKey $key)/* : mixed*/
+    public function getObjectConfig(int $id, LegacyObjectConfigKey $key) : mixed
     {
         return GetObjectConfigCommand::new()
             ->getObjectConfig(
@@ -59,7 +59,7 @@ class ObjectConfigService
     }
 
 
-    public function setObjectConfig(int $id, LegacyObjectConfigKey $key, /*mixed*/ $value) : void
+    public function setObjectConfig(int $id, LegacyObjectConfigKey $key, mixed $value) : void
     {
         SetObjectConfigCommand::new()
             ->setObjectConfig(

@@ -25,7 +25,7 @@ class GetObjectConfigCommand
     }
 
 
-    public function getObjectConfig(int $id, LegacyObjectConfigKey $key)/* : mixed*/
+    public function getObjectConfig(int $id, LegacyObjectConfigKey $key) : mixed
     {
         return $this->getValueFromJson(
             ilContainer::_lookupContainerSetting($id, $this->getObjectConfigContainerSettingsPrefix() . $key->value, null)

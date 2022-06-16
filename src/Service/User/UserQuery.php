@@ -346,14 +346,14 @@ WHERE session_id=" . $this->ilias_database->quote($session_id,
 
     private function mapUserDto(array $user, ?array $access_limited_object_ids = null, ?array $multi_fields = null, ?array $preferences = null, ?array $user_defined_fields = null) : UserDto
     {
-        $getUserAccessLimitedObjectId = fn(string $id)/* : mixed*/ => $access_limited_object_ids !== null ? current(array_map(fn(array $access_limited_object_id
-        )/* : mixed*/ => $access_limited_object_id[$id] ?: null,
+        $getUserAccessLimitedObjectId = fn(string $id) : mixed => $access_limited_object_ids !== null ? current(array_map(fn(array $access_limited_object_id
+        ) : mixed => $access_limited_object_id[$id] ?: null,
             array_filter($access_limited_object_ids, fn(array $access_limited_object_id) : bool => $access_limited_object_id["ref_id"] === $user["time_limit_owner"]))) : null;
 
-        $getUserMultiField = fn(string $field) : ?array => $multi_fields !== null ? array_values(array_map(fn(array $multi_field)/* : mixed*/ => $multi_field["value"],
+        $getUserMultiField = fn(string $field) : ?array => $multi_fields !== null ? array_values(array_map(fn(array $multi_field) : mixed => $multi_field["value"],
             array_filter($multi_fields, fn(array $multi_field) : bool => $multi_field["usr_id"] === $user["usr_id"] && $multi_field["field_id"] === $field))) : null;
 
-        $getUserPreference = fn(string $field)/* : mixed*/ => $preferences !== null ? current(array_map(fn(array $preference)/* : mixed*/ => $preference["value"],
+        $getUserPreference = fn(string $field) : mixed => $preferences !== null ? current(array_map(fn(array $preference) : mixed => $preference["value"],
             array_filter($preferences, fn(array $preference) : bool => $preference["usr_id"] === $user["usr_id"] && $preference["keyword"] === $field))) : null;
 
         return UserDto::new(
