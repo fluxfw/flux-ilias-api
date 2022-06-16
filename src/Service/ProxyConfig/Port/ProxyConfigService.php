@@ -21,13 +21,10 @@ use FluxIliasApi\Service\ProxyConfig\Command\SetWebProxyMapCommand;
 class ProxyConfigService
 {
 
-    private ConfigService $config_service;
-
-
     private function __construct(
-        /*private readonly*/ ConfigService $config_service
+        private readonly ConfigService $config_service
     ) {
-        $this->config_service = $config_service;
+
     }
 
 

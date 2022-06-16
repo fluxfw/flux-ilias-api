@@ -8,33 +8,17 @@ class ObjectDiffDto
 {
 
     /**
-     * @var CustomMetadataDto[]|null
-     */
-    public ?array $custom_metadata;
-    public ?string $description;
-    public ?int $didactic_template_id;
-    public ?string $import_id;
-    public ?bool $online;
-    public ?string $title;
-
-
-    /**
      * @param CustomMetadataDto[]|null $custom_metadata
      */
     private function __construct(
-        /*public readonly*/ ?string $import_id,
-        /*public readonly*/ ?bool $online,
-        /*public readonly*/ ?string $title,
-        /*public readonly*/ ?string $description,
-        /*public readonly*/ ?int $didactic_template_id,
-        /*public readonly*/ ?array $custom_metadata
+        public readonly ?string $import_id,
+        public readonly ?bool $online,
+        public readonly ?string $title,
+        public readonly ?string $description,
+        public readonly ?int $didactic_template_id,
+        public readonly ?array $custom_metadata
     ) {
-        $this->import_id = $import_id;
-        $this->online = $online;
-        $this->title = $title;
-        $this->description = $description;
-        $this->didactic_template_id = $didactic_template_id;
-        $this->custom_metadata = $custom_metadata;
+
     }
 
 

@@ -45,61 +45,26 @@ class HandleIliasEventCommand
 
     use ChangeQuery;
 
-    private CategoryService $category_service;
-    private ChangeService $change_service;
-    private CourseMemberService $course_member_service;
-    private CourseService $course_service;
-    private FileService $file_service;
-    private FluxIliasRestObjectService $flux_ilias_rest_object_service;
-    private GroupMemberService $group_member_service;
-    private GroupService $group_service;
-    private ilDBInterface $ilias_database;
-    private ObjectLearningProgressService $object_learning_progress_service;
-    private ObjectService $object_service;
-    private OrganisationalUnitService $organisational_unit_service;
-    private OrganisationalUnitStaffService $organisational_unit_staff_service;
-    private RoleService $role_service;
-    private ScormLearningModuleService $scorm_learning_module_service;
-    private UserRoleService $user_role_service;
-    private UserService $user_service;
-
-
     private function __construct(
-        /*private readonly*/ ilDBInterface $ilias_database,
-        /*private readonly*/ ChangeService $change_service,
-        /*private readonly*/ CategoryService $category_service,
-        /*private readonly*/ CourseService $course_service,
-        /*private readonly*/ CourseMemberService $course_member_service,
-        /*private readonly*/ FileService $file_service,
-        /*private readonly*/ FluxIliasRestObjectService $flux_ilias_rest_object_service,
-        /*private readonly*/ GroupService $group_service,
-        /*private readonly*/ GroupMemberService $group_member_service,
-        /*private readonly*/ ObjectService $object_service,
-        /*private readonly*/ ObjectLearningProgressService $object_learning_progress_service,
-        /*private readonly*/ OrganisationalUnitService $organisational_unit_service,
-        /*private readonly*/ OrganisationalUnitStaffService $organisational_unit_staff_service,
-        /*private readonly*/ RoleService $role_service,
-        /*private readonly*/ ScormLearningModuleService $scorm_learning_module_service,
-        /*private readonly*/ UserService $user_service,
-        /*private readonly*/ UserRoleService $user_role_service
+        private readonly ilDBInterface $ilias_database,
+        private readonly ChangeService $change_service,
+        private readonly CategoryService $category_service,
+        private readonly CourseService $course_service,
+        private readonly CourseMemberService $course_member_service,
+        private readonly FileService $file_service,
+        private readonly FluxIliasRestObjectService $flux_ilias_rest_object_service,
+        private readonly GroupService $group_service,
+        private readonly GroupMemberService $group_member_service,
+        private readonly ObjectService $object_service,
+        private readonly ObjectLearningProgressService $object_learning_progress_service,
+        private readonly OrganisationalUnitService $organisational_unit_service,
+        private readonly OrganisationalUnitStaffService $organisational_unit_staff_service,
+        private readonly RoleService $role_service,
+        private readonly ScormLearningModuleService $scorm_learning_module_service,
+        private readonly UserService $user_service,
+        private readonly UserRoleService $user_role_service
     ) {
-        $this->ilias_database = $ilias_database;
-        $this->change_service = $change_service;
-        $this->category_service = $category_service;
-        $this->course_service = $course_service;
-        $this->course_member_service = $course_member_service;
-        $this->file_service = $file_service;
-        $this->flux_ilias_rest_object_service = $flux_ilias_rest_object_service;
-        $this->group_service = $group_service;
-        $this->group_member_service = $group_member_service;
-        $this->object_service = $object_service;
-        $this->object_learning_progress_service = $object_learning_progress_service;
-        $this->organisational_unit_service = $organisational_unit_service;
-        $this->organisational_unit_staff_service = $organisational_unit_staff_service;
-        $this->role_service = $role_service;
-        $this->scorm_learning_module_service = $scorm_learning_module_service;
-        $this->user_service = $user_service;
-        $this->user_role_service = $user_role_service;
+
     }
 
 

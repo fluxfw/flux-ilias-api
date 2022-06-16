@@ -5,19 +5,12 @@ namespace FluxIliasApi\Adapter\Object;
 class ObjectIdDto
 {
 
-    public ?int $id;
-    public ?string $import_id;
-    public ?int $ref_id;
-
-
     private function __construct(
-        /*public readonly*/ ?int $id,
-        /*public readonly*/ ?string $import_id,
-        /*public readonly*/ ?int $ref_id
+        public readonly ?int $id,
+        public readonly ?string $import_id,
+        public readonly ?int $ref_id
     ) {
-        $this->id = $id;
-        $this->import_id = $import_id;
-        $this->ref_id = $ref_id;
+
     }
 
 

@@ -17,19 +17,12 @@ use ilDBInterface;
 class GroupMemberService
 {
 
-    private GroupService $group_service;
-    private ilDBInterface $ilias_database;
-    private UserService $user_service;
-
-
     private function __construct(
-        /*private readonly*/ ilDBInterface $ilias_database,
-        /*private readonly*/ GroupService $group_service,
-        /*private readonly*/ UserService $user_service
+        private readonly ilDBInterface $ilias_database,
+        private readonly GroupService $group_service,
+        private readonly UserService $user_service
     ) {
-        $this->ilias_database = $ilias_database;
-        $this->group_service = $group_service;
-        $this->user_service = $user_service;
+
     }
 
 

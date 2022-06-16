@@ -5,16 +5,11 @@ namespace FluxIliasApi\Adapter\FluxIliasRestObject;
 class FluxIliasRestObjectApiProxyMapDto
 {
 
-    public string $key;
-    public string $url;
-
-
     private function __construct(
-        /*public readonly*/ string $key,
-        /*public readonly*/ string $url
+        public readonly string $key,
+        public readonly string $url
     ) {
-        $this->key = $key;
-        $this->url = $url;
+
     }
 
 

@@ -8,13 +8,10 @@ use FluxIliasApi\Service\Config\Port\ConfigService;
 class IsEnableWebProxyCommand
 {
 
-    private ConfigService $config_service;
-
-
     private function __construct(
-        /*private readonly*/ ConfigService $config_service
+        private readonly ConfigService $config_service
     ) {
-        $this->config_service = $config_service;
+
     }
 
 

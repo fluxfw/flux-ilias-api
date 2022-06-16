@@ -7,25 +7,14 @@ use FluxIliasApi\Adapter\ObjectLearningProgress\LegacyObjectLearningProgress;
 class GroupMemberDiffDto
 {
 
-    public ?bool $administrator_role;
-    public ?LegacyObjectLearningProgress $learning_progress;
-    public ?bool $member_role;
-    public ?bool $notification;
-    public ?bool $tutorial_support;
-
-
     private function __construct(
-        /*public readonly*/ ?bool $member_role,
-        /*public readonly*/ ?bool $administrator_role,
-        /*public readonly*/ ?LegacyObjectLearningProgress $learning_progress,
-        /*public readonly*/ ?bool $tutorial_support,
-        /*public readonly*/ ?bool $notification
+        public readonly ?bool $member_role,
+        public readonly ?bool $administrator_role,
+        public readonly ?LegacyObjectLearningProgress $learning_progress,
+        public readonly ?bool $tutorial_support,
+        public readonly ?bool $notification
     ) {
-        $this->member_role = $member_role;
-        $this->administrator_role = $administrator_role;
-        $this->learning_progress = $learning_progress;
-        $this->tutorial_support = $tutorial_support;
-        $this->notification = $notification;
+
     }
 
 

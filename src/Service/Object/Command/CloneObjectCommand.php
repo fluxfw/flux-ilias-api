@@ -16,22 +16,13 @@ class CloneObjectCommand
 
     use ObjectQuery;
 
-    private ilObjectDefinition $ilias_object_definition;
-    private ilTree $ilias_tree;
-    private ilObjUser $ilias_user;
-    private ObjectService $object_service;
-
-
     private function __construct(
-        /*private readonly*/ ObjectService $object_service,
-        /*private readonly*/ ilTree $ilias_tree,
-        /*private readonly*/ ilObjUser $ilias_user,
-        /*private readonly*/ ilObjectDefinition $ilias_object_definition
+        private readonly ObjectService $object_service,
+        private readonly ilTree $ilias_tree,
+        private readonly ilObjUser $ilias_user,
+        private readonly ilObjectDefinition $ilias_object_definition
     ) {
-        $this->object_service = $object_service;
-        $this->ilias_tree = $ilias_tree;
-        $this->ilias_user = $ilias_user;
-        $this->ilias_object_definition = $ilias_object_definition;
+
     }
 
 

@@ -9,13 +9,10 @@ use ilObjOrgUnit;
 class GetOrganisationalUnitRootCommand
 {
 
-    private OrganisationalUnitService $organisational_unit_service;
-
-
     private function __construct(
-        /*private readonly*/ OrganisationalUnitService $organisational_unit_service
+        private readonly OrganisationalUnitService $organisational_unit_service
     ) {
-        $this->organisational_unit_service = $organisational_unit_service;
+
     }
 
 

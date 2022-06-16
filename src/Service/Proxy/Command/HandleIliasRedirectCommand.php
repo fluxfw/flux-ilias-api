@@ -8,13 +8,10 @@ use FluxIliasApi\Service\Proxy\LegacyProxyTarget;
 class HandleIliasRedirectCommand
 {
 
-    private RestApi $rest_api;
-
-
     private function __construct(
-        /*private readonly*/ RestApi $rest_api
+        private readonly RestApi $rest_api
     ) {
-        $this->rest_api = $rest_api;
+
     }
 
 

@@ -9,16 +9,11 @@ use ilObjUser;
 class SetCronJobEnabledCommand
 {
 
-    private IliasCronWrapper $ilias_cron_wrapper;
-    private ilObjUser $ilias_user;
-
-
     private function __construct(
-        /*private readonly*/ IliasCronWrapper $ilias_cron_wrapper,
-        /*private readonly*/ ilObjUser $ilias_user
+        private readonly IliasCronWrapper $ilias_cron_wrapper,
+        private readonly ilObjUser $ilias_user
     ) {
-        $this->ilias_cron_wrapper = $ilias_cron_wrapper;
-        $this->ilias_user = $ilias_user;
+
     }
 
 

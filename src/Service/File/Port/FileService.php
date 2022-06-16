@@ -17,19 +17,12 @@ use ILIAS\FileUpload\FileUpload;
 class FileService
 {
 
-    private ilDBInterface $ilias_database;
-    private FileUpload $ilias_upload;
-    private ObjectService $object_service;
-
-
     private function __construct(
-        /*private readonly*/ ilDBInterface $ilias_database,
-        /*private readonly*/ FileUpload $ilias_upload,
-        /*private readonly*/ ObjectService $object_service
+        private readonly ilDBInterface $ilias_database,
+        private readonly FileUpload $ilias_upload,
+        private readonly ObjectService $object_service
     ) {
-        $this->ilias_database = $ilias_database;
-        $this->ilias_upload = $ilias_upload;
-        $this->object_service = $object_service;
+
     }
 
 

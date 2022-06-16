@@ -8,13 +8,10 @@ use LogicException;
 class CustomObjectType implements ObjectType, JsonSerializable
 {
 
-    private string $_value;
-
-
     private function __construct(
-        /*private readonly*/ string $value
+        private readonly string $_value
     ) {
-        $this->_value = $value;
+
     }
 
 

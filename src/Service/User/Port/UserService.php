@@ -18,19 +18,12 @@ use ILIAS\DI\RBACServices;
 class UserService
 {
 
-    private ilDBInterface $ilias_database;
-    private RBACServices $ilias_rbac;
-    private ObjectService $object_service;
-
-
     private function __construct(
-        /*private readonly*/ ilDBInterface $ilias_database,
-        /*private readonly*/ RBACServices $ilias_rbac,
-        /*private readonly*/ ObjectService $object_service
+        private readonly ilDBInterface $ilias_database,
+        private readonly RBACServices $ilias_rbac,
+        private readonly ObjectService $object_service
     ) {
-        $this->ilias_database = $ilias_database;
-        $this->ilias_rbac = $ilias_rbac;
-        $this->object_service = $object_service;
+
     }
 
 

@@ -14,16 +14,11 @@ class MoveObjectCommand
 
     use ObjectQuery;
 
-    private ilTree $ilias_tree;
-    private ObjectService $object_service;
-
-
     private function __construct(
-        /*private readonly*/ ObjectService $object_service,
-        /*private readonly*/ ilTree $ilias_tree
+        private readonly ObjectService $object_service,
+        private readonly ilTree $ilias_tree
     ) {
-        $this->object_service = $object_service;
-        $this->ilias_tree = $ilias_tree;
+
     }
 
 

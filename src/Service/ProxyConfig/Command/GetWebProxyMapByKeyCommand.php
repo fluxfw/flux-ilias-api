@@ -8,18 +8,12 @@ class GetWebProxyMapByKeyCommand
 {
 
     /**
-     * @var WebProxyMapDto[]
-     */
-    private array $web_proxy_map;
-
-
-    /**
      * @param WebProxyMapDto[] $web_proxy_map
      */
     private function __construct(
-        /*private readonly*/ array $web_proxy_map
+        private readonly array $web_proxy_map
     ) {
-        $this->web_proxy_map = $web_proxy_map;
+
     }
 
 

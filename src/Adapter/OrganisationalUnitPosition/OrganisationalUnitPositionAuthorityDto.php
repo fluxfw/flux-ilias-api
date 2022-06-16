@@ -5,19 +5,12 @@ namespace FluxIliasApi\Adapter\OrganisationalUnitPosition;
 class OrganisationalUnitPositionAuthorityDto
 {
 
-    public ?int $id;
-    public ?int $over_position_id;
-    public ?LegacyOrganisationalUnitPositionAuthorityScopeIn $scope_in;
-
-
     private function __construct(
-        /*public readonly*/ ?int $id,
-        /*public readonly*/ ?int $over_position_id,
-        /*public readonly*/ ?LegacyOrganisationalUnitPositionAuthorityScopeIn $scope_in
+        public readonly ?int $id,
+        public readonly ?int $over_position_id,
+        public readonly ?LegacyOrganisationalUnitPositionAuthorityScopeIn $scope_in
     ) {
-        $this->id = $id;
-        $this->over_position_id = $over_position_id;
-        $this->scope_in = $scope_in;
+
     }
 
 

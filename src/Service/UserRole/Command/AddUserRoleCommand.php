@@ -12,19 +12,12 @@ use ILIAS\DI\RBACServices;
 class AddUserRoleCommand
 {
 
-    private RBACServices $ilias_rbac;
-    private RoleService $role_service;
-    private UserService $user_service;
-
-
     private function __construct(
-        /*private readonly*/ UserService $user_service,
-        /*private readonly*/ RoleService $role_service,
-        /*private readonly*/ RBACServices $ilias_rbac
+        private readonly UserService $user_service,
+        private readonly RoleService $role_service,
+        private readonly RBACServices $ilias_rbac
     ) {
-        $this->user_service = $user_service;
-        $this->role_service = $role_service;
-        $this->ilias_rbac = $ilias_rbac;
+
     }
 
 

@@ -9,13 +9,10 @@ use ilObjUser;
 class NewIliasCronWrapper implements IliasCronWrapper
 {
 
-    private ilCronServices $ilias_cron;
-
-
     private function __construct(
-        /*private readonly*/ ilCronServices $ilias_cron
+        private readonly ilCronServices $ilias_cron
     ) {
-        $this->ilias_cron = $ilias_cron;
+
     }
 
 

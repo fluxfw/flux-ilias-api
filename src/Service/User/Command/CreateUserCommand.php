@@ -13,16 +13,11 @@ class CreateUserCommand
 
     use UserQuery;
 
-    private RBACServices $ilias_rbac;
-    private ObjectService $object_service;
-
-
     private function __construct(
-        /*private readonly*/ RBACServices $ilias_rbac,
-        /*private readonly*/ ObjectService $object_service
+        private readonly RBACServices $ilias_rbac,
+        private readonly ObjectService $object_service
     ) {
-        $this->ilias_rbac = $ilias_rbac;
-        $this->object_service = $object_service;
+
     }
 
 

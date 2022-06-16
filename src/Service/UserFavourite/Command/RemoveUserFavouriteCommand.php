@@ -12,19 +12,12 @@ use ilFavouritesDBRepository;
 class RemoveUserFavouriteCommand
 {
 
-    private ilFavouritesDBRepository $ilias_favourite;
-    private ObjectService $object_service;
-    private UserService $user_service;
-
-
     private function __construct(
-        /*private readonly*/ UserService $user_service,
-        /*private readonly*/ ObjectService $object_service,
-        /*private readonly*/ ilFavouritesDBRepository $ilias_favourite
+        private readonly UserService $user_service,
+        private readonly ObjectService $object_service,
+        private readonly ilFavouritesDBRepository $ilias_favourite
     ) {
-        $this->user_service = $user_service;
-        $this->object_service = $object_service;
-        $this->ilias_favourite = $ilias_favourite;
+
     }
 
 

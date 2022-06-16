@@ -9,13 +9,10 @@ use FluxIliasApi\Service\RestConfig\Command\SetEnableRestApiCommand;
 class RestConfigService
 {
 
-    private ConfigService $config_service;
-
-
     private function __construct(
-        /*private readonly*/ ConfigService $config_service
+        private readonly ConfigService $config_service
     ) {
-        $this->config_service = $config_service;
+
     }
 
 

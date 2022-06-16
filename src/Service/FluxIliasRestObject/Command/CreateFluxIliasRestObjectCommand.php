@@ -15,19 +15,12 @@ class CreateFluxIliasRestObjectCommand
 
     use FluxIliasRestObjectQuery;
 
-    private FluxIliasRestObjectService $flux_ilias_rest_object_service;
-    private ilDBInterface $ilias_database;
-    private ObjectService $object_service;
-
-
     private function __construct(
-        /*private readonly*/ FluxIliasRestObjectService $flux_ilias_rest_object_service,
-        /*private readonly*/ ObjectService $object_service,
-        /*private readonly*/ ilDBInterface $ilias_database
+        private readonly FluxIliasRestObjectService $flux_ilias_rest_object_service,
+        private readonly ObjectService $object_service,
+        private readonly ilDBInterface $ilias_database
     ) {
-        $this->flux_ilias_rest_object_service = $flux_ilias_rest_object_service;
-        $this->object_service = $object_service;
-        $this->ilias_database = $ilias_database;
+
     }
 
 

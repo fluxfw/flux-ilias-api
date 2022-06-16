@@ -5,34 +5,17 @@ namespace FluxIliasApi\Adapter\FluxIliasRestObject;
 class FluxIliasRestObjectWebProxyMapDto
 {
 
-    public ?string $icon_url;
-    public string $iframe_url;
-    public string $key;
-    public string $page_title;
-    public bool $pass_ref_id;
-    public ?string $rewrite_url;
-    public string $short_title;
-    public string $view_title;
-
-
     private function __construct(
-        /*public readonly*/ string $key,
-        /*public readonly*/ string $iframe_url,
-        /*public readonly*/ string $page_title,
-        /*public readonly*/ string $short_title,
-        /*public readonly*/ string $view_title,
-        /*public readonly*/ bool $pass_ref_id,
-        /*public readonly*/ ?string $icon_url,
-        /*public readonly*/ ?string $rewrite_url
+        public readonly string $key,
+        public readonly string $iframe_url,
+        public readonly string $page_title,
+        public readonly string $short_title,
+        public readonly string $view_title,
+        public readonly bool $pass_ref_id,
+        public readonly ?string $icon_url,
+        public readonly ?string $rewrite_url
     ) {
-        $this->key = $key;
-        $this->iframe_url = $iframe_url;
-        $this->page_title = $page_title;
-        $this->short_title = $short_title;
-        $this->view_title = $view_title;
-        $this->pass_ref_id = $pass_ref_id;
-        $this->icon_url = $icon_url;
-        $this->rewrite_url = $rewrite_url;
+
     }
 
 

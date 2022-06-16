@@ -14,16 +14,11 @@ class UploadFileCommand
 
     use FileQuery;
 
-    private FileService $file_service;
-    private FileUpload $ilias_upload;
-
-
     private function __construct(
-        /*private readonly*/ FileService $file_service,
-        /*private readonly*/ FileUpload $ilias_upload
+        private readonly FileService $file_service,
+        private readonly FileUpload $ilias_upload
     ) {
-        $this->file_service = $file_service;
-        $this->ilias_upload = $ilias_upload;
+
     }
 
 

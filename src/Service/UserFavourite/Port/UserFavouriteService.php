@@ -14,22 +14,13 @@ use ilFavouritesDBRepository;
 class UserFavouriteService
 {
 
-    private ilDBInterface $ilias_database;
-    private ilFavouritesDBRepository $ilias_favourite;
-    private ObjectService $object_service;
-    private UserService $user_service;
-
-
     private function __construct(
-        /*private readonly*/ ilDBInterface $ilias_database,
-        /*private readonly*/ UserService $user_service,
-        /*private readonly*/ ObjectService $object_service,
-        /*private readonly*/ ilFavouritesDBRepository $ilias_favourite
+        private readonly ilDBInterface $ilias_database,
+        private readonly UserService $user_service,
+        private readonly ObjectService $object_service,
+        private readonly ilFavouritesDBRepository $ilias_favourite
     ) {
-        $this->ilias_database = $ilias_database;
-        $this->user_service = $user_service;
-        $this->object_service = $object_service;
-        $this->ilias_favourite = $ilias_favourite;
+
     }
 
 

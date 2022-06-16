@@ -9,16 +9,11 @@ use ILIAS\UICore\PageContentProvider;
 class GetWebProxyCommand
 {
 
-    private ilGlobalTemplateInterface $ilias_global_template;
-    private ProxyConfigService $proxy_config_service;
-
-
     private function __construct(
-        /*private readonly*/ ProxyConfigService $proxy_config_service,
-        /*private readonly*/ ilGlobalTemplateInterface $ilias_global_template
+        private readonly ProxyConfigService $proxy_config_service,
+        private readonly ilGlobalTemplateInterface $ilias_global_template
     ) {
-        $this->proxy_config_service = $proxy_config_service;
-        $this->ilias_global_template = $ilias_global_template;
+
     }
 
 

@@ -13,16 +13,11 @@ class GetUnreadMailsCount
 
     use UserMailQuery;
 
-    private ilDBInterface $ilias_database;
-    private UserService $user_service;
-
-
     private function __construct(
-        /*private readonly*/ ilDBInterface $ilias_database,
-        /*private readonly*/ UserService $user_service
+        private readonly ilDBInterface $ilias_database,
+        private readonly UserService $user_service
     ) {
-        $this->ilias_database = $ilias_database;
-        $this->user_service = $user_service;
+
     }
 
 

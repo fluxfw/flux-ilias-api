@@ -9,13 +9,12 @@ class GetKeepChangesInsideDaysCommand
 {
 
     public const DEFAULT_VALUE = 7;
-    private ConfigService $config_service;
 
 
     private function __construct(
-        /*private readonly*/ ConfigService $config_service
+        private readonly ConfigService $config_service
     ) {
-        $this->config_service = $config_service;
+
     }
 
 

@@ -7,121 +7,47 @@ use FluxIliasApi\Adapter\CustomMetadata\CustomMetadataDto;
 class CourseDiffDto
 {
 
-    public ?bool $add_to_favourites;
-    public ?bool $availability_always_visible;
-    public ?int $availability_end;
-    public ?int $availability_start;
-    public ?bool $badges;
-    public ?bool $calendar;
-    public ?bool $calendar_block;
-    public ?string $contact_consultation;
-    public ?string $contact_email;
-    public ?string $contact_name;
-    public ?string $contact_phone;
-    public ?string $contact_responsibility;
-    /**
-     * @var CustomMetadataDto[]|null
-     */
-    public ?array $custom_metadata;
-    public ?bool $default_object_rating;
-    public ?string $description;
-    public ?int $didactic_template_id;
-    public ?string $import_id;
-    public ?string $important_information;
-    public ?string $mail_subject_prefix;
-    public ?LegacyCourseMailToMembersType $mail_to_members_type;
-    public ?bool $manage_custom_metadata;
-    public ?bool $news;
-    public ?bool $online;
-    public ?int $period_end;
-    public ?int $period_start;
-    public ?bool $period_time_indication;
-    public ?bool $period_unset;
-    public ?bool $resources;
-    public ?bool $send_welcome_email;
-    public ?bool $show_members;
-    public ?bool $show_members_participants_list;
-    public ?string $syllabus;
-    public ?bool $tag_cloud;
-    public ?string $target_group;
-    public ?string $title;
-
-
     /**
      * @param CustomMetadataDto[]|null $custom_metadata
      */
     private function __construct(
-        /*public readonly*/ ?string $import_id,
-        /*public readonly*/ ?string $title,
-        /*public readonly*/ ?string $description,
-        /*public readonly*/ ?int $period_start,
-        /*public readonly*/ ?int $period_end,
-        /*public readonly*/ ?bool $period_unset,
-        /*public readonly*/ ?bool $period_time_indication,
-        /*public readonly*/ ?bool $online,
-        /*public readonly*/ ?int $availability_start,
-        /*public readonly*/ ?int $availability_end,
-        /*public readonly*/ ?bool $availability_always_visible,
-        /*public readonly*/ ?bool $calendar,
-        /*public readonly*/ ?bool $calendar_block,
-        /*public readonly*/ ?bool $news,
-        /*public readonly*/ ?bool $manage_custom_metadata,
-        /*public readonly*/ ?bool $tag_cloud,
-        /*public readonly*/ ?bool $default_object_rating,
-        /*public readonly*/ ?bool $badges,
-        /*public readonly*/ ?bool $resources,
-        /*public readonly*/ ?string $mail_subject_prefix,
-        /*public readonly*/ ?bool $show_members,
-        /*public readonly*/ ?bool $show_members_participants_list,
-        /*public readonly*/ ?LegacyCourseMailToMembersType $mail_to_members_type,
-        /*public readonly*/ ?bool $send_welcome_email,
-        /*public readonly*/ ?bool $add_to_favourites,
-        /*public readonly*/ ?string $important_information,
-        /*public readonly*/ ?string $syllabus,
-        /*public readonly*/ ?string $target_group,
-        /*public readonly*/ ?string $contact_name,
-        /*public readonly*/ ?string $contact_responsibility,
-        /*public readonly*/ ?string $contact_phone,
-        /*public readonly*/ ?string $contact_email,
-        /*public readonly*/ ?string $contact_consultation,
-        /*public readonly*/ ?int $didactic_template_id,
-        /*public readonly*/ ?array $custom_metadata
+        public readonly ?string $import_id,
+        public readonly ?string $title,
+        public readonly ?string $description,
+        public readonly ?int $period_start,
+        public readonly ?int $period_end,
+        public readonly ?bool $period_unset,
+        public readonly ?bool $period_time_indication,
+        public readonly ?bool $online,
+        public readonly ?int $availability_start,
+        public readonly ?int $availability_end,
+        public readonly ?bool $availability_always_visible,
+        public readonly ?bool $calendar,
+        public readonly ?bool $calendar_block,
+        public readonly ?bool $news,
+        public readonly ?bool $manage_custom_metadata,
+        public readonly ?bool $tag_cloud,
+        public readonly ?bool $default_object_rating,
+        public readonly ?bool $badges,
+        public readonly ?bool $resources,
+        public readonly ?string $mail_subject_prefix,
+        public readonly ?bool $show_members,
+        public readonly ?bool $show_members_participants_list,
+        public readonly ?LegacyCourseMailToMembersType $mail_to_members_type,
+        public readonly ?bool $send_welcome_email,
+        public readonly ?bool $add_to_favourites,
+        public readonly ?string $important_information,
+        public readonly ?string $syllabus,
+        public readonly ?string $target_group,
+        public readonly ?string $contact_name,
+        public readonly ?string $contact_responsibility,
+        public readonly ?string $contact_phone,
+        public readonly ?string $contact_email,
+        public readonly ?string $contact_consultation,
+        public readonly ?int $didactic_template_id,
+        public readonly ?array $custom_metadata
     ) {
-        $this->import_id = $import_id;
-        $this->title = $title;
-        $this->description = $description;
-        $this->period_start = $period_start;
-        $this->period_end = $period_end;
-        $this->period_unset = $period_unset;
-        $this->period_time_indication = $period_time_indication;
-        $this->online = $online;
-        $this->availability_start = $availability_start;
-        $this->availability_end = $availability_end;
-        $this->availability_always_visible = $availability_always_visible;
-        $this->calendar = $calendar;
-        $this->calendar_block = $calendar_block;
-        $this->news = $news;
-        $this->manage_custom_metadata = $manage_custom_metadata;
-        $this->tag_cloud = $tag_cloud;
-        $this->default_object_rating = $default_object_rating;
-        $this->badges = $badges;
-        $this->resources = $resources;
-        $this->mail_subject_prefix = $mail_subject_prefix;
-        $this->show_members = $show_members;
-        $this->show_members_participants_list = $show_members_participants_list;
-        $this->mail_to_members_type = $mail_to_members_type;
-        $this->send_welcome_email = $send_welcome_email;
-        $this->add_to_favourites = $add_to_favourites;
-        $this->important_information = $important_information;
-        $this->syllabus = $syllabus;
-        $this->target_group = $target_group;
-        $this->contact_name = $contact_name;
-        $this->contact_responsibility = $contact_responsibility;
-        $this->contact_phone = $contact_phone;
-        $this->contact_email = $contact_email;
-        $this->contact_consultation = $contact_consultation;
-        $this->didactic_template_id = $didactic_template_id;
-        $this->custom_metadata = $custom_metadata;
+
     }
 
 

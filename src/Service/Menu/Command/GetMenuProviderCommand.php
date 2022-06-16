@@ -12,19 +12,12 @@ use ilPlugin;
 class GetMenuProviderCommand
 {
 
-    private ConfigFormService $config_form_service;
-    private Container $ilias_dic;
-    private ProxyService $proxy_service;
-
-
     private function __construct(
-        /*private readonly*/ Container $ilias_dic,
-        /*private readonly*/ ConfigFormService $config_form_service,
-        /*private readonly*/ ProxyService $proxy_service
+        private readonly Container $ilias_dic,
+        private readonly ConfigFormService $config_form_service,
+        private readonly ProxyService $proxy_service
     ) {
-        $this->ilias_dic = $ilias_dic;
-        $this->config_form_service = $config_form_service;
-        $this->proxy_service = $proxy_service;
+
     }
 
 

@@ -16,16 +16,11 @@ class UpdateGroupCommand
     use CustomMetadataQuery;
     use GroupQuery;
 
-    private GroupService $group_service;
-    private ilDBInterface $ilias_database;
-
-
     private function __construct(
-        /*private readonly*/ GroupService $group_service,
-        /*private readonly*/ ilDBInterface $ilias_database
+        private readonly GroupService $group_service,
+        private readonly ilDBInterface $ilias_database
     ) {
-        $this->group_service = $group_service;
-        $this->ilias_database = $ilias_database;
+
     }
 
 

@@ -25,22 +25,13 @@ use ilTree;
 class ObjectService
 {
 
-    private ilDBInterface $ilias_database;
-    private ilObjectDefinition $ilias_object_definition;
-    private ilTree $ilias_tree;
-    private ilObjUser $ilias_user;
-
-
     private function __construct(
-        /*private readonly*/ ilDBInterface $ilias_database,
-        /*private readonly*/ ilTree $ilias_tree,
-        /*private readonly*/ ilObjUser $ilias_user,
-        /*private readonly*/ ilObjectDefinition $ilias_object_definition
+        private readonly ilDBInterface $ilias_database,
+        private readonly ilTree $ilias_tree,
+        private readonly ilObjUser $ilias_user,
+        private readonly ilObjectDefinition $ilias_object_definition
     ) {
-        $this->ilias_database = $ilias_database;
-        $this->ilias_tree = $ilias_tree;
-        $this->ilias_user = $ilias_user;
-        $this->ilias_object_definition = $ilias_object_definition;
+
     }
 
 

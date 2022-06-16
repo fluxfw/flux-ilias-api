@@ -14,16 +14,11 @@ class LinkObjectCommand
 
     use ObjectQuery;
 
-    private ilObjectDefinition $ilias_object_definition;
-    private ObjectService $object_service;
-
-
     private function __construct(
-        /*private readonly*/ ObjectService $object_service,
-        /*private readonly*/ ilObjectDefinition $ilias_object_definition
+        private readonly ObjectService $object_service,
+        private readonly ilObjectDefinition $ilias_object_definition
     ) {
-        $this->object_service = $object_service;
-        $this->ilias_object_definition = $ilias_object_definition;
+
     }
 
 

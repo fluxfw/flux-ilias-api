@@ -10,19 +10,12 @@ use ilGlobalTemplateInterface;
 class ConfigFormRouteCollector implements RouteCollector
 {
 
-    private ConfigFormService $config_form_service;
-    private ilGlobalTemplateInterface $ilias_global_template;
-    private ProxyService $proxy_service;
-
-
     private function __construct(
-        /*private readonly*/ ConfigFormService $config_form_service,
-        /*private readonly*/ ProxyService $proxy_service,
-        /*private readonly*/ ilGlobalTemplateInterface $ilias_global_template
+        private readonly ConfigFormService $config_form_service,
+        private readonly ProxyService $proxy_service,
+        private readonly ilGlobalTemplateInterface $ilias_global_template
     ) {
-        $this->config_form_service = $config_form_service;
-        $this->proxy_service = $proxy_service;
-        $this->ilias_global_template = $ilias_global_template;
+
     }
 
 

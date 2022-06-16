@@ -11,16 +11,11 @@ class PurgeChangesCommand
 
     use ChangeQuery;
 
-    private ChangeService $change_service;
-    private ilDBInterface $ilias_database;
-
-
     private function __construct(
-        /*private readonly*/ ilDBInterface $ilias_database,
-        /*private readonly*/ ChangeService $change_service
+        private readonly ilDBInterface $ilias_database,
+        private readonly ChangeService $change_service
     ) {
-        $this->ilias_database = $ilias_database;
-        $this->change_service = $change_service;
+
     }
 
 

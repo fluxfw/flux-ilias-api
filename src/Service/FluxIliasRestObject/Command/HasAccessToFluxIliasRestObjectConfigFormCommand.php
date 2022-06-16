@@ -7,13 +7,10 @@ use ilAccessHandler;
 class HasAccessToFluxIliasRestObjectConfigFormCommand
 {
 
-    private ilAccessHandler $ilias_access;
-
-
     private function __construct(
-        /*private readonly*/ ilAccessHandler $ilias_access
+        private readonly ilAccessHandler $ilias_access
     ) {
-        $this->ilias_access = $ilias_access;
+
     }
 
 

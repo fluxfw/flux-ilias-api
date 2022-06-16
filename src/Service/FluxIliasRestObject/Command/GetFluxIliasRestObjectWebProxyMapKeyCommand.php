@@ -9,13 +9,10 @@ use ilUtil;
 class GetFluxIliasRestObjectWebProxyMapKeyCommand
 {
 
-    private ObjectConfigService $object_config_service;
-
-
     private function __construct(
-        /*private readonly*/ ObjectConfigService $object_config_service
+        private readonly ObjectConfigService $object_config_service
     ) {
-        $this->object_config_service = $object_config_service;
+
     }
 
 

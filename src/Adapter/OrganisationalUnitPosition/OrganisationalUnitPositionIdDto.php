@@ -5,13 +5,10 @@ namespace FluxIliasApi\Adapter\OrganisationalUnitPosition;
 class OrganisationalUnitPositionIdDto
 {
 
-    public ?int $id;
-
-
     private function __construct(
-        /*public readonly*/ ?int $id
+        public readonly ?int $id
     ) {
-        $this->id = $id;
+
     }
 
 

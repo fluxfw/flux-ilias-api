@@ -14,16 +14,11 @@ use ILIAS\UI\Component\Symbol\Icon\Standard;
 class GetConfigFormMenuItemsCommand
 {
 
-    private ConfigFormService $config_form_service;
-    private Container $ilias_dic;
-
-
     private function __construct(
-        /*private readonly*/ ConfigFormService $config_form_service,
-        /*private readonly*/ Container $ilias_dic
+        private readonly ConfigFormService $config_form_service,
+        private readonly Container $ilias_dic
     ) {
-        $this->config_form_service = $config_form_service;
-        $this->ilias_dic = $ilias_dic;
+
     }
 
 

@@ -10,13 +10,12 @@ class PurgeChangesCronJob extends ilCronJob
 {
 
     public const ID = "flilre_purge_changes";
-    private ChangeService $change_service;
 
 
     private function __construct(
-        /*private readonly*/ ChangeService $change_service
+        private readonly ChangeService $change_service
     ) {
-        $this->change_service = $change_service;
+
     }
 
 

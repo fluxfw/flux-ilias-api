@@ -8,18 +8,12 @@ class GetApiProxyMapByKeyCommand
 {
 
     /**
-     * @var ApiProxyMapDto[]
-     */
-    private array $api_proxy_map;
-
-
-    /**
      * @param ApiProxyMapDto[] $api_proxy_map
      */
     private function __construct(
-        /*private readonly*/ array $api_proxy_map
+        private readonly array $api_proxy_map
     ) {
-        $this->api_proxy_map = $api_proxy_map;
+
     }
 
 

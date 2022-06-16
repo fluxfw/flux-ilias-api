@@ -16,13 +16,10 @@ use FluxIliasApi\Service\ConfigForm\Port\ConfigFormService;
 class StoreConfigFormValuesRoute implements Route
 {
 
-    private ConfigFormService $config_form_service;
-
-
     private function __construct(
-        /*private readonly*/ ConfigFormService $config_form_service
+        private readonly ConfigFormService $config_form_service
     ) {
-        $this->config_form_service = $config_form_service;
+
     }
 
 

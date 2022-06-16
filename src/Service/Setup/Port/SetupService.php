@@ -12,22 +12,13 @@ use FluxIliasApi\Service\Setup\Command\UninstallHelperPluginCommand;
 class SetupService
 {
 
-    private ChangeService $change_service;
-    private ConfigService $config_service;
-    private CronService $cron_service;
-    private ObjectConfigService $object_config_service;
-
-
     private function __construct(
-        /*private readonly*/ ChangeService $change_service,
-        /*private readonly*/ ConfigService $config_service,
-        /*private readonly*/ CronService $cron_service,
-        /*private readonly*/ ObjectConfigService $object_config_service
+        private readonly ChangeService $change_service,
+        private readonly ConfigService $config_service,
+        private readonly CronService $cron_service,
+        private readonly ObjectConfigService $object_config_service
     ) {
-        $this->change_service = $change_service;
-        $this->config_service = $config_service;
-        $this->cron_service = $cron_service;
-        $this->object_config_service = $object_config_service;
+
     }
 
 

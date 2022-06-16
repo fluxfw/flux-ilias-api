@@ -8,16 +8,11 @@ use FluxIliasApi\Service\CronConfig\Port\CronConfigService;
 class SetEnableTransferChangesCommand
 {
 
-    private ChangeService $change_service;
-    private CronConfigService $cron_config_service;
-
-
     private function __construct(
-        /*private readonly*/ ChangeService $change_service,
-        /*private readonly*/ CronConfigService $cron_config_service
+        private readonly ChangeService $change_service,
+        private readonly CronConfigService $cron_config_service
     ) {
-        $this->change_service = $change_service;
-        $this->cron_config_service = $cron_config_service;
+
     }
 
 

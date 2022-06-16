@@ -8,13 +8,10 @@ use FluxIliasApi\Service\Object\Port\ObjectService;
 class GetRootObjectCommand
 {
 
-    private ObjectService $object_service;
-
-
     private function __construct(
-        /*private readonly*/ ObjectService $object_service
+        private readonly ObjectService $object_service
     ) {
-        $this->object_service = $object_service;
+
     }
 
 

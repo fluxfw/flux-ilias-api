@@ -49,25 +49,14 @@ use ilDBInterface;
 class FluxIliasRestObjectService
 {
 
-    private ConfigService $config_service;
-    private ilAccessHandler $ilias_access;
-    private ilDBInterface $ilias_database;
-    private ObjectConfigService $object_config_service;
-    private ObjectService $object_service;
-
-
     private function __construct(
-        /*private readonly*/ ConfigService $config_service,
-        /*private readonly*/ ObjectService $object_service,
-        /*private readonly*/ ObjectConfigService $object_config_service,
-        /*private readonly*/ ilDBInterface $ilias_database,
-        /*private readonly*/ ilAccessHandler $ilias_access
+        private readonly ConfigService $config_service,
+        private readonly ObjectService $object_service,
+        private readonly ObjectConfigService $object_config_service,
+        private readonly ilDBInterface $ilias_database,
+        private readonly ilAccessHandler $ilias_access
     ) {
-        $this->config_service = $config_service;
-        $this->object_service = $object_service;
-        $this->object_config_service = $object_config_service;
-        $this->ilias_database = $ilias_database;
-        $this->ilias_access = $ilias_access;
+
     }
 
 
