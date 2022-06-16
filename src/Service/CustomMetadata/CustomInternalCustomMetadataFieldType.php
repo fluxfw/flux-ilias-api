@@ -12,7 +12,7 @@ class CustomInternalCustomMetadataFieldType implements InternalCustomMetadataFie
 
 
     private function __construct(
-        /*public readonly*/ int $value
+        /*private readonly*/ int $value
     ) {
         $this->_value = $value;
     }
