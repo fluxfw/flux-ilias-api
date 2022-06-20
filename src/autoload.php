@@ -11,7 +11,7 @@ use FluxIliasApi\Libs\FluxAutoloadApi\Adapter\Checker\PhpExtChecker;
 use FluxIliasApi\Libs\FluxAutoloadApi\Adapter\Checker\PhpVersionChecker;
 
 PhpVersionChecker::new(
-    ">=7.4"
+    ">=8.1"
 )
     ->checkAndDie(
         __NAMESPACE__
