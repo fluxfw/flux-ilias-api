@@ -17,7 +17,7 @@ class CustomCustomMetadataFieldType implements CustomMetadataFieldType, JsonSeri
 
     public static function factory(string $value) : CustomMetadataFieldType
     {
-        return LegacyDefaultCustomMetadataFieldType::tryFrom($value) ?? static::new(
+        return DefaultCustomMetadataFieldType::tryFrom($value) ?? static::new(
                 $value
             );
     }

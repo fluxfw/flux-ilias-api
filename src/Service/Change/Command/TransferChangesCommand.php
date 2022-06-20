@@ -3,10 +3,10 @@
 namespace FluxIliasApi\Service\Change\Command;
 
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Api\RestApi;
-use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\Type\LegacyDefaultBodyType;
+use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\Type\DefaultBodyType;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Client\ClientRequestDto;
-use FluxIliasApi\Libs\FluxRestApi\Adapter\Header\LegacyDefaultHeaderKey;
-use FluxIliasApi\Libs\FluxRestApi\Adapter\Method\LegacyDefaultMethod;
+use FluxIliasApi\Libs\FluxRestApi\Adapter\Header\DefaultHeaderKey;
+use FluxIliasApi\Libs\FluxRestApi\Adapter\Method\DefaultMethod;
 use FluxIliasApi\Service\Change\ChangeQuery;
 use FluxIliasApi\Service\Change\Port\ChangeService;
 use ilDBInterface;
@@ -53,12 +53,12 @@ class TransferChangesCommand
         $this->rest_api->makeRequest(
             ClientRequestDto::new(
                 $this->change_service->getTransferChangesPostUrl(),
-                LegacyDefaultMethod::POST(),
+                DefaultMethod::POST,
                 null,
                 json_encode($changes, JSON_UNESCAPED_SLASHES),
                 [
-                    LegacyDefaultHeaderKey::CONTENT_TYPE()->value => LegacyDefaultBodyType::JSON()->value,
-                    LegacyDefaultHeaderKey::USER_AGENT()->value   => "flux-ilias-api"
+                    DefaultHeaderKey::CONTENT_TYPE->value => DefaultBodyType::JSON->value,
+                    DefaultHeaderKey::USER_AGENT->value   => "flux-ilias-api"
                 ],
                 false,
                 true,

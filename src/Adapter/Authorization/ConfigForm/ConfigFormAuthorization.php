@@ -7,7 +7,7 @@ use FluxIliasApi\Libs\FluxRestApi\Adapter\Authorization\Authorization;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\TextBodyDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Server\ServerRawRequestDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Server\ServerResponseDto;
-use FluxIliasApi\Libs\FluxRestApi\Adapter\Status\LegacyDefaultStatus;
+use FluxIliasApi\Libs\FluxRestApi\Adapter\Status\DefaultStatus;
 use FluxIliasApi\Service\ConfigForm\Port\ConfigFormService;
 
 class ConfigFormAuthorization implements Authorization
@@ -43,7 +43,7 @@ class ConfigFormAuthorization implements Authorization
                 TextBodyDto::new(
                     "Authorization in ILIAS needed"
                 ),
-                LegacyDefaultStatus::_401()
+                DefaultStatus::_401
             );
         }
 
@@ -55,7 +55,7 @@ class ConfigFormAuthorization implements Authorization
                 TextBodyDto::new(
                     "No access"
                 ),
-                LegacyDefaultStatus::_403()
+                DefaultStatus::_403
             );
         }
 

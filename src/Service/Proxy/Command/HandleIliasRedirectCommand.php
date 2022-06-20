@@ -3,7 +3,7 @@
 namespace FluxIliasApi\Service\Proxy\Command;
 
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Api\RestApi;
-use FluxIliasApi\Service\Proxy\LegacyProxyTarget;
+use FluxIliasApi\Service\Proxy\ProxyTarget;
 
 class HandleIliasRedirectCommand
 {
@@ -36,12 +36,12 @@ class HandleIliasRedirectCommand
             "target"
         );
         switch (true) {
-            case $target === LegacyProxyTarget::CONFIG()->value:
-            case str_starts_with($target, LegacyProxyTarget::API_PROXY()->value):
-            case str_starts_with($target, LegacyProxyTarget::OBJECT_API_PROXY()->value):
-            case str_starts_with($target, LegacyProxyTarget::OBJECT_CONFIG()->value):
-            case str_starts_with($target, LegacyProxyTarget::OBJECT_WEB_PROXY()->value):
-            case str_starts_with($target, LegacyProxyTarget::WEB_PROXY()->value):
+            case $target === ProxyTarget::CONFIG->value:
+            case str_starts_with($target, ProxyTarget::API_PROXY->value):
+            case str_starts_with($target, ProxyTarget::OBJECT_API_PROXY->value):
+            case str_starts_with($target, ProxyTarget::OBJECT_CONFIG->value):
+            case str_starts_with($target, ProxyTarget::OBJECT_WEB_PROXY->value):
+            case str_starts_with($target, ProxyTarget::WEB_PROXY->value):
                 $is_ilias_entrypoint = false;
                 foreach (
                     [

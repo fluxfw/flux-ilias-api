@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\FluxIliasRestObject\Command;
 
-use FluxIliasApi\Service\ObjectConfig\LegacyObjectConfigKey;
+use FluxIliasApi\Service\ObjectConfig\ObjectConfigKey;
 use FluxIliasApi\Service\ObjectConfig\Port\ObjectConfigService;
 use ilUtil;
 
@@ -29,7 +29,7 @@ class SetFluxIliasRestObjectWebProxyMapKeyCommand
     {
         $this->object_config_service->setObjectConfig(
             $id,
-            LegacyObjectConfigKey::WEB_PROXY_MAP_KEY(),
+            ObjectConfigKey::WEB_PROXY_MAP_KEY,
             $web_proxy_map_key
         );
     }

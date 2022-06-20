@@ -4,7 +4,7 @@ namespace FluxIliasApi\Adapter\Route\FluxIliasRestObjectForm;
 
 use FluxIliasApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\JsonBodyDto;
-use FluxIliasApi\Libs\FluxRestApi\Adapter\Method\LegacyDefaultMethod;
+use FluxIliasApi\Libs\FluxRestApi\Adapter\Method\DefaultMethod;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Method\Method;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Route\Documentation\RouteDocumentationDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Route\Route;
@@ -42,7 +42,7 @@ class GetFluxIliasRestObjectConfigFormValuesRoute implements Route
 
     public function getMethod() : Method
     {
-        return LegacyDefaultMethod::GET();
+        return DefaultMethod::GET;
     }
 
 

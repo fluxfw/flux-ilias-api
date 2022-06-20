@@ -3,7 +3,7 @@
 namespace FluxIliasApi\Service\ProxyConfig\Command;
 
 use FluxIliasApi\Adapter\Proxy\ApiProxyMapDto;
-use FluxIliasApi\Service\Config\LegacyConfigKey;
+use FluxIliasApi\Service\Config\ConfigKey;
 use FluxIliasApi\Service\Config\Port\ConfigService;
 
 class GetApiProxyMapCommand
@@ -31,7 +31,7 @@ class GetApiProxyMapCommand
     public function getApiProxyMap() : array
     {
         return array_map([ApiProxyMapDto::class, "newFromObject"], (array) $this->config_service->getConfig(
-            LegacyConfigKey::API_PROXY_MAP()
+            ConfigKey::API_PROXY_MAP
         ));
     }
 }

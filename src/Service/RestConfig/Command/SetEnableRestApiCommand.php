@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\RestConfig\Command;
 
-use FluxIliasApi\Service\Config\LegacyConfigKey;
+use FluxIliasApi\Service\Config\ConfigKey;
 use FluxIliasApi\Service\Config\Port\ConfigService;
 
 class SetEnableRestApiCommand
@@ -27,7 +27,7 @@ class SetEnableRestApiCommand
     public function setEnableRestApi(bool $enable_rest_api) : void
     {
         $this->config_service->setConfig(
-            LegacyConfigKey::ENABLE_REST_API(),
+            ConfigKey::ENABLE_REST_API,
             $enable_rest_api
         );
     }

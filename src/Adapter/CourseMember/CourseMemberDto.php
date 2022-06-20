@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Adapter\CourseMember;
 
-use FluxIliasApi\Adapter\ObjectLearningProgress\LegacyObjectLearningProgress;
+use FluxIliasApi\Adapter\ObjectLearningProgress\ObjectLearningProgress;
 
 class CourseMemberDto
 {
@@ -16,7 +16,7 @@ class CourseMemberDto
         public readonly ?bool $member_role,
         public readonly ?bool $tutor_role,
         public readonly ?bool $administrator_role,
-        public readonly ?LegacyObjectLearningProgress $learning_progress,
+        public readonly ?ObjectLearningProgress $learning_progress,
         public readonly ?bool $passed,
         public readonly ?bool $access_refused,
         public readonly ?bool $tutorial_support,
@@ -35,7 +35,7 @@ class CourseMemberDto
         ?bool $member_role = null,
         ?bool $tutor_role = null,
         ?bool $administrator_role = null,
-        ?LegacyObjectLearningProgress $learning_progress = null,
+        ?ObjectLearningProgress $learning_progress = null,
         ?bool $passed = null,
         ?bool $access_refused = null,
         ?bool $tutorial_support = null,

@@ -3,7 +3,7 @@
 namespace FluxIliasApi\Service\Change;
 
 use FluxIliasApi\Adapter\Change\ChangeDto;
-use FluxIliasApi\Adapter\Change\LegacyChangeType;
+use FluxIliasApi\Adapter\Change\ChangeType;
 use ilDBConstants;
 
 trait ChangeQuery
@@ -59,7 +59,7 @@ ORDER BY time ASC";
     {
         return ChangeDto::new(
             $change["id"],
-            LegacyChangeType::from($change["type"]),
+            ChangeType::from($change["type"]),
             $change["time"],
             $change["user_id"],
             $change["user_import_id"] ?: null,

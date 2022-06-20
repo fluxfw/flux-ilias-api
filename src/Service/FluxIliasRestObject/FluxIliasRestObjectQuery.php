@@ -5,8 +5,8 @@ namespace FluxIliasApi\Service\FluxIliasRestObject;
 use FluxIliasApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectDiffDto;
 use FluxIliasApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectDto;
 use FluxIliasApi\Service\Object\CustomInternalObjectType;
-use FluxIliasApi\Service\Object\LegacyDefaultInternalObjectType;
-use FluxIliasApi\Service\ObjectConfig\LegacyObjectConfigKey;
+use FluxIliasApi\Service\Object\DefaultInternalObjectType;
+use FluxIliasApi\Service\ObjectConfig\ObjectConfigKey;
 use ilDBConstants;
 use ilObjflux_ilias_rest_object_helper_plugin;
 
@@ -24,7 +24,7 @@ WHERE " . $this->ilias_database->in("id", $ids, false, ilDBConstants::T_INTEGER)
     private function getFluxIliasRestObjectQuery(?int $id = null, ?string $import_id = null, ?int $ref_id = null, ?bool $in_trash = null) : string
     {
         $wheres = [
-            "object_data.type=" . $this->ilias_database->quote(LegacyDefaultInternalObjectType::XFRO()->value, ilDBConstants::T_TEXT)
+            "object_data.type=" . $this->ilias_database->quote(DefaultInternalObjectType::XFRO->value, ilDBConstants::T_TEXT)
         ];
 
         if ($id !== null) {
@@ -97,7 +97,7 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
 
     private function mapFluxIliasRestObjectDto(array $object, ?array $container_settings = null) : FluxIliasRestObjectDto
     {
-        $getFluxIliasRestObjectContainerSetting = fn(LegacyObjectConfigKey $key) : mixed => $container_settings !== null ? current(array_map(fn(array $container_setting
+        $getFluxIliasRestObjectContainerSetting = fn(ObjectConfigKey $key) : mixed => $container_settings !== null ? current(array_map(fn(array $container_setting
         ) : mixed => $this->getValueFromJson(
             $container_setting["value"] ?? null
         ),
@@ -128,10 +128,10 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
             $object["title"] ?? "",
             $object["description"] ?? "",
             $getFluxIliasRestObjectContainerSetting(
-                LegacyObjectConfigKey::WEB_PROXY_MAP_KEY()
+                ObjectConfigKey::WEB_PROXY_MAP_KEY
             ),
             $getFluxIliasRestObjectContainerSetting(
-                LegacyObjectConfigKey::API_PROXY_MAP_KEY()
+                ObjectConfigKey::API_PROXY_MAP_KEY
             ),
             ($object["deleted"] ?? null) !== null
         );

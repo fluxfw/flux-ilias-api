@@ -3,7 +3,7 @@
 namespace FluxIliasApi\Service\Proxy\Command;
 
 use FluxIliasApi\Adapter\User\UserDto;
-use FluxIliasApi\Service\Proxy\LegacyProxyTarget;
+use FluxIliasApi\Service\Proxy\ProxyTarget;
 use FluxIliasApi\Service\ProxyConfig\Port\ProxyConfigService;
 use ILIAS\DI\Container;
 use ILIAS\GlobalScreen\Identification\IdentificationProviderInterface;
@@ -37,7 +37,7 @@ class GetWebProxyMenuItemsCommand
 
         $i = 0;
         foreach ($this->proxy_config_service->getWebProxyMap() as $web_proxy_map) {
-            $menu_items[] = $this->ilias_dic->globalScreen()->mainBar()->link($if->identifier(LegacyProxyTarget::WEB_PROXY()->value . $web_proxy_map->target_key))
+            $menu_items[] = $this->ilias_dic->globalScreen()->mainBar()->link($if->identifier(ProxyTarget::WEB_PROXY->value . $web_proxy_map->target_key))
                 ->withPosition(42100 + $i)
                 ->withTitle($web_proxy_map->getMenuTitleWithDefault())
                 ->withAction($web_proxy_map->getRewriteUrlWithDefault())

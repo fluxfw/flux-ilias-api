@@ -11,7 +11,7 @@ class OrganisationalUnitPositionDto
     private function __construct(
         public readonly ?int $id,
         public readonly ?bool $core_position,
-        public readonly ?LegacyOrganisationalUnitPositionCoreIdentifier $core_identifier,
+        public readonly ?OrganisationalUnitPositionCoreIdentifier $core_identifier,
         public readonly ?string $title,
         public readonly ?string $description,
         public readonly ?array $authorities
@@ -26,7 +26,7 @@ class OrganisationalUnitPositionDto
     public static function new(
         ?int $id = null,
         ?bool $core_position = null,
-        ?LegacyOrganisationalUnitPositionCoreIdentifier $core_identifier = null,
+        ?OrganisationalUnitPositionCoreIdentifier $core_identifier = null,
         ?string $title = null,
         ?string $description = null,
         ?array $authorities = null

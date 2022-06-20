@@ -8,7 +8,7 @@ class OrganisationalUnitPositionAuthorityDto
     private function __construct(
         public readonly ?int $id,
         public readonly ?int $over_position_id,
-        public readonly ?LegacyOrganisationalUnitPositionAuthorityScopeIn $scope_in
+        public readonly ?OrganisationalUnitPositionAuthorityScopeIn $scope_in
     ) {
 
     }
@@ -17,7 +17,7 @@ class OrganisationalUnitPositionAuthorityDto
     public static function new(
         ?int $id = null,
         ?int $over_position_id = null,
-        ?LegacyOrganisationalUnitPositionAuthorityScopeIn $scope_in = null
+        ?OrganisationalUnitPositionAuthorityScopeIn $scope_in = null
     ) : static {
         return new static(
             $id,
@@ -33,7 +33,7 @@ class OrganisationalUnitPositionAuthorityDto
         return static::new(
             $authority->id ?? null,
             $authority->over_position_id ?? null,
-            ($scope_in = $authority->scope_in ?? null) !== null ? LegacyOrganisationalUnitPositionAuthorityScopeIn::from($scope_in) : null
+            ($scope_in = $authority->scope_in ?? null) !== null ? OrganisationalUnitPositionAuthorityScopeIn::from($scope_in) : null
         );
     }
 }

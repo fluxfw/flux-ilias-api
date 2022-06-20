@@ -5,7 +5,7 @@ namespace FluxIliasApi\Service\FluxIliasRestObject\Command;
 use FluxIliasApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectDiffDto;
 use FluxIliasApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectDto;
 use FluxIliasApi\Service\FluxIliasRestObject\Port\FluxIliasRestObjectService;
-use FluxIliasApi\Service\ObjectConfig\LegacyObjectConfigKey;
+use FluxIliasApi\Service\ObjectConfig\ObjectConfigKey;
 
 class StoreFluxIliasRestObjectConfigFormValuesCommand
 {
@@ -34,8 +34,8 @@ class StoreFluxIliasRestObjectConfigFormValuesCommand
                 null,
                 strval($values->title ?? null),
                 strval($values->description ?? null),
-                strval($values->{LegacyObjectConfigKey::WEB_PROXY_MAP_KEY()->value} ?? null),
-                strval($values->{LegacyObjectConfigKey::API_PROXY_MAP_KEY()->value} ?? null)
+                strval($values->{ObjectConfigKey::WEB_PROXY_MAP_KEY->value} ?? null),
+                strval($values->{ObjectConfigKey::API_PROXY_MAP_KEY->value} ?? null)
             )
         );
 

@@ -4,13 +4,13 @@ namespace FluxIliasApi\Adapter\Route\ConfigForm;
 
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\JsonBodyDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\TextBodyDto;
-use FluxIliasApi\Libs\FluxRestApi\Adapter\Method\LegacyDefaultMethod;
+use FluxIliasApi\Libs\FluxRestApi\Adapter\Method\DefaultMethod;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Method\Method;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Route\Documentation\RouteDocumentationDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Route\Route;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Server\ServerRequestDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Server\ServerResponseDto;
-use FluxIliasApi\Libs\FluxRestApi\Adapter\Status\LegacyDefaultStatus;
+use FluxIliasApi\Libs\FluxRestApi\Adapter\Status\DefaultStatus;
 use FluxIliasApi\Service\ConfigForm\Port\ConfigFormService;
 
 class StoreConfigFormValuesRoute implements Route
@@ -40,7 +40,7 @@ class StoreConfigFormValuesRoute implements Route
 
     public function getMethod() : Method
     {
-        return LegacyDefaultMethod::POST();
+        return DefaultMethod::POST;
     }
 
 
@@ -57,7 +57,7 @@ class StoreConfigFormValuesRoute implements Route
                 TextBodyDto::new(
                     "No json body"
                 ),
-                LegacyDefaultStatus::_400()
+                DefaultStatus::_400
             );
         }
 

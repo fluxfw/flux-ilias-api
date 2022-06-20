@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\ObjectLearningProgress\Port;
 
-use FluxIliasApi\Adapter\ObjectLearningProgress\LegacyObjectLearningProgress;
+use FluxIliasApi\Adapter\ObjectLearningProgress\ObjectLearningProgress;
 use FluxIliasApi\Adapter\ObjectLearningProgress\ObjectLearningProgressDto;
 use FluxIliasApi\Adapter\ObjectLearningProgress\ObjectLearningProgressIdDto;
 use FluxIliasApi\Service\Object\Port\ObjectService;
@@ -45,7 +45,7 @@ class ObjectLearningProgressService
         ?int $object_ref_id = null,
         ?int $user_id = null,
         ?string $user_import_id = null,
-        ?LegacyObjectLearningProgress $learning_progress = null
+        ?ObjectLearningProgress $learning_progress = null
     ) : array {
         return GetObjectLearningProgressCommand::new(
             $this->ilias_database
@@ -61,7 +61,7 @@ class ObjectLearningProgressService
     }
 
 
-    public function updateObjectLearningProgressByIdByUserId(int $id, int $user_id, LegacyObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
+    public function updateObjectLearningProgressByIdByUserId(int $id, int $user_id, ObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
     {
         return UpdateObjectLearningProgressCommand::new(
             $this->object_service,
@@ -75,7 +75,7 @@ class ObjectLearningProgressService
     }
 
 
-    public function updateObjectLearningProgressByIdByUserImportId(int $id, string $user_import_id, LegacyObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
+    public function updateObjectLearningProgressByIdByUserImportId(int $id, string $user_import_id, ObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
     {
         return UpdateObjectLearningProgressCommand::new(
             $this->object_service,
@@ -89,7 +89,7 @@ class ObjectLearningProgressService
     }
 
 
-    public function updateObjectLearningProgressByImportIdByUserId(string $import_id, int $user_id, LegacyObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
+    public function updateObjectLearningProgressByImportIdByUserId(string $import_id, int $user_id, ObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
     {
         return UpdateObjectLearningProgressCommand::new(
             $this->object_service,
@@ -103,7 +103,7 @@ class ObjectLearningProgressService
     }
 
 
-    public function updateObjectLearningProgressByImportIdByUserImportId(string $import_id, string $user_import_id, LegacyObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
+    public function updateObjectLearningProgressByImportIdByUserImportId(string $import_id, string $user_import_id, ObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
     {
         return UpdateObjectLearningProgressCommand::new(
             $this->object_service,
@@ -117,7 +117,7 @@ class ObjectLearningProgressService
     }
 
 
-    public function updateObjectLearningProgressByRefIdByUserId(int $ref_id, int $user_id, LegacyObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
+    public function updateObjectLearningProgressByRefIdByUserId(int $ref_id, int $user_id, ObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
     {
         return UpdateObjectLearningProgressCommand::new(
             $this->object_service,
@@ -131,7 +131,7 @@ class ObjectLearningProgressService
     }
 
 
-    public function updateObjectLearningProgressByRefIdByUserImportId(int $ref_id, string $user_import_id, LegacyObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
+    public function updateObjectLearningProgressByRefIdByUserImportId(int $ref_id, string $user_import_id, ObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
     {
         return UpdateObjectLearningProgressCommand::new(
             $this->object_service,

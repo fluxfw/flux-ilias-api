@@ -5,7 +5,7 @@ namespace FluxIliasApi\Service\Group;
 use FluxIliasApi\Adapter\Group\GroupDiffDto;
 use FluxIliasApi\Adapter\Group\GroupDto;
 use FluxIliasApi\Service\Object\CustomInternalObjectType;
-use FluxIliasApi\Service\Object\LegacyDefaultInternalObjectType;
+use FluxIliasApi\Service\Object\DefaultInternalObjectType;
 use ilDBConstants;
 use ilObjGroup;
 
@@ -15,7 +15,7 @@ trait GroupQuery
     private function getGroupQuery(?int $id = null, ?string $import_id = null, ?int $ref_id = null, ?bool $in_trash = null) : string
     {
         $wheres = [
-            "object_data.type=" . $this->ilias_database->quote(LegacyDefaultInternalObjectType::GRP()->value, ilDBConstants::T_TEXT)
+            "object_data.type=" . $this->ilias_database->quote(DefaultInternalObjectType::GRP->value, ilDBConstants::T_TEXT)
         ];
 
         if ($id !== null) {

@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\FluxIliasRestObject\Command;
 
-use FluxIliasApi\Service\Config\LegacyConfigKey;
+use FluxIliasApi\Service\Config\ConfigKey;
 use FluxIliasApi\Service\Config\Port\ConfigService;
 
 class SetFluxIliasRestObjectTypeTitleCommand
@@ -27,7 +27,7 @@ class SetFluxIliasRestObjectTypeTitleCommand
     public function setFluxIliasRestObjectTypeTitle(?string $type_title) : void
     {
         $this->config_service->setConfig(
-            LegacyConfigKey::FLUX_ILIAS_REST_OBJECT_TYPE_TITLE(),
+            ConfigKey::FLUX_ILIAS_REST_OBJECT_TYPE_TITLE,
             $type_title
         );
     }

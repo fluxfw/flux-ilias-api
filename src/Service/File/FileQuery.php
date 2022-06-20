@@ -5,7 +5,7 @@ namespace FluxIliasApi\Service\File;
 use FluxIliasApi\Adapter\File\FileDiffDto;
 use FluxIliasApi\Adapter\File\FileDto;
 use FluxIliasApi\Service\Object\CustomInternalObjectType;
-use FluxIliasApi\Service\Object\LegacyDefaultInternalObjectType;
+use FluxIliasApi\Service\Object\DefaultInternalObjectType;
 use ilDBConstants;
 use ilObjFile;
 use ilObjFileAccess;
@@ -22,7 +22,7 @@ trait FileQuery
     private function getFileQuery(?int $id = null, ?string $import_id = null, ?int $ref_id = null, ?bool $in_trash = null) : string
     {
         $wheres = [
-            "object_data.type=" . $this->ilias_database->quote(LegacyDefaultInternalObjectType::FILE()->value, ilDBConstants::T_TEXT)
+            "object_data.type=" . $this->ilias_database->quote(DefaultInternalObjectType::FILE->value, ilDBConstants::T_TEXT)
         ];
 
         if ($id !== null) {

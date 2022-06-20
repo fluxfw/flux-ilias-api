@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Adapter\GroupMember;
 
-use FluxIliasApi\Adapter\ObjectLearningProgress\LegacyObjectLearningProgress;
+use FluxIliasApi\Adapter\ObjectLearningProgress\ObjectLearningProgress;
 
 class GroupMemberDto
 {
@@ -15,7 +15,7 @@ class GroupMemberDto
         public readonly ?string $user_import_id,
         public readonly ?bool $member_role,
         public readonly ?bool $administrator_role,
-        public readonly ?LegacyObjectLearningProgress $learning_progress,
+        public readonly ?ObjectLearningProgress $learning_progress,
         public readonly ?bool $tutorial_support,
         public readonly ?bool $notification
     ) {
@@ -31,7 +31,7 @@ class GroupMemberDto
         ?string $user_import_id = null,
         ?bool $member_role = null,
         ?bool $administrator_role = null,
-        ?LegacyObjectLearningProgress $learning_progress = null,
+        ?ObjectLearningProgress $learning_progress = null,
         ?bool $tutorial_support = null,
         ?bool $notification = null
     ) : static {

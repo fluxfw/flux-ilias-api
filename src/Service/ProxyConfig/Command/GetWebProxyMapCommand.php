@@ -3,7 +3,7 @@
 namespace FluxIliasApi\Service\ProxyConfig\Command;
 
 use FluxIliasApi\Adapter\Proxy\WebProxyMapDto;
-use FluxIliasApi\Service\Config\LegacyConfigKey;
+use FluxIliasApi\Service\Config\ConfigKey;
 use FluxIliasApi\Service\Config\Port\ConfigService;
 
 class GetWebProxyMapCommand
@@ -31,7 +31,7 @@ class GetWebProxyMapCommand
     public function getWebProxyMap() : array
     {
         return array_map([WebProxyMapDto::class, "newFromObject"], (array) $this->config_service->getConfig(
-            LegacyConfigKey::WEB_PROXY_MAP()
+            ConfigKey::WEB_PROXY_MAP
         ));
     }
 }

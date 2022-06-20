@@ -2,28 +2,28 @@
 
 namespace FluxIliasApi\Service\OrganisationalUnitPosition;
 
-use FluxIliasApi\Adapter\OrganisationalUnitPosition\LegacyOrganisationalUnitPositionCoreIdentifier;
+use FluxIliasApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionCoreIdentifier;
 
 class OrganisationalUnitPositionCoreIdentifierMapping
 {
 
-    public static function mapExternalToInternal(LegacyOrganisationalUnitPositionCoreIdentifier $core_identifier) : LegacyInternalOrganisationalUnitPositionCoreIdentifier
+    public static function mapExternalToInternal(OrganisationalUnitPositionCoreIdentifier $core_identifier) : InternalOrganisationalUnitPositionCoreIdentifier
     {
-        return LegacyInternalOrganisationalUnitPositionCoreIdentifier::from(array_flip(static::INTERNAL_EXTERNAL())[$core_identifier->value] ?? substr($core_identifier->value, 1));
+        return InternalOrganisationalUnitPositionCoreIdentifier::from(array_flip(static::INTERNAL_EXTERNAL())[$core_identifier->value] ?? substr($core_identifier->value, 1));
     }
 
 
-    public static function mapInternalToExternal(LegacyInternalOrganisationalUnitPositionCoreIdentifier $core_identifier) : LegacyOrganisationalUnitPositionCoreIdentifier
+    public static function mapInternalToExternal(InternalOrganisationalUnitPositionCoreIdentifier $core_identifier) : OrganisationalUnitPositionCoreIdentifier
     {
-        return LegacyOrganisationalUnitPositionCoreIdentifier::from(static::INTERNAL_EXTERNAL()[$core_identifier->value] ?? "_" . $core_identifier->value);
+        return OrganisationalUnitPositionCoreIdentifier::from(static::INTERNAL_EXTERNAL()[$core_identifier->value] ?? "_" . $core_identifier->value);
     }
 
 
     private static function INTERNAL_EXTERNAL() : array
     {
         return [
-            LegacyInternalOrganisationalUnitPositionCoreIdentifier::EMPLOYEE()->value => LegacyOrganisationalUnitPositionCoreIdentifier::EMPLOYEE()->value,
-            LegacyInternalOrganisationalUnitPositionCoreIdentifier::SUPERIOR()->value => LegacyOrganisationalUnitPositionCoreIdentifier::SUPERIOR()->value
+            InternalOrganisationalUnitPositionCoreIdentifier::EMPLOYEE->value => OrganisationalUnitPositionCoreIdentifier::EMPLOYEE->value,
+            InternalOrganisationalUnitPositionCoreIdentifier::SUPERIOR->value => OrganisationalUnitPositionCoreIdentifier::SUPERIOR->value
         ];
     }
 }

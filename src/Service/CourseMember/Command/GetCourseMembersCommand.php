@@ -3,7 +3,7 @@
 namespace FluxIliasApi\Service\CourseMember\Command;
 
 use FluxIliasApi\Adapter\CourseMember\CourseMemberDto;
-use FluxIliasApi\Adapter\ObjectLearningProgress\LegacyObjectLearningProgress;
+use FluxIliasApi\Adapter\ObjectLearningProgress\ObjectLearningProgress;
 use FluxIliasApi\Service\CourseMember\CourseMemberQuery;
 use ilDBInterface;
 
@@ -40,7 +40,7 @@ class GetCourseMembersCommand
         ?bool $member_role = null,
         ?bool $tutor_role = null,
         ?bool $administrator_role = null,
-        ?LegacyObjectLearningProgress $learning_progress = null,
+        ?ObjectLearningProgress $learning_progress = null,
         ?bool $passed = null,
         ?bool $access_refused = null,
         ?bool $tutorial_support = null,

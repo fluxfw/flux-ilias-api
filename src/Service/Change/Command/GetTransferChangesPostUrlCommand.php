@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\Change\Command;
 
-use FluxIliasApi\Service\Config\LegacyConfigKey;
+use FluxIliasApi\Service\Config\ConfigKey;
 use FluxIliasApi\Service\Config\Port\ConfigService;
 
 class GetTransferChangesPostUrlCommand
@@ -27,7 +27,7 @@ class GetTransferChangesPostUrlCommand
     public function getTransferChangesPostUrl() : string
     {
         return strval($this->config_service->getConfig(
-            LegacyConfigKey::TRANSFER_CHANGES_POST_URL()
+            ConfigKey::TRANSFER_CHANGES_POST_URL
         ));
     }
 }

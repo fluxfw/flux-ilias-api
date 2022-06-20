@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\OrganisationalUnitPosition\Command;
 
-use FluxIliasApi\Adapter\OrganisationalUnitPosition\LegacyOrganisationalUnitPositionCoreIdentifier;
+use FluxIliasApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionCoreIdentifier;
 use FluxIliasApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionDto;
 use FluxIliasApi\Service\OrganisationalUnitPosition\OrganisationalUnitPositionQuery;
 use ilDBInterface;
@@ -29,7 +29,7 @@ class GetOrganisationalUnitPositionCommand
     }
 
 
-    public function getOrganisationalUnitPositionByCoreIdentifier(LegacyOrganisationalUnitPositionCoreIdentifier $core_identifier) : ?OrganisationalUnitPositionDto
+    public function getOrganisationalUnitPositionByCoreIdentifier(OrganisationalUnitPositionCoreIdentifier $core_identifier) : ?OrganisationalUnitPositionDto
     {
         $organisational_unit_position = null;
         while (($organisational_unit_position_ = $this->ilias_database->fetchAssoc($result ??= $this->ilias_database->query($this->getOrganisationalUnitPositionQuery(

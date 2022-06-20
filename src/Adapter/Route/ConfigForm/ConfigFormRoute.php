@@ -3,7 +3,7 @@
 namespace FluxIliasApi\Adapter\Route\ConfigForm;
 
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\HtmlBodyDto;
-use FluxIliasApi\Libs\FluxRestApi\Adapter\Method\LegacyDefaultMethod;
+use FluxIliasApi\Libs\FluxRestApi\Adapter\Method\DefaultMethod;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Method\Method;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Route\Documentation\RouteDocumentationDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Route\Route;
@@ -42,7 +42,7 @@ class ConfigFormRoute implements Route
 
     public function getMethod() : Method
     {
-        return LegacyDefaultMethod::GET();
+        return DefaultMethod::GET;
     }
 
 

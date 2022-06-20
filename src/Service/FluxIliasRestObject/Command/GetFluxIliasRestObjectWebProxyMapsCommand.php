@@ -3,7 +3,7 @@
 namespace FluxIliasApi\Service\FluxIliasRestObject\Command;
 
 use FluxIliasApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectWebProxyMapDto;
-use FluxIliasApi\Service\Config\LegacyConfigKey;
+use FluxIliasApi\Service\Config\ConfigKey;
 use FluxIliasApi\Service\Config\Port\ConfigService;
 
 class GetFluxIliasRestObjectWebProxyMapsCommand
@@ -31,7 +31,7 @@ class GetFluxIliasRestObjectWebProxyMapsCommand
     public function getFluxIliasRestObjectWebProxyMaps() : array
     {
         return array_map([FluxIliasRestObjectWebProxyMapDto::class, "newFromObject"], (array) $this->config_service->getConfig(
-            LegacyConfigKey::FLUX_ILIAS_REST_OBJECT_WEB_PROXY_MAPS()
+            ConfigKey::FLUX_ILIAS_REST_OBJECT_WEB_PROXY_MAPS
         ));
     }
 }

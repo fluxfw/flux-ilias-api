@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\Change\Command;
 
-use FluxIliasApi\Service\Config\LegacyConfigKey;
+use FluxIliasApi\Service\Config\ConfigKey;
 use FluxIliasApi\Service\Config\Port\ConfigService;
 
 class GetLastTransferredChangeTimeCommand
@@ -27,7 +27,7 @@ class GetLastTransferredChangeTimeCommand
     public function getLastTransferredChangeTime() : ?float
     {
         return $this->config_service->getConfig(
-            LegacyConfigKey::LAST_TRANSFERRED_CHANGE_TIME()
+            ConfigKey::LAST_TRANSFERRED_CHANGE_TIME
         );
     }
 }

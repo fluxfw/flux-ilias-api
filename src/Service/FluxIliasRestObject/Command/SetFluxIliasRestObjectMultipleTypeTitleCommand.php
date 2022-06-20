@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\FluxIliasRestObject\Command;
 
-use FluxIliasApi\Service\Config\LegacyConfigKey;
+use FluxIliasApi\Service\Config\ConfigKey;
 use FluxIliasApi\Service\Config\Port\ConfigService;
 
 class SetFluxIliasRestObjectMultipleTypeTitleCommand
@@ -27,7 +27,7 @@ class SetFluxIliasRestObjectMultipleTypeTitleCommand
     public function setFluxIliasRestObjectMultipleTypeTitle(?string $multiple_type_title) : void
     {
         $this->config_service->setConfig(
-            LegacyConfigKey::FLUX_ILIAS_REST_OBJECT_MULTIPLE_TYPE_TITLE(),
+            ConfigKey::FLUX_ILIAS_REST_OBJECT_MULTIPLE_TYPE_TITLE,
             $multiple_type_title
         );
     }

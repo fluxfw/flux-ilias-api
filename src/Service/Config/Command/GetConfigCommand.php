@@ -2,8 +2,8 @@
 
 namespace FluxIliasApi\Service\Config\Command;
 
+use FluxIliasApi\Service\Config\ConfigKey;
 use FluxIliasApi\Service\Config\ConfigQuery;
-use FluxIliasApi\Service\Config\LegacyConfigKey;
 use ilSetting;
 
 class GetConfigCommand
@@ -23,7 +23,7 @@ class GetConfigCommand
     }
 
 
-    public function getConfig(LegacyConfigKey $key) : mixed
+    public function getConfig(ConfigKey $key) : mixed
     {
         return $this->getValueFromJson(
             (new ilSetting($this->getConfigSettingsModule()))->get($key->value, null)

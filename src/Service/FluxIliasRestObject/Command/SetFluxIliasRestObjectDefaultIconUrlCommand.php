@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\FluxIliasRestObject\Command;
 
-use FluxIliasApi\Service\Config\LegacyConfigKey;
+use FluxIliasApi\Service\Config\ConfigKey;
 use FluxIliasApi\Service\Config\Port\ConfigService;
 
 class SetFluxIliasRestObjectDefaultIconUrlCommand
@@ -27,7 +27,7 @@ class SetFluxIliasRestObjectDefaultIconUrlCommand
     public function setFluxIliasRestObjectDefaultIconUrl(?string $default_icon_url) : void
     {
         $this->config_service->setConfig(
-            LegacyConfigKey::FLUX_ILIAS_REST_OBJECT_DEFAULT_ICON_URL(),
+            ConfigKey::FLUX_ILIAS_REST_OBJECT_DEFAULT_ICON_URL,
             $default_icon_url
         );
     }

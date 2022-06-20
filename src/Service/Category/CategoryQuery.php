@@ -5,7 +5,7 @@ namespace FluxIliasApi\Service\Category;
 use FluxIliasApi\Adapter\Category\CategoryDiffDto;
 use FluxIliasApi\Adapter\Category\CategoryDto;
 use FluxIliasApi\Service\Object\CustomInternalObjectType;
-use FluxIliasApi\Service\Object\LegacyDefaultInternalObjectType;
+use FluxIliasApi\Service\Object\DefaultInternalObjectType;
 use ilDBConstants;
 use ilObjCategory;
 
@@ -15,7 +15,7 @@ trait CategoryQuery
     private function getCategoryQuery(?int $id = null, ?string $import_id = null, ?int $ref_id = null, ?bool $in_trash = null) : string
     {
         $wheres = [
-            "object_data.type=" . $this->ilias_database->quote(LegacyDefaultInternalObjectType::CAT()->value, ilDBConstants::T_TEXT)
+            "object_data.type=" . $this->ilias_database->quote(DefaultInternalObjectType::CAT->value, ilDBConstants::T_TEXT)
         ];
 
         if ($id !== null) {
