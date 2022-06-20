@@ -2,11 +2,6 @@
 
 namespace FluxIliasApi\Service\ObjectLearningProgress;
 
-// ilLPStatus::LP_STATUS_NOT_ATTEMPTED_NUM
-// ilLPStatus::LP_STATUS_IN_PROGRESS_NUM
-// ilLPStatus::LP_STATUS_COMPLETED_NUM
-// ilLPStatus::LP_STATUS_FAILED_NUM
-
 enum InternalObjectLearningProgress: int
 {
 
@@ -15,3 +10,8 @@ enum InternalObjectLearningProgress: int
     case COMPLETED = 2;
     case FAILED = 3;
 }
+
+// ilLPStatus::LP_STATUS_NOT_ATTEMPTED_NUM
+// ilLPStatus::LP_STATUS_IN_PROGRESS_NUM
+// ilLPStatus::LP_STATUS_COMPLETED_NUM
+// ilLPStatus::LP_STATUS_FAILED_NUM
