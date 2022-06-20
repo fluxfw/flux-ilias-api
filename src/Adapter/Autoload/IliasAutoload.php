@@ -3,8 +3,6 @@
 namespace FluxIliasApi\Adapter\Autoload;
 
 use Exception;
-use FluxIliasApi\Libs\FluxAutoloadApi\Adapter\Autoload\ComposerAutoload;
-use FluxIliasApi\Libs\FluxAutoloadApi\Adapter\Autoload\FileAutoload;
 use FluxIliasApi\Libs\FluxAutoloadApi\Autoload\Autoload;
 
 class IliasAutoload implements Autoload
@@ -34,15 +32,9 @@ class IliasAutoload implements Autoload
 
         chdir($folder);
 
-        ComposerAutoload::new(
-            $folder
-        )
-            ->autoload();
+        require_once $folder . "/libs/composer/vendor/autoload.php";
 
-        FileAutoload::new(
-            $folder . "/webservice/soap/include/inc.soap_functions.php"
-        )
-            ->autoload();
+        require_once $folder . "/webservice/soap/include/inc.soap_functions.php";
     }
 
 
