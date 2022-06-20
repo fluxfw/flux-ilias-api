@@ -2,10 +2,6 @@
 
 namespace FluxIliasApi\Service\CourseMember;
 
-// ilCourseConstants::CRS_ADMIN
-// ilCourseConstants::CRS_MEMBER
-// ilCourseConstants::CRS_TUTOR
-
 enum InternalCourseMemberType: int
 {
 
@@ -13,3 +9,7 @@ enum InternalCourseMemberType: int
     case MEMBER = 2;
     case TUTOR = 3;
 }
+
+// ilCourseConstants::CRS_ADMIN
+// ilCourseConstants::CRS_MEMBER
+// ilCourseConstants::CRS_TUTOR
