@@ -2,9 +2,10 @@
 
 namespace FluxIliasApi\Service\CustomMetadata;
 
-use FluxIliasApi\Libs\FluxLegacyEnum\Backed\IntBackedEnumValue;
-
-interface InternalCustomMetadataFieldType extends IntBackedEnumValue
+/**
+ * @property-read int $value
+ */
+interface InternalCustomMetadataFieldType
 {
 
 }

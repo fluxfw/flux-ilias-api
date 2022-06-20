@@ -3,7 +3,7 @@
 namespace FluxIliasApi\Service\ProxyConfig\Command;
 
 use FluxIliasApi\Adapter\Proxy\WebProxyMapDto;
-use FluxIliasApi\Service\Config\LegacyConfigKey;
+use FluxIliasApi\Service\Config\ConfigKey;
 use FluxIliasApi\Service\Config\Port\ConfigService;
 
 class SetWebProxyMapCommand
@@ -31,7 +31,7 @@ class SetWebProxyMapCommand
     public function setWebProxyMap(array $web_proxy_map) : void
     {
         $this->config_service->setConfig(
-            LegacyConfigKey::WEB_PROXY_MAP(),
+            ConfigKey::WEB_PROXY_MAP,
             $web_proxy_map
         );
     }

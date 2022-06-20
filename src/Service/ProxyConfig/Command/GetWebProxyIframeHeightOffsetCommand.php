@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\ProxyConfig\Command;
 
-use FluxIliasApi\Service\Config\LegacyConfigKey;
+use FluxIliasApi\Service\Config\ConfigKey;
 use FluxIliasApi\Service\Config\Port\ConfigService;
 
 class GetWebProxyIframeHeightOffsetCommand
@@ -30,7 +30,7 @@ class GetWebProxyIframeHeightOffsetCommand
     public function getWebProxyIframeHeightOffset() : int
     {
         return intval($this->config_service->getConfig(
-                LegacyConfigKey::WEB_PROXY_IFRAME_HEIGHT_OFFSET()
+                ConfigKey::WEB_PROXY_IFRAME_HEIGHT_OFFSET
             ) ?? static::DEFAULT_VALUE);
     }
 }

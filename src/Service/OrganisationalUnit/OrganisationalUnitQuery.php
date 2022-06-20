@@ -5,7 +5,7 @@ namespace FluxIliasApi\Service\OrganisationalUnit;
 use FluxIliasApi\Adapter\OrganisationalUnit\OrganisationalUnitDiffDto;
 use FluxIliasApi\Adapter\OrganisationalUnit\OrganisationalUnitDto;
 use FluxIliasApi\Service\Object\CustomInternalObjectType;
-use FluxIliasApi\Service\Object\LegacyDefaultInternalObjectType;
+use FluxIliasApi\Service\Object\DefaultInternalObjectType;
 use ilDBConstants;
 use ilObjOrgUnit;
 
@@ -25,7 +25,7 @@ trait OrganisationalUnitQuery
     private function getOrganisationalUnitQuery(?int $id = null, ?string $external_id = null, ?int $ref_id = null) : string
     {
         $wheres = [
-            "object_data.type=" . $this->ilias_database->quote(LegacyDefaultInternalObjectType::ORGU()->value, ilDBConstants::T_TEXT)
+            "object_data.type=" . $this->ilias_database->quote(DefaultInternalObjectType::ORGU->value, ilDBConstants::T_TEXT)
         ];
 
         if ($id !== null) {

@@ -3,7 +3,7 @@
 namespace FluxIliasApi\Service\ObjectConfig\Command;
 
 use FluxIliasApi\Service\Config\ConfigQuery;
-use FluxIliasApi\Service\ObjectConfig\LegacyObjectConfigKey;
+use FluxIliasApi\Service\ObjectConfig\ObjectConfigKey;
 use FluxIliasApi\Service\ObjectConfig\ObjectConfigQuery;
 use ilContainer;
 
@@ -25,7 +25,7 @@ class SetObjectConfigCommand
     }
 
 
-    public function setObjectConfig(int $id, LegacyObjectConfigKey $key, mixed $value) : void
+    public function setObjectConfig(int $id, ObjectConfigKey $key, mixed $value) : void
     {
         ilContainer::_writeContainerSetting($id, $this->getObjectConfigContainerSettingsPrefix() . $key->value, $this->getValueAsJson(
             $value

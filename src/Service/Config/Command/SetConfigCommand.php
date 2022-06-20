@@ -2,8 +2,8 @@
 
 namespace FluxIliasApi\Service\Config\Command;
 
+use FluxIliasApi\Service\Config\ConfigKey;
 use FluxIliasApi\Service\Config\ConfigQuery;
-use FluxIliasApi\Service\Config\LegacyConfigKey;
 use ilSetting;
 
 class SetConfigCommand
@@ -23,7 +23,7 @@ class SetConfigCommand
     }
 
 
-    public function setConfig(LegacyConfigKey $key, mixed $value) : void
+    public function setConfig(ConfigKey $key, mixed $value) : void
     {
         (new ilSetting($this->getConfigSettingsModule()))->set($key->value, $this->getValueAsJson(
             $value

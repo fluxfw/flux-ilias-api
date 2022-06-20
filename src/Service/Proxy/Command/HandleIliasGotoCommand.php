@@ -12,17 +12,17 @@ use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\BodyDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\HtmlBodyDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\TextBodyDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Client\ClientRequestDto;
-use FluxIliasApi\Libs\FluxRestApi\Adapter\Header\LegacyDefaultHeaderKey;
+use FluxIliasApi\Libs\FluxRestApi\Adapter\Header\DefaultHeaderKey;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Route\Collector\RouteCollector;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Server\ServerRawRequestDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Server\ServerRawResponseDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Server\ServerResponseDto;
-use FluxIliasApi\Libs\FluxRestApi\Adapter\Status\LegacyDefaultStatus;
+use FluxIliasApi\Libs\FluxRestApi\Adapter\Status\DefaultStatus;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Status\Status;
 use FluxIliasApi\Service\ConfigForm\Port\ConfigFormService;
 use FluxIliasApi\Service\FluxIliasRestObject\Port\FluxIliasRestObjectService;
-use FluxIliasApi\Service\Proxy\LegacyProxyTarget;
 use FluxIliasApi\Service\Proxy\Port\ProxyService;
+use FluxIliasApi\Service\Proxy\ProxyTarget;
 use FluxIliasApi\Service\ProxyConfig\Port\ProxyConfigService;
 use ilGlobalTemplateInterface;
 use ilLocatorGUI;
@@ -74,14 +74,14 @@ class HandleIliasGotoCommand
                 "target"
             );
             switch (true) {
-                case $target === LegacyProxyTarget::CONFIG()->value:
+                case $target === ProxyTarget::CONFIG->value:
                     $this->handleConfig(
                         $user,
                         $request
                     );
                     break;
 
-                case str_starts_with($target, LegacyProxyTarget::API_PROXY()->value):
+                case str_starts_with($target, ProxyTarget::API_PROXY->value):
                     $this->handleApiProxy(
                         $user,
                         $request,
@@ -89,7 +89,7 @@ class HandleIliasGotoCommand
                     );
                     break;
 
-                case str_starts_with($target, LegacyProxyTarget::OBJECT_CONFIG()->value):
+                case str_starts_with($target, ProxyTarget::OBJECT_CONFIG->value):
                     $this->handleObjectConfig(
                         $user,
                         $request,
@@ -97,7 +97,7 @@ class HandleIliasGotoCommand
                     );
                     break;
 
-                case str_starts_with($target, LegacyProxyTarget::OBJECT_API_PROXY()->value):
+                case str_starts_with($target, ProxyTarget::OBJECT_API_PROXY->value):
                     $this->handleObjectApiProxy(
                         $user,
                         $request,
@@ -105,7 +105,7 @@ class HandleIliasGotoCommand
                     );
                     break;
 
-                case str_starts_with($target, LegacyProxyTarget::OBJECT_WEB_PROXY()->value):
+                case str_starts_with($target, ProxyTarget::OBJECT_WEB_PROXY->value):
                     $this->handleObjectWebProxy(
                         $user,
                         $request,
@@ -113,7 +113,7 @@ class HandleIliasGotoCommand
                     );
                     break;
 
-                case str_starts_with($target, LegacyProxyTarget::WEB_PROXY()->value):
+                case str_starts_with($target, ProxyTarget::WEB_PROXY->value):
                     $this->handleWebProxy(
                         $user,
                         $request,
@@ -130,7 +130,7 @@ class HandleIliasGotoCommand
             $this->rest_api->handleDefaultResponse(
                 ServerRawResponseDto::new(
                     null,
-                    LegacyDefaultStatus::_500()
+                    DefaultStatus::_500
                 ),
                 $request->server_type
             );
@@ -151,7 +151,7 @@ class HandleIliasGotoCommand
                 $raw_body->body,
                 $status,
                 [
-                    LegacyDefaultHeaderKey::CONTENT_TYPE()->value => $raw_body->type
+                    DefaultHeaderKey::CONTENT_TYPE->value => $raw_body->type
                 ]
             ),
             $request->server_type
@@ -187,7 +187,7 @@ class HandleIliasGotoCommand
                     "Authorization in ILIAS needed"
                 ),
                 $request,
-                LegacyDefaultStatus::_401()
+                DefaultStatus::_401
             );
 
             exit;
@@ -203,7 +203,7 @@ class HandleIliasGotoCommand
                     "No access"
                 ),
                 $request,
-                LegacyDefaultStatus::_403()
+                DefaultStatus::_403
             );
 
             exit;
@@ -234,11 +234,11 @@ class HandleIliasGotoCommand
                 ),
                 $request->body,
                 [
-                    LegacyDefaultHeaderKey::USER_AGENT()->value => "flux-ilias-api",
-                    "X-Flux-Ilias-Api-User-Id"                  => $user->id,
-                    "X-Flux-Ilias-Api-User-Import-Id"           => $user->import_id ?? ""
+                    DefaultHeaderKey::USER_AGENT->value => "flux-ilias-api",
+                    "X-Flux-Ilias-Api-User-Id"          => $user->id,
+                    "X-Flux-Ilias-Api-User-Import-Id"   => $user->import_id ?? ""
                 ] + array_filter($request->headers, fn(string $key) : bool => in_array($target_key, [
-                    LegacyDefaultHeaderKey::ACCEPT()->value
+                    DefaultHeaderKey::ACCEPT->value
                 ]), ARRAY_FILTER_USE_KEY),
                 true,
                 false,
@@ -252,7 +252,7 @@ class HandleIliasGotoCommand
                 $response->body,
                 $response->status,
                 array_filter($response->headers, fn(string $key) : bool => in_array($target_key, [
-                    LegacyDefaultHeaderKey::CONTENT_TYPE()->value
+                    DefaultHeaderKey::CONTENT_TYPE->value
                 ]), ARRAY_FILTER_USE_KEY)
             ),
             $request->server_type
@@ -296,7 +296,7 @@ class HandleIliasGotoCommand
                     "No access"
                 ),
                 $request,
-                LegacyDefaultStatus::_403()
+                DefaultStatus::_403
             );
 
             exit;
@@ -327,14 +327,14 @@ class HandleIliasGotoCommand
                 ),
                 $request->body,
                 [
-                    LegacyDefaultHeaderKey::USER_AGENT()->value => "flux-ilias-api",
-                    "X-Flux-Ilias-Api-Object-Id"                => $object->id ?? "",
-                    "X-Flux-Ilias-Api-Object-Import-Id"         => $object->import_id ?? "",
-                    "X-Flux-Ilias-Api-Object-Ref-Id"            => $object->ref_id ?? "",
-                    "X-Flux-Ilias-Api-User-Id"                  => $user->id,
-                    "X-Flux-Ilias-Api-User-Import-Id"           => $user->import_id ?? ""
+                    DefaultHeaderKey::USER_AGENT->value => "flux-ilias-api",
+                    "X-Flux-Ilias-Api-Object-Id"        => $object->id ?? "",
+                    "X-Flux-Ilias-Api-Object-Import-Id" => $object->import_id ?? "",
+                    "X-Flux-Ilias-Api-Object-Ref-Id"    => $object->ref_id ?? "",
+                    "X-Flux-Ilias-Api-User-Id"          => $user->id,
+                    "X-Flux-Ilias-Api-User-Import-Id"   => $user->import_id ?? ""
                 ] + array_filter($request->headers, fn(string $key) : bool => in_array($key, [
-                    LegacyDefaultHeaderKey::ACCEPT()->value
+                    DefaultHeaderKey::ACCEPT->value
                 ]), ARRAY_FILTER_USE_KEY),
                 true,
                 false,
@@ -348,7 +348,7 @@ class HandleIliasGotoCommand
                 $response->body,
                 $response->status,
                 array_filter($response->headers, fn(string $key) : bool => in_array($key, [
-                    LegacyDefaultHeaderKey::CONTENT_TYPE()->value
+                    DefaultHeaderKey::CONTENT_TYPE->value
                 ]), ARRAY_FILTER_USE_KEY)
             ),
             $request->server_type

@@ -4,9 +4,9 @@ namespace FluxIliasApi\Service\Course;
 
 use FluxIliasApi\Adapter\Course\CourseDiffDto;
 use FluxIliasApi\Adapter\Course\CourseDto;
-use FluxIliasApi\Adapter\Course\LegacyCourseMailToMembersType;
+use FluxIliasApi\Adapter\Course\CourseMailToMembersType;
 use FluxIliasApi\Service\Object\CustomInternalObjectType;
-use FluxIliasApi\Service\Object\LegacyDefaultInternalObjectType;
+use FluxIliasApi\Service\Object\DefaultInternalObjectType;
 use ilDate;
 use ilDateTime;
 use ilDBConstants;
@@ -28,7 +28,7 @@ WHERE " . $this->ilias_database->in("id", $ids, false, ilDBConstants::T_INTEGER)
     private function getCourseQuery(?int $id = null, ?string $import_id = null, ?int $ref_id = null, ?bool $in_trash = null) : string
     {
         $wheres = [
-            "object_data.type=" . $this->ilias_database->quote(LegacyDefaultInternalObjectType::CRS()->value, ilDBConstants::T_TEXT)
+            "object_data.type=" . $this->ilias_database->quote(DefaultInternalObjectType::CRS->value, ilDBConstants::T_TEXT)
         ];
 
         if ($id !== null) {
@@ -295,7 +295,7 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
             $course["show_members"] ?? false,
             $course["show_members_export"] ?? false,
             ($mail_to_members_type = $course["mail_members_type"] ?: null) !== null
-                ? CourseMailToMembersTypeMapping::mapInternalToExternal(LegacyInternalCourseMailToMembersType::from($mail_to_members_type)) : LegacyCourseMailToMembersType::ALL(),
+                ? CourseMailToMembersTypeMapping::mapInternalToExternal(InternalCourseMailToMembersType::from($mail_to_members_type)) : CourseMailToMembersType::ALL,
             $course["auto_notification"] ?? false,
             $course["abo"] ?? false,
             $course["important"] ?? "",

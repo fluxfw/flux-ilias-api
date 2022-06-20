@@ -2,29 +2,29 @@
 
 namespace FluxIliasApi\Service\User;
 
-use FluxIliasApi\Adapter\User\LegacyUserGender;
+use FluxIliasApi\Adapter\User\UserGender;
 
 class UserGenderMapping
 {
 
-    public static function mapExternalToInternal(LegacyUserGender $gender) : LegacyInternalUserGender
+    public static function mapExternalToInternal(UserGender $gender) : InternalUserGender
     {
-        return LegacyInternalUserGender::from(array_flip(static::INTERNAL_EXTERNAL())[$gender->value] ?? substr($gender->value, 1));
+        return InternalUserGender::from(array_flip(static::INTERNAL_EXTERNAL())[$gender->value] ?? substr($gender->value, 1));
     }
 
 
-    public static function mapInternalToExternal(LegacyInternalUserGender $gender) : LegacyUserGender
+    public static function mapInternalToExternal(InternalUserGender $gender) : UserGender
     {
-        return LegacyUserGender::from(static::INTERNAL_EXTERNAL()[$gender->value] ?? "_" . $gender->value);
+        return UserGender::from(static::INTERNAL_EXTERNAL()[$gender->value] ?? "_" . $gender->value);
     }
 
 
     private static function INTERNAL_EXTERNAL() : array
     {
         return [
-            LegacyInternalUserGender::F()->value => LegacyUserGender::FEMALE()->value,
-            LegacyInternalUserGender::M()->value => LegacyUserGender::MALE()->value,
-            LegacyInternalUserGender::N()->value => LegacyUserGender::NONE()->value
+            InternalUserGender::F->value => UserGender::FEMALE->value,
+            InternalUserGender::M->value => UserGender::MALE->value,
+            InternalUserGender::N->value => UserGender::NONE->value
         ];
     }
 }

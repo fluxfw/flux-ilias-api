@@ -3,6 +3,7 @@
 namespace FluxIliasApi\Adapter\Cron\Change;
 
 use FluxIliasApi\Service\Change\Port\ChangeService;
+use FluxIliasApi\Service\CronConfig\DefaultInternalScheduleTypeCronConfig;
 use ilCronJob;
 use ilCronJobResult;
 
@@ -30,7 +31,7 @@ class PurgeChangesCronJob extends ilCronJob
 
     public function getDefaultScheduleType() : int
     {
-        return static::SCHEDULE_TYPE_DAILY;
+        return DefaultInternalScheduleTypeCronConfig::DAILY->value;
     }
 
 

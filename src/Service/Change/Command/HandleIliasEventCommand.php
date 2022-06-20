@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\Change\Command;
 
-use FluxIliasApi\Adapter\Change\LegacyChangeType;
+use FluxIliasApi\Adapter\Change\ChangeType;
 use FluxIliasApi\Adapter\CourseMember\CourseMemberIdDto;
 use FluxIliasApi\Adapter\GroupMember\GroupMemberIdDto;
 use FluxIliasApi\Adapter\ObjectLearningProgress\ObjectLearningProgressIdDto;
@@ -18,7 +18,7 @@ use FluxIliasApi\Service\File\Port\FileService;
 use FluxIliasApi\Service\FluxIliasRestObject\Port\FluxIliasRestObjectService;
 use FluxIliasApi\Service\Group\Port\GroupService;
 use FluxIliasApi\Service\GroupMember\Port\GroupMemberService;
-use FluxIliasApi\Service\Object\LegacyDefaultInternalObjectType;
+use FluxIliasApi\Service\Object\DefaultInternalObjectType;
 use FluxIliasApi\Service\Object\Port\ObjectService;
 use FluxIliasApi\Service\ObjectLearningProgress\Port\ObjectLearningProgressService;
 use FluxIliasApi\Service\OrganisationalUnit\Port\OrganisationalUnitService;
@@ -395,7 +395,7 @@ class HandleIliasEventCommand
     private function handleCategoryCreated(UserDto $user, int $id) : void
     {
         $this->storeChange(
-            LegacyChangeType::CREATED_CATEGORY(),
+            ChangeType::CREATED_CATEGORY,
             $user,
             $this->getCategoryData(
                 $id
@@ -407,7 +407,7 @@ class HandleIliasEventCommand
     private function handleCategoryDeleted(UserDto $user, ilObjCategory $ilias_category) : void
     {
         $this->storeChange(
-            LegacyChangeType::DELETED_CATEGORY(),
+            ChangeType::DELETED_CATEGORY,
             $user,
             $this->getObjectData(
                 $ilias_category->getId(),
@@ -420,7 +420,7 @@ class HandleIliasEventCommand
     private function handleCategoryUpdated(UserDto $user, int $id, ?int $ref_id) : void
     {
         $this->storeChange(
-            LegacyChangeType::UPDATED_CATEGORY(),
+            ChangeType::UPDATED_CATEGORY,
             $user,
             $this->getCategoryData(
                 $id,
@@ -468,7 +468,7 @@ class HandleIliasEventCommand
     private function handleCourseCreated(UserDto $user, ilObjCourse $ilias_course) : void
     {
         $this->storeChange(
-            LegacyChangeType::CREATED_COURSE(),
+            ChangeType::CREATED_COURSE,
             $user,
             $this->getCourseData(
                 $ilias_course->getId(),
@@ -481,7 +481,7 @@ class HandleIliasEventCommand
     private function handleCourseDeleted(UserDto $user, ilObjCourse $ilias_course) : void
     {
         $this->storeChange(
-            LegacyChangeType::DELETED_COURSE(),
+            ChangeType::DELETED_COURSE,
             $user,
             $this->getObjectData(
                 $ilias_course->getId(),
@@ -494,7 +494,7 @@ class HandleIliasEventCommand
     private function handleCourseMemberAdded(UserDto $user, int $course_id, int $user_id) : void
     {
         $this->storeChange(
-            LegacyChangeType::ADDED_COURSE_MEMBER(),
+            ChangeType::ADDED_COURSE_MEMBER,
             $user,
             $this->getCourseMemberData(
                 $course_id,
@@ -507,7 +507,7 @@ class HandleIliasEventCommand
     private function handleCourseMemberRemoved(UserDto $user, int $course_id, int $user_id) : void
     {
         $this->storeChange(
-            LegacyChangeType::REMOVED_COURSE_MEMBER(),
+            ChangeType::REMOVED_COURSE_MEMBER,
             $user,
             $this->getCourseMemberData(
                 $course_id,
@@ -520,7 +520,7 @@ class HandleIliasEventCommand
     private function handleCourseUpdated(UserDto $user, ilObjCourse $ilias_course) : void
     {
         $this->storeChange(
-            LegacyChangeType::UPDATED_COURSE(),
+            ChangeType::UPDATED_COURSE,
             $user,
             $this->getCourseData(
                 $ilias_course->getId(),
@@ -533,7 +533,7 @@ class HandleIliasEventCommand
     private function handleFileCreated(UserDto $user, int $id) : void
     {
         $this->storeChange(
-            LegacyChangeType::CREATED_FILE(),
+            ChangeType::CREATED_FILE,
             $user,
             $this->getFileData(
                 $id
@@ -545,7 +545,7 @@ class HandleIliasEventCommand
     private function handleFileDeleted(UserDto $user, ilObjFile $ilias_file) : void
     {
         $this->storeChange(
-            LegacyChangeType::DELETED_FILE(),
+            ChangeType::DELETED_FILE,
             $user,
             $this->getObjectData(
                 $ilias_file->getId(),
@@ -558,7 +558,7 @@ class HandleIliasEventCommand
     private function handleFileUpdated(UserDto $user, int $id, ?int $ref_id) : void
     {
         $this->storeChange(
-            LegacyChangeType::UPDATED_FILE(),
+            ChangeType::UPDATED_FILE,
             $user,
             $this->getFileData(
                 $id,
@@ -571,7 +571,7 @@ class HandleIliasEventCommand
     private function handleFluxIliasRestObjectCreated(UserDto $user, int $id) : void
     {
         $this->storeChange(
-            LegacyChangeType::CREATED_FLUX_ILIAS_REST_OBJECT(),
+            ChangeType::CREATED_FLUX_ILIAS_REST_OBJECT,
             $user,
             $this->getFluxIliasRestObjectData(
                 $id
@@ -583,7 +583,7 @@ class HandleIliasEventCommand
     private function handleFluxIliasRestObjectDeleted(UserDto $user, ilObjflux_ilias_rest_object_helper_plugin $ilias_flux_ilias_rest_object) : void
     {
         $this->storeChange(
-            LegacyChangeType::DELETED_FLUX_ILIAS_REST_OBJECT(),
+            ChangeType::DELETED_FLUX_ILIAS_REST_OBJECT,
             $user,
             $this->getObjectData(
                 $ilias_flux_ilias_rest_object->getId(),
@@ -596,7 +596,7 @@ class HandleIliasEventCommand
     private function handleFluxIliasRestObjectUpdated(UserDto $user, int $id, ?int $ref_id) : void
     {
         $this->storeChange(
-            LegacyChangeType::UPDATED_FLUX_ILIAS_REST_OBJECT(),
+            ChangeType::UPDATED_FLUX_ILIAS_REST_OBJECT,
             $user,
             $this->getFluxIliasRestObjectData(
                 $id,
@@ -644,7 +644,7 @@ class HandleIliasEventCommand
     private function handleGroupCreated(UserDto $user, ilObjGroup $ilias_group) : void
     {
         $this->storeChange(
-            LegacyChangeType::CREATED_GROUP(),
+            ChangeType::CREATED_GROUP,
             $user,
             $this->getGroupData(
                 $ilias_group->getId(),
@@ -657,7 +657,7 @@ class HandleIliasEventCommand
     private function handleGroupDeleted(UserDto $user, ilObjGroup $ilias_group) : void
     {
         $this->storeChange(
-            LegacyChangeType::DELETED_GROUP(),
+            ChangeType::DELETED_GROUP,
             $user,
             $this->getObjectData(
                 $ilias_group->getId(),
@@ -670,7 +670,7 @@ class HandleIliasEventCommand
     private function handleGroupMemberAdded(UserDto $user, int $group_id, int $user_id) : void
     {
         $this->storeChange(
-            LegacyChangeType::ADDED_GROUP_MEMBER(),
+            ChangeType::ADDED_GROUP_MEMBER,
             $user,
             $this->getGroupMemberData(
                 $group_id,
@@ -683,7 +683,7 @@ class HandleIliasEventCommand
     private function handleGroupMemberRemoved(UserDto $user, int $group_id, int $user_id) : void
     {
         $this->storeChange(
-            LegacyChangeType::REMOVED_GROUP_MEMBER(),
+            ChangeType::REMOVED_GROUP_MEMBER,
             $user,
             $this->getGroupMemberData(
                 $group_id,
@@ -696,7 +696,7 @@ class HandleIliasEventCommand
     private function handleGroupUpdated(UserDto $user, ilObjGroup $ilias_group) : void
     {
         $this->storeChange(
-            LegacyChangeType::UPDATED_GROUP(),
+            ChangeType::UPDATED_GROUP,
             $user,
             $this->getGroupData(
                 $ilias_group->getId(),
@@ -765,7 +765,7 @@ class HandleIliasEventCommand
     private function handleObjectCloned(UserDto $user, ilObject $ilias_object) : void
     {
         $this->storeChange(
-            LegacyChangeType::CLONED_OBJECT(),
+            ChangeType::CLONED_OBJECT,
             $user,
             $this->getObjectData(
                 $ilias_object->getId(),
@@ -778,41 +778,41 @@ class HandleIliasEventCommand
     private function handleObjectCreated(UserDto $user, string $type, int $id) : void
     {
         switch ($type) {
-            case LegacyDefaultInternalObjectType::CAT()->value:
+            case DefaultInternalObjectType::CAT->value:
                 $this->handleCategoryCreated(
                     $user,
                     $id
                 );
                 break;
-            case LegacyDefaultInternalObjectType::CRS()->value:
-            case LegacyDefaultInternalObjectType::GRP()->value:
-            case LegacyDefaultInternalObjectType::USR()->value:
+            case DefaultInternalObjectType::CRS->value:
+            case DefaultInternalObjectType::GRP->value:
+            case DefaultInternalObjectType::USR->value:
                 break;
-            case LegacyDefaultInternalObjectType::FILE()->value:
+            case DefaultInternalObjectType::FILE->value:
                 $this->handleFileCreated(
                     $user,
                     $id
                 );
                 break;
-            case LegacyDefaultInternalObjectType::ORGU()->value:
+            case DefaultInternalObjectType::ORGU->value:
                 $this->handleOrganisationalUnitCreated(
                     $user,
                     $id
                 );
                 break;
-            case LegacyDefaultInternalObjectType::ROLE()->value:
+            case DefaultInternalObjectType::ROLE->value:
                 $this->handleRoleCreated(
                     $user,
                     $id
                 );
                 break;
-            case LegacyDefaultInternalObjectType::SAHS()->value:
+            case DefaultInternalObjectType::SAHS->value:
                 $this->handleScormLearningModuleCreated(
                     $user,
                     $id
                 );
                 break;
-            case LegacyDefaultInternalObjectType::XFRO()->value:
+            case DefaultInternalObjectType::XFRO->value:
                 $this->handleFluxIliasRestObjectCreated(
                     $user,
                     $id
@@ -820,7 +820,7 @@ class HandleIliasEventCommand
                 break;
             default:
                 $this->storeChange(
-                    LegacyChangeType::CREATED_OBJECT(),
+                    ChangeType::CREATED_OBJECT,
                     $user,
                     $this->getObjectData(
                         $id
@@ -890,7 +890,7 @@ class HandleIliasEventCommand
                 break;
             default:
                 $this->storeChange(
-                    LegacyChangeType::DELETED_OBJECT(),
+                    ChangeType::DELETED_OBJECT,
                     $user,
                     $this->getObjectData(
                         $ilias_object->getId(),
@@ -921,7 +921,7 @@ class HandleIliasEventCommand
     private function handleObjectLearningProgressUpdated(UserDto $user, int $object_id, int $user_id) : void
     {
         $this->storeChange(
-            LegacyChangeType::UPDATED_OBJECT_LEARNING_PROGRESS(),
+            ChangeType::UPDATED_OBJECT_LEARNING_PROGRESS,
             $user,
             $this->getObjectLearningProgressData(
                 $object_id,
@@ -934,7 +934,7 @@ class HandleIliasEventCommand
     private function handleObjectLinked(UserDto $user, ilObject $ilias_object) : void
     {
         $this->storeChange(
-            LegacyChangeType::LINKED_OBJECT(),
+            ChangeType::LINKED_OBJECT,
             $user,
             $this->getObjectData(
                 $ilias_object->getId(),
@@ -947,7 +947,7 @@ class HandleIliasEventCommand
     private function handleObjectMoved(UserDto $user, int $ref_id) : void
     {
         $this->storeChange(
-            LegacyChangeType::MOVED_OBJECT(),
+            ChangeType::MOVED_OBJECT,
             $user,
             $this->getObjectData(
                 null,
@@ -960,7 +960,7 @@ class HandleIliasEventCommand
     private function handleObjectMovedToTrash(UserDto $user, int $id, ?int $ref_id) : void
     {
         $this->storeChange(
-            LegacyChangeType::MOVED_OBJECT_TO_TRASH(),
+            ChangeType::MOVED_OBJECT_TO_TRASH,
             $user,
             $this->getObjectData(
                 $id,
@@ -973,7 +973,7 @@ class HandleIliasEventCommand
     private function handleObjectRestoredFromTrash(UserDto $user, int $id, ?int $ref_id) : void
     {
         $this->storeChange(
-            LegacyChangeType::RESTORED_OBJECT_FROM_TRASH(),
+            ChangeType::RESTORED_OBJECT_FROM_TRASH,
             $user,
             $this->getObjectData(
                 $id,
@@ -986,45 +986,45 @@ class HandleIliasEventCommand
     private function handleObjectUpdated(UserDto $user, string $type, int $id, ?int $ref_id) : void
     {
         switch ($type) {
-            case LegacyDefaultInternalObjectType::CAT()->value:
+            case DefaultInternalObjectType::CAT->value:
                 $this->handleCategoryUpdated(
                     $user,
                     $id,
                     $ref_id
                 );
                 break;
-            case LegacyDefaultInternalObjectType::CRS()->value:
-            case LegacyDefaultInternalObjectType::GRP()->value:
-            case LegacyDefaultInternalObjectType::USR()->value:
+            case DefaultInternalObjectType::CRS->value:
+            case DefaultInternalObjectType::GRP->value:
+            case DefaultInternalObjectType::USR->value:
                 break;
-            case LegacyDefaultInternalObjectType::FILE()->value:
+            case DefaultInternalObjectType::FILE->value:
                 $this->handleFileUpdated(
                     $user,
                     $id,
                     $ref_id
                 );
                 break;
-            case LegacyDefaultInternalObjectType::ORGU()->value:
+            case DefaultInternalObjectType::ORGU->value:
                 $this->handleOrganisationalUnitUpdated(
                     $user,
                     $id,
                     $ref_id
                 );
                 break;
-            case LegacyDefaultInternalObjectType::ROLE()->value:
+            case DefaultInternalObjectType::ROLE->value:
                 $this->handleRoleUpdated(
                     $user,
                     $id
                 );
                 break;
-            case LegacyDefaultInternalObjectType::SAHS()->value:
+            case DefaultInternalObjectType::SAHS->value:
                 $this->handleScormLearningModuleUpdated(
                     $user,
                     $id,
                     $ref_id
                 );
                 break;
-            case LegacyDefaultInternalObjectType::XFRO()->value:
+            case DefaultInternalObjectType::XFRO->value:
                 $this->handleFluxIliasRestObjectUpdated(
                     $user,
                     $id,
@@ -1033,7 +1033,7 @@ class HandleIliasEventCommand
                 break;
             default:
                 $this->storeChange(
-                    LegacyChangeType::UPDATED_OBJECT(),
+                    ChangeType::UPDATED_OBJECT,
                     $user,
                     $this->getObjectData(
                         $id,
@@ -1073,7 +1073,7 @@ class HandleIliasEventCommand
     private function handleOrganisationalUnitCreated(UserDto $user, int $id) : void
     {
         $this->storeChange(
-            LegacyChangeType::CREATED_ORGANISATIONAL_UNIT(),
+            ChangeType::CREATED_ORGANISATIONAL_UNIT,
             $user,
             $this->getOrganisationalUnitData(
                 $id
@@ -1085,7 +1085,7 @@ class HandleIliasEventCommand
     private function handleOrganisationalUnitDeleted(UserDto $user, ilObjOrgUnit $ilias_organisational_unit) : void
     {
         $this->storeChange(
-            LegacyChangeType::DELETED_ORGANISATIONAL_UNIT(),
+            ChangeType::DELETED_ORGANISATIONAL_UNIT,
             $user,
             $this->getObjectData(
                 $ilias_organisational_unit->getId(),
@@ -1098,7 +1098,7 @@ class HandleIliasEventCommand
     private function handleOrganisationalUnitStaffAdded(UserDto $user, int $organisational_unit_ref_id, int $user_id, int $position_id) : void
     {
         $this->storeChange(
-            LegacyChangeType::ADDED_ORGANISATIONAL_UNIT_STAFF(),
+            ChangeType::ADDED_ORGANISATIONAL_UNIT_STAFF,
             $user,
             $this->getOrganisationalUnitStaffData(
                 $organisational_unit_ref_id,
@@ -1112,7 +1112,7 @@ class HandleIliasEventCommand
     private function handleOrganisationalUnitStaffRemoved(UserDto $user, int $organisational_unit_ref_id, int $user_id, int $position_id) : void
     {
         $this->storeChange(
-            LegacyChangeType::REMOVED_ORGANISATIONAL_UNIT_STAFF(),
+            ChangeType::REMOVED_ORGANISATIONAL_UNIT_STAFF,
             $user,
             $this->getOrganisationalUnitStaffData(
                 $organisational_unit_ref_id,
@@ -1126,7 +1126,7 @@ class HandleIliasEventCommand
     private function handleOrganisationalUnitUpdated(UserDto $user, int $id, ?int $ref_id) : void
     {
         $this->storeChange(
-            LegacyChangeType::UPDATED_ORGANISATIONAL_UNIT(),
+            ChangeType::UPDATED_ORGANISATIONAL_UNIT,
             $user,
             $this->getOrganisationalUnitData(
                 $id,
@@ -1139,7 +1139,7 @@ class HandleIliasEventCommand
     private function handleRoleCreated(UserDto $user, int $id) : void
     {
         $this->storeChange(
-            LegacyChangeType::CREATED_ROLE(),
+            ChangeType::CREATED_ROLE,
             $user,
             $this->getRoleData(
                 $id
@@ -1151,7 +1151,7 @@ class HandleIliasEventCommand
     private function handleRoleDeleted(UserDto $user, ilObjRole $ilias_role) : void
     {
         $this->storeChange(
-            LegacyChangeType::DELETED_ROLE(),
+            ChangeType::DELETED_ROLE,
             $user,
             $this->getObjectData(
                 $ilias_role->getId()
@@ -1163,7 +1163,7 @@ class HandleIliasEventCommand
     private function handleRoleUpdated(UserDto $user, int $id) : void
     {
         $this->storeChange(
-            LegacyChangeType::UPDATED_ROLE(),
+            ChangeType::UPDATED_ROLE,
             $user,
             $this->getRoleData(
                 $id
@@ -1175,7 +1175,7 @@ class HandleIliasEventCommand
     private function handleScormLearningModuleCreated(UserDto $user, int $id) : void
     {
         $this->storeChange(
-            LegacyChangeType::CREATED_SCORM_LEARNING_MODULE(),
+            ChangeType::CREATED_SCORM_LEARNING_MODULE,
             $user,
             $this->getScormLearningModuleData(
                 $id
@@ -1187,7 +1187,7 @@ class HandleIliasEventCommand
     private function handleScormLearningModuleDeleted(UserDto $user, ilObjSCORMLearningModule $ilias_scorm_learning_module) : void
     {
         $this->storeChange(
-            LegacyChangeType::DELETED_SCORM_LEARNING_MODULE(),
+            ChangeType::DELETED_SCORM_LEARNING_MODULE,
             $user,
             $this->getObjectData(
                 $ilias_scorm_learning_module->getId(),
@@ -1200,7 +1200,7 @@ class HandleIliasEventCommand
     private function handleScormLearningModuleUpdated(UserDto $user, int $id, ?int $ref_id) : void
     {
         $this->storeChange(
-            LegacyChangeType::UPDATED_SCORM_LEARNING_MODULE(),
+            ChangeType::UPDATED_SCORM_LEARNING_MODULE,
             $user,
             $this->getScormLearningModuleData(
                 $id,
@@ -1249,7 +1249,7 @@ class HandleIliasEventCommand
     private function handleUserCreated(UserDto $user, ilObjUser $ilias_user) : void
     {
         $this->storeChange(
-            LegacyChangeType::CREATED_USER(),
+            ChangeType::CREATED_USER,
             $user,
             $this->getUserData(
                 $ilias_user->getId()
@@ -1261,7 +1261,7 @@ class HandleIliasEventCommand
     private function handleUserDeleted(UserDto $user, ilObjUser $ilias_user) : void
     {
         $this->storeChange(
-            LegacyChangeType::DELETED_USER(),
+            ChangeType::DELETED_USER,
             $user,
             $this->getObjectData(
                 $ilias_user->getId()
@@ -1296,7 +1296,7 @@ class HandleIliasEventCommand
     private function handleUserRoleAdded(UserDto $user, int $user_id, int $role_id) : void
     {
         $this->storeChange(
-            LegacyChangeType::ADDED_USER_ROLE(),
+            ChangeType::ADDED_USER_ROLE,
             $user,
             $this->getUserRoleData(
                 $user_id,
@@ -1309,7 +1309,7 @@ class HandleIliasEventCommand
     private function handleUserRoleRemoved(UserDto $user, int $user_id, int $role_id) : void
     {
         $this->storeChange(
-            LegacyChangeType::REMOVED_USER_ROLE(),
+            ChangeType::REMOVED_USER_ROLE,
             $user,
             $this->getUserRoleData(
                 $user_id,
@@ -1322,7 +1322,7 @@ class HandleIliasEventCommand
     private function handleUserUpdated(UserDto $user, ilObjUser $ilias_user) : void
     {
         $this->storeChange(
-            LegacyChangeType::UPDATED_USER(),
+            ChangeType::UPDATED_USER,
             $user,
             $this->getUserData(
                 $ilias_user->getId()
@@ -1331,7 +1331,7 @@ class HandleIliasEventCommand
     }
 
 
-    private function storeChange(LegacyChangeType $type, UserDto $user, ?object $data) : void
+    private function storeChange(ChangeType $type, UserDto $user, ?object $data) : void
     {
         $this->ilias_database->insert($this->getChangeDatabaseTable(), [
             "type"           => [ilDBConstants::T_TEXT, $type->value],

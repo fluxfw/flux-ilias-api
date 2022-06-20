@@ -27,13 +27,13 @@ use FluxIliasApi\Adapter\Object\ObjectDiffDto;
 use FluxIliasApi\Adapter\Object\ObjectDto;
 use FluxIliasApi\Adapter\Object\ObjectIdDto;
 use FluxIliasApi\Adapter\Object\ObjectType;
-use FluxIliasApi\Adapter\ObjectLearningProgress\LegacyObjectLearningProgress;
+use FluxIliasApi\Adapter\ObjectLearningProgress\ObjectLearningProgress;
 use FluxIliasApi\Adapter\ObjectLearningProgress\ObjectLearningProgressDto;
 use FluxIliasApi\Adapter\ObjectLearningProgress\ObjectLearningProgressIdDto;
 use FluxIliasApi\Adapter\OrganisationalUnit\OrganisationalUnitDiffDto;
 use FluxIliasApi\Adapter\OrganisationalUnit\OrganisationalUnitDto;
 use FluxIliasApi\Adapter\OrganisationalUnit\OrganisationalUnitIdDto;
-use FluxIliasApi\Adapter\OrganisationalUnitPosition\LegacyOrganisationalUnitPositionCoreIdentifier;
+use FluxIliasApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionCoreIdentifier;
 use FluxIliasApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionDiffDto;
 use FluxIliasApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionDto;
 use FluxIliasApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionIdDto;
@@ -993,7 +993,7 @@ class IliasApi
         ?bool $member_role = null,
         ?bool $tutor_role = null,
         ?bool $administrator_role = null,
-        ?LegacyObjectLearningProgress $learning_progress = null,
+        ?ObjectLearningProgress $learning_progress = null,
         ?bool $passed = null,
         ?bool $access_refused = null,
         ?bool $tutorial_support = null,
@@ -1248,7 +1248,7 @@ class IliasApi
         ?string $user_import_id = null,
         ?bool $member_role = null,
         ?bool $administrator_role = null,
-        ?LegacyObjectLearningProgress $learning_progress = null,
+        ?ObjectLearningProgress $learning_progress = null,
         ?bool $tutorial_support = null,
         ?bool $notification = null
     ) : array {
@@ -1329,7 +1329,7 @@ class IliasApi
         ?int $object_ref_id = null,
         ?int $user_id = null,
         ?string $user_import_id = null,
-        ?LegacyObjectLearningProgress $learning_progress = null
+        ?ObjectLearningProgress $learning_progress = null
     ) : array {
         return $this->getObjectLearningProgressService()
             ->getObjectLearningProgress(
@@ -1384,7 +1384,7 @@ class IliasApi
     }
 
 
-    public function getOrganisationalUnitPositionByCoreIdentifier(LegacyOrganisationalUnitPositionCoreIdentifier $core_identifier) : ?OrganisationalUnitPositionDto
+    public function getOrganisationalUnitPositionByCoreIdentifier(OrganisationalUnitPositionCoreIdentifier $core_identifier) : ?OrganisationalUnitPositionDto
     {
         return $this->getOrganisationalUnitPositionService()
             ->getOrganisationalUnitPositionByCoreIdentifier(
@@ -2524,7 +2524,7 @@ class IliasApi
     }
 
 
-    public function updateObjectLearningProgressByIdByUserId(int $id, int $user_id, LegacyObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
+    public function updateObjectLearningProgressByIdByUserId(int $id, int $user_id, ObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
     {
         return $this->getObjectLearningProgressService()
             ->updateObjectLearningProgressByIdByUserId(
@@ -2535,7 +2535,7 @@ class IliasApi
     }
 
 
-    public function updateObjectLearningProgressByIdByUserImportId(int $id, string $user_import_id, LegacyObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
+    public function updateObjectLearningProgressByIdByUserImportId(int $id, string $user_import_id, ObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
     {
         return $this->getObjectLearningProgressService()
             ->updateObjectLearningProgressByIdByUserImportId(
@@ -2546,7 +2546,7 @@ class IliasApi
     }
 
 
-    public function updateObjectLearningProgressByImportIdByUserId(string $import_id, int $user_id, LegacyObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
+    public function updateObjectLearningProgressByImportIdByUserId(string $import_id, int $user_id, ObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
     {
         return $this->getObjectLearningProgressService()
             ->updateObjectLearningProgressByImportIdByUserId(
@@ -2557,7 +2557,7 @@ class IliasApi
     }
 
 
-    public function updateObjectLearningProgressByImportIdByUserImportId(string $import_id, string $user_import_id, LegacyObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
+    public function updateObjectLearningProgressByImportIdByUserImportId(string $import_id, string $user_import_id, ObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
     {
         return $this->getObjectLearningProgressService()
             ->updateObjectLearningProgressByImportIdByUserImportId(
@@ -2568,7 +2568,7 @@ class IliasApi
     }
 
 
-    public function updateObjectLearningProgressByRefIdByUserId(int $ref_id, int $user_id, LegacyObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
+    public function updateObjectLearningProgressByRefIdByUserId(int $ref_id, int $user_id, ObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
     {
         return $this->getObjectLearningProgressService()
             ->updateObjectLearningProgressByRefIdByUserId(
@@ -2579,7 +2579,7 @@ class IliasApi
     }
 
 
-    public function updateObjectLearningProgressByRefIdByUserImportId(int $ref_id, string $user_import_id, LegacyObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
+    public function updateObjectLearningProgressByRefIdByUserImportId(int $ref_id, string $user_import_id, ObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
     {
         return $this->getObjectLearningProgressService()
             ->updateObjectLearningProgressByRefIdByUserImportId(

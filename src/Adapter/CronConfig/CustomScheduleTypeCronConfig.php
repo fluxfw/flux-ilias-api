@@ -17,7 +17,7 @@ class CustomScheduleTypeCronConfig implements ScheduleTypeCronConfig, JsonSerial
 
     public static function factory(string $value) : ScheduleTypeCronConfig
     {
-        return LegacyDefaultScheduleTypeCronConfig::tryFrom($value) ?? static::new(
+        return DefaultScheduleTypeCronConfig::tryFrom($value) ?? static::new(
                 $value
             );
     }

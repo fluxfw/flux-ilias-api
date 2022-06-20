@@ -4,7 +4,7 @@ namespace FluxIliasApi\Service\UserMail\Command;
 
 use FluxIliasApi\Adapter\User\UserDto;
 use FluxIliasApi\Service\User\Port\UserService;
-use FluxIliasApi\Service\UserMail\LegacyInternalMailStatus;
+use FluxIliasApi\Service\UserMail\InternalMailStatus;
 use FluxIliasApi\Service\UserMail\UserMailQuery;
 use ilDBInterface;
 
@@ -60,7 +60,7 @@ class GetUnreadMailsCount
 
         return $this->ilias_database->fetchAssoc($this->ilias_database->query($this->getUserMailQuery(
             $user->id,
-            LegacyInternalMailStatus::UNREAD()->value,
+            InternalMailStatus::UNREAD->value,
             true
         )))["count"];
     }

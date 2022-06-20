@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\Change\Command;
 
-use FluxIliasApi\Service\Config\LegacyConfigKey;
+use FluxIliasApi\Service\Config\ConfigKey;
 use FluxIliasApi\Service\Config\Port\ConfigService;
 
 class SetTransferChangesPostUrlCommand
@@ -27,7 +27,7 @@ class SetTransferChangesPostUrlCommand
     public function setTransferChangesPostUrl(string $transfer_changes_post_url) : void
     {
         $this->config_service->setConfig(
-            LegacyConfigKey::TRANSFER_CHANGES_POST_URL(),
+            ConfigKey::TRANSFER_CHANGES_POST_URL,
             $transfer_changes_post_url
         );
     }

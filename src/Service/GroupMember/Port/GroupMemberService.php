@@ -5,7 +5,7 @@ namespace FluxIliasApi\Service\GroupMember\Port;
 use FluxIliasApi\Adapter\GroupMember\GroupMemberDiffDto;
 use FluxIliasApi\Adapter\GroupMember\GroupMemberDto;
 use FluxIliasApi\Adapter\GroupMember\GroupMemberIdDto;
-use FluxIliasApi\Adapter\ObjectLearningProgress\LegacyObjectLearningProgress;
+use FluxIliasApi\Adapter\ObjectLearningProgress\ObjectLearningProgress;
 use FluxIliasApi\Service\Group\Port\GroupService;
 use FluxIliasApi\Service\GroupMember\Command\AddGroupMemberCommand;
 use FluxIliasApi\Service\GroupMember\Command\GetGroupMembersCommand;
@@ -134,7 +134,7 @@ class GroupMemberService
         ?string $user_import_id = null,
         ?bool $member_role = null,
         ?bool $administrator_role = null,
-        ?LegacyObjectLearningProgress $learning_progress = null,
+        ?ObjectLearningProgress $learning_progress = null,
         ?bool $tutorial_support = null,
         ?bool $notification = null
     ) : array {

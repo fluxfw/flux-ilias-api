@@ -4,9 +4,9 @@ namespace FluxIliasApi\Service\CourseMember;
 
 use FluxIliasApi\Adapter\CourseMember\CourseMemberDiffDto;
 use FluxIliasApi\Adapter\CourseMember\CourseMemberDto;
-use FluxIliasApi\Adapter\ObjectLearningProgress\LegacyObjectLearningProgress;
-use FluxIliasApi\Service\Object\LegacyDefaultInternalObjectType;
-use FluxIliasApi\Service\ObjectLearningProgress\LegacyInternalObjectLearningProgress;
+use FluxIliasApi\Adapter\ObjectLearningProgress\ObjectLearningProgress;
+use FluxIliasApi\Service\Object\DefaultInternalObjectType;
+use FluxIliasApi\Service\ObjectLearningProgress\InternalObjectLearningProgress;
 use FluxIliasApi\Service\ObjectLearningProgress\ObjectLearningProgressMapping;
 use ilDBConstants;
 use ilLPStatus;
@@ -25,15 +25,15 @@ trait CourseMemberQuery
         ?bool $member_role = null,
         ?bool $tutor_role = null,
         ?bool $administrator_role = null,
-        ?LegacyObjectLearningProgress $learning_progress = null,
+        ?ObjectLearningProgress $learning_progress = null,
         ?bool $passed = null,
         ?bool $access_refused = null,
         ?bool $tutorial_support = null,
         ?bool $notification = null
     ) : string {
         $wheres = [
-            "object_data.type=" . $this->ilias_database->quote(LegacyDefaultInternalObjectType::CRS()->value, ilDBConstants::T_TEXT),
-            "object_data_user.type=" . $this->ilias_database->quote(LegacyDefaultInternalObjectType::USR()->value, ilDBConstants::T_TEXT),
+            "object_data.type=" . $this->ilias_database->quote(DefaultInternalObjectType::CRS->value, ilDBConstants::T_TEXT),
+            "object_data_user.type=" . $this->ilias_database->quote(DefaultInternalObjectType::USR->value, ilDBConstants::T_TEXT),
             "object_reference.deleted IS NULL"
         ];
 
@@ -104,9 +104,9 @@ ORDER BY object_data.obj_id ASC,object_data_user.obj_id ASC,object_reference.ref
     private function mapCourseMemberDiff(CourseMemberDiffDto $diff, int $user_id, ilObjCourse $ilias_course) : void
     {
         $roles = [
-            LegacyInternalCourseMemberType::ADMINISTRATOR()->value => $diff->administrator_role !== null ? $diff->administrator_role : $ilias_course->getMembersObject()->isAdmin($user_id),
-            LegacyInternalCourseMemberType::TUTOR()->value         => $diff->tutor_role !== null ? $diff->tutor_role : $ilias_course->getMembersObject()->isTutor($user_id),
-            LegacyInternalCourseMemberType::MEMBER()->value        => $diff->member_role !== null ? $diff->member_role : $ilias_course->getMembersObject()->isMember($user_id)
+            InternalCourseMemberType::ADMINISTRATOR->value => $diff->administrator_role !== null ? $diff->administrator_role : $ilias_course->getMembersObject()->isAdmin($user_id),
+            InternalCourseMemberType::TUTOR->value         => $diff->tutor_role !== null ? $diff->tutor_role : $ilias_course->getMembersObject()->isTutor($user_id),
+            InternalCourseMemberType::MEMBER->value        => $diff->member_role !== null ? $diff->member_role : $ilias_course->getMembersObject()->isMember($user_id)
         ];
         if (empty($roles = array_filter($roles))) {
             throw new LogicException("Course member must have at least one role");
@@ -129,7 +129,7 @@ ORDER BY object_data.obj_id ASC,object_data_user.obj_id ASC,object_reference.ref
             //(new ilObjectGUIFactory())->getInstanceByRefId($ilias_course->getRefId())->updateLPFromStatus($user_id, $diff->passed);
         }
 
-        if ($roles[LegacyInternalCourseMemberType::ADMINISTRATOR()->value] || $roles[LegacyInternalCourseMemberType::TUTOR()->value]) {
+        if ($roles[InternalCourseMemberType::ADMINISTRATOR->value] || $roles[InternalCourseMemberType::TUTOR->value]) {
             $ilias_course->getMembersObject()->updateBlocked($user_id, false);
 
             $ilias_course->getMembersObject()->updateContact($user_id, $diff->tutorial_support !== null ? $diff->tutorial_support : $ilias_course->getMembersObject()->isContact($user_id));
@@ -157,8 +157,8 @@ ORDER BY object_data.obj_id ASC,object_data_user.obj_id ASC,object_reference.ref
             $course_member["member"] ?? false,
             $course_member["tutor"] ?? false,
             $course_member["admin"] ?? false,
-            ($learning_progress = $course_member["status"] ?: null) !== null ? ObjectLearningProgressMapping::mapInternalToExternal(LegacyInternalObjectLearningProgress::from($learning_progress))
-                : LegacyObjectLearningProgress::NOT_ATTEMPTED(),
+            ($learning_progress = $course_member["status"] ?: null) !== null ? ObjectLearningProgressMapping::mapInternalToExternal(InternalObjectLearningProgress::from($learning_progress))
+                : ObjectLearningProgress::NOT_ATTEMPTED,
             $course_member["passed"] ?? false,
             $course_member["blocked"] ?? false,
             $course_member["contact"] ?? false,

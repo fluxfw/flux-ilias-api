@@ -3,7 +3,7 @@
 namespace FluxIliasApi\Service\CronConfig;
 
 use FluxIliasApi\Adapter\CronConfig\CustomScheduleTypeCronConfig;
-use FluxIliasApi\Adapter\CronConfig\LegacyDefaultScheduleTypeCronConfig;
+use FluxIliasApi\Adapter\CronConfig\DefaultScheduleTypeCronConfig;
 use FluxIliasApi\Adapter\CronConfig\ScheduleTypeCronConfig;
 
 class ScheduleTypeCronConfigMapping
@@ -28,14 +28,14 @@ class ScheduleTypeCronConfigMapping
     private static function INTERNAL_EXTERNAL() : array
     {
         return [
-            LegacyDefaultInternalScheduleTypeCronConfig::DAILY()->value           => LegacyDefaultScheduleTypeCronConfig::DAILY()->value,
-            LegacyDefaultInternalScheduleTypeCronConfig::EVERY_X_DAYS()->value    => LegacyDefaultScheduleTypeCronConfig::EVERY_X_DAYS()->value,
-            LegacyDefaultInternalScheduleTypeCronConfig::EVERY_X_HOURS()->value   => LegacyDefaultScheduleTypeCronConfig::EVERY_X_HOURS()->value,
-            LegacyDefaultInternalScheduleTypeCronConfig::EVERY_X_MINUTES()->value => LegacyDefaultScheduleTypeCronConfig::EVERY_X_MINUTES()->value,
-            LegacyDefaultInternalScheduleTypeCronConfig::MONTHLY()->value         => LegacyDefaultScheduleTypeCronConfig::MONTHLY()->value,
-            LegacyDefaultInternalScheduleTypeCronConfig::QUARTERLY()->value       => LegacyDefaultScheduleTypeCronConfig::QUARTERLY()->value,
-            LegacyDefaultInternalScheduleTypeCronConfig::WEEKLY()->value          => LegacyDefaultScheduleTypeCronConfig::WEEKLY()->value,
-            LegacyDefaultInternalScheduleTypeCronConfig::YEARLY()->value          => LegacyDefaultScheduleTypeCronConfig::YEARLY()->value
+            DefaultInternalScheduleTypeCronConfig::DAILY->value           => DefaultScheduleTypeCronConfig::DAILY->value,
+            DefaultInternalScheduleTypeCronConfig::EVERY_X_DAYS->value    => DefaultScheduleTypeCronConfig::EVERY_X_DAYS->value,
+            DefaultInternalScheduleTypeCronConfig::EVERY_X_HOURS->value   => DefaultScheduleTypeCronConfig::EVERY_X_HOURS->value,
+            DefaultInternalScheduleTypeCronConfig::EVERY_X_MINUTES->value => DefaultScheduleTypeCronConfig::EVERY_X_MINUTES->value,
+            DefaultInternalScheduleTypeCronConfig::MONTHLY->value         => DefaultScheduleTypeCronConfig::MONTHLY->value,
+            DefaultInternalScheduleTypeCronConfig::QUARTERLY->value       => DefaultScheduleTypeCronConfig::QUARTERLY->value,
+            DefaultInternalScheduleTypeCronConfig::WEEKLY->value          => DefaultScheduleTypeCronConfig::WEEKLY->value,
+            DefaultInternalScheduleTypeCronConfig::YEARLY->value          => DefaultScheduleTypeCronConfig::YEARLY->value
         ];
     }
 }

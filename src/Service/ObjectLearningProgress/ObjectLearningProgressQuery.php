@@ -2,9 +2,9 @@
 
 namespace FluxIliasApi\Service\ObjectLearningProgress;
 
-use FluxIliasApi\Adapter\ObjectLearningProgress\LegacyObjectLearningProgress;
+use FluxIliasApi\Adapter\ObjectLearningProgress\ObjectLearningProgress;
 use FluxIliasApi\Adapter\ObjectLearningProgress\ObjectLearningProgressDto;
-use FluxIliasApi\Service\Object\LegacyDefaultInternalObjectType;
+use FluxIliasApi\Service\Object\DefaultInternalObjectType;
 use ilDBConstants;
 
 trait ObjectLearningProgressQuery
@@ -16,10 +16,10 @@ trait ObjectLearningProgressQuery
         ?int $object_ref_id = null,
         ?int $user_id = null,
         ?string $user_import_id = null,
-        ?LegacyObjectLearningProgress $learning_progress = null
+        ?ObjectLearningProgress $learning_progress = null
     ) : string {
         $wheres = [
-            "object_data_user.type=" . $this->ilias_database->quote(LegacyDefaultInternalObjectType::USR()->value, ilDBConstants::T_TEXT),
+            "object_data_user.type=" . $this->ilias_database->quote(DefaultInternalObjectType::USR->value, ilDBConstants::T_TEXT),
             "object_reference.deleted IS NULL"
         ];
 
@@ -67,8 +67,8 @@ ORDER BY object_data.obj_id ASC,object_data_user.obj_id ASC,object_reference.ref
             $object_learning_progress["usr_id"] ?: null,
             $object_learning_progress["user_import_id"] ?: null,
             ($learning_progress = $object_learning_progress["status"] ?: null) !== null
-                ? ObjectLearningProgressMapping::mapInternalToExternal(LegacyInternalObjectLearningProgress::from($learning_progress))
-                : LegacyObjectLearningProgress::NOT_ATTEMPTED()
+                ? ObjectLearningProgressMapping::mapInternalToExternal(InternalObjectLearningProgress::from($learning_progress))
+                : ObjectLearningProgress::NOT_ATTEMPTED
         );
     }
 }

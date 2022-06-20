@@ -11,7 +11,7 @@ class ObjectLearningProgressDto
         public readonly ?int $object_ref_id,
         public readonly ?int $user_id,
         public readonly ?string $user_import_id,
-        public readonly ?LegacyObjectLearningProgress $learning_progress
+        public readonly ?ObjectLearningProgress $learning_progress
     ) {
 
     }
@@ -23,7 +23,7 @@ class ObjectLearningProgressDto
         ?int $object_ref_id = null,
         ?int $user_id = null,
         ?string $user_import_id = null,
-        ?LegacyObjectLearningProgress $learning_progress = null
+        ?ObjectLearningProgress $learning_progress = null
     ) : static {
         return new static(
             $object_id,

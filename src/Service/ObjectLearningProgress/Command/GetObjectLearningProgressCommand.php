@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\ObjectLearningProgress\Command;
 
-use FluxIliasApi\Adapter\ObjectLearningProgress\LegacyObjectLearningProgress;
+use FluxIliasApi\Adapter\ObjectLearningProgress\ObjectLearningProgress;
 use FluxIliasApi\Adapter\ObjectLearningProgress\ObjectLearningProgressDto;
 use FluxIliasApi\Service\ObjectLearningProgress\ObjectLearningProgressQuery;
 use ilDBInterface;
@@ -37,7 +37,7 @@ class GetObjectLearningProgressCommand
         ?int $object_ref_id = null,
         ?int $user_id = null,
         ?string $user_import_id = null,
-        ?LegacyObjectLearningProgress $learning_progress = null
+        ?ObjectLearningProgress $learning_progress = null
     ) : array {
         return array_map([$this, "mapObjectLearningProgressDto"], $this->ilias_database->fetchAll($this->ilias_database->query($this->getObjectLearningProgressQuery(
             $object_id,

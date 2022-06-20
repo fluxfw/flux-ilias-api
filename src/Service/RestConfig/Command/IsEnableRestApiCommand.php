@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\RestConfig\Command;
 
-use FluxIliasApi\Service\Config\LegacyConfigKey;
+use FluxIliasApi\Service\Config\ConfigKey;
 use FluxIliasApi\Service\Config\Port\ConfigService;
 
 class IsEnableRestApiCommand
@@ -27,7 +27,7 @@ class IsEnableRestApiCommand
     public function isEnableRestApi() : bool
     {
         return boolval($this->config_service->getConfig(
-            LegacyConfigKey::ENABLE_REST_API()
+            ConfigKey::ENABLE_REST_API
         ));
     }
 }

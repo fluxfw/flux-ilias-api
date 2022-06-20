@@ -17,7 +17,7 @@ class CustomObjectType implements ObjectType, JsonSerializable
 
     public static function factory(string $value) : ObjectType
     {
-        return LegacyDefaultObjectType::tryFrom($value) ?? static::new(
+        return DefaultObjectType::tryFrom($value) ?? static::new(
                 $value
             );
     }

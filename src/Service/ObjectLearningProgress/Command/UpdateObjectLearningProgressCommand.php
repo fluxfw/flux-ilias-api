@@ -3,7 +3,7 @@
 namespace FluxIliasApi\Service\ObjectLearningProgress\Command;
 
 use FluxIliasApi\Adapter\Object\ObjectDto;
-use FluxIliasApi\Adapter\ObjectLearningProgress\LegacyObjectLearningProgress;
+use FluxIliasApi\Adapter\ObjectLearningProgress\ObjectLearningProgress;
 use FluxIliasApi\Adapter\ObjectLearningProgress\ObjectLearningProgressIdDto;
 use FluxIliasApi\Adapter\User\UserDto;
 use FluxIliasApi\Service\Object\Port\ObjectService;
@@ -36,7 +36,7 @@ class UpdateObjectLearningProgressCommand
     }
 
 
-    public function updateObjectLearningProgressByIdByUserId(int $id, int $user_id, LegacyObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
+    public function updateObjectLearningProgressByIdByUserId(int $id, int $user_id, ObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
     {
         return $this->updateObjectLearningProgress(
             $this->object_service->getObjectById(
@@ -51,7 +51,7 @@ class UpdateObjectLearningProgressCommand
     }
 
 
-    public function updateObjectLearningProgressByIdByUserImportId(int $id, string $user_import_id, LegacyObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
+    public function updateObjectLearningProgressByIdByUserImportId(int $id, string $user_import_id, ObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
     {
         return $this->updateObjectLearningProgress(
             $this->object_service->getObjectById(
@@ -66,7 +66,7 @@ class UpdateObjectLearningProgressCommand
     }
 
 
-    public function updateObjectLearningProgressByImportIdByUserId(string $import_id, int $user_id, LegacyObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
+    public function updateObjectLearningProgressByImportIdByUserId(string $import_id, int $user_id, ObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
     {
         return $this->updateObjectLearningProgress(
             $this->object_service->getObjectByImportId(
@@ -81,7 +81,7 @@ class UpdateObjectLearningProgressCommand
     }
 
 
-    public function updateObjectLearningProgressByImportIdByUserImportId(string $import_id, string $user_import_id, LegacyObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
+    public function updateObjectLearningProgressByImportIdByUserImportId(string $import_id, string $user_import_id, ObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
     {
         return $this->updateObjectLearningProgress(
             $this->object_service->getObjectByImportId(
@@ -96,7 +96,7 @@ class UpdateObjectLearningProgressCommand
     }
 
 
-    public function updateObjectLearningProgressByRefIdByUserId(int $ref_id, int $user_id, LegacyObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
+    public function updateObjectLearningProgressByRefIdByUserId(int $ref_id, int $user_id, ObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
     {
         return $this->updateObjectLearningProgress(
             $this->object_service->getObjectByRefId(
@@ -111,7 +111,7 @@ class UpdateObjectLearningProgressCommand
     }
 
 
-    public function updateObjectLearningProgressByRefIdByUserImportId(int $ref_id, string $user_import_id, LegacyObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
+    public function updateObjectLearningProgressByRefIdByUserImportId(int $ref_id, string $user_import_id, ObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
     {
         return $this->updateObjectLearningProgress(
             $this->object_service->getObjectByRefId(
@@ -126,7 +126,7 @@ class UpdateObjectLearningProgressCommand
     }
 
 
-    private function updateObjectLearningProgress(?ObjectDto $object, ?UserDto $user, LegacyObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
+    private function updateObjectLearningProgress(?ObjectDto $object, ?UserDto $user, ObjectLearningProgress $learning_progress) : ?ObjectLearningProgressIdDto
     {
         if ($object === null || $user === null) {
             return null;

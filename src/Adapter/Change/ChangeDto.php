@@ -7,7 +7,7 @@ class ChangeDto
 
     private function __construct(
         public readonly int $id,
-        public readonly LegacyChangeType $type,
+        public readonly ChangeType $type,
         public readonly float $time,
         public readonly int $user_id,
         public readonly ?string $user_import_id,
@@ -19,7 +19,7 @@ class ChangeDto
 
     public static function new(
         int $id,
-        LegacyChangeType $type,
+        ChangeType $type,
         float $time,
         int $user_id,
         ?string $user_import_id,

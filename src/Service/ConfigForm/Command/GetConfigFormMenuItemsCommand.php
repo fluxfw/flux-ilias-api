@@ -4,7 +4,7 @@ namespace FluxIliasApi\Service\ConfigForm\Command;
 
 use FluxIliasApi\Adapter\User\UserDto;
 use FluxIliasApi\Service\ConfigForm\Port\ConfigFormService;
-use FluxIliasApi\Service\Proxy\LegacyProxyTarget;
+use FluxIliasApi\Service\Proxy\ProxyTarget;
 use ILIAS\DI\Container;
 use ILIAS\GlobalScreen\Identification\IdentificationProviderInterface;
 use ILIAS\GlobalScreen\Scope\MainMenu\Factory\Item\Link as MainMenuLink;
@@ -35,7 +35,7 @@ class GetConfigFormMenuItemsCommand
 
     public function getConfigFormMenuItem(IdentificationProviderInterface $if, ?UserDto $user) : MainMenuLink
     {
-        return $this->ilias_dic->globalScreen()->mainBar()->link($if->identifier(LegacyProxyTarget::CONFIG()->value))
+        return $this->ilias_dic->globalScreen()->mainBar()->link($if->identifier(ProxyTarget::CONFIG->value))
             ->withParent(StandardTopItemsProvider::getInstance()->getAdministrationIdentification())
             ->withPosition(42001)
             ->withTitle("flux-ilias-rest-config")

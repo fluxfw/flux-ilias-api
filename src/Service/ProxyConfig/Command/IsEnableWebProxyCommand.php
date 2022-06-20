@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\ProxyConfig\Command;
 
-use FluxIliasApi\Service\Config\LegacyConfigKey;
+use FluxIliasApi\Service\Config\ConfigKey;
 use FluxIliasApi\Service\Config\Port\ConfigService;
 
 class IsEnableWebProxyCommand
@@ -27,7 +27,7 @@ class IsEnableWebProxyCommand
     public function isEnableWebProxy() : bool
     {
         return boolval($this->config_service->getConfig(
-            LegacyConfigKey::ENABLE_WEB_PROXY()
+            ConfigKey::ENABLE_WEB_PROXY
         ));
     }
 }

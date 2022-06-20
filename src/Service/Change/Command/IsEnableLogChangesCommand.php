@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\Change\Command;
 
-use FluxIliasApi\Service\Config\LegacyConfigKey;
+use FluxIliasApi\Service\Config\ConfigKey;
 use FluxIliasApi\Service\Config\Port\ConfigService;
 
 class IsEnableLogChangesCommand
@@ -27,7 +27,7 @@ class IsEnableLogChangesCommand
     public function isEnableLogChanges() : bool
     {
         return boolval($this->config_service->getConfig(
-            LegacyConfigKey::ENABLE_LOG_CHANGES()
+            ConfigKey::ENABLE_LOG_CHANGES
         ));
     }
 }

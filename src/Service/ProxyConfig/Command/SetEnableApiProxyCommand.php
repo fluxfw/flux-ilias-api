@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\ProxyConfig\Command;
 
-use FluxIliasApi\Service\Config\LegacyConfigKey;
+use FluxIliasApi\Service\Config\ConfigKey;
 use FluxIliasApi\Service\Config\Port\ConfigService;
 
 class SetEnableApiProxyCommand
@@ -27,7 +27,7 @@ class SetEnableApiProxyCommand
     public function setEnableApiProxy(bool $enable_api_proxy) : void
     {
         $this->config_service->setConfig(
-            LegacyConfigKey::ENABLE_API_PROXY(),
+            ConfigKey::ENABLE_API_PROXY,
             $enable_api_proxy
         );
     }

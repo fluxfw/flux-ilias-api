@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\Change\Command;
 
-use FluxIliasApi\Service\Config\LegacyConfigKey;
+use FluxIliasApi\Service\Config\ConfigKey;
 use FluxIliasApi\Service\Config\Port\ConfigService;
 
 class GetKeepChangesInsideDaysCommand
@@ -30,7 +30,7 @@ class GetKeepChangesInsideDaysCommand
     public function getKeepChangesInsideDays() : int
     {
         return intval($this->config_service->getConfig(
-                LegacyConfigKey::KEEP_CHANGES_INSIDE_DAYS()
+                ConfigKey::KEEP_CHANGES_INSIDE_DAYS
             ) ?? static::DEFAULT_VALUE);
     }
 }

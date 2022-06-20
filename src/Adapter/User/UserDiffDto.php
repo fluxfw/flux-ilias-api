@@ -14,7 +14,7 @@ class UserDiffDto
     private function __construct(
         public readonly ?string $import_id,
         public readonly ?string $external_account,
-        public readonly ?LegacyUserAuthenticationMode $authentication_mode,
+        public readonly ?UserAuthenticationMode $authentication_mode,
         public readonly ?string $login,
         public readonly ?string $password,
         public readonly ?bool $active,
@@ -25,7 +25,7 @@ class UserDiffDto
         public readonly ?string $access_limited_object_import_id,
         public readonly ?int $access_limited_object_ref_id,
         public readonly ?bool $access_limited_message,
-        public readonly ?LegacyUserGender $gender,
+        public readonly ?UserGender $gender,
         public readonly ?string $first_name,
         public readonly ?string $last_name,
         public readonly ?string $title,
@@ -36,7 +36,7 @@ class UserDiffDto
         public readonly ?string $city,
         public readonly ?string $zip_code,
         public readonly ?string $country,
-        public readonly ?LegacyUserSelectedCountry $selected_country,
+        public readonly ?UserSelectedCountry $selected_country,
         public readonly ?string $phone_office,
         public readonly ?string $phone_home,
         public readonly ?string $phone_mobile,
@@ -54,7 +54,7 @@ class UserDiffDto
         public readonly ?string $location_longitude,
         public readonly ?int $location_zoom,
         public readonly ?array $user_defined_fields,
-        public readonly ?LegacyUserLanguage $language
+        public readonly ?UserLanguage $language
     ) {
 
     }
@@ -69,7 +69,7 @@ class UserDiffDto
     public static function new(
         ?string $import_id = null,
         ?string $external_account = null,
-        ?LegacyUserAuthenticationMode $authentication_mode = null,
+        ?UserAuthenticationMode $authentication_mode = null,
         ?string $login = null,
         ?string $password = null,
         ?bool $active = null,
@@ -80,7 +80,7 @@ class UserDiffDto
         ?string $access_limited_object_import_id = null,
         ?int $access_limited_object_ref_id = null,
         ?bool $access_limited_message = null,
-        ?LegacyUserGender $gender = null,
+        ?UserGender $gender = null,
         ?string $first_name = null,
         ?string $last_name = null,
         ?string $title = null,
@@ -91,7 +91,7 @@ class UserDiffDto
         ?string $city = null,
         ?string $zip_code = null,
         ?string $country = null,
-        ?LegacyUserSelectedCountry $selected_country = null,
+        ?UserSelectedCountry $selected_country = null,
         ?string $phone_office = null,
         ?string $phone_home = null,
         ?string $phone_mobile = null,
@@ -109,7 +109,7 @@ class UserDiffDto
         ?string $location_longitude = null,
         ?int $location_zoom = null,
         ?array $user_defined_fields = null,
-        ?LegacyUserLanguage $language = null
+        ?UserLanguage $language = null
     ) : static {
         return new static(
             $import_id,
@@ -165,7 +165,7 @@ class UserDiffDto
         return static::new(
             $diff->import_id ?? null,
             $diff->external_account ?? null,
-            ($authentication_mode = $diff->authentication_mode ?? null) !== null ? LegacyUserAuthenticationMode::from($authentication_mode) : null,
+            ($authentication_mode = $diff->authentication_mode ?? null) !== null ? UserAuthenticationMode::from($authentication_mode) : null,
             $diff->login ?? null,
             $diff->password ?? null,
             $diff->active ?? null,
@@ -176,7 +176,7 @@ class UserDiffDto
             $diff->access_limited_object_import_id ?? null,
             $diff->access_limited_object_ref_id ?? null,
             $diff->access_limited_message ?? null,
-            ($gender = $diff->gender ?? null) !== null ? LegacyUserGender::from($gender) : null,
+            ($gender = $diff->gender ?? null) !== null ? UserGender::from($gender) : null,
             $diff->first_name ?? null,
             $diff->last_name ?? null,
             $diff->title ?? null,
@@ -187,7 +187,7 @@ class UserDiffDto
             $diff->city ?? null,
             $diff->zip_code ?? null,
             $diff->country ?? null,
-            ($selected_country = $diff->selected_country ?? null) !== null ? LegacyUserSelectedCountry::from($selected_country) : null,
+            ($selected_country = $diff->selected_country ?? null) !== null ? UserSelectedCountry::from($selected_country) : null,
             $diff->phone_office ?? null,
             $diff->phone_home ?? null,
             $diff->phone_mobile ?? null,
@@ -205,7 +205,7 @@ class UserDiffDto
             $diff->location_longitude ?? null,
             $diff->location_zoom ?? null,
             ($user_defined_fields = $diff->user_defined_fields ?? null) !== null ? array_map([UserDefinedFieldDto::class, "newFromObject"], $user_defined_fields) : null,
-            ($language = $diff->language ?? null) !== null ? LegacyUserLanguage::from($language) : null
+            ($language = $diff->language ?? null) !== null ? UserLanguage::from($language) : null
         );
     }
 }

@@ -3,8 +3,8 @@
 namespace FluxIliasApi\Service\OrganisationalUnitPosition;
 
 use Exception;
-use FluxIliasApi\Adapter\OrganisationalUnitPosition\LegacyOrganisationalUnitPositionCoreIdentifier;
 use FluxIliasApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionAuthorityDto;
+use FluxIliasApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionCoreIdentifier;
 use FluxIliasApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionDiffDto;
 use FluxIliasApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionDto;
 use ilDBConstants;
@@ -35,7 +35,7 @@ WHERE " . $this->ilias_database->in("position_id", $position_ids, false, ilDBCon
     }
 
 
-    private function getOrganisationalUnitPositionQuery(?int $id = null, ?LegacyOrganisationalUnitPositionCoreIdentifier $core_identifier = null) : string
+    private function getOrganisationalUnitPositionQuery(?int $id = null, ?OrganisationalUnitPositionCoreIdentifier $core_identifier = null) : string
     {
         $wheres = [];
 
@@ -107,14 +107,14 @@ ORDER BY title ASC";
             $organisational_unit_position["id"] ?: null,
             $organisational_unit_position["core_position"] ?? false,
             ($core_identifier = $organisational_unit_position["core_identifier"] ?: null) !== null
-                ? OrganisationalUnitPositionCoreIdentifierMapping::mapInternalToExternal(LegacyInternalOrganisationalUnitPositionCoreIdentifier::from($core_identifier)) : null,
+                ? OrganisationalUnitPositionCoreIdentifierMapping::mapInternalToExternal(InternalOrganisationalUnitPositionCoreIdentifier::from($core_identifier)) : null,
             $organisational_unit_position["title"] ?? "",
             $organisational_unit_position["description"] ?? "",
             $authorities !== null ? array_values(array_map(fn(array $authority) : OrganisationalUnitPositionAuthorityDto => OrganisationalUnitPositionAuthorityDto::new(
                 $authority["id"] ?: null,
                 $authority["over"] ?: null,
                 ($scope_in = $authority["scope"] ?: null) !== null
-                    ? OrganisationalUnitPositionAuthorityScopeInMapping::mapInternalToExternal(LegacyInternalOrganisationalUnitPositionAuthorityScopeIn::from($scope_in)) : null
+                    ? OrganisationalUnitPositionAuthorityScopeInMapping::mapInternalToExternal(InternalOrganisationalUnitPositionAuthorityScopeIn::from($scope_in)) : null
             ), array_filter($authorities, fn(array $authority) : bool => $authority["position_id"] === $organisational_unit_position["id"]))) : null
         );
     }

@@ -2,9 +2,10 @@
 
 namespace FluxIliasApi\Adapter\CustomMetadata;
 
-use FluxIliasApi\Libs\FluxLegacyEnum\Backed\StringBackedEnumValue;
-
-interface CustomMetadataFieldType extends StringBackedEnumValue
+/**
+ * @property-read string $value
+ */
+interface CustomMetadataFieldType
 {
 
 }

@@ -3,12 +3,12 @@
 namespace FluxIliasApi\Service\User;
 
 use Exception;
-use FluxIliasApi\Adapter\User\LegacyUserAuthenticationMode;
-use FluxIliasApi\Adapter\User\LegacyUserGender;
+use FluxIliasApi\Adapter\User\UserAuthenticationMode;
 use FluxIliasApi\Adapter\User\UserDefinedFieldDto;
 use FluxIliasApi\Adapter\User\UserDiffDto;
 use FluxIliasApi\Adapter\User\UserDto;
-use FluxIliasApi\Service\Object\LegacyDefaultInternalObjectType;
+use FluxIliasApi\Adapter\User\UserGender;
+use FluxIliasApi\Service\Object\DefaultInternalObjectType;
 use ilDBConstants;
 use ilObjUser;
 use ilUserDefinedFields;
@@ -71,7 +71,7 @@ WHERE " . $this->ilias_database->in("usr_id", $ids, false, ilDBConstants::T_INTE
     private function getUserQuery(?int $id = null, ?string $import_id = null) : string
     {
         $wheres = [
-            "type=" . $this->ilias_database->quote(LegacyDefaultInternalObjectType::USR()->value, ilDBConstants::T_TEXT)
+            "type=" . $this->ilias_database->quote(DefaultInternalObjectType::USR->value, ilDBConstants::T_TEXT)
         ];
 
         if ($id !== null) {
@@ -360,8 +360,8 @@ WHERE session_id=" . $this->ilias_database->quote($session_id,
             $user["usr_id"] ?: null,
             $user["import_id"] ?: null,
             $user["ext_account"] ?: null,
-            ($authentication_mode = $user["auth_mode"] ?: null) !== null ? UserAuthenticationModeMapping::mapInternalToExternal(LegacyInternalUserAuthenticationMode::from($authentication_mode))
-                : LegacyUserAuthenticationMode::DEFAULT(),
+            ($authentication_mode = $user["auth_mode"] ?: null) !== null ? UserAuthenticationModeMapping::mapInternalToExternal(InternalUserAuthenticationMode::from($authentication_mode))
+                : UserAuthenticationMode::DEFAULT,
             $user["login"] ?? "",
             strtotime($user["create_date"] ?? null) ?: null,
             strtotime($user["last_update"] ?? null) ?: null,
@@ -380,7 +380,7 @@ WHERE session_id=" . $this->ilias_database->quote($session_id,
             ),
             $user["time_limit_owner"] ?: null,
             $user["time_limit_message"] ?? false,
-            ($gender = $user["gender"] ?: null) !== null ? UserGenderMapping::mapInternalToExternal(LegacyInternalUserGender::from($gender)) : LegacyUserGender::NONE(),
+            ($gender = $user["gender"] ?: null) !== null ? UserGenderMapping::mapInternalToExternal(InternalUserGender::from($gender)) : UserGender::NONE,
             $user["firstname"] ?? "",
             $user["lastname"] ?? "",
             $user["title"] ?? "",
@@ -396,7 +396,7 @@ WHERE session_id=" . $this->ilias_database->quote($session_id,
             $user["city"] ?? "",
             $user["zipcode"] ?? "",
             $user["country"] ?? "",
-            ($selected_country = $user["sel_country"] ?: null) !== null ? UserSelectedCountryMapping::mapInternalToExternal(LegacyInternalUserSelectedCountry::from($selected_country)) : null,
+            ($selected_country = $user["sel_country"] ?: null) !== null ? UserSelectedCountryMapping::mapInternalToExternal(InternalUserSelectedCountry::from($selected_country)) : null,
             $user["phone_office"] ?? "",
             $user["phone_home"] ?? "",
             $user["phone_mobile"] ?? "",
@@ -424,7 +424,7 @@ WHERE session_id=" . $this->ilias_database->quote($session_id,
                 $user_defined_field["field_name"] ?? null,
                 $user_defined_field["value"] ?? null
             ), array_filter($user_defined_fields, fn(array $user_defined_field) : bool => $user_defined_field["usr_id"] === $user["usr_id"]))) : null,
-            ($language = $getUserPreference("language") ?: null) !== null ? UserLanguageMapping::mapInternalToExternal(LegacyInternalUserLanguage::from($language)) : null
+            ($language = $getUserPreference("language") ?: null) !== null ? UserLanguageMapping::mapInternalToExternal(InternalUserLanguage::from($language)) : null
         );
     }
 

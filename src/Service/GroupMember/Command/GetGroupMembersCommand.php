@@ -3,7 +3,7 @@
 namespace FluxIliasApi\Service\GroupMember\Command;
 
 use FluxIliasApi\Adapter\GroupMember\GroupMemberDto;
-use FluxIliasApi\Adapter\ObjectLearningProgress\LegacyObjectLearningProgress;
+use FluxIliasApi\Adapter\ObjectLearningProgress\ObjectLearningProgress;
 use FluxIliasApi\Service\GroupMember\GroupMemberQuery;
 use ilDBInterface;
 
@@ -39,7 +39,7 @@ class GetGroupMembersCommand
         ?string $user_import_id = null,
         ?bool $member_role = null,
         ?bool $administrator_role = null,
-        ?LegacyObjectLearningProgress $learning_progress = null,
+        ?ObjectLearningProgress $learning_progress = null,
         ?bool $tutorial_support = null,
         ?bool $notification = null
     ) : array {

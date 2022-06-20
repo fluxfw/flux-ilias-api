@@ -3,6 +3,7 @@
 namespace FluxIliasApi\Adapter\Cron\Change;
 
 use FluxIliasApi\Service\Change\Port\ChangeService;
+use FluxIliasApi\Service\CronConfig\DefaultInternalScheduleTypeCronConfig;
 use ilCronJob;
 use ilCronJobResult;
 
@@ -30,7 +31,7 @@ class TransferChangesCronJob extends ilCronJob
 
     public function getDefaultScheduleType() : int
     {
-        return static::SCHEDULE_TYPE_IN_MINUTES;
+        return DefaultInternalScheduleTypeCronConfig::EVERY_X_MINUTES->value;
     }
 
 

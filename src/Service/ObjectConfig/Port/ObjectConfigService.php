@@ -6,7 +6,7 @@ use FluxIliasApi\Service\ObjectConfig\Command\DeleteObjectConfigCommand;
 use FluxIliasApi\Service\ObjectConfig\Command\DeleteObjectConfigsCommand;
 use FluxIliasApi\Service\ObjectConfig\Command\GetObjectConfigCommand;
 use FluxIliasApi\Service\ObjectConfig\Command\SetObjectConfigCommand;
-use FluxIliasApi\Service\ObjectConfig\LegacyObjectConfigKey;
+use FluxIliasApi\Service\ObjectConfig\ObjectConfigKey;
 use ilDBInterface;
 
 class ObjectConfigService
@@ -46,7 +46,7 @@ class ObjectConfigService
     }
 
 
-    public function getObjectConfig(int $id, LegacyObjectConfigKey $key) : mixed
+    public function getObjectConfig(int $id, ObjectConfigKey $key) : mixed
     {
         return GetObjectConfigCommand::new()
             ->getObjectConfig(
@@ -56,7 +56,7 @@ class ObjectConfigService
     }
 
 
-    public function setObjectConfig(int $id, LegacyObjectConfigKey $key, mixed $value) : void
+    public function setObjectConfig(int $id, ObjectConfigKey $key, mixed $value) : void
     {
         SetObjectConfigCommand::new()
             ->setObjectConfig(

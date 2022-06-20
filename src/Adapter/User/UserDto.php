@@ -15,7 +15,7 @@ class UserDto
         public readonly ?int $id,
         public readonly ?string $import_id,
         public readonly ?string $external_account,
-        public readonly ?LegacyUserAuthenticationMode $authentication_mode,
+        public readonly ?UserAuthenticationMode $authentication_mode,
         public readonly ?string $login,
         public readonly ?int $created_on,
         public readonly ?int $updated_on,
@@ -30,7 +30,7 @@ class UserDto
         public readonly ?string $access_limited_object_import_id,
         public readonly ?int $access_limited_object_ref_id,
         public readonly ?bool $access_limited_message,
-        public readonly ?LegacyUserGender $gender,
+        public readonly ?UserGender $gender,
         public readonly ?string $first_name,
         public readonly ?string $last_name,
         public readonly ?string $title,
@@ -42,7 +42,7 @@ class UserDto
         public readonly ?string $city,
         public readonly ?string $zip_code,
         public readonly ?string $country,
-        public readonly ?LegacyUserSelectedCountry $selected_country,
+        public readonly ?UserSelectedCountry $selected_country,
         public readonly ?string $phone_office,
         public readonly ?string $phone_home,
         public readonly ?string $phone_mobile,
@@ -60,7 +60,7 @@ class UserDto
         public readonly ?string $location_longitude,
         public readonly ?int $location_zoom,
         public readonly ?array $user_defined_fields,
-        public readonly ?LegacyUserLanguage $language
+        public readonly ?UserLanguage $language
     ) {
 
     }
@@ -76,7 +76,7 @@ class UserDto
         ?int $id = null,
         ?string $import_id = null,
         ?string $external_account = null,
-        ?LegacyUserAuthenticationMode $authentication_mode = null,
+        ?UserAuthenticationMode $authentication_mode = null,
         ?string $login = null,
         ?int $created_on = null,
         ?int $updated_on = null,
@@ -91,7 +91,7 @@ class UserDto
         ?string $access_limited_object_import_id = null,
         ?int $access_limited_object_ref_id = null,
         ?bool $access_limited_message = null,
-        ?LegacyUserGender $gender = null,
+        ?UserGender $gender = null,
         ?string $first_name = null,
         ?string $last_name = null,
         ?string $title = null,
@@ -103,7 +103,7 @@ class UserDto
         ?string $city = null,
         ?string $zip_code = null,
         ?string $country = null,
-        ?LegacyUserSelectedCountry $selected_country = null,
+        ?UserSelectedCountry $selected_country = null,
         ?string $phone_office = null,
         ?string $phone_home = null,
         ?string $phone_mobile = null,
@@ -121,7 +121,7 @@ class UserDto
         ?string $location_longitude = null,
         ?int $location_zoom = null,
         ?array $user_defined_fields = null,
-        ?LegacyUserLanguage $language = null
+        ?UserLanguage $language = null
     ) : static {
         return new static(
             $id,

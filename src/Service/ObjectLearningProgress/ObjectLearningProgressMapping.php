@@ -2,30 +2,30 @@
 
 namespace FluxIliasApi\Service\ObjectLearningProgress;
 
-use FluxIliasApi\Adapter\ObjectLearningProgress\LegacyObjectLearningProgress;
+use FluxIliasApi\Adapter\ObjectLearningProgress\ObjectLearningProgress;
 
 class ObjectLearningProgressMapping
 {
 
-    public static function mapExternalToInternal(LegacyObjectLearningProgress $learning_progress) : LegacyInternalObjectLearningProgress
+    public static function mapExternalToInternal(ObjectLearningProgress $learning_progress) : InternalObjectLearningProgress
     {
-        return LegacyInternalObjectLearningProgress::from(array_flip(static::INTERNAL_EXTERNAL())[$learning_progress->value] ?? substr($learning_progress->value, 1));
+        return InternalObjectLearningProgress::from(array_flip(static::INTERNAL_EXTERNAL())[$learning_progress->value] ?? substr($learning_progress->value, 1));
     }
 
 
-    public static function mapInternalToExternal(LegacyInternalObjectLearningProgress $learning_progress) : LegacyObjectLearningProgress
+    public static function mapInternalToExternal(InternalObjectLearningProgress $learning_progress) : ObjectLearningProgress
     {
-        return LegacyObjectLearningProgress::from(static::INTERNAL_EXTERNAL()[$learning_progress->value] ?? "_" . $learning_progress->value);
+        return ObjectLearningProgress::from(static::INTERNAL_EXTERNAL()[$learning_progress->value] ?? "_" . $learning_progress->value);
     }
 
 
     private static function INTERNAL_EXTERNAL() : array
     {
         return [
-            LegacyInternalObjectLearningProgress::COMPLETED()->value     => LegacyObjectLearningProgress::COMPLETED()->value,
-            LegacyInternalObjectLearningProgress::FAILED()->value        => LegacyObjectLearningProgress::FAILED()->value,
-            LegacyInternalObjectLearningProgress::IN_PROGRESS()->value   => LegacyObjectLearningProgress::IN_PROGRESS()->value,
-            LegacyInternalObjectLearningProgress::NOT_ATTEMPTED()->value => LegacyObjectLearningProgress::NOT_ATTEMPTED()->value
+            InternalObjectLearningProgress::COMPLETED->value     => ObjectLearningProgress::COMPLETED->value,
+            InternalObjectLearningProgress::FAILED->value        => ObjectLearningProgress::FAILED->value,
+            InternalObjectLearningProgress::IN_PROGRESS->value   => ObjectLearningProgress::IN_PROGRESS->value,
+            InternalObjectLearningProgress::NOT_ATTEMPTED->value => ObjectLearningProgress::NOT_ATTEMPTED->value
         ];
     }
 }
