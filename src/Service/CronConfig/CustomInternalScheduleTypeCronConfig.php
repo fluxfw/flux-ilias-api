@@ -8,6 +8,12 @@ use LogicException;
 class CustomInternalScheduleTypeCronConfig implements InternalScheduleTypeCronConfig, JsonSerializable
 {
 
+    /**
+     * @var static[]
+     */
+    private static array $cases;
+
+
     private function __construct(
         private readonly int $_value
     ) {
@@ -26,9 +32,11 @@ class CustomInternalScheduleTypeCronConfig implements InternalScheduleTypeCronCo
     private static function new(
         int $value
     ) : static {
-        return new static(
+        static::$cases ??= [];
+
+        return (static::$cases[$value] ??= new static(
             $value
-        );
+        ));
     }
 
 
