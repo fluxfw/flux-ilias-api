@@ -15,16 +15,18 @@ RUN change-namespace /code/flux-rest-api FluxRestApi FluxIliasApi\\Libs\\FluxRes
 
 FROM alpine:latest AS build
 
-COPY --from=build_namespaces /code/flux-autoload-api /flux-ilias-api/libs/flux-autoload-api
-COPY --from=build_namespaces /code/flux-rest-api /flux-ilias-api/libs/flux-rest-api
-COPY . /flux-ilias-api
+COPY --from=build_namespaces /code/flux-autoload-api /build/flux-ilias-api/libs/flux-autoload-api
+COPY --from=build_namespaces /code/flux-rest-api /build/flux-ilias-api/libs/flux-rest-api
+COPY . /build/flux-ilias-api
+
+RUN (cd /build && tar -czf flux-ilias-api.tar.gz flux-ilias-api)
 
 FROM scratch
 
 LABEL org.opencontainers.image.source="https://github.com/flux-eco/flux-ilias-api"
 LABEL maintainer="fluxlabs <support@fluxlabs.ch> (https://fluxlabs.ch)"
 
-COPY --from=build /flux-ilias-api /flux-ilias-api
+COPY --from=build /build /
 
 ARG COMMIT_SHA
 LABEL org.opencontainers.image.revision="$COMMIT_SHA"
