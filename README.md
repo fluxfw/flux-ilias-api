@@ -4,18 +4,58 @@ ILIAS Api
 
 ## Installation
 
+Hint: Use `latest` as `%tag%` (or omit it) for get the latest build
+
+### Non-Composer
+
 ```dockerfile
-COPY --from=docker-registry.fluxpublisher.ch/flux-ilias-api/api:latest /flux-ilias-api /%path%/libs/flux-ilias-api
+COPY --from=docker-registry.fluxpublisher.ch/flux-ilias-api/api:%tag% /flux-ilias-api /%path%/libs/flux-ilias-api
 ```
 
-## Usage
+or
+
+```dockerfile
+RUN (mkdir -p /%path%/libs/flux-ilias-api && cd /%path%/libs/flux-ilias-api && wget -O - https://docker-registry.fluxpublisher.ch/api/get-build-archive/flux-ilias-api/api.tar.gz?tag=%tag% | tar -xz --strip-components=1)
+```
+
+or
+
+Download https://docker-registry.fluxpublisher.ch/api/get-build-archive/flux-ilias-api/api.tar.gz?tag=%tag% and extract it to `/%path%/libs/flux-ilias-api`
+
+Hint: If you use `wget` without pipe use `--content-disposition` to get the correct file name
+
+#### Usage
 
 ```php
 require_once __DIR__ . "/%path%/libs/flux-ilias-api/autoload.php";
 ```
 
-```php
-IliasApi::new();
+### Composer
+
+```json
+{
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "flux/flux-ilias-api",
+                "version": "%tag%",
+                "dist": {
+                    "url": "https://docker-registry.fluxpublisher.ch/api/get-build-archive/flux-ilias-api/api.tar.gz?tag=%tag%",
+                    "type": "tar"
+                },
+                "autoload": {
+                    "files": [
+                        "autoload.php"
+                    ]
+                }
+            }
+        }
+    ],
+    "require": {
+        "flux/flux-ilias-api": "*"
+    }
+}
 ```
 
 ## Example
