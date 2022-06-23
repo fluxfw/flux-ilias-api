@@ -37,22 +37,18 @@ class GetWebProxyMenuItemsCommand
 
         $i = 0;
         foreach ($this->proxy_config_service->getWebProxyMap() as $web_proxy_map) {
+            $symbol = $web_proxy_map->menu_icon_url !== null
+                ? $this->ilias_dic->ui()->factory()->symbol()->icon()->custom($web_proxy_map->menu_icon_url, $web_proxy_map->getMenuTitleWithDefault())
+                : $this->ilias_dic->ui()->factory()->symbol()->icon()->standard(Standard::WEBR, $web_proxy_map->getMenuTitleWithDefault());
+            if (method_exists($symbol, "withIsOutlined")) {
+                $symbol = $symbol->withIsOutlined(true);
+            }
+
             $menu_items[] = $this->ilias_dic->globalScreen()->mainBar()->link($if->identifier(ProxyTarget::WEB_PROXY->value . $web_proxy_map->target_key))
                 ->withPosition(42100 + $i)
                 ->withTitle($web_proxy_map->getMenuTitleWithDefault())
                 ->withAction($web_proxy_map->getRewriteUrlWithDefault())
-                ->withSymbol($web_proxy_map->menu_icon_url !== null
-                    ? $this->ilias_dic->ui()
-                        ->factory()
-                        ->symbol()
-                        ->icon()
-                        ->custom($web_proxy_map->menu_icon_url, $web_proxy_map->getMenuTitleWithDefault())
-                    : $this->ilias_dic->ui()
-                        ->factory()
-                        ->symbol()
-                        ->icon()
-                        ->standard(Standard::WEBR, $web_proxy_map->getMenuTitleWithDefault())
-                        ->withIsOutlined(true))
+                ->withSymbol($symbol)
                 ->withAvailableCallable(fn() : bool => $this->proxy_config_service->isEnableWebProxy() && $web_proxy_map->menu_item)
                 ->withVisibilityCallable(fn() : bool => $web_proxy_map->visible_public_menu_item || $user !== null);
         }
