@@ -35,12 +35,17 @@ class GetConfigFormMenuItemsCommand
 
     public function getConfigFormMenuItem(IdentificationProviderInterface $if, ?UserDto $user) : MainMenuLink
     {
+        $symbol = $this->ilias_dic->ui()->factory()->symbol()->icon()->standard(Standard::ADM, "flux-ilias-rest-config");
+        if (method_exists($symbol, "withIsOutlined")) {
+            $symbol = $symbol->withIsOutlined(true);
+        }
+
         return $this->ilias_dic->globalScreen()->mainBar()->link($if->identifier(ProxyTarget::CONFIG->value))
             ->withParent(StandardTopItemsProvider::getInstance()->getAdministrationIdentification())
             ->withPosition(42001)
             ->withTitle("flux-ilias-rest-config")
             ->withAction("flux-ilias-rest-config")
-            ->withSymbol($this->ilias_dic->ui()->factory()->symbol()->icon()->standard(Standard::ADM, "flux-ilias-rest-config")->withIsOutlined(true))
+            ->withSymbol($symbol)
             ->withVisibilityCallable(fn() : bool => $this->config_form_service->hasAccessToConfigForm(
                 $user
             ));

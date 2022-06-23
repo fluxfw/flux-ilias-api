@@ -4,6 +4,7 @@
 
 Changes:
 
+- Fix ILIAS 8 has no outlined menu icons anymore
 - Locked flux-namespace-changer version
 - Remove create-gitlab-artifact-from-build
 
