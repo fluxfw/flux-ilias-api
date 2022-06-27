@@ -2,11 +2,11 @@
 
 namespace FluxIliasApi\Service\Change\Port;
 
-use FluxIliasApi\Adapter\Change\ChangeDto;
 use FluxIliasApi\Adapter\Cron\Change\PurgeChangesCronJob;
 use FluxIliasApi\Adapter\Cron\Change\TransferChangesCronJob;
 use FluxIliasApi\Adapter\CronConfig\ScheduleTypeCronConfig;
-use FluxIliasApi\Adapter\User\UserDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Change\ChangeDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\User\UserDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Api\RestApi;
 use FluxIliasApi\Service\Category\Port\CategoryService;
 use FluxIliasApi\Service\Change\Command\CreateChangeDatabaseCommand;

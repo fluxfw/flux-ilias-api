@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\ConfigForm\Command;
 
-use FluxIliasApi\Adapter\User\UserDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\User\UserDto;
 
 class HasAccessToConfigFormCommand
 {

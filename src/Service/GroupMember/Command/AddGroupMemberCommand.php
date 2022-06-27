@@ -2,10 +2,10 @@
 
 namespace FluxIliasApi\Service\GroupMember\Command;
 
-use FluxIliasApi\Adapter\Group\GroupDto;
-use FluxIliasApi\Adapter\GroupMember\GroupMemberDiffDto;
-use FluxIliasApi\Adapter\GroupMember\GroupMemberIdDto;
-use FluxIliasApi\Adapter\User\UserDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Group\GroupDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\GroupMember\GroupMemberDiffDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\GroupMember\GroupMemberIdDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\User\UserDto;
 use FluxIliasApi\Service\Group\GroupQuery;
 use FluxIliasApi\Service\Group\Port\GroupService;
 use FluxIliasApi\Service\GroupMember\GroupMemberQuery;

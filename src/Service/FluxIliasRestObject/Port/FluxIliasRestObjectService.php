@@ -3,10 +3,10 @@
 namespace FluxIliasApi\Service\FluxIliasRestObject\Port;
 
 use FluxIliasApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectApiProxyMapDto;
-use FluxIliasApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectDiffDto;
-use FluxIliasApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectDto;
 use FluxIliasApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectWebProxyMapDto;
-use FluxIliasApi\Adapter\Object\ObjectIdDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectDiffDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Object\ObjectIdDto;
 use FluxIliasApi\Service\Config\Port\ConfigService;
 use FluxIliasApi\Service\FluxIliasRestObject\Command\CreateFluxIliasRestObjectCommand;
 use FluxIliasApi\Service\FluxIliasRestObject\Command\GetFluxIliasRestObjectApiProxyMapByKeyCommand;

@@ -2,8 +2,8 @@
 
 namespace FluxIliasApi\Service\User\Command;
 
-use FluxIliasApi\Adapter\User\UserDto;
-use FluxIliasApi\Adapter\User\UserIdDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\User\UserDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\User\UserIdDto;
 use FluxIliasApi\Service\User\Port\UserService;
 use FluxIliasApi\Service\User\UserQuery;
 use ilObjUser;

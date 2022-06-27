@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\Role\Command;
 
-use FluxIliasApi\Adapter\Object\ObjectDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Object\ObjectDto;
 use FluxIliasApi\Service\Object\Port\ObjectService;
 
 class GetGlobalRoleObjectCommand

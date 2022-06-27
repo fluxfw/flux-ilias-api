@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\OrganisationalUnitPosition;
 
-use FluxIliasApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionCoreIdentifier;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionCoreIdentifier;
 
 class OrganisationalUnitPositionCoreIdentifierMapping
 {

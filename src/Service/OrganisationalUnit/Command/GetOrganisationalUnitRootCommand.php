@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\OrganisationalUnit\Command;
 
-use FluxIliasApi\Adapter\OrganisationalUnit\OrganisationalUnitDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\OrganisationalUnit\OrganisationalUnitDto;
 use FluxIliasApi\Service\OrganisationalUnit\Port\OrganisationalUnitService;
 use ilObjOrgUnit;
 

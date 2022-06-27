@@ -2,10 +2,10 @@
 
 namespace FluxIliasApi\Service\CourseMember\Command;
 
-use FluxIliasApi\Adapter\Course\CourseDto;
-use FluxIliasApi\Adapter\CourseMember\CourseMemberDiffDto;
-use FluxIliasApi\Adapter\CourseMember\CourseMemberIdDto;
-use FluxIliasApi\Adapter\User\UserDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Course\CourseDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\CourseMember\CourseMemberDiffDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\CourseMember\CourseMemberIdDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\User\UserDto;
 use FluxIliasApi\Service\Course\CourseQuery;
 use FluxIliasApi\Service\Course\Port\CourseService;
 use FluxIliasApi\Service\CourseMember\CourseMemberQuery;

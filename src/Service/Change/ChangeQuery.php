@@ -2,8 +2,8 @@
 
 namespace FluxIliasApi\Service\Change;
 
-use FluxIliasApi\Adapter\Change\ChangeDto;
-use FluxIliasApi\Adapter\Change\ChangeType;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Change\ChangeDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Change\ChangeType;
 use ilDBConstants;
 
 trait ChangeQuery

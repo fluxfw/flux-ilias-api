@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\OrganisationalUnitStaff;
 
-use FluxIliasApi\Adapter\OrganisationalUnitStaff\OrganisationalUnitStaffDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\OrganisationalUnitStaff\OrganisationalUnitStaffDto;
 use FluxIliasApi\Service\Object\DefaultInternalObjectType;
 use ilDBConstants;
 use ilOrgUnitUserAssignment;

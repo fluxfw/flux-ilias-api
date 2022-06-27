@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\UserRole\Port;
 
-use FluxIliasApi\Adapter\UserRole\UserRoleDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\UserRole\UserRoleDto;
 use FluxIliasApi\Service\Role\Port\RoleService;
 use FluxIliasApi\Service\User\Port\UserService;
 use FluxIliasApi\Service\UserRole\Command\AddUserRoleCommand;

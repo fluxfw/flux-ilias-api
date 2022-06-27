@@ -2,8 +2,8 @@
 
 namespace FluxIliasApi\Service\Role;
 
-use FluxIliasApi\Adapter\Role\RoleDiffDto;
-use FluxIliasApi\Adapter\Role\RoleDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Role\RoleDiffDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Role\RoleDto;
 use FluxIliasApi\Service\Object\DefaultInternalObjectType;
 use ilDBConstants;
 use ilObjRole;

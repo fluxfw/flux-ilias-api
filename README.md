@@ -1,4 +1,4 @@
-# flux-api
+# flux-ilias-api
 
 ILIAS Api
 

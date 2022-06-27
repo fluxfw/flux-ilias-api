@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\Group\Command;
 
-use FluxIliasApi\Adapter\Group\GroupDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Group\GroupDto;
 use FluxIliasApi\Service\Group\GroupQuery;
 use FluxIliasApi\Service\Object\ObjectQuery;
 use ilDBInterface;

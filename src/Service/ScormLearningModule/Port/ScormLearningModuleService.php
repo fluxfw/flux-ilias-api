@@ -2,9 +2,9 @@
 
 namespace FluxIliasApi\Service\ScormLearningModule\Port;
 
-use FluxIliasApi\Adapter\Object\ObjectIdDto;
-use FluxIliasApi\Adapter\ScormLearningModule\ScormLearningModuleDiffDto;
-use FluxIliasApi\Adapter\ScormLearningModule\ScormLearningModuleDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Object\ObjectIdDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\ScormLearningModule\ScormLearningModuleDiffDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\ScormLearningModule\ScormLearningModuleDto;
 use FluxIliasApi\Service\Object\Port\ObjectService;
 use FluxIliasApi\Service\ScormLearningModule\Command\CreateScormLearningModuleCommand;
 use FluxIliasApi\Service\ScormLearningModule\Command\GetScormLearningModuleCommand;

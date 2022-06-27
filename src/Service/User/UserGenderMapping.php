@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\User;
 
-use FluxIliasApi\Adapter\User\UserGender;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\User\UserGender;
 
 class UserGenderMapping
 {

@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\UserFavourite\Port;
 
-use FluxIliasApi\Adapter\UserFavourite\UserFavouriteDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\UserFavourite\UserFavouriteDto;
 use FluxIliasApi\Service\Object\Port\ObjectService;
 use FluxIliasApi\Service\User\Port\UserService;
 use FluxIliasApi\Service\UserFavourite\Command\AddUserFavouriteCommand;

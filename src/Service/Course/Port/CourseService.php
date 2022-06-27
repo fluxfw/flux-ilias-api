@@ -2,9 +2,9 @@
 
 namespace FluxIliasApi\Service\Course\Port;
 
-use FluxIliasApi\Adapter\Course\CourseDiffDto;
-use FluxIliasApi\Adapter\Course\CourseDto;
-use FluxIliasApi\Adapter\Object\ObjectIdDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Course\CourseDiffDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Course\CourseDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Object\ObjectIdDto;
 use FluxIliasApi\Service\Course\Command\CreateCourseCommand;
 use FluxIliasApi\Service\Course\Command\GetCourseCommand;
 use FluxIliasApi\Service\Course\Command\GetCoursesCommand;

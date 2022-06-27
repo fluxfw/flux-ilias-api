@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\UserFavourite\Command;
 
-use FluxIliasApi\Adapter\UserFavourite\UserFavouriteDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\UserFavourite\UserFavouriteDto;
 use FluxIliasApi\Service\UserFavourite\UserFavouriteQuery;
 use ilDBInterface;
 
