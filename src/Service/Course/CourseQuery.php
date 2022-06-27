@@ -2,9 +2,9 @@
 
 namespace FluxIliasApi\Service\Course;
 
-use FluxIliasApi\Adapter\Course\CourseDiffDto;
-use FluxIliasApi\Adapter\Course\CourseDto;
-use FluxIliasApi\Adapter\Course\CourseMailToMembersType;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Course\CourseDiffDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Course\CourseDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Course\CourseMailToMembersType;
 use FluxIliasApi\Service\Object\CustomInternalObjectType;
 use FluxIliasApi\Service\Object\DefaultInternalObjectType;
 use ilDate;

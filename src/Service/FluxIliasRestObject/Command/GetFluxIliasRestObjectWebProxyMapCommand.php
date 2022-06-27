@@ -2,8 +2,8 @@
 
 namespace FluxIliasApi\Service\FluxIliasRestObject\Command;
 
-use FluxIliasApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectDto;
 use FluxIliasApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectWebProxyMapDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectDto;
 use FluxIliasApi\Service\FluxIliasRestObject\Port\FluxIliasRestObjectService;
 
 class GetFluxIliasRestObjectWebProxyMapCommand

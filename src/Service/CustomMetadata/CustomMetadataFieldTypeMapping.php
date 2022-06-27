@@ -2,9 +2,9 @@
 
 namespace FluxIliasApi\Service\CustomMetadata;
 
-use FluxIliasApi\Adapter\CustomMetadata\CustomCustomMetadataFieldType;
-use FluxIliasApi\Adapter\CustomMetadata\CustomMetadataFieldType;
-use FluxIliasApi\Adapter\CustomMetadata\DefaultCustomMetadataFieldType;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\CustomMetadata\CustomCustomMetadataFieldType;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\CustomMetadata\CustomMetadataFieldType;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\CustomMetadata\DefaultCustomMetadataFieldType;
 
 class CustomMetadataFieldTypeMapping
 {

@@ -2,8 +2,8 @@
 
 namespace FluxIliasApi\Service\CourseMember\Command;
 
-use FluxIliasApi\Adapter\CourseMember\CourseMemberDto;
-use FluxIliasApi\Adapter\ObjectLearningProgress\ObjectLearningProgress;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\CourseMember\CourseMemberDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\ObjectLearningProgress\ObjectLearningProgress;
 use FluxIliasApi\Service\CourseMember\CourseMemberQuery;
 use ilDBInterface;
 

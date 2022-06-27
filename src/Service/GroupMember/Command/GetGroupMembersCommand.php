@@ -2,8 +2,8 @@
 
 namespace FluxIliasApi\Service\GroupMember\Command;
 
-use FluxIliasApi\Adapter\GroupMember\GroupMemberDto;
-use FluxIliasApi\Adapter\ObjectLearningProgress\ObjectLearningProgress;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\GroupMember\GroupMemberDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\ObjectLearningProgress\ObjectLearningProgress;
 use FluxIliasApi\Service\GroupMember\GroupMemberQuery;
 use ilDBInterface;
 

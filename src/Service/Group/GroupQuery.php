@@ -2,8 +2,8 @@
 
 namespace FluxIliasApi\Service\Group;
 
-use FluxIliasApi\Adapter\Group\GroupDiffDto;
-use FluxIliasApi\Adapter\Group\GroupDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Group\GroupDiffDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Group\GroupDto;
 use FluxIliasApi\Service\Object\CustomInternalObjectType;
 use FluxIliasApi\Service\Object\DefaultInternalObjectType;
 use ilDBConstants;

@@ -3,10 +3,10 @@
 namespace FluxIliasApi\Service\OrganisationalUnitPosition;
 
 use Exception;
-use FluxIliasApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionAuthorityDto;
-use FluxIliasApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionCoreIdentifier;
-use FluxIliasApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionDiffDto;
-use FluxIliasApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionAuthorityDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionCoreIdentifier;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionDiffDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionDto;
 use ilDBConstants;
 use ilOrgUnitAuthority;
 use ilOrgUnitPosition;

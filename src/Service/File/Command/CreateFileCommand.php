@@ -2,9 +2,9 @@
 
 namespace FluxIliasApi\Service\File\Command;
 
-use FluxIliasApi\Adapter\File\FileDiffDto;
-use FluxIliasApi\Adapter\Object\ObjectDto;
-use FluxIliasApi\Adapter\Object\ObjectIdDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\File\FileDiffDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Object\ObjectDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Object\ObjectIdDto;
 use FluxIliasApi\Service\File\FileQuery;
 use FluxIliasApi\Service\Object\Port\ObjectService;
 

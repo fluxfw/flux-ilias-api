@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\User;
 
-use FluxIliasApi\Adapter\User\UserAuthenticationMode;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\User\UserAuthenticationMode;
 
 class UserAuthenticationModeMapping
 {

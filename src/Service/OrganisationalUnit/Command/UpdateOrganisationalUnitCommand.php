@@ -2,9 +2,9 @@
 
 namespace FluxIliasApi\Service\OrganisationalUnit\Command;
 
-use FluxIliasApi\Adapter\OrganisationalUnit\OrganisationalUnitDiffDto;
-use FluxIliasApi\Adapter\OrganisationalUnit\OrganisationalUnitDto;
-use FluxIliasApi\Adapter\OrganisationalUnit\OrganisationalUnitIdDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\OrganisationalUnit\OrganisationalUnitDiffDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\OrganisationalUnit\OrganisationalUnitDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\OrganisationalUnit\OrganisationalUnitIdDto;
 use FluxIliasApi\Service\OrganisationalUnit\OrganisationalUnitQuery;
 use FluxIliasApi\Service\OrganisationalUnit\Port\OrganisationalUnitService;
 

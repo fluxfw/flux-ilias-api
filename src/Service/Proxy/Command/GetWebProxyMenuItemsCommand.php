@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\Proxy\Command;
 
-use FluxIliasApi\Adapter\User\UserDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\User\UserDto;
 use FluxIliasApi\Service\Proxy\ProxyTarget;
 use FluxIliasApi\Service\ProxyConfig\Port\ProxyConfigService;
 use ILIAS\DI\Container;

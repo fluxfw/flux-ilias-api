@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\FluxIliasRestObject\Command;
 
-use FluxIliasApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\FluxIliasRestObject\FluxIliasRestObjectDto;
 use FluxIliasApi\Service\FluxIliasRestObject\Port\FluxIliasRestObjectService;
 use FluxIliasApi\Service\ObjectConfig\ObjectConfigKey;
 

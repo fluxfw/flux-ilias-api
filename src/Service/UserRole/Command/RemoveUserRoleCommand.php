@@ -2,9 +2,9 @@
 
 namespace FluxIliasApi\Service\UserRole\Command;
 
-use FluxIliasApi\Adapter\Role\RoleDto;
-use FluxIliasApi\Adapter\User\UserDto;
-use FluxIliasApi\Adapter\UserRole\UserRoleDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Role\RoleDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\User\UserDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\UserRole\UserRoleDto;
 use FluxIliasApi\Service\Role\Port\RoleService;
 use FluxIliasApi\Service\User\Port\UserService;
 use ILIAS\DI\RBACServices;

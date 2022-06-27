@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\Object\Command;
 
-use FluxIliasApi\Adapter\Object\ObjectDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Object\ObjectDto;
 use FluxIliasApi\Service\CustomMetadata\CustomMetadataQuery;
 use FluxIliasApi\Service\Object\ObjectQuery;
 use ilDBInterface;

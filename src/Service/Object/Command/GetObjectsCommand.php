@@ -2,8 +2,8 @@
 
 namespace FluxIliasApi\Service\Object\Command;
 
-use FluxIliasApi\Adapter\Object\ObjectDto;
-use FluxIliasApi\Adapter\Object\ObjectType;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Object\ObjectDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Object\ObjectType;
 use FluxIliasApi\Service\Object\ObjectQuery;
 use ilDBInterface;
 

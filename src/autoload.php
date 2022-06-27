@@ -3,6 +3,7 @@
 namespace FluxIliasApi;
 
 require_once __DIR__ . "/../libs/flux-autoload-api/autoload.php";
+require_once __DIR__ . "/../libs/flux-ilias-base-api/autoload.php";
 require_once __DIR__ . "/../libs/flux-rest-api/autoload.php";
 
 use FluxIliasApi\Libs\FluxAutoloadApi\Adapter\Autoload\Psr4Autoload;

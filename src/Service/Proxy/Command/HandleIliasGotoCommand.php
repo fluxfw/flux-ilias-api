@@ -5,7 +5,7 @@ namespace FluxIliasApi\Service\Proxy\Command;
 use FluxIliasApi\Adapter\Authorization\ConfigForm\ConfigFormAuthorization;
 use FluxIliasApi\Adapter\Route\ConfigForm\ConfigFormRouteCollector;
 use FluxIliasApi\Adapter\Route\FluxIliasRestObjectForm\FluxIliasRestObjectConfigFormRouteCollector;
-use FluxIliasApi\Adapter\User\UserDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\User\UserDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Api\RestApi;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Authorization\Authorization;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\BodyDto;

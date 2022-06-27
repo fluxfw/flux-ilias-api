@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\Change\Command;
 
-use FluxIliasApi\Adapter\Change\ChangeDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Change\ChangeDto;
 use FluxIliasApi\Service\Change\ChangeQuery;
 use ilDBInterface;
 

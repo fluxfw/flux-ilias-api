@@ -2,10 +2,10 @@
 
 namespace FluxIliasApi\Service\Role\Port;
 
-use FluxIliasApi\Adapter\Object\ObjectDto;
-use FluxIliasApi\Adapter\Object\ObjectIdDto;
-use FluxIliasApi\Adapter\Role\RoleDiffDto;
-use FluxIliasApi\Adapter\Role\RoleDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Object\ObjectDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Object\ObjectIdDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Role\RoleDiffDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Role\RoleDto;
 use FluxIliasApi\Service\Object\Port\ObjectService;
 use FluxIliasApi\Service\Role\Command\CreateRoleCommand;
 use FluxIliasApi\Service\Role\Command\GetGlobalRoleObjectCommand;

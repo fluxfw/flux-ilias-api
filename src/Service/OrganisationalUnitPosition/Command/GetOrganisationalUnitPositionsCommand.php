@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\OrganisationalUnitPosition\Command;
 
-use FluxIliasApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionDto;
 use FluxIliasApi\Service\OrganisationalUnitPosition\OrganisationalUnitPositionQuery;
 use ilDBInterface;
 

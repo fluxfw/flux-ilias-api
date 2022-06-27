@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\Proxy\Port;
 
-use FluxIliasApi\Adapter\User\UserDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\User\UserDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Api\RestApi;
 use FluxIliasApi\Service\ConfigForm\Port\ConfigFormService;
 use FluxIliasApi\Service\FluxIliasRestObject\Port\FluxIliasRestObjectService;

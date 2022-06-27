@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\ScormLearningModule;
 
-use FluxIliasApi\Adapter\ScormLearningModule\ScormLearningModuleType;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\ScormLearningModule\ScormLearningModuleType;
 
 class ScormLearningModuleTypeMapping
 {

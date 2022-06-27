@@ -2,9 +2,9 @@
 
 namespace FluxIliasApi\Service\User\Port;
 
-use FluxIliasApi\Adapter\User\UserDiffDto;
-use FluxIliasApi\Adapter\User\UserDto;
-use FluxIliasApi\Adapter\User\UserIdDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\User\UserDiffDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\User\UserDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\User\UserIdDto;
 use FluxIliasApi\Service\Object\Port\ObjectService;
 use FluxIliasApi\Service\User\Command\CreateUserCommand;
 use FluxIliasApi\Service\User\Command\GetCurrentUserCommand;

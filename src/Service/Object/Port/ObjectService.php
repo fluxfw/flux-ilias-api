@@ -2,10 +2,10 @@
 
 namespace FluxIliasApi\Service\Object\Port;
 
-use FluxIliasApi\Adapter\Object\ObjectDiffDto;
-use FluxIliasApi\Adapter\Object\ObjectDto;
-use FluxIliasApi\Adapter\Object\ObjectIdDto;
-use FluxIliasApi\Adapter\Object\ObjectType;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Object\ObjectDiffDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Object\ObjectDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Object\ObjectIdDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Object\ObjectType;
 use FluxIliasApi\Service\Object\Command\CloneObjectCommand;
 use FluxIliasApi\Service\Object\Command\CreateObjectCommand;
 use FluxIliasApi\Service\Object\Command\DeleteObjectCommand;

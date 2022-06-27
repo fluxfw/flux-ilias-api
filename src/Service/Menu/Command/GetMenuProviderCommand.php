@@ -3,7 +3,7 @@
 namespace FluxIliasApi\Service\Menu\Command;
 
 use FluxIliasApi\Adapter\Menu\MenuProvider;
-use FluxIliasApi\Adapter\User\UserDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\User\UserDto;
 use FluxIliasApi\Service\ConfigForm\Port\ConfigFormService;
 use FluxIliasApi\Service\Proxy\Port\ProxyService;
 use ILIAS\DI\Container;

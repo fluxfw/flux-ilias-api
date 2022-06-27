@@ -2,7 +2,7 @@
 
 namespace FluxIliasApi\Service\Course\Command;
 
-use FluxIliasApi\Adapter\Course\CourseDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Course\CourseDto;
 use FluxIliasApi\Service\Course\CourseQuery;
 use FluxIliasApi\Service\Object\ObjectQuery;
 use ilDBInterface;

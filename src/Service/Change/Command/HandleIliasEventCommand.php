@@ -2,13 +2,13 @@
 
 namespace FluxIliasApi\Service\Change\Command;
 
-use FluxIliasApi\Adapter\Change\ChangeType;
-use FluxIliasApi\Adapter\CourseMember\CourseMemberIdDto;
-use FluxIliasApi\Adapter\GroupMember\GroupMemberIdDto;
-use FluxIliasApi\Adapter\ObjectLearningProgress\ObjectLearningProgressIdDto;
-use FluxIliasApi\Adapter\OrganisationalUnitStaff\OrganisationalUnitStaffDto;
-use FluxIliasApi\Adapter\User\UserDto;
-use FluxIliasApi\Adapter\UserRole\UserRoleDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Change\ChangeType;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\CourseMember\CourseMemberIdDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\GroupMember\GroupMemberIdDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\ObjectLearningProgress\ObjectLearningProgressIdDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\OrganisationalUnitStaff\OrganisationalUnitStaffDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\User\UserDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\UserRole\UserRoleDto;
 use FluxIliasApi\Service\Category\Port\CategoryService;
 use FluxIliasApi\Service\Change\ChangeQuery;
 use FluxIliasApi\Service\Change\Port\ChangeService;

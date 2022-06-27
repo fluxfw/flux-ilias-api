@@ -2,9 +2,9 @@
 
 namespace FluxIliasApi\Service\Object;
 
-use FluxIliasApi\Adapter\Object\CustomObjectType;
-use FluxIliasApi\Adapter\Object\DefaultObjectType;
-use FluxIliasApi\Adapter\Object\ObjectType;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Object\CustomObjectType;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Object\DefaultObjectType;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Object\ObjectType;
 
 class ObjectTypeMapping
 {

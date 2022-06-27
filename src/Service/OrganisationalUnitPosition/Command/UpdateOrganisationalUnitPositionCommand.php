@@ -2,9 +2,9 @@
 
 namespace FluxIliasApi\Service\OrganisationalUnitPosition\Command;
 
-use FluxIliasApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionDiffDto;
-use FluxIliasApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionDto;
-use FluxIliasApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionIdDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionDiffDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionIdDto;
 use FluxIliasApi\Service\OrganisationalUnitPosition\OrganisationalUnitPositionQuery;
 use FluxIliasApi\Service\OrganisationalUnitPosition\Port\OrganisationalUnitPositionService;
 

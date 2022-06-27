@@ -2,8 +2,8 @@
 
 namespace FluxIliasApi\Service\OrganisationalUnitPosition\Command;
 
-use FluxIliasApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionCoreIdentifier;
-use FluxIliasApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionCoreIdentifier;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionDto;
 use FluxIliasApi\Service\OrganisationalUnitPosition\OrganisationalUnitPositionQuery;
 use ilDBInterface;
 use LogicException;
