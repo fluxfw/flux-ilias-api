@@ -11,6 +11,18 @@ Get build:
 - Docker image: `docker-registry.fluxpublisher.ch/flux-ilias-api/api:latest`
 - Archive: https://docker-registry.fluxpublisher.ch/api/get-build-archive/flux-ilias-api/api.tar.gz?tag=latest
 
+## v2022-06-29-1
+
+Changes:
+
+- Fix missing pass Content-Type header in api proxy
+- makeRequest changes
+
+Get build:
+
+- Docker image: `docker-registry.fluxpublisher.ch/flux-ilias-api/api:v2022-06-29-1`
+- Archive: https://docker-registry.fluxpublisher.ch/api/get-build-archive/flux-ilias-api/api.tar.gz?tag=v2022-06-29-1
+
 ## v2022-06-27-2
 
 Changes:
