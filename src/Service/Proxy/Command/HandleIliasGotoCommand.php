@@ -238,8 +238,11 @@ class HandleIliasGotoCommand
                     "X-Flux-Ilias-Api-User-Id"          => $user->id,
                     "X-Flux-Ilias-Api-User-Import-Id"   => $user->import_id ?? ""
                 ] + array_filter($request->headers, fn(string $key) : bool => in_array($target_key, [
-                    DefaultHeaderKey::ACCEPT->value
+                    DefaultHeaderKey::ACCEPT->value,
+                    DefaultHeaderKey::CONTENT_TYPE->value
                 ]), ARRAY_FILTER_USE_KEY),
+                null,
+                null,
                 true,
                 false,
                 true,
@@ -249,7 +252,7 @@ class HandleIliasGotoCommand
 
         $this->rest_api->handleDefaultResponse(
             ServerRawResponseDto::new(
-                $response->body,
+                $response->raw_body,
                 $response->status,
                 array_filter($response->headers, fn(string $key) : bool => in_array($target_key, [
                     DefaultHeaderKey::CONTENT_TYPE->value
@@ -334,8 +337,11 @@ class HandleIliasGotoCommand
                     "X-Flux-Ilias-Api-User-Id"          => $user->id,
                     "X-Flux-Ilias-Api-User-Import-Id"   => $user->import_id ?? ""
                 ] + array_filter($request->headers, fn(string $key) : bool => in_array($key, [
-                    DefaultHeaderKey::ACCEPT->value
+                    DefaultHeaderKey::ACCEPT->value,
+                    DefaultHeaderKey::CONTENT_TYPE->value
                 ]), ARRAY_FILTER_USE_KEY),
+                null,
+                null,
                 true,
                 false,
                 true,
@@ -345,7 +351,7 @@ class HandleIliasGotoCommand
 
         $this->rest_api->handleDefaultResponse(
             ServerRawResponseDto::new(
-                $response->body,
+                $response->raw_body,
                 $response->status,
                 array_filter($response->headers, fn(string $key) : bool => in_array($key, [
                     DefaultHeaderKey::CONTENT_TYPE->value

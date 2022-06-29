@@ -3,7 +3,7 @@
 namespace FluxIliasApi\Service\Change\Command;
 
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Api\RestApi;
-use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\Type\DefaultBodyType;
+use FluxIliasApi\Libs\FluxRestApi\Adapter\Body\JsonBodyDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Client\ClientRequestDto;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Header\DefaultHeaderKey;
 use FluxIliasApi\Libs\FluxRestApi\Adapter\Method\DefaultMethod;
@@ -55,11 +55,14 @@ class TransferChangesCommand
                 $this->change_service->getTransferChangesPostUrl(),
                 DefaultMethod::POST,
                 null,
-                json_encode($changes, JSON_UNESCAPED_SLASHES),
+                null,
                 [
-                    DefaultHeaderKey::CONTENT_TYPE->value => DefaultBodyType::JSON->value,
-                    DefaultHeaderKey::USER_AGENT->value   => "flux-ilias-api"
+                    DefaultHeaderKey::USER_AGENT->value => "flux-ilias-api"
                 ],
+                JsonBodyDto::new(
+                    $changes
+                ),
+                null,
                 false,
                 true,
                 false,

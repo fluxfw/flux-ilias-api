@@ -74,6 +74,6 @@ class WebProxyMapDto
 
     public function getRewriteUrlWithDefault() : string
     {
-        return $this->rewrite_url ?? "/flux-ilias-rest-web-proxy/" . $this->target_key;
+        return $this->rewrite_url ?? "/flux-ilias-rest-web-proxy/" . rawurlencode($this->target_key);
     }
 }
