@@ -6,7 +6,7 @@ use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Permission\Permission;
 use FluxIliasApi\Service\Permission\PermissionMapping;
 use ilAccessHandler;
 
-class HasAccessInObjectCommand
+class HasAccessByRefIdByUserIdCommand
 {
 
     private function __construct(
@@ -25,7 +25,7 @@ class HasAccessInObjectCommand
     }
 
 
-    public function hasAccessInObject(int $ref_id, int $user_id, Permission $permission) : bool
+    public function hasAccessByRefIdByUserId(int $ref_id, int $user_id, Permission $permission) : bool
     {
         return $this->ilias_access->checkAccessOfUser($user_id, PermissionMapping::mapExternalToInternal($permission)->value, "", $ref_id);
     }

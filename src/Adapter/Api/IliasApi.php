@@ -1692,10 +1692,10 @@ class IliasApi
     }
 
 
-    public function hasAccessInObject(int $ref_id, int $user_id, Permission $permission) : bool
+    public function hasAccessByRefIdByUserId(int $ref_id, int $user_id, Permission $permission) : bool
     {
         return $this->getObjectService()
-            ->hasAccessInObject(
+            ->hasAccessByRefIdByUserId(
                 $ref_id,
                 $user_id,
                 $permission

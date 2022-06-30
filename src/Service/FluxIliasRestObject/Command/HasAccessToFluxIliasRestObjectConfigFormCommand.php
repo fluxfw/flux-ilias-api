@@ -26,7 +26,7 @@ class HasAccessToFluxIliasRestObjectConfigFormCommand
 
     public function hasAccessToFluxIliasRestObjectConfigForm(int $ref_id, int $user_id) : bool
     {
-        return $this->object_service->hasAccessInObject(
+        return $this->object_service->hasAccessByRefIdByUserId(
             $ref_id,
             $user_id,
             DefaultPermission::EDIT_SETTINGS
