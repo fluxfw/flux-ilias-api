@@ -15,7 +15,7 @@ use FluxIliasApi\Service\Object\Command\GetObjectCommand;
 use FluxIliasApi\Service\Object\Command\GetObjectsCommand;
 use FluxIliasApi\Service\Object\Command\GetPathCommand;
 use FluxIliasApi\Service\Object\Command\GetRootObjectCommand;
-use FluxIliasApi\Service\Object\Command\HasAccessInObjectCommand;
+use FluxIliasApi\Service\Object\Command\HasAccessByRefIdByUserIdCommand;
 use FluxIliasApi\Service\Object\Command\LinkObjectCommand;
 use FluxIliasApi\Service\Object\Command\MoveObjectCommand;
 use FluxIliasApi\Service\Object\Command\UpdateObjectCommand;
@@ -453,12 +453,12 @@ class ObjectService
     }
 
 
-    public function hasAccessInObject(int $ref_id, int $user_id, Permission $permission) : bool
+    public function hasAccessByRefIdByUserId(int $ref_id, int $user_id, Permission $permission) : bool
     {
-        return HasAccessInObjectCommand::new(
+        return HasAccessByRefIdByUserIdCommand::new(
             $this->ilias_access
         )
-            ->hasAccessInObject(
+            ->hasAccessByRefIdByUserId(
                 $ref_id,
                 $user_id,
                 $permission
