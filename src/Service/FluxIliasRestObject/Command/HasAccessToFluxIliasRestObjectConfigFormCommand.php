@@ -2,29 +2,34 @@
 
 namespace FluxIliasApi\Service\FluxIliasRestObject\Command;
 
-use ilAccessHandler;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Permission\DefaultPermission;
+use FluxIliasApi\Service\Object\Port\ObjectService;
 
 class HasAccessToFluxIliasRestObjectConfigFormCommand
 {
 
     private function __construct(
-        private readonly ilAccessHandler $ilias_access
+        private readonly ObjectService $object_service
     ) {
 
     }
 
 
     public static function new(
-        ilAccessHandler $ilias_access
+        ObjectService $object_service
     ) : static {
         return new static(
-            $ilias_access
+            $object_service
         );
     }
 
 
     public function hasAccessToFluxIliasRestObjectConfigForm(int $ref_id, int $user_id) : bool
     {
-        return $this->ilias_access->checkAccessOfUser($user_id, "write", "", $ref_id);
+        return $this->object_service->hasAccessInObject(
+            $ref_id,
+            $user_id,
+            DefaultPermission::EDIT_SETTINGS
+        );
     }
 }
