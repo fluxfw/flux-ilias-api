@@ -6,6 +6,7 @@ use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Object\ObjectDiffDto;
 use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Object\ObjectDto;
 use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Object\ObjectIdDto;
 use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Object\ObjectType;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Permission\Permission;
 use FluxIliasApi\Service\Object\Command\CloneObjectCommand;
 use FluxIliasApi\Service\Object\Command\CreateObjectCommand;
 use FluxIliasApi\Service\Object\Command\DeleteObjectCommand;
@@ -14,9 +15,11 @@ use FluxIliasApi\Service\Object\Command\GetObjectCommand;
 use FluxIliasApi\Service\Object\Command\GetObjectsCommand;
 use FluxIliasApi\Service\Object\Command\GetPathCommand;
 use FluxIliasApi\Service\Object\Command\GetRootObjectCommand;
+use FluxIliasApi\Service\Object\Command\HasAccessInObjectCommand;
 use FluxIliasApi\Service\Object\Command\LinkObjectCommand;
 use FluxIliasApi\Service\Object\Command\MoveObjectCommand;
 use FluxIliasApi\Service\Object\Command\UpdateObjectCommand;
+use ilAccessHandler;
 use ilDBInterface;
 use ilObjectDefinition;
 use ilObjUser;
@@ -29,7 +32,8 @@ class ObjectService
         private readonly ilDBInterface $ilias_database,
         private readonly ilTree $ilias_tree,
         private readonly ilObjUser $ilias_user,
-        private readonly ilObjectDefinition $ilias_object_definition
+        private readonly ilObjectDefinition $ilias_object_definition,
+        private readonly ilAccessHandler $ilias_access
     ) {
 
     }
@@ -39,13 +43,15 @@ class ObjectService
         ilDBInterface $ilias_database,
         ilTree $ilias_tree,
         ilObjUser $ilias_user,
-        ilObjectDefinition $ilias_object_definition
+        ilObjectDefinition $ilias_object_definition,
+        ilAccessHandler $ilias_access
     ) : static {
         return new static(
             $ilias_database,
             $ilias_tree,
             $ilias_user,
-            $ilias_object_definition
+            $ilias_object_definition,
+            $ilias_access
         );
     }
 
@@ -444,6 +450,19 @@ class ObjectService
             $this
         )
             ->getRootObject();
+    }
+
+
+    public function hasAccessInObject(int $ref_id, int $user_id, Permission $permission) : bool
+    {
+        return HasAccessInObjectCommand::new(
+            $this->ilias_access
+        )
+            ->hasAccessInObject(
+                $ref_id,
+                $user_id,
+                $permission
+            );
     }
 
 

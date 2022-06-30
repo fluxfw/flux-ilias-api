@@ -43,7 +43,6 @@ use FluxIliasApi\Service\FluxIliasRestObject\Command\StoreFluxIliasRestObjectCon
 use FluxIliasApi\Service\FluxIliasRestObject\Command\UpdateFluxIliasRestObjectCommand;
 use FluxIliasApi\Service\Object\Port\ObjectService;
 use FluxIliasApi\Service\ObjectConfig\Port\ObjectConfigService;
-use ilAccessHandler;
 use ilDBInterface;
 
 class FluxIliasRestObjectService
@@ -53,8 +52,7 @@ class FluxIliasRestObjectService
         private readonly ConfigService $config_service,
         private readonly ObjectService $object_service,
         private readonly ObjectConfigService $object_config_service,
-        private readonly ilDBInterface $ilias_database,
-        private readonly ilAccessHandler $ilias_access
+        private readonly ilDBInterface $ilias_database
     ) {
 
     }
@@ -64,15 +62,13 @@ class FluxIliasRestObjectService
         ConfigService $config_service,
         ObjectService $object_service,
         ObjectConfigService $object_config_service,
-        ilDBInterface $ilias_database,
-        ilAccessHandler $ilias_access
+        ilDBInterface $ilias_database
     ) : static {
         return new static(
             $config_service,
             $object_service,
             $object_config_service,
-            $ilias_database,
-            $ilias_access
+            $ilias_database
         );
     }
 
@@ -380,7 +376,7 @@ class FluxIliasRestObjectService
     public function hasAccessToFluxIliasRestObjectConfigForm(int $ref_id, int $user_id) : bool
     {
         return HasAccessToFluxIliasRestObjectConfigFormCommand::new(
-            $this->ilias_access
+            $this->object_service
         )
             ->hasAccessToFluxIliasRestObjectConfigForm(
                 $ref_id,
@@ -392,7 +388,7 @@ class FluxIliasRestObjectService
     public function hasAccessToFluxIliasRestObjectProxy(int $ref_id, int $user_id) : bool
     {
         return HasAccessToFluxIliasRestObjectProxyCommand::new(
-            $this->ilias_access
+            $this->object_service
         )
             ->hasAccessToFluxIliasRestObjectProxy(
                 $ref_id,

@@ -38,6 +38,7 @@ use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\OrganisationalUnitPosition\Organi
 use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionDto;
 use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\OrganisationalUnitPosition\OrganisationalUnitPositionIdDto;
 use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\OrganisationalUnitStaff\OrganisationalUnitStaffDto;
+use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Permission\Permission;
 use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Role\RoleDiffDto;
 use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\Role\RoleDto;
 use FluxIliasApi\Libs\FluxIliasBaseApi\Adapter\ScormLearningModule\ScormLearningModuleDiffDto;
@@ -1691,6 +1692,17 @@ class IliasApi
     }
 
 
+    public function hasAccessInObject(int $ref_id, int $user_id, Permission $permission) : bool
+    {
+        return $this->getObjectService()
+            ->hasAccessInObject(
+                $ref_id,
+                $user_id,
+                $permission
+            );
+    }
+
+
     public function installHelperPlugin() : void
     {
         $this->getSetupService()
@@ -2869,8 +2881,7 @@ class IliasApi
             $this->getConfigService(),
             $this->getObjectService(),
             $this->getObjectConfigService(),
-            $this->getIliasDatabase(),
-            $this->getIliasAccess()
+            $this->getIliasDatabase()
         );
     }
 
@@ -3014,7 +3025,8 @@ class IliasApi
             $this->getIliasDatabase(),
             $this->getIliasTree(),
             $this->getIliasUser(),
-            $this->getIliasObjectDefinition()
+            $this->getIliasObjectDefinition(),
+            $this->getIliasAccess()
         );
     }
 
