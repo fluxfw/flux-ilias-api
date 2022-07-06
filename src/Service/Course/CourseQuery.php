@@ -242,10 +242,12 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
             $course["parent_import_id"] ?: null,
             $course["parent_ref_id"] ?: null,
             $this->getObjectUrl(
-                $course["ref_id"] ?: null, $type
+                $course["ref_id"] ?: null,
+                $type
             ),
             $this->getObjectIconUrl(
-                $course["obj_id"] ?: null, $type
+                $course["obj_id"] ?: null,
+                $type
             ),
             $course["title"] ?? "",
             $course["description"] ?? "",

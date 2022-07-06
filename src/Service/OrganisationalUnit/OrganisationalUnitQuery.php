@@ -93,7 +93,8 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
             $organisational_unit["parent_external_id"] ?? "",
             $organisational_unit["parent_ref_id"] ?: null,
             $this->getObjectUrl(
-                $organisational_unit["ref_id"] ?: null, $type
+                $organisational_unit["ref_id"] ?: null,
+                $type
             ),
             $organisational_unit["title"] ?? "",
             $organisational_unit["description"] ?? "",
