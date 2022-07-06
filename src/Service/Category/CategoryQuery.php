@@ -100,10 +100,12 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
             $category["parent_import_id"] ?: null,
             $category["parent_ref_id"] ?: null,
             $this->getObjectUrl(
-                $category["ref_id"] ?: null, $type
+                $category["ref_id"] ?: null,
+                $type
             ),
             $this->getObjectIconUrl(
-                $category["obj_id"] ?: null, $type
+                $category["obj_id"] ?: null,
+                $type
             ),
             $category["title"] ?? "",
             $category["description"] ?? "",

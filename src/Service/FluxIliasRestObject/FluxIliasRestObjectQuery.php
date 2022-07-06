@@ -123,7 +123,8 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
                 $object["obj_id"] ?: null
             ),
             $this->getObjectIconUrl(
-                $object["obj_id"] ?: null, $type
+                $object["obj_id"] ?: null,
+                $type
             ),
             $object["title"] ?? "",
             $object["description"] ?? "",

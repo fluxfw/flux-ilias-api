@@ -101,13 +101,15 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
             $file["parent_import_id"] ?: null,
             $file["parent_ref_id"] ?: null,
             $this->getObjectUrl(
-                $file["ref_id"] ?: null, $type
+                $file["ref_id"] ?: null,
+                $type
             ),
             $this->getFileDownloadUrl(
                 $file["ref_id"] ?: null
             ),
             $this->getObjectIconUrl(
-                $file["obj_id"] ?: null, $type
+                $file["obj_id"] ?: null,
+                $type
             ),
             $file["title"] ?? "",
             $file["description"] ?? "",

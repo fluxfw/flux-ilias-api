@@ -240,10 +240,12 @@ ORDER BY object_reference.ref_id ASC";
             $object["parent_import_id"] ?: null,
             $object["parent_ref_id"] ?: null,
             $this->getObjectUrl(
-                $object["ref_id"] ?: null, $type
+                $object["ref_id"] ?: null,
+                $type
             ),
             $this->getObjectIconUrl(
-                $object["obj_id"] ?: null, $type
+                $object["obj_id"] ?: null,
+                $type
             ),
             !($object["offline"] ?? null),
             $object["title"] ?? "",
