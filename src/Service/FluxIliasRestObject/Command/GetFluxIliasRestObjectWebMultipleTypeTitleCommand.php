@@ -3,7 +3,6 @@
 namespace FluxIliasApi\Service\FluxIliasRestObject\Command;
 
 use FluxIliasApi\Service\FluxIliasRestObject\Port\FluxIliasRestObjectService;
-use ilUtil;
 
 class GetFluxIliasRestObjectWebMultipleTypeTitleCommand
 {

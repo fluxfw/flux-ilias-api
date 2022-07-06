@@ -10,11 +10,7 @@ use FluxIliasApi\Service\ProxyConfig\Command\GetApiProxyMapCommand;
 use FluxIliasApi\Service\ProxyConfig\Command\GetWebProxyIframeHeightOffsetCommand;
 use FluxIliasApi\Service\ProxyConfig\Command\GetWebProxyMapByKeyCommand;
 use FluxIliasApi\Service\ProxyConfig\Command\GetWebProxyMapCommand;
-use FluxIliasApi\Service\ProxyConfig\Command\IsEnableApiProxyCommand;
-use FluxIliasApi\Service\ProxyConfig\Command\IsEnableWebProxyCommand;
 use FluxIliasApi\Service\ProxyConfig\Command\SetApiProxyMapCommand;
-use FluxIliasApi\Service\ProxyConfig\Command\SetEnableApiProxyCommand;
-use FluxIliasApi\Service\ProxyConfig\Command\SetEnableWebProxyCommand;
 use FluxIliasApi\Service\ProxyConfig\Command\SetWebProxyIframeHeightOffsetCommand;
 use FluxIliasApi\Service\ProxyConfig\Command\SetWebProxyMapCommand;
 
@@ -92,24 +88,6 @@ class ProxyConfigService
     }
 
 
-    public function isEnableApiProxy() : bool
-    {
-        return IsEnableApiProxyCommand::new(
-            $this->config_service
-        )
-            ->isEnableApiProxy();
-    }
-
-
-    public function isEnableWebProxy() : bool
-    {
-        return IsEnableWebProxyCommand::new(
-            $this->config_service
-        )
-            ->isEnableWebProxy();
-    }
-
-
     /**
      * @param ApiProxyMapDto[] $api_proxy_map
      */
@@ -120,28 +98,6 @@ class ProxyConfigService
         )
             ->setApiProxyMap(
                 $api_proxy_map
-            );
-    }
-
-
-    public function setEnableApiProxy(bool $enable_api_proxy) : void
-    {
-        SetEnableApiProxyCommand::new(
-            $this->config_service
-        )
-            ->setEnableApiProxy(
-                $enable_api_proxy
-            );
-    }
-
-
-    public function setEnableWebProxy(bool $enable_web_proxy) : void
-    {
-        SetEnableWebProxyCommand::new(
-            $this->config_service
-        )
-            ->setEnableWebProxy(
-                $enable_web_proxy
             );
     }
 

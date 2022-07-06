@@ -89,7 +89,7 @@ ORDER BY object_data.title ASC,object_data.create_date ASC,object_reference.ref_
         if ($diff->api_proxy_map_key !== null) {
             $this->flux_ilias_rest_object_service->setFluxIliasRestObjectApiProxyMapKey(
                 $ilias_flux_ilias_rest_object->getId(),
-                $diff->api_proxy_map_key
+                $diff->api_proxy_map_key ?: null
             );
         }
     }

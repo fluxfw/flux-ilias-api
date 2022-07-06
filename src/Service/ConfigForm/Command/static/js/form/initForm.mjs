@@ -10,12 +10,10 @@ export function initForm(form_template_el, action, values) {
     const schedule_template_el = form_el.querySelector("[data-schedule-template]");
     schedule_template_el.remove();
 
-    form_el.elements.enable_api_proxy.checked = values.enable_api_proxy;
     form_el.elements.enable_log_changes.checked = values.enable_log_changes;
     form_el.elements.enable_purge_changes.checked = values.enable_purge_changes;
     form_el.elements.enable_rest_api.checked = values.enable_rest_api;
     form_el.elements.enable_transfer_changes.checked = values.enable_transfer_changes;
-    form_el.elements.enable_web_proxy.checked = values.enable_web_proxy;
     form_el.elements.flux_ilias_rest_object_default_icon_url.value = values.flux_ilias_rest_object_default_icon_url;
     form_el.elements.flux_ilias_rest_object_multiple_type_title.value = values.flux_ilias_rest_object_multiple_type_title;
     form_el.elements.flux_ilias_rest_object_type_title.value = values.flux_ilias_rest_object_type_title;

@@ -6,12 +6,10 @@ enum ConfigKey: string
 {
 
     case API_PROXY_MAP = "api_proxy_map";
-    case ENABLE_API_PROXY = "enable_api_proxy";
     case ENABLE_LOG_CHANGES = "enable_log_changes";
     case ENABLE_PURGE_CHANGES = "enable_purge_changes";
     case ENABLE_REST_API = "enable_rest_api";
     case ENABLE_TRANSFER_CHANGES = "enable_transfer_changes";
-    case ENABLE_WEB_PROXY = "enable_web_proxy";
     case FLUX_ILIAS_REST_OBJECT_API_PROXY_MAPS = "flux_ilias_rest_object_api_proxy_maps";
     case FLUX_ILIAS_REST_OBJECT_DEFAULT_ICON_URL = "flux_ilias_rest_object_default_icon_url";
     case FLUX_ILIAS_REST_OBJECT_MULTIPLE_TYPE_TITLE = "flux_ilias_rest_object_multiple_type_title";
