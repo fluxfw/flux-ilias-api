@@ -47,10 +47,6 @@ class StoreConfigFormValuesCommand
             array_map([ApiProxyMapDto::class, "newFromObject"], (array) ($values->{ConfigKey::API_PROXY_MAP->value} ?? null))
         );
 
-        $this->proxy_config_service->setEnableApiProxy(
-            boolval($values->{ConfigKey::ENABLE_API_PROXY->value} ?? null)
-        );
-
         $this->change_service->setEnableLogChanges(
             boolval($values->{ConfigKey::ENABLE_LOG_CHANGES->value} ?? null)
         );
@@ -65,10 +61,6 @@ class StoreConfigFormValuesCommand
 
         $this->change_service->setEnableTransferChanges(
             boolval($values->{ConfigKey::ENABLE_TRANSFER_CHANGES->value} ?? null)
-        );
-
-        $this->proxy_config_service->setEnableWebProxy(
-            boolval($values->{ConfigKey::ENABLE_WEB_PROXY->value} ?? null)
         );
 
         $this->flux_ilias_rest_object_service->setFluxIliasRestObjectApiProxyMaps(

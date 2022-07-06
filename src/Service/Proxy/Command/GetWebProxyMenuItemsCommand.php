@@ -49,7 +49,7 @@ class GetWebProxyMenuItemsCommand
                 ->withTitle($web_proxy_map->getMenuTitleWithDefault())
                 ->withAction($web_proxy_map->getRewriteUrlWithDefault())
                 ->withSymbol($symbol)
-                ->withAvailableCallable(fn() : bool => $this->proxy_config_service->isEnableWebProxy() && $web_proxy_map->menu_item)
+                ->withAvailableCallable(fn() : bool => $web_proxy_map->menu_item)
                 ->withVisibilityCallable(fn() : bool => $web_proxy_map->visible_public_menu_item || $user !== null);
         }
 

@@ -40,12 +40,10 @@ class GetConfigFormValuesCommand
     {
         return (object) [
             ConfigKey::API_PROXY_MAP->value                              => $this->proxy_config_service->getApiProxyMap(),
-            ConfigKey::ENABLE_API_PROXY->value                           => $this->proxy_config_service->isEnableApiProxy(),
             ConfigKey::ENABLE_LOG_CHANGES->value                         => $this->change_service->isEnableLogChanges(),
             ConfigKey::ENABLE_PURGE_CHANGES->value                       => $this->change_service->isEnablePurgeChanges(),
             ConfigKey::ENABLE_REST_API->value                            => $this->rest_config_service->isEnableRestApi(),
             ConfigKey::ENABLE_TRANSFER_CHANGES->value                    => $this->change_service->isEnableTransferChanges(),
-            ConfigKey::ENABLE_WEB_PROXY->value                           => $this->proxy_config_service->isEnableWebProxy(),
             ConfigKey::FLUX_ILIAS_REST_OBJECT_API_PROXY_MAPS->value      => $this->flux_ilias_rest_object_service->getFluxIliasRestObjectApiProxyMaps(),
             ConfigKey::FLUX_ILIAS_REST_OBJECT_DEFAULT_ICON_URL->value    => $this->flux_ilias_rest_object_service->getFluxIliasRestObjectDefaultIconUrl(),
             ConfigKey::FLUX_ILIAS_REST_OBJECT_MULTIPLE_TYPE_TITLE->value => $this->flux_ilias_rest_object_service->getFluxIliasRestObjectMultipleTypeTitle(),

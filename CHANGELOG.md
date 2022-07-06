@@ -11,6 +11,18 @@ Get build:
 - Docker image: `docker-registry.fluxpublisher.ch/flux-ilias-api:latest`
 - Archive: https://docker-registry.fluxpublisher.ch/api/get-build-archive/flux-ilias-api.tar.gz?tag=latest
 
+## v2022-07-06-1
+
+Changes:
+
+- Optional api proxy map in object
+- Remove enable web proxy and enable api proxy (Remove all maps for disable)
+
+Get build:
+
+- Docker image: `docker-registry.fluxpublisher.ch/flux-ilias-api:v2022-07-06-1`
+- Archive: https://docker-registry.fluxpublisher.ch/api/get-build-archive/flux-ilias-api.tar.gz?tag=v2022-07-06-1
+
 ## v2022-07-05-1
 
 Changes:

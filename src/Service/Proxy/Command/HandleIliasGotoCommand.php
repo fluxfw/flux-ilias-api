@@ -193,8 +193,7 @@ class HandleIliasGotoCommand
             exit;
         }
 
-        if (!$this->proxy_config_service->isEnableApiProxy()
-            || ($api_proxy_map = $this->proxy_config_service->getApiProxyMapByKey(
+        if (($api_proxy_map = $this->proxy_config_service->getApiProxyMapByKey(
                 $target_key
             )) === null
         ) {
@@ -471,8 +470,7 @@ class HandleIliasGotoCommand
 
     private function handleWebProxy(?UserDto $user, ServerRawRequestDto $request, string $target_key) : void
     {
-        if (!$this->proxy_config_service->isEnableWebProxy()
-            || ($web_proxy_map = $this->proxy_config_service->getWebProxyMapByKey(
+        if (($web_proxy_map = $this->proxy_config_service->getWebProxyMapByKey(
                 $target_key
             )) === null
         ) {
