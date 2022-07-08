@@ -7,12 +7,6 @@ ILIAS Api
 ### Non-Composer
 
 ```dockerfile
-COPY --from=docker-registry.fluxpublisher.ch/flux-ilias-api:%tag% /flux-ilias-api /%path%/libs/flux-ilias-api
-```
-
-or
-
-```dockerfile
 RUN (mkdir -p /%path%/libs/flux-ilias-api && cd /%path%/libs/flux-ilias-api && wget -O - https://github.com/flux-eco/flux-ilias-api/releases/download/%tag%/flux-ilias-api-%tag%-build.tar.gz | tar -xz --strip-components=1)
 ```
 
