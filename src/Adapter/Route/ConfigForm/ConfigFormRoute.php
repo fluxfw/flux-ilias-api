@@ -64,7 +64,8 @@ class ConfigFormRoute implements Route
                     "config",
                     "/static/flilre_config.html",
                     null,
-                    $request->original_route
+                    $request->original_route,
+                    "flux-ilias-rest-config"
                 )
             )
         );

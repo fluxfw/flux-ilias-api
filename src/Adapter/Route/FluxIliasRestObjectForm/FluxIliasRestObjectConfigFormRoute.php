@@ -67,7 +67,7 @@ class FluxIliasRestObjectConfigFormRoute implements Route
     public function handle(ServerRequestDto $request) : ?ServerResponseDto
     {
         $this->ilias_locator->addRepositoryItems($this->object->ref_id);
-        $this->ilias_locator->addItem($this->object->title, $this->flux_ilias_rest_object_service->getFluxIliasRestObjectConfigLink(
+        $this->ilias_locator->addItem($this->object->title, $link = $this->flux_ilias_rest_object_service->getFluxIliasRestObjectConfigLink(
             $this->object->ref_id
         ));
 
@@ -83,7 +83,8 @@ class FluxIliasRestObjectConfigFormRoute implements Route
                     [
                         "ref_id" => $this->object->ref_id
                     ],
-                    $request->original_route
+                    $request->original_route,
+                    $link
                 )
             )
         );
