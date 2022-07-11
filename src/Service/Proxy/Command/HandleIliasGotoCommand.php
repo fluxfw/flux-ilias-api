@@ -242,6 +242,7 @@ class HandleIliasGotoCommand
                 ]), ARRAY_FILTER_USE_KEY),
                 null,
                 null,
+                null,
                 true,
                 false,
                 true,
@@ -339,6 +340,7 @@ class HandleIliasGotoCommand
                     DefaultHeaderKey::ACCEPT->value,
                     DefaultHeaderKey::CONTENT_TYPE->value
                 ]), ARRAY_FILTER_USE_KEY),
+                null,
                 null,
                 null,
                 true,
