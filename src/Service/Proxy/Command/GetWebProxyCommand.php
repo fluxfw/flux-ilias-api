@@ -35,7 +35,8 @@ class GetWebProxyCommand
         ?string $view_title = null,
         ?string $route = null,
         ?array $query_params = null,
-        ?string $original_route = null
+        ?string $original_route = null,
+        ?string $permanent_link = null
     ) : string {
         $url = rtrim($url, "/") . (!empty($route = trim($route, "/")) ? "/" . $route : "");
 
@@ -49,6 +50,13 @@ class GetWebProxyCommand
         PageContentProvider::setTitle($page_title ?? "");
         PageContentProvider::setShortTitle($short_title ?? "");
         PageContentProvider::setViewTitle($view_title ?? "");
+
+        if ($permanent_link !== null) {
+            if (!str_contains($permanent_link, "://")) {
+                $permanent_link = ILIAS_HTTP_PATH . "/" . ltrim($permanent_link, "/");
+            }
+            PageContentProvider::setPermaLink($permanent_link);
+        }
 
         $this->ilias_global_template->setLocator();
 

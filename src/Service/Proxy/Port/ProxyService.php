@@ -55,7 +55,8 @@ class ProxyService
         ?string $view_title = null,
         ?string $route = null,
         ?array $query_params = null,
-        ?string $original_route = null
+        ?string $original_route = null,
+        ?string $permanent_link = null
     ) : string {
         return GetWebProxyCommand::new(
             $this->proxy_config_service,
@@ -68,7 +69,8 @@ class ProxyService
                 $view_title,
                 $route,
                 $query_params,
-                $original_route
+                $original_route,
+                $permanent_link
             );
     }
 

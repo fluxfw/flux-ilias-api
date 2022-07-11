@@ -122,7 +122,7 @@ ORDER BY object_data_child.title ASC,object_data_child.create_date ASC,object_re
         }
 
         if (!str_contains($icon, "://")) {
-            $icon = ILIAS_HTTP_PATH . "/" . $icon;
+            $icon = ILIAS_HTTP_PATH . "/" . ltrim($icon, "/");
         }
 
         return $icon;

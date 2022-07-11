@@ -409,7 +409,7 @@ class HandleIliasGotoCommand
         }
 
         $this->ilias_locator->addRepositoryItems($object->ref_id);
-        $this->ilias_locator->addItem($object->title, $this->flux_ilias_rest_object_service->getFluxIliasRestObjectWebProxyLink(
+        $this->ilias_locator->addItem($object->title, $link = $this->flux_ilias_rest_object_service->getFluxIliasRestObjectWebProxyLink(
             $object->ref_id,
             $object->id
         ));
@@ -430,7 +430,8 @@ class HandleIliasGotoCommand
                     ] : []) + $this->getQueryParams(
                         $request
                     ),
-                    $request->original_route
+                    $request->original_route,
+                    $link
                 )
             ),
             $request
@@ -497,7 +498,8 @@ class HandleIliasGotoCommand
                     $this->getQueryParams(
                         $request
                     ),
-                    $request->original_route
+                    $request->original_route,
+                    $web_proxy_map->getRewriteUrlWithDefault()
                 )
             ),
             $request
