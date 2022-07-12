@@ -1,38 +1,15 @@
-ARG FLUX_AUTOLOAD_API_IMAGE
-ARG FLUX_ILIAS_BASE_API_IMAGE
-ARG FLUX_NAMESPACE_CHANGER_IMAGE=docker-registry.fluxpublisher.ch/flux-namespace-changer
-ARG FLUX_REST_API_IMAGE
+FROM php:cli-alpine AS build
 
-FROM $FLUX_AUTOLOAD_API_IMAGE:v2022-06-22-1 AS flux_autoload_api
-FROM $FLUX_ILIAS_BASE_API_IMAGE:v2022-07-05-1 AS flux_ilias_base_api
-FROM $FLUX_REST_API_IMAGE:v2022-07-11-1 AS flux_rest_api
+RUN (mkdir -p /flux-namespace-changer && cd /flux-namespace-changer && wget -O - https://github.com/flux-eco/flux-namespace-changer/releases/download/v2022-07-12-1/flux-namespace-changer-v2022-07-12-1-build.tar.gz | tar -xz --strip-components=1)
 
-FROM $FLUX_NAMESPACE_CHANGER_IMAGE:v2022-06-23-1 AS build_namespaces
+RUN (mkdir -p /build/flux-ilias-api/libs/flux-autoload-api && cd /build/flux-ilias-api/libs/flux-autoload-api && wget -O - https://github.com/flux-eco/flux-autoload-api/releases/download/v2022-07-12-1/flux-autoload-api-v2022-07-12-1-build.tar.gz | tar -xz --strip-components=1 && /flux-namespace-changer/bin/change-namespace.php . FluxAutoloadApi FluxIliasApi\\Libs\\FluxAutoloadApi)
 
-COPY --from=flux_autoload_api /flux-autoload-api /code/flux-autoload-api
-RUN change-namespace /code/flux-autoload-api FluxAutoloadApi FluxIliasApi\\Libs\\FluxAutoloadApi
+RUN (mkdir -p /build/flux-ilias-api/libs/flux-ilias-base-api && cd /build/flux-ilias-api/libs/flux-ilias-base-api && wget -O - https://github.com/flux-eco/flux-ilias-base-api/releases/download/v2022-07-12-1/flux-ilias-base-api-v2022-07-12-1-build.tar.gz | tar -xz --strip-components=1 && /flux-namespace-changer/bin/change-namespace.php . FluxIliasBaseApi FluxIliasApi\\Libs\\FluxIliasBaseApi)
 
-COPY --from=flux_ilias_base_api /flux-ilias-base-api /code/flux-ilias-base-api
-RUN change-namespace /code/flux-ilias-base-api FluxIliasBaseApi FluxIliasApi\\Libs\\FluxIliasBaseApi
+RUN (mkdir -p /build/flux-ilias-api/libs/flux-rest-api && cd /build/flux-ilias-api/libs/flux-rest-api && wget -O - https://github.com/flux-eco/flux-rest-api/releases/download/v2022-07-12-1/flux-rest-api-v2022-07-12-1-build.tar.gz | tar -xz --strip-components=1 && /flux-namespace-changer/bin/change-namespace.php . FluxRestApi FluxIliasApi\\Libs\\FluxRestApi)
 
-COPY --from=flux_rest_api /flux-rest-api /code/flux-rest-api
-RUN change-namespace /code/flux-rest-api FluxRestApi FluxIliasApi\\Libs\\FluxRestApi
-
-FROM alpine:latest AS build
-
-COPY --from=build_namespaces /code/flux-autoload-api /build/flux-ilias-api/libs/flux-autoload-api
-COPY --from=build_namespaces /code/flux-ilias-base-api /build/flux-ilias-api/libs/flux-ilias-base-api
-COPY --from=build_namespaces /code/flux-rest-api /build/flux-ilias-api/libs/flux-rest-api
 COPY . /build/flux-ilias-api
-
-RUN (cd /build && tar -czf flux-ilias-api.tar.gz flux-ilias-api)
 
 FROM scratch
 
-LABEL org.opencontainers.image.source="https://github.com/flux-eco/flux-ilias-api"
-LABEL maintainer="fluxlabs <support@fluxlabs.ch> (https://fluxlabs.ch)"
-
 COPY --from=build /build /
-
-ARG COMMIT_SHA
-LABEL org.opencontainers.image.revision="$COMMIT_SHA"
