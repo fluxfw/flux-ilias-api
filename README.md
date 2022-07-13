@@ -52,4 +52,4 @@ require_once __DIR__ . "/%path%/libs/flux-ilias-api/autoload.php";
 
 ## Example
 
-Look at [flux-ilias-rest-api](https://github.com/flux-caps/flux-ilias-rest-api)
+Look at [flux-ilias-rest-api](https://github.com/flux-eco/flux-ilias-rest-api)
