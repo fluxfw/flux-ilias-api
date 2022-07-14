@@ -9,12 +9,12 @@ ILIAS Api
 #### Download
 
 ```dockerfile
-RUN (mkdir -p /%path%/libs/flux-ilias-api && cd /%path%/libs/flux-ilias-api && wget -O - https://github.com/flux-eco/flux-ilias-api/releases/download/%tag%/flux-ilias-api-%tag%-build.tar.gz | tar -xz --strip-components=1)
+RUN (mkdir -p /%path%/libs/flux-ilias-api && cd /%path%/libs/flux-ilias-api && wget -O - https://github.com/fluxfw/flux-ilias-api/releases/download/%tag%/flux-ilias-api-%tag%-build.tar.gz | tar -xz --strip-components=1)
 ```
 
 or
 
-Download https://github.com/flux-eco/flux-ilias-api/releases/download/%tag%/flux-ilias-api-%tag%-build.tar.gz and extract it to `/%path%/libs/flux-ilias-api`
+Download https://github.com/fluxfw/flux-ilias-api/releases/download/%tag%/flux-ilias-api-%tag%-build.tar.gz and extract it to `/%path%/libs/flux-ilias-api`
 
 #### Load
 
@@ -33,7 +33,7 @@ require_once __DIR__ . "/%path%/libs/flux-ilias-api/autoload.php";
                 "name": "flux/flux-ilias-api",
                 "version": "%tag%",
                 "dist": {
-                    "url": "https://github.com/flux-eco/flux-ilias-api/releases/download/%tag%/flux-ilias-api-%tag%-build.tar.gz",
+                    "url": "https://github.com/fluxfw/flux-ilias-api/releases/download/%tag%/flux-ilias-api-%tag%-build.tar.gz",
                     "type": "tar"
                 },
                 "autoload": {
@@ -52,4 +52,4 @@ require_once __DIR__ . "/%path%/libs/flux-ilias-api/autoload.php";
 
 ## Example
 
-Look at [flux-ilias-rest-api](https://github.com/flux-eco/flux-ilias-rest-api)
+Look at [flux-ilias-rest-api](https://github.com/fluxfw/flux-ilias-rest-api)
