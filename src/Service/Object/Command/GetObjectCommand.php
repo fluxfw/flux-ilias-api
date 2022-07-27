@@ -39,6 +39,7 @@ class GetObjectCommand
                 null,
                 null,
                 null,
+                null,
                 $in_trash
             )))) !== null) {
             if ($object !== null) {
@@ -62,6 +63,7 @@ class GetObjectCommand
                 null,
                 null,
                 $import_id,
+                null,
                 null,
                 null,
                 $in_trash
@@ -88,6 +90,7 @@ class GetObjectCommand
                 null,
                 null,
                 $ref_id,
+                null,
                 null,
                 $in_trash
             )))) !== null) {

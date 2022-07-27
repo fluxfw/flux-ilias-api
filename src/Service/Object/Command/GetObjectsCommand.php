@@ -31,13 +31,14 @@ class GetObjectsCommand
     /**
      * @return ObjectDto[]
      */
-    public function getObjects(ObjectType $type, bool $ref_ids = false, ?bool $in_trash = null) : array
+    public function getObjects(ObjectType $type, ?string $title = null, bool $ref_ids = false, ?bool $in_trash = null) : array
     {
         $objects = $this->ilias_database->fetchAll($this->ilias_database->query($this->getObjectQuery(
             $type,
             null,
             null,
             null,
+            $title,
             null,
             $in_trash
         )));

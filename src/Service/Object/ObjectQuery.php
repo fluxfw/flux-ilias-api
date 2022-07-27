@@ -80,8 +80,14 @@ trait ObjectQuery
     }
 
 
-    private function getObjectChildrenQuery(?int $id = null, ?string $import_id = null, ?int $ref_id = null, ?bool $in_trash = null) : string
-    {
+    private function getObjectChildrenQuery(
+        ?int $id = null,
+        ?string $import_id = null,
+        ?int $ref_id = null,
+        ?ObjectType $type = null,
+        ?string $title = null,
+        ?bool $in_trash = null
+    ) : string {
         $wheres = [];
 
         if ($id !== null) {
@@ -94,6 +100,14 @@ trait ObjectQuery
 
         if ($ref_id !== null) {
             $wheres[] = "object_reference.ref_id=" . $this->ilias_database->quote($ref_id, ilDBConstants::T_INTEGER);
+        }
+
+        if ($type !== null) {
+            $wheres[] = "object_data_child.type=" . $this->ilias_database->quote(ObjectTypeMapping::mapExternalToInternal($type)->value, ilDBConstants::T_TEXT);
+        }
+
+        if ($title !== null) {
+            $wheres[] = "object_data_child.title=" . $this->ilias_database->quote($title, ilDBConstants::T_TEXT);
         }
 
         if ($in_trash !== null) {
@@ -129,8 +143,15 @@ ORDER BY object_data_child.title ASC,object_data_child.create_date ASC,object_re
     }
 
 
-    private function getObjectQuery(?ObjectType $type = null, ?int $id = null, ?string $import_id = null, ?int $ref_id = null, ?array $ref_ids = null, ?bool $in_trash = null) : string
-    {
+    private function getObjectQuery(
+        ?ObjectType $type = null,
+        ?int $id = null,
+        ?string $import_id = null,
+        ?int $ref_id = null,
+        ?string $title = null,
+        ?array $ref_ids = null,
+        ?bool $in_trash = null
+    ) : string {
         $wheres = [];
 
         if ($type !== null) {
@@ -147,6 +168,10 @@ ORDER BY object_data_child.title ASC,object_data_child.create_date ASC,object_re
 
         if ($ref_id !== null) {
             $wheres[] = "object_reference.ref_id=" . $this->ilias_database->quote($ref_id, ilDBConstants::T_INTEGER);
+        }
+
+        if ($title !== null) {
+            $wheres[] = "object_data.title=" . $this->ilias_database->quote($title, ilDBConstants::T_TEXT);
         }
 
         if ($ref_ids !== null) {

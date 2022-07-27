@@ -913,11 +913,13 @@ class IliasApi
     /**
      * @return ObjectDto[]|null
      */
-    public function getChildrenById(int $id, bool $ref_ids = false, ?bool $in_trash = null) : ?array
+    public function getChildrenById(int $id, ?ObjectType $type = null, ?string $title = null, bool $ref_ids = false, ?bool $in_trash = null) : ?array
     {
         return $this->getObjectService()
             ->getChildrenById(
                 $id,
+                $type,
+                $title,
                 $ref_ids,
                 $in_trash
             );
@@ -927,11 +929,13 @@ class IliasApi
     /**
      * @return ObjectDto[]|null
      */
-    public function getChildrenByImportId(string $import_id, bool $ref_ids = false, ?bool $in_trash = null) : ?array
+    public function getChildrenByImportId(string $import_id, ?ObjectType $type = null, ?string $title = null, bool $ref_ids = false, ?bool $in_trash = null) : ?array
     {
         return $this->getObjectService()
             ->getChildrenByImportId(
                 $import_id,
+                $type,
+                $title,
                 $ref_ids,
                 $in_trash
             );
@@ -941,11 +945,13 @@ class IliasApi
     /**
      * @return ObjectDto[]|null
      */
-    public function getChildrenByRefId(int $ref_id, bool $ref_ids = false, ?bool $in_trash = null) : ?array
+    public function getChildrenByRefId(int $ref_id, ?ObjectType $type = null, ?string $title = null, bool $ref_ids = false, ?bool $in_trash = null) : ?array
     {
         return $this->getObjectService()
             ->getChildrenByRefId(
                 $ref_id,
+                $type,
+                $title,
                 $ref_ids,
                 $in_trash
             );
@@ -1347,11 +1353,12 @@ class IliasApi
     /**
      * @return ObjectDto[]
      */
-    public function getObjects(ObjectType $type, bool $ref_ids = false, ?bool $in_trash = null) : array
+    public function getObjects(ObjectType $type, ?string $title = null, bool $ref_ids = false, ?bool $in_trash = null) : array
     {
         return $this->getObjectService()
             ->getObjects(
                 $type,
+                $title,
                 $ref_ids,
                 $in_trash
             );
@@ -1644,10 +1651,20 @@ class IliasApi
     /**
      * @return UserDto[]
      */
-    public function getUsers(bool $access_limited_object_ids = false, bool $multi_fields = false, bool $preferences = false, bool $user_defined_fields = false) : array
-    {
+    public function getUsers(
+        ?string $external_account = null,
+        ?string $login = null,
+        ?string $email = null,
+        bool $access_limited_object_ids = false,
+        bool $multi_fields = false,
+        bool $preferences = false,
+        bool $user_defined_fields = false
+    ) : array {
         return $this->getUserService()
             ->getUsers(
+                $external_account,
+                $login,
+                $email,
                 $access_limited_object_ids,
                 $multi_fields,
                 $preferences,
