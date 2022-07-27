@@ -89,12 +89,22 @@ class UserService
     /**
      * @return UserDto[]
      */
-    public function getUsers(bool $access_limited_object_ids = false, bool $multi_fields = false, bool $preferences = false, bool $user_defined_fields = false) : array
-    {
+    public function getUsers(
+        ?string $external_account = null,
+        ?string $login = null,
+        ?string $email = null,
+        bool $access_limited_object_ids = false,
+        bool $multi_fields = false,
+        bool $preferences = false,
+        bool $user_defined_fields = false
+    ) : array {
         return GetUsersCommand::new(
             $this->ilias_database
         )
             ->getUsers(
+                $external_account,
+                $login,
+                $email,
                 $access_limited_object_ids,
                 $multi_fields,
                 $preferences,

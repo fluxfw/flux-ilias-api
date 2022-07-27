@@ -30,9 +30,22 @@ class GetUsersCommand
     /**
      * @return UserDto[]
      */
-    public function getUsers(bool $access_limited_object_ids = false, bool $multi_fields = false, bool $preferences = false, bool $user_defined_fields = false) : array
-    {
-        $users = $this->ilias_database->fetchAll($this->ilias_database->query($this->getUserQuery()));
+    public function getUsers(
+        ?string $external_account = null,
+        ?string $login = null,
+        ?string $email = null,
+        bool $access_limited_object_ids = false,
+        bool $multi_fields = false,
+        bool $preferences = false,
+        bool $user_defined_fields = false
+    ) : array {
+        $users = $this->ilias_database->fetchAll($this->ilias_database->query($this->getUserQuery(
+            null,
+            null,
+            $external_account,
+            $login,
+            $email
+        )));
         $user_ids = array_map(fn(array $user) : int => $user["usr_id"], $users);
 
         $access_limited_object_ids_ = $access_limited_object_ids ? $this->ilias_database->fetchAll($this->ilias_database->query($this->getUserAccessLimitedObjects(array_filter(array_map(fn(array $user

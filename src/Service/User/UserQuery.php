@@ -68,7 +68,7 @@ WHERE " . $this->ilias_database->in("usr_id", $ids, false, ilDBConstants::T_INTE
     }
 
 
-    private function getUserQuery(?int $id = null, ?string $import_id = null) : string
+    private function getUserQuery(?int $id = null, ?string $import_id = null, ?string $external_account = null, ?string $login = null, ?string $email = null) : string
     {
         $wheres = [
             "type=" . $this->ilias_database->quote(DefaultInternalObjectType::USR->value, ilDBConstants::T_TEXT)
@@ -80,6 +80,18 @@ WHERE " . $this->ilias_database->in("usr_id", $ids, false, ilDBConstants::T_INTE
 
         if ($import_id !== null) {
             $wheres[] = "import_id=" . $this->ilias_database->quote($import_id, ilDBConstants::T_TEXT);
+        }
+
+        if ($external_account !== null) {
+            $wheres[] = "usr_data.ext_account=" . $this->ilias_database->quote($external_account, ilDBConstants::T_TEXT);
+        }
+
+        if ($login !== null) {
+            $wheres[] = "usr_data.login=" . $this->ilias_database->quote($login, ilDBConstants::T_TEXT);
+        }
+
+        if ($email !== null) {
+            $wheres[] = "usr_data.email=" . $this->ilias_database->quote($email, ilDBConstants::T_TEXT);
         }
 
         return "SELECT usr_data.*,import_id
