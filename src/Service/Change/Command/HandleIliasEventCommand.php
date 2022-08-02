@@ -209,16 +209,16 @@ class HandleIliasEventCommand
     private function getCourseMemberData(int $course_id, int $user_id) : object
     {
         return $this->course_member_service->getCourseMembers(
-                $course_id,
-                null,
-                null,
-                $user_id
-            )[0] ?? CourseMemberIdDto::new(
-                $course_id,
-                null,
-                null,
-                $user_id
-            );
+            $course_id,
+            null,
+            null,
+            $user_id
+        )[0] ?? CourseMemberIdDto::new(
+            $course_id,
+            null,
+            null,
+            $user_id
+        );
     }
 
 
@@ -267,16 +267,16 @@ class HandleIliasEventCommand
     private function getGroupMemberData(int $group_id, int $user_id) : object
     {
         return $this->group_member_service->getGroupMembers(
-                $group_id,
-                null,
-                null,
-                $user_id
-            )[0] ?? GroupMemberIdDto::new(
-                $group_id,
-                null,
-                null,
-                $user_id
-            );
+            $group_id,
+            null,
+            null,
+            $user_id
+        )[0] ?? GroupMemberIdDto::new(
+            $group_id,
+            null,
+            null,
+            $user_id
+        );
     }
 
 
@@ -301,16 +301,16 @@ class HandleIliasEventCommand
     private function getObjectLearningProgressData(int $object_id, int $user_id) : object
     {
         return $this->object_learning_progress_service->getObjectLearningProgress(
-                $object_id,
-                null,
-                null,
-                $user_id
-            )[0] ?? ObjectLearningProgressIdDto::new(
-                $object_id,
-                null,
-                null,
-                $user_id
-            );
+            $object_id,
+            null,
+            null,
+            $user_id
+        )[0] ?? ObjectLearningProgressIdDto::new(
+            $object_id,
+            null,
+            null,
+            $user_id
+        );
     }
 
 
@@ -331,20 +331,20 @@ class HandleIliasEventCommand
     private function getOrganisationalUnitStaffData(int $organisational_unit_ref_id, int $user_id, int $position_id) : object
     {
         return $this->organisational_unit_staff_service->getOrganisationalUnitStaff(
-                null,
-                null,
-                $organisational_unit_ref_id,
-                $user_id,
-                null,
-                $position_id
-            )[0] ?? OrganisationalUnitStaffDto::new(
-                null,
-                null,
-                $organisational_unit_ref_id,
-                $user_id,
-                null,
-                $position_id
-            );
+            null,
+            null,
+            $organisational_unit_ref_id,
+            $user_id,
+            null,
+            $position_id
+        )[0] ?? OrganisationalUnitStaffDto::new(
+            null,
+            null,
+            $organisational_unit_ref_id,
+            $user_id,
+            null,
+            $position_id
+        );
     }
 
 
@@ -381,14 +381,14 @@ class HandleIliasEventCommand
     private function getUserRoleData(int $user_id, int $role_id) : object
     {
         return $this->user_role_service->getUserRoles(
-                $user_id,
-                null,
-                $role_id
-            )[0] ?? UserRoleDto::new(
-                $user_id,
-                null,
-                $role_id
-            );
+            $user_id,
+            null,
+            $role_id
+        )[0] ?? UserRoleDto::new(
+            $user_id,
+            null,
+            $role_id
+        );
     }
 
 

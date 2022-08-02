@@ -23,8 +23,8 @@ class CustomInternalPermission implements InternalPermission, JsonSerializable
     public static function factory(string $value) : InternalPermission
     {
         return DefaultInternalPermission::tryFrom($value) ?? static::new(
-                $value
-            );
+            $value
+        );
     }
 
 

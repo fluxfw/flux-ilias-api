@@ -30,7 +30,7 @@ class GetKeepChangesInsideDaysCommand
     public function getKeepChangesInsideDays() : int
     {
         return intval($this->config_service->getConfig(
-                ConfigKey::KEEP_CHANGES_INSIDE_DAYS
-            ) ?? static::DEFAULT_VALUE);
+            ConfigKey::KEEP_CHANGES_INSIDE_DAYS
+        ) ?? static::DEFAULT_VALUE);
     }
 }

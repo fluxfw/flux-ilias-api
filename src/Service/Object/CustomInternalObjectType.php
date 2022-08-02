@@ -23,8 +23,8 @@ class CustomInternalObjectType implements InternalObjectType, JsonSerializable
     public static function factory(string $value) : InternalObjectType
     {
         return DefaultInternalObjectType::tryFrom($value) ?? static::new(
-                $value
-            );
+            $value
+        );
     }
 
 
