@@ -23,8 +23,8 @@ class CustomInternalCustomMetadataFieldType implements InternalCustomMetadataFie
     public static function factory(int $value) : InternalCustomMetadataFieldType
     {
         return DefaultInternalCustomMetadataFieldType::tryFrom($value) ?? static::new(
-                $value
-            );
+            $value
+        );
     }
 
 

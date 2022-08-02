@@ -68,8 +68,14 @@ WHERE " . $this->ilias_database->in("usr_id", $ids, false, ilDBConstants::T_INTE
     }
 
 
-    private function getUserQuery(?int $id = null, ?string $import_id = null, ?string $external_account = null, ?string $login = null, ?string $email = null) : string
-    {
+    private function getUserQuery(
+        ?int $id = null,
+        ?string $import_id = null,
+        ?string $external_account = null,
+        ?string $login = null,
+        ?string $email = null,
+        ?string $matriculation_number = null,
+    ) : string {
         $wheres = [
             "type=" . $this->ilias_database->quote(DefaultInternalObjectType::USR->value, ilDBConstants::T_TEXT)
         ];
@@ -92,6 +98,10 @@ WHERE " . $this->ilias_database->in("usr_id", $ids, false, ilDBConstants::T_INTE
 
         if ($email !== null) {
             $wheres[] = "usr_data.email=" . $this->ilias_database->quote($email, ilDBConstants::T_TEXT);
+        }
+
+        if ($matriculation_number !== null) {
+            $wheres[] = "usr_data.matriculation=" . $this->ilias_database->quote($matriculation_number, ilDBConstants::T_TEXT);
         }
 
         return "SELECT usr_data.*,import_id

@@ -23,8 +23,8 @@ class CustomInternalScheduleTypeCronConfig implements InternalScheduleTypeCronCo
     public static function factory(int $value) : InternalScheduleTypeCronConfig
     {
         return DefaultInternalScheduleTypeCronConfig::tryFrom($value) ?? static::new(
-                $value
-            );
+            $value
+        );
     }
 
 

@@ -34,6 +34,7 @@ class GetUsersCommand
         ?string $external_account = null,
         ?string $login = null,
         ?string $email = null,
+        ?string $matriculation_number = null,
         bool $access_limited_object_ids = false,
         bool $multi_fields = false,
         bool $preferences = false,
@@ -44,7 +45,8 @@ class GetUsersCommand
             null,
             $external_account,
             $login,
-            $email
+            $email,
+            $matriculation_number
         )));
         $user_ids = array_map(fn(array $user) : int => $user["usr_id"], $users);
 

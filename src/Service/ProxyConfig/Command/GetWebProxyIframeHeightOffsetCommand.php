@@ -30,7 +30,7 @@ class GetWebProxyIframeHeightOffsetCommand
     public function getWebProxyIframeHeightOffset() : int
     {
         return intval($this->config_service->getConfig(
-                ConfigKey::WEB_PROXY_IFRAME_HEIGHT_OFFSET
-            ) ?? static::DEFAULT_VALUE);
+            ConfigKey::WEB_PROXY_IFRAME_HEIGHT_OFFSET
+        ) ?? static::DEFAULT_VALUE);
     }
 }
