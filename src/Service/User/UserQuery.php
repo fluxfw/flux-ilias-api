@@ -74,7 +74,7 @@ WHERE " . $this->ilias_database->in("usr_id", $ids, false, ilDBConstants::T_INTE
         ?string $external_account = null,
         ?string $login = null,
         ?string $email = null,
-        ?string $matriculation_number = null,
+        ?string $matriculation_number = null
     ) : string {
         $wheres = [
             "type=" . $this->ilias_database->quote(DefaultInternalObjectType::USR->value, ilDBConstants::T_TEXT)
