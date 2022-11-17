@@ -105,19 +105,9 @@ class UploadFileCommand
         $version_title = (($title ?: $result->getName()) ?: $file->title) ?? "";
 
         if ($replace) {
-            if (method_exists($ilias_file, "replaceWithUpload")) {
-                $ilias_file->replaceWithUpload($result, $version_title);
-            } else {
-                $ilias_file->deleteVersions();
-                $ilias_file->clearDataDirectory();
-                $ilias_file->replaceFile($result_key, $version_title);
-            }
+            $ilias_file->replaceWithUpload($result, $version_title);
         } else {
-            if (method_exists($ilias_file, "appendUpload")) {
-                $ilias_file->appendUpload($result, $version_title);
-            } else {
-                $ilias_file->addFileVersion($result_key, $version_title);
-            }
+            $ilias_file->appendUpload($result, $version_title);
         }
 
         return ObjectIdDto::new(
