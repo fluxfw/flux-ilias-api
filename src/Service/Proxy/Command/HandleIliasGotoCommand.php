@@ -81,6 +81,13 @@ class HandleIliasGotoCommand
                     );
                     break;
 
+                case $target === ProxyTarget::LOGIN->value:
+                    $this->handleLogin(
+                        $user,
+                        $request
+                    );
+                    break;
+
                 case str_starts_with($target, ProxyTarget::API_PROXY->value):
                     $this->handleApiProxy(
                         $user,
@@ -89,19 +96,19 @@ class HandleIliasGotoCommand
                     );
                     break;
 
-                case str_starts_with($target, ProxyTarget::OBJECT_CONFIG->value):
-                    $this->handleObjectConfig(
-                        $user,
-                        $request,
-                        substr($target, 21)
-                    );
-                    break;
-
                 case str_starts_with($target, ProxyTarget::OBJECT_API_PROXY->value):
                     $this->handleObjectApiProxy(
                         $user,
                         $request,
                         substr($target, 24)
+                    );
+                    break;
+
+                case str_starts_with($target, ProxyTarget::OBJECT_CONFIG->value):
+                    $this->handleObjectConfig(
+                        $user,
+                        $request,
+                        substr($target, 21)
                     );
                     break;
 
@@ -236,7 +243,7 @@ class HandleIliasGotoCommand
                     DefaultHeaderKey::USER_AGENT->value => "flux-ilias-api",
                     "X-Flux-Ilias-Api-User-Id"          => $user->id,
                     "X-Flux-Ilias-Api-User-Import-Id"   => $user->import_id ?? ""
-                ] + array_filter($request->headers, fn(string $key) : bool => in_array($target_key, [
+                ] + array_filter($request->headers, fn(string $key) : bool => in_array($key, [
                     DefaultHeaderKey::ACCEPT->value,
                     DefaultHeaderKey::CONTENT_TYPE->value
                 ]), ARRAY_FILTER_USE_KEY),
@@ -254,7 +261,7 @@ class HandleIliasGotoCommand
             ServerRawResponseDto::new(
                 $response->raw_body,
                 $response->status,
-                array_filter($response->headers, fn(string $key) : bool => in_array($target_key, [
+                array_filter($response->headers, fn(string $key) : bool => in_array($key, [
                     DefaultHeaderKey::CONTENT_TYPE->value
                 ]), ARRAY_FILTER_USE_KEY)
             ),
@@ -279,6 +286,27 @@ class HandleIliasGotoCommand
                 $user
             )
         );
+    }
+
+
+    private function handleLogin(?UserDto $user, ServerRawRequestDto $request) : void
+    {
+        if ($user === null) {
+            return;
+        }
+
+        $this->rest_api->handleDefaultResponse(
+            ServerRawResponseDto::new(
+               null,
+               DefaultStatus::_302,
+               [
+                   DefaultHeaderKey::LOCATION->value => "/flux-ilias-rest-login/static/AuthenticationSuccess.html"
+               ]
+            ),
+            $request->server_type
+        );
+
+        exit;
     }
 
 
