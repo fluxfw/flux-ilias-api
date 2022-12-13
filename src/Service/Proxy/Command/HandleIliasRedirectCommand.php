@@ -37,6 +37,7 @@ class HandleIliasRedirectCommand
         );
         switch (true) {
             case $target === ProxyTarget::CONFIG->value:
+            case $target === ProxyTarget::LOGIN->value:
             case str_starts_with($target, ProxyTarget::API_PROXY->value):
             case str_starts_with($target, ProxyTarget::OBJECT_API_PROXY->value):
             case str_starts_with($target, ProxyTarget::OBJECT_CONFIG->value):
