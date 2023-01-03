@@ -136,7 +136,7 @@ WHERE session_id=" . $this->ilias_database->quote($session_id,
         }
 
         if ($diff->login !== null) {
-            $ilias_user->setLogin($diff->login);
+            $ilias_user->updateLogin($diff->login);
         }
 
         if ($diff->password !== null) {
